@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "enquadramento": {
+      "home": {
+        "title": "Enquadramentos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Enquadramento",
+        "createOrEditLabel": "Criar ou editar Enquadramento",
+        "notFound": "Nenhum Enquadramento encontrado"
+      },
+      "created": "Um novo Enquadramento foi criado com o identificador {{ param }}",
+      "updated": "Um Enquadramento foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Enquadramento foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Enquadramento {{ id }}?"
+      },
+      "detail": {
+        "title": "Enquadramento"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "sigla": "Sigla",
+      "limiteInicial": "Limite Inicial",
+      "limiteFinal": "Limite Final",
+      "descricao": "Descricao",
+      "empresa": "Empresa",
+      "adicionalEnquadramento": "Adicional Enquadramento"
+    }
+  }
+}

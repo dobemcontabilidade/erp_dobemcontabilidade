@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "grupoCnae": {
+      "home": {
+        "title": "Grupo Cnaes",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Grupo Cnae",
+        "createOrEditLabel": "Criar ou editar Grupo Cnae",
+        "notFound": "Nenhum Grupo Cnae encontrado"
+      },
+      "created": "Um novo Grupo Cnae foi criado com o identificador {{ param }}",
+      "updated": "Um Grupo Cnae foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Grupo Cnae foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Grupo Cnae {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupo Cnae"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "descricao": "Descricao",
+      "classeCnae": "Classe Cnae",
+      "divisao": "Divisao"
+    }
+  }
+}

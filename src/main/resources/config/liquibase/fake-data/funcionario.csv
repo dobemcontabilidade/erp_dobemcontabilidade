@@ -1,0 +1,11 @@
+id;nome;salario;ctps;cargo;descricao_atividades;situacao;pessoa_id;empresa_id
+1;phooey vermicelli;29034.24;criteria ficlet;snuggle monster aha;../fake-data/blob/hipster.txt;EXPERIENCIA;1;1
+2;shuttle airdrop truly;25873.13;trigger even ick;drat;../fake-data/blob/hipster.txt;DEMITIDO;2;2
+3;pro;28121.15;zowie;similar;../fake-data/blob/hipster.txt;AFASTADO;3;3
+4;ink tunnel;13202.27;pluralize ah workforce;gee receiver at;../fake-data/blob/hipster.txt;DEMITIDO;4;4
+5;barring inasmuch pish;17566.4;up our plus;discomfit mellow helplessly;../fake-data/blob/hipster.txt;DEMITIDO_JUSTA_CAUSA;5;5
+6;officiate;4229.86;boo justly;mansion notwithstanding;../fake-data/blob/hipster.txt;ADMITIDO;6;6
+7;miserly ah tornado;19460.1;by worth;lose enormously;../fake-data/blob/hipster.txt;AFASTADO;7;7
+8;unrealistic;7927.27;oh official;good-natured;../fake-data/blob/hipster.txt;DEMITIDO;8;8
+9;harsh;6407.4;focus;zowie;../fake-data/blob/hipster.txt;DEMITIDO;9;9
+10;identify suspicious huzzah;22059.44;bustling wetly blaring;past;../fake-data/blob/hipster.txt;EXPERIENCIA;10;10

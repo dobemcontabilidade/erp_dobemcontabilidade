@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity AssinaturaEmpresa.
+    -->
+    <changeSet id="20240810010146-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="periodo_pagamento_id"
+                                 baseTableName="assinatura_empresa"
+                                 constraintName="fk_assinatura_empresa__periodo_pagamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="periodo_pagamento"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="forma_de_pagamento_id"
+                                 baseTableName="assinatura_empresa"
+                                 constraintName="fk_assinatura_empresa__forma_de_pagamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="forma_de_pagamento"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="plano_conta_azul_id"
+                                 baseTableName="assinatura_empresa"
+                                 constraintName="fk_assinatura_empresa__plano_conta_azul_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plano_conta_azul"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="plano_contabil_id"
+                                 baseTableName="assinatura_empresa"
+                                 constraintName="fk_assinatura_empresa__plano_contabil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plano_contabil"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="empresa_id"
+                                 baseTableName="assinatura_empresa"
+                                 constraintName="fk_assinatura_empresa__empresa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="empresa"
+                                 />
+    </changeSet>
+</databaseChangeLog>

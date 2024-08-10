@@ -1,0 +1,11 @@
+export enum EstadoCivilEnum {
+  SOLTERO = 'SOLTERO',
+
+  CASADO = 'CASADO',
+
+  DIVORCIADO = 'DIVORCIADO',
+
+  VIUVO = 'VIUVO',
+
+  UNIAO_ESTAVEL = 'UNIAO_ESTAVEL',
+}

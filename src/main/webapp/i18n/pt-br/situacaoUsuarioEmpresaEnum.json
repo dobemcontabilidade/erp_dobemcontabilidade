@@ -1,0 +1,11 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "SituacaoUsuarioEmpresaEnum": {
+      "null": "",
+      "ATIVO": "ATIVO",
+      "INATIVO": "INATIVO",
+      "BLOQUEADO": "BLOQUEADO",
+      "EXCLUIDO": "EXCLUIDO"
+    }
+  }
+}

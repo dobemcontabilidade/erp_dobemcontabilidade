@@ -1,0 +1,153 @@
+<div>
+  <h2 id="page-heading" data-cy="OpcaoRazaoSocialEmpresaHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.opcaoRazaoSocialEmpresa.home.title">Opcao Razao Social Empresas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.opcaoRazaoSocialEmpresa.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-opcao-razao-social-empresa"
+        [routerLink]="['/opcao-razao-social-empresa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.opcaoRazaoSocialEmpresa.home.createLabel">Criar novo Opcao Razao Social Empresa</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (opcaoRazaoSocialEmpresas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.opcaoRazaoSocialEmpresa.home.notFound"
+        >Nenhum Opcao Razao Social Empresa encontrado</span
+      >
+    </div>
+  }
+
+  @if (opcaoRazaoSocialEmpresas && opcaoRazaoSocialEmpresas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.opcaoRazaoSocialEmpresa.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ordem">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.opcaoRazaoSocialEmpresa.ordem">Ordem</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="selecionado">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.opcaoRazaoSocialEmpresa.selecionado">Selecionado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empresa.razaoSocial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.opcaoRazaoSocialEmpresa.empresa">Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (opcaoRazaoSocialEmpresa of opcaoRazaoSocialEmpresas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/opcao-razao-social-empresa', opcaoRazaoSocialEmpresa.id, 'view']">{{ opcaoRazaoSocialEmpresa.id }}</a>
+              </td>
+              <td>{{ opcaoRazaoSocialEmpresa.nome }}</td>
+              <td>{{ opcaoRazaoSocialEmpresa.ordem }}</td>
+              <td>{{ opcaoRazaoSocialEmpresa.selecionado }}</td>
+              <td>
+                @if (opcaoRazaoSocialEmpresa.empresa) {
+                  <div>
+                    <a [routerLink]="['/empresa', opcaoRazaoSocialEmpresa.empresa.id, 'view']">{{
+                      opcaoRazaoSocialEmpresa.empresa.razaoSocial
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/opcao-razao-social-empresa', opcaoRazaoSocialEmpresa.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/opcao-razao-social-empresa', opcaoRazaoSocialEmpresa.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(opcaoRazaoSocialEmpresa)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (opcaoRazaoSocialEmpresas && opcaoRazaoSocialEmpresas.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

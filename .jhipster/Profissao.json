@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010224"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Profissao",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "funcaoSocio",
+      "otherEntityName": "socio",
+      "relationshipName": "socio",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,13 @@
+export enum TipoRedeSocialEnum {
+  FACEBOOK = 'FACEBOOK',
+
+  TWITTER = 'TWITTER',
+
+  INSTAGRAN = 'INSTAGRAN',
+
+  YOUTUBE = 'YOUTUBE',
+
+  LINKEDIN = 'LINKEDIN',
+
+  OUTROS = 'OUTROS',
+}

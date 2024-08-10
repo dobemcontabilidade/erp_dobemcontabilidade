@@ -1,0 +1,136 @@
+<div>
+  <h2 id="page-heading" data-cy="AtividadeEmpresaHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.atividadeEmpresa.home.title">Atividade Empresas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.atividadeEmpresa.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-atividade-empresa"
+        [routerLink]="['/atividade-empresa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.atividadeEmpresa.home.createLabel">Criar novo Atividade Empresa</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (atividadeEmpresas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.atividadeEmpresa.home.notFound">Nenhum Atividade Empresa encontrado</span>
+    </div>
+  }
+
+  @if (atividadeEmpresas && atividadeEmpresas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="principal">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.atividadeEmpresa.principal">Principal</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ordem">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.atividadeEmpresa.ordem">Ordem</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricaoAtividade">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.atividadeEmpresa.descricaoAtividade">Descricao Atividade</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cnae.descricao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.atividadeEmpresa.cnae">Cnae</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empresa.razaoSocial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.atividadeEmpresa.empresa">Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (atividadeEmpresa of atividadeEmpresas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/atividade-empresa', atividadeEmpresa.id, 'view']">{{ atividadeEmpresa.id }}</a>
+              </td>
+              <td>{{ atividadeEmpresa.principal }}</td>
+              <td>{{ atividadeEmpresa.ordem }}</td>
+              <td>{{ atividadeEmpresa.descricaoAtividade }}</td>
+              <td>
+                @if (atividadeEmpresa.cnae) {
+                  <div>
+                    <a [routerLink]="['/subclasse-cnae', atividadeEmpresa.cnae.id, 'view']">{{ atividadeEmpresa.cnae.descricao }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (atividadeEmpresa.empresa) {
+                  <div>
+                    <a [routerLink]="['/empresa', atividadeEmpresa.empresa.id, 'view']">{{ atividadeEmpresa.empresa.razaoSocial }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/atividade-empresa', atividadeEmpresa.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/atividade-empresa', atividadeEmpresa.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(atividadeEmpresa)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

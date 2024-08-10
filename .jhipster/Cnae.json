@@ -1,0 +1,44 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010140"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "anexo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "atendidoFreemium",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "atendido",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "optanteSimples",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "categoria",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Cnae",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

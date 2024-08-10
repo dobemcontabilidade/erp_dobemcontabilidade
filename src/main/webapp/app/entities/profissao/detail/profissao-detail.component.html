@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (profissao()) {
+      <div>
+        <h2 data-cy="profissaoDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.profissao.detail.title">Profissao</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ profissao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.profissao.nome">Nome</span></dt>
+          <dd>
+            <span>{{ profissao()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.profissao.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ profissao()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.profissao.socio">Socio</span></dt>
+          <dd>
+            @if (profissao()!.socio) {
+              <div>
+                <a [routerLink]="['/socio', profissao()!.socio?.id, 'view']">{{ profissao()!.socio?.funcaoSocio }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/profissao', profissao()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "subtarefa": {
+      "home": {
+        "title": "Subtarefas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Subtarefa",
+        "createOrEditLabel": "Create or edit a Subtarefa",
+        "notFound": "No Subtarefas found"
+      },
+      "created": "A new Subtarefa is created with identifier {{ param }}",
+      "updated": "A Subtarefa is updated with identifier {{ param }}",
+      "deleted": "A Subtarefa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Subtarefa {{ id }}?"
+      },
+      "detail": {
+        "title": "Subtarefa"
+      },
+      "id": "ID",
+      "ordem": "Ordem",
+      "item": "Item",
+      "descricao": "Descricao",
+      "tarefa": "Tarefa"
+    }
+  }
+}

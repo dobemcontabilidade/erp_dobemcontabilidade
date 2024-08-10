@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "termoDeAdesao": {
+      "home": {
+        "title": "Termo De Adesaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Termo De Adesao",
+        "createOrEditLabel": "Criar ou editar Termo De Adesao",
+        "notFound": "Nenhum Termo De Adesao encontrado"
+      },
+      "created": "Um novo Termo De Adesao foi criado com o identificador {{ param }}",
+      "updated": "Um Termo De Adesao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Termo De Adesao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Termo De Adesao {{ id }}?"
+      },
+      "detail": {
+        "title": "Termo De Adesao"
+      },
+      "id": "ID",
+      "titulo": "Titulo",
+      "descricao": "Descricao",
+      "urlDoc": "Url Doc",
+      "termoAdesaoContador": "Termo Adesao Contador"
+    }
+  }
+}

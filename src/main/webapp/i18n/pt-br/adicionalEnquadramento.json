@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "adicionalEnquadramento": {
+      "home": {
+        "title": "Adicional Enquadramentos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Adicional Enquadramento",
+        "createOrEditLabel": "Criar ou editar Adicional Enquadramento",
+        "notFound": "Nenhum Adicional Enquadramento encontrado"
+      },
+      "created": "Um novo Adicional Enquadramento foi criado com o identificador {{ param }}",
+      "updated": "Um Adicional Enquadramento foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Adicional Enquadramento foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Adicional Enquadramento {{ id }}?"
+      },
+      "detail": {
+        "title": "Adicional Enquadramento"
+      },
+      "id": "ID",
+      "valor": "Valor",
+      "enquadramento": "Enquadramento",
+      "planoContabil": "Plano Contabil"
+    }
+  }
+}

@@ -1,0 +1,166 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-departamento-contador-heading"
+        data-cy="DepartamentoContadorCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.departamentoContador.home.createOrEditLabel"
+      >
+        Criar ou editar Departamento Contador
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.departamentoContador.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_percentualExperiencia"
+            jhiTranslate="erpDobemcontabilidadeApp.departamentoContador.percentualExperiencia"
+            >Percentual Experiencia</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="percentualExperiencia"
+            id="field_percentualExperiencia"
+            data-cy="percentualExperiencia"
+            formControlName="percentualExperiencia"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_descricaoExperiencia"
+            jhiTranslate="erpDobemcontabilidadeApp.departamentoContador.descricaoExperiencia"
+            >Descricao Experiencia</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="descricaoExperiencia"
+            id="field_descricaoExperiencia"
+            data-cy="descricaoExperiencia"
+            formControlName="descricaoExperiencia"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_pontuacaoEntrevista"
+            jhiTranslate="erpDobemcontabilidadeApp.departamentoContador.pontuacaoEntrevista"
+            >Pontuacao Entrevista</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="pontuacaoEntrevista"
+            id="field_pontuacaoEntrevista"
+            data-cy="pontuacaoEntrevista"
+            formControlName="pontuacaoEntrevista"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_pontuacaoAvaliacao"
+            jhiTranslate="erpDobemcontabilidadeApp.departamentoContador.pontuacaoAvaliacao"
+            >Pontuacao Avaliacao</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="pontuacaoAvaliacao"
+            id="field_pontuacaoAvaliacao"
+            data-cy="pontuacaoAvaliacao"
+            formControlName="pontuacaoAvaliacao"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_departamento" jhiTranslate="erpDobemcontabilidadeApp.departamentoContador.departamento"
+            >Departamento</label
+          >
+          <select
+            class="form-control"
+            id="field_departamento"
+            data-cy="departamento"
+            name="departamento"
+            formControlName="departamento"
+            [compareWith]="compareDepartamento"
+          >
+            @if (editForm.get(['departamento'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (departamentoOption of departamentosSharedCollection; track $index) {
+              <option [ngValue]="departamentoOption">{{ departamentoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['departamento'])!.invalid && (editForm.get(['departamento'])!.dirty || editForm.get(['departamento'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['departamento'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contador" jhiTranslate="erpDobemcontabilidadeApp.departamentoContador.contador"
+            >Contador</label
+          >
+          <select
+            class="form-control"
+            id="field_contador"
+            data-cy="contador"
+            name="contador"
+            formControlName="contador"
+            [compareWith]="compareContador"
+          >
+            @if (editForm.get(['contador'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (contadorOption of contadorsSharedCollection; track $index) {
+              <option [ngValue]="contadorOption">{{ contadorOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['contador'])!.invalid && (editForm.get(['contador'])!.dirty || editForm.get(['contador'])!.touched)) {
+          <div>
+            @if (editForm.get(['contador'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

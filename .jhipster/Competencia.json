@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010153"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numero",
+      "fieldType": "Integer"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Competencia",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "tarefa",
+      "otherEntityRelationshipName": "competencia",
+      "relationshipName": "tarefa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

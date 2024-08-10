@@ -1,0 +1,163 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-usuario-empresa-heading"
+        data-cy="UsuarioEmpresaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.home.createOrEditLabel"
+      >
+        Criar ou editar Usuario Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_email" jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          @if (editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)) {
+            <div>
+              @if (editForm.get('email')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              @if (editForm.get('email')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '200' }"
+                  >Este campo não pode ter mais de 200 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_senha" jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.senha">Senha</label>
+          <textarea class="form-control" name="senha" id="field_senha" data-cy="senha" formControlName="senha"></textarea>
+          @if (editForm.get('senha')!.invalid && (editForm.get('senha')!.dirty || editForm.get('senha')!.touched)) {
+            <div>
+              @if (editForm.get('senha')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_token" jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.token">Token</label>
+          <textarea class="form-control" name="token" id="field_token" data-cy="token" formControlName="token"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataHoraAtivacao" jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.dataHoraAtivacao"
+            >Data Hora Ativacao</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataHoraAtivacao"
+              data-cy="dataHoraAtivacao"
+              type="datetime-local"
+              class="form-control"
+              name="dataHoraAtivacao"
+              formControlName="dataHoraAtivacao"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataLimiteAcesso" jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.dataLimiteAcesso"
+            >Data Limite Acesso</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataLimiteAcesso"
+              data-cy="dataLimiteAcesso"
+              type="datetime-local"
+              class="form-control"
+              name="dataLimiteAcesso"
+              formControlName="dataLimiteAcesso"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_situacao" jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.situacao">Situacao</label>
+          <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao" data-cy="situacao">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.SituacaoUsuarioEmpresaEnum.null' | translate }}</option>
+            @for (situacaoUsuarioEmpresaEnum of situacaoUsuarioEmpresaEnumValues; track $index) {
+              <option [value]="situacaoUsuarioEmpresaEnum">
+                {{ 'erpDobemcontabilidadeApp.SituacaoUsuarioEmpresaEnum.' + situacaoUsuarioEmpresaEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pessoa" jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.pessoa">Pessoa</label>
+          <select
+            class="form-control"
+            id="field_pessoa"
+            data-cy="pessoa"
+            name="pessoa"
+            formControlName="pessoa"
+            [compareWith]="comparePessoa"
+          >
+            <option [ngValue]="null"></option>
+            @for (pessoaOption of pessoasCollection; track $index) {
+              <option [ngValue]="pessoaOption">{{ pessoaOption.nome }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_empresa" jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.empresa">Empresa</label>
+          <select
+            class="form-control"
+            id="field_empresa"
+            data-cy="empresa"
+            name="empresa"
+            formControlName="empresa"
+            [compareWith]="compareEmpresa"
+          >
+            @if (editForm.get(['empresa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (empresaOption of empresasSharedCollection; track $index) {
+              <option [ngValue]="empresaOption">{{ empresaOption.razaoSocial }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['empresa'])!.invalid && (editForm.get(['empresa'])!.dirty || editForm.get(['empresa'])!.touched)) {
+          <div>
+            @if (editForm.get(['empresa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

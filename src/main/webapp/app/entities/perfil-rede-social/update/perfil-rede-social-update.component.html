@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-perfil-rede-social-heading"
+        data-cy="PerfilRedeSocialCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.perfilRedeSocial.home.createOrEditLabel"
+      >
+        Criar ou editar Perfil Rede Social
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.perfilRedeSocial.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_rede" jhiTranslate="erpDobemcontabilidadeApp.perfilRedeSocial.rede">Rede</label>
+          <input type="text" class="form-control" name="rede" id="field_rede" data-cy="rede" formControlName="rede" />
+          @if (editForm.get('rede')!.invalid && (editForm.get('rede')!.dirty || editForm.get('rede')!.touched)) {
+            <div>
+              @if (editForm.get('rede')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_urlPerfil" jhiTranslate="erpDobemcontabilidadeApp.perfilRedeSocial.urlPerfil"
+            >Url Perfil</label
+          >
+          <input type="text" class="form-control" name="urlPerfil" id="field_urlPerfil" data-cy="urlPerfil" formControlName="urlPerfil" />
+          @if (editForm.get('urlPerfil')!.invalid && (editForm.get('urlPerfil')!.dirty || editForm.get('urlPerfil')!.touched)) {
+            <div>
+              @if (editForm.get('urlPerfil')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tipoRede" jhiTranslate="erpDobemcontabilidadeApp.perfilRedeSocial.tipoRede">Tipo Rede</label>
+          <select class="form-control" name="tipoRede" formControlName="tipoRede" id="field_tipoRede" data-cy="tipoRede">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoRedeSocialEnum.null' | translate }}</option>
+            @for (tipoRedeSocialEnum of tipoRedeSocialEnumValues; track $index) {
+              <option [value]="tipoRedeSocialEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoRedeSocialEnum.' + tipoRedeSocialEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

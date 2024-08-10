@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (perfilRedeSocial()) {
+      <div>
+        <h2 data-cy="perfilRedeSocialDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.perfilRedeSocial.detail.title">Perfil Rede Social</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ perfilRedeSocial()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.perfilRedeSocial.rede">Rede</span></dt>
+          <dd>
+            <span>{{ perfilRedeSocial()!.rede }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.perfilRedeSocial.urlPerfil">Url Perfil</span></dt>
+          <dd>
+            <span>{{ perfilRedeSocial()!.urlPerfil }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.perfilRedeSocial.tipoRede">Tipo Rede</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoRedeSocialEnum.' + (perfilRedeSocial()!.tipoRede ?? 'null')">{{
+              {
+                null: '',
+                FACEBOOK: 'FACEBOOK',
+                TWITTER: 'TWITTER',
+                INSTAGRAN: 'INSTAGRAN',
+                YOUTUBE: 'YOUTUBE',
+                LINKEDIN: 'LINKEDIN',
+                OUTROS: 'OUTROS',
+              }[perfilRedeSocial()!.tipoRede ?? 'null']
+            }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/perfil-rede-social', perfilRedeSocial()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

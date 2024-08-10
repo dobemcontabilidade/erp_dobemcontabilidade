@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "departamentoEmpresa": {
+      "home": {
+        "title": "Departamento Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Departamento Empresa",
+        "createOrEditLabel": "Criar ou editar Departamento Empresa",
+        "notFound": "Nenhum Departamento Empresa encontrado"
+      },
+      "created": "Um novo Departamento Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Departamento Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Departamento Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Departamento Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Departamento Empresa"
+      },
+      "id": "ID",
+      "pontuacao": "Pontuacao",
+      "depoimento": "Depoimento",
+      "reclamacao": "Reclamacao",
+      "departamento": "Departamento",
+      "empresa": "Empresa",
+      "contador": "Contador"
+    }
+  }
+}

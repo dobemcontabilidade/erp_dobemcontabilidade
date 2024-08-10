@@ -1,0 +1,46 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "empresa": {
+      "home": {
+        "title": "Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Empresa",
+        "createOrEditLabel": "Criar ou editar Empresa",
+        "notFound": "Nenhum Empresa encontrado"
+      },
+      "created": "Um novo Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Empresa"
+      },
+      "id": "ID",
+      "razaoSocial": "Razao Social",
+      "nomeFantasia": "Nome Fantasia",
+      "descricaoDoNegocio": "Descricao Do Negocio",
+      "cnpj": "Cnpj",
+      "dataAbertura": "Data Abertura",
+      "urlContratoSocial": "Url Contrato Social",
+      "capitalSocial": "Capital Social",
+      "assinaturaEmpresa": "Assinatura Empresa",
+      "funcionario": "Funcionario",
+      "departamentoEmpresa": "Departamento Empresa",
+      "tarefaEmpresa": "Tarefa Empresa",
+      "enderecoEmpresa": "Endereco Empresa",
+      "atividadeEmpresa": "Atividade Empresa",
+      "socio": "Socio",
+      "anexoEmpresa": "Anexo Empresa",
+      "certificadoDigital": "Certificado Digital",
+      "usuarioEmpresa": "Usuario Empresa",
+      "opcaoRazaoSocialEmpresa": "Opcao Razao Social Empresa",
+      "opcaoNomeFantasiaEmpresa": "Opcao Nome Fantasia Empresa",
+      "segmentoCnae": "Segmento Cnae",
+      "ramo": "Ramo",
+      "tributacao": "Tributacao",
+      "enquadramento": "Enquadramento"
+    }
+  }
+}

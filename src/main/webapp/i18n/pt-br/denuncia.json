@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "denuncia": {
+      "home": {
+        "title": "Denuncias",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Denuncia",
+        "createOrEditLabel": "Criar ou editar Denuncia",
+        "notFound": "Nenhum Denuncia encontrado"
+      },
+      "created": "Um novo Denuncia foi criado com o identificador {{ param }}",
+      "updated": "Um Denuncia foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Denuncia foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Denuncia {{ id }}?"
+      },
+      "detail": {
+        "title": "Denuncia"
+      },
+      "id": "ID",
+      "titulo": "Titulo",
+      "mensagem": "Mensagem",
+      "descricao": "Descricao"
+    }
+  }
+}

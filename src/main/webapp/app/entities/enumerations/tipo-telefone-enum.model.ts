@@ -1,0 +1,9 @@
+export enum TipoTelefoneEnum {
+  RESIDENCIAL = 'RESIDENCIAL',
+
+  COMERCIAL = 'COMERCIAL',
+
+  CELULAR = 'CELULAR',
+
+  WHATSAPP = 'WHATSAPP',
+}

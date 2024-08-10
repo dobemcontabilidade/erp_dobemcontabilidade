@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010151"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "agencia",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "conta",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "digitoAgencia",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "digitoConta",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "principal",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "BancoContador",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "contador",
+      "relationshipName": "contador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "banco",
+      "relationshipName": "banco",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,43 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010132"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "15"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "DivisaoCnae",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "grupoCnae",
+      "otherEntityRelationshipName": "divisao",
+      "relationshipName": "grupoCnae",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "descricao",
+      "otherEntityName": "secaoCnae",
+      "relationshipName": "secao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

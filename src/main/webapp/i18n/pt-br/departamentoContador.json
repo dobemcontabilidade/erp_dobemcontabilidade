@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "departamentoContador": {
+      "home": {
+        "title": "Departamento Contadors",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Departamento Contador",
+        "createOrEditLabel": "Criar ou editar Departamento Contador",
+        "notFound": "Nenhum Departamento Contador encontrado"
+      },
+      "created": "Um novo Departamento Contador foi criado com o identificador {{ param }}",
+      "updated": "Um Departamento Contador foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Departamento Contador foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Departamento Contador {{ id }}?"
+      },
+      "detail": {
+        "title": "Departamento Contador"
+      },
+      "id": "ID",
+      "percentualExperiencia": "Percentual Experiencia",
+      "descricaoExperiencia": "Descricao Experiencia",
+      "pontuacaoEntrevista": "Pontuacao Entrevista",
+      "pontuacaoAvaliacao": "Pontuacao Avaliacao",
+      "departamento": "Departamento",
+      "contador": "Contador"
+    }
+  }
+}

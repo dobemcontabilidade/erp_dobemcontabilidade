@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "adicionalRamo": {
+      "home": {
+        "title": "Adicional Ramos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Adicional Ramo",
+        "createOrEditLabel": "Create or edit a Adicional Ramo",
+        "notFound": "No Adicional Ramos found"
+      },
+      "created": "A new Adicional Ramo is created with identifier {{ param }}",
+      "updated": "A Adicional Ramo is updated with identifier {{ param }}",
+      "deleted": "A Adicional Ramo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Adicional Ramo {{ id }}?"
+      },
+      "detail": {
+        "title": "Adicional Ramo"
+      },
+      "id": "ID",
+      "valor": "Valor",
+      "ramo": "Ramo",
+      "planoContabil": "Plano Contabil"
+    }
+  }
+}

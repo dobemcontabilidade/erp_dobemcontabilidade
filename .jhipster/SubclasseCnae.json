@@ -1,0 +1,81 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010135"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "15"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "anexo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "atendidoFreemium",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "atendido",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "optanteSimples",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "aceitaMEI",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "categoria",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "SubclasseCnae",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "observacaoCnae",
+      "otherEntityRelationshipName": "subclasse",
+      "relationshipName": "observacaoCnae",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "atividadeEmpresa",
+      "otherEntityRelationshipName": "cnae",
+      "relationshipName": "atividadeEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "descricao",
+      "otherEntityName": "classeCnae",
+      "relationshipName": "classe",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "segmentoCnae",
+      "otherEntityRelationshipName": "subclasseCnae",
+      "relationshipName": "segmentoCnae",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

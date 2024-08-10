@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "grupoCnae": {
+      "home": {
+        "title": "Grupo Cnaes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Grupo Cnae",
+        "createOrEditLabel": "Create or edit a Grupo Cnae",
+        "notFound": "No Grupo Cnaes found"
+      },
+      "created": "A new Grupo Cnae is created with identifier {{ param }}",
+      "updated": "A Grupo Cnae is updated with identifier {{ param }}",
+      "deleted": "A Grupo Cnae is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Grupo Cnae {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupo Cnae"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "descricao": "Descricao",
+      "classeCnae": "Classe Cnae",
+      "divisao": "Divisao"
+    }
+  }
+}

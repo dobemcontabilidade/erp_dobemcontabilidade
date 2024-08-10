@@ -1,0 +1,74 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010222"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valorBase",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "usuarios",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "boletos",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "notaFiscalProduto",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "notaFiscalServico",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "notaFiscalCe",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "suporte",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoPlanoContaAzulEnum",
+      "fieldValues": "ATIVO,INATIVO,EXCLUIDO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PlanoContaAzul",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "calculoPlanoAssinatura",
+      "otherEntityRelationshipName": "planoContaAzul",
+      "relationshipName": "calculoPlanoAssinatura",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "assinaturaEmpresa",
+      "otherEntityRelationshipName": "planoContaAzul",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "descontoPlanoContaAzul",
+      "otherEntityRelationshipName": "planoContaAzul",
+      "relationshipName": "descontoPlanoContaAzul",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

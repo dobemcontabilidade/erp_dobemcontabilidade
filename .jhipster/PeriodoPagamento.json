@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010219"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "periodo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroDias",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "idPlanGnet",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PeriodoPagamento",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "calculoPlanoAssinatura",
+      "otherEntityRelationshipName": "periodoPagamento",
+      "relationshipName": "calculoPlanoAssinatura",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "assinaturaEmpresa",
+      "otherEntityRelationshipName": "periodoPagamento",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "descontoPlanoContaAzul",
+      "otherEntityRelationshipName": "periodoPagamento",
+      "relationshipName": "descontoPlanoContaAzul",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "descontoPlanoContabil",
+      "otherEntityRelationshipName": "periodoPagamento",
+      "relationshipName": "descontoPlanoContabil",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

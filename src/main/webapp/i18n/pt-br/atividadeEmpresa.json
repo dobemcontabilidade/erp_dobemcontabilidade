@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "atividadeEmpresa": {
+      "home": {
+        "title": "Atividade Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Atividade Empresa",
+        "createOrEditLabel": "Criar ou editar Atividade Empresa",
+        "notFound": "Nenhum Atividade Empresa encontrado"
+      },
+      "created": "Um novo Atividade Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Atividade Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Atividade Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Atividade Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Atividade Empresa"
+      },
+      "id": "ID",
+      "principal": "Principal",
+      "ordem": "Ordem",
+      "descricaoAtividade": "Descricao Atividade",
+      "cnae": "Cnae",
+      "empresa": "Empresa"
+    }
+  }
+}

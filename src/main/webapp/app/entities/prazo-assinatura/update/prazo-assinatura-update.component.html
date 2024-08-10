@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-prazo-assinatura-heading"
+        data-cy="PrazoAssinaturaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.prazoAssinatura.home.createOrEditLabel"
+      >
+        Criar ou editar Prazo Assinatura
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.prazoAssinatura.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prazo" jhiTranslate="erpDobemcontabilidadeApp.prazoAssinatura.prazo">Prazo</label>
+          <input type="text" class="form-control" name="prazo" id="field_prazo" data-cy="prazo" formControlName="prazo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_meses" jhiTranslate="erpDobemcontabilidadeApp.prazoAssinatura.meses">Meses</label>
+          <input type="number" class="form-control" name="meses" id="field_meses" data-cy="meses" formControlName="meses" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

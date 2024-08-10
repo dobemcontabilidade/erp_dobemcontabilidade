@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (usuarioErp()) {
+      <div>
+        <h2 data-cy="usuarioErpDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.usuarioErp.detail.title">Usuario Erp</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ usuarioErp()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioErp.email">Email</span></dt>
+          <dd>
+            <span>{{ usuarioErp()!.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioErp.senha">Senha</span></dt>
+          <dd>
+            <span>{{ usuarioErp()!.senha }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioErp.dataHoraAtivacao">Data Hora Ativacao</span></dt>
+          <dd>
+            <span>{{ usuarioErp()!.dataHoraAtivacao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioErp.dataLimiteAcesso">Data Limite Acesso</span></dt>
+          <dd>
+            <span>{{ usuarioErp()!.dataLimiteAcesso | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioErp.situacao">Situacao</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoUsuarioErpEnum.' + (usuarioErp()!.situacao ?? 'null')">{{
+              { null: '', ATIVO: 'ATIVO', INATIVO: 'INATIVO', BLOQUEADO: 'BLOQUEADO', EXCLUIDO: 'EXCLUIDO' }[
+                usuarioErp()!.situacao ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioErp.administrador">Administrador</span></dt>
+          <dd>
+            @if (usuarioErp()!.administrador) {
+              <div>
+                <a [routerLink]="['/administrador', usuarioErp()!.administrador?.id, 'view']">{{ usuarioErp()!.administrador?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/usuario-erp', usuarioErp()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (areaContabilEmpresa()) {
+      <div>
+        <h2 data-cy="areaContabilEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.areaContabilEmpresa.detail.title">Area Contabil Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ areaContabilEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.areaContabilEmpresa.pontuacao">Pontuacao</span></dt>
+          <dd>
+            <span>{{ areaContabilEmpresa()!.pontuacao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.areaContabilEmpresa.depoimento">Depoimento</span></dt>
+          <dd>
+            <span>{{ areaContabilEmpresa()!.depoimento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.areaContabilEmpresa.reclamacao">Reclamacao</span></dt>
+          <dd>
+            <span>{{ areaContabilEmpresa()!.reclamacao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.areaContabilEmpresa.contador">Contador</span></dt>
+          <dd>
+            @if (areaContabilEmpresa()!.contador) {
+              <div>
+                <a [routerLink]="['/contador', areaContabilEmpresa()!.contador?.id, 'view']">{{ areaContabilEmpresa()!.contador?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/area-contabil-empresa', areaContabilEmpresa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

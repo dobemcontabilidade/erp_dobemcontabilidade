@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "descontoPlanoContaAzul": {
+      "home": {
+        "title": "Desconto Plano Conta Azuls",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Desconto Plano Conta Azul",
+        "createOrEditLabel": "Criar ou editar Desconto Plano Conta Azul",
+        "notFound": "Nenhum Desconto Plano Conta Azul encontrado"
+      },
+      "created": "Um novo Desconto Plano Conta Azul foi criado com o identificador {{ param }}",
+      "updated": "Um Desconto Plano Conta Azul foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Desconto Plano Conta Azul foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Desconto Plano Conta Azul {{ id }}?"
+      },
+      "detail": {
+        "title": "Desconto Plano Conta Azul"
+      },
+      "id": "ID",
+      "percentual": "Percentual",
+      "calculoPlanoAssinatura": "Calculo Plano Assinatura",
+      "planoContaAzul": "Plano Conta Azul",
+      "periodoPagamento": "Periodo Pagamento"
+    }
+  }
+}

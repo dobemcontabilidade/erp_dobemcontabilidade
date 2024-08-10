@@ -1,0 +1,62 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010237"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "senha",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "token",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "dataHoraAtivacao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataLimiteAcesso",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoUsuarioContadorEnum",
+      "fieldValues": "ATIVO,INATIVO,BLOQUEADO,EXCLUIDO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "UsuarioContador",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "contador",
+      "relationshipName": "contador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "funcao",
+      "otherEntityName": "administrador",
+      "relationshipName": "administrador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,43 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010152"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "urlCertificado",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataContratacao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "validade",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tipoCertificado",
+      "fieldType": "TipoCertificadoEnum",
+      "fieldValues": "A,S,T,A1,A3,A4,OUTROS"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "CertificadoDigital",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

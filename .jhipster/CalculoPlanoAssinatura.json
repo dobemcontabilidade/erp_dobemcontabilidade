@@ -1,0 +1,132 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010241"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "codigoAtendimento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valorEnquadramento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorTributacao",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorRamo",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorFuncionarios",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorSocios",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorFaturamento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorPlanoContabil",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorPlanoContabilComDesconto",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorPlanoContaAzulComDesconto",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorMensalidade",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorPeriodo",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorAno",
+      "fieldType": "Double"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "CalculoPlanoAssinatura",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "periodo",
+      "otherEntityName": "periodoPagamento",
+      "relationshipName": "periodoPagamento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "planoContaAzul",
+      "relationshipName": "planoContaAzul",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "planoContabil",
+      "relationshipName": "planoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "ramo",
+      "relationshipName": "ramo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tributacao",
+      "relationshipName": "tributacao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "percentual",
+      "otherEntityName": "descontoPlanoContabil",
+      "relationshipName": "descontoPlanoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "percentual",
+      "otherEntityName": "descontoPlanoContaAzul",
+      "relationshipName": "descontoPlanoContaAzul",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "codigoAssinatura",
+      "otherEntityName": "assinaturaEmpresa",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

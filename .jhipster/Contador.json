@@ -1,0 +1,115 @@
+{
+  "annotations": {
+    "changelogDate": "20240810010154"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "crc",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "limiteEmpresas",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "limiteAreaContabils",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "limiteFaturamento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "limiteDepartamentos",
+      "fieldType": "Integer"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Contador",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoa",
+      "relationshipName": "pessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "areaContabilEmpresa",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "areaContabilEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "areaContabilContador",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "areaContabilContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "departamentoEmpresa",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "departamentoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "departamentoContador",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "departamentoContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "termoAdesaoContador",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "termoAdesaoContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "bancoContador",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "bancoContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "avaliacaoContador",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "avaliacaoContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tarefaEmpresa",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "tarefaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "perfil",
+      "otherEntityName": "perfilContador",
+      "relationshipName": "perfilContador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

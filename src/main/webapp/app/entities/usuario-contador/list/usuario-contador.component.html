@@ -1,0 +1,189 @@
+<div>
+  <h2 id="page-heading" data-cy="UsuarioContadorHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.home.title">Usuario Contadors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-usuario-contador"
+        [routerLink]="['/usuario-contador/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.home.createLabel">Criar novo Usuario Contador</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (usuarioContadors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.home.notFound">Nenhum Usuario Contador encontrado</span>
+    </div>
+  }
+
+  @if (usuarioContadors && usuarioContadors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="email">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.email">Email</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="senha">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.senha">Senha</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="token">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.token">Token</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataHoraAtivacao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.dataHoraAtivacao">Data Hora Ativacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataLimiteAcesso">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.dataLimiteAcesso">Data Limite Acesso</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="situacao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.situacao">Situacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contador.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.contador">Contador</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="administrador.funcao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.administrador">Administrador</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (usuarioContador of usuarioContadors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/usuario-contador', usuarioContador.id, 'view']">{{ usuarioContador.id }}</a>
+              </td>
+              <td>{{ usuarioContador.email }}</td>
+              <td>{{ usuarioContador.senha }}</td>
+              <td>{{ usuarioContador.token }}</td>
+              <td>{{ usuarioContador.dataHoraAtivacao | formatMediumDatetime }}</td>
+              <td>{{ usuarioContador.dataLimiteAcesso | formatMediumDatetime }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoUsuarioContadorEnum.' + (usuarioContador.situacao ?? 'null')">
+                {{
+                  { null: '', ATIVO: 'ATIVO', INATIVO: 'INATIVO', BLOQUEADO: 'BLOQUEADO', EXCLUIDO: 'EXCLUIDO' }[
+                    usuarioContador.situacao ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>
+                @if (usuarioContador.contador) {
+                  <div>
+                    <a [routerLink]="['/contador', usuarioContador.contador.id, 'view']">{{ usuarioContador.contador.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (usuarioContador.administrador) {
+                  <div>
+                    <a [routerLink]="['/administrador', usuarioContador.administrador.id, 'view']">{{
+                      usuarioContador.administrador.funcao
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/usuario-contador', usuarioContador.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/usuario-contador', usuarioContador.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(usuarioContador)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (usuarioContadors && usuarioContadors.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

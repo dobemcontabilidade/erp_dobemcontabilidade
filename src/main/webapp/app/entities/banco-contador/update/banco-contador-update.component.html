@@ -1,0 +1,152 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-banco-contador-heading"
+        data-cy="BancoContadorCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.bancoContador.home.createOrEditLabel"
+      >
+        Criar ou editar Banco Contador
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.bancoContador.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agencia" jhiTranslate="erpDobemcontabilidadeApp.bancoContador.agencia">Agencia</label>
+          <input type="text" class="form-control" name="agencia" id="field_agencia" data-cy="agencia" formControlName="agencia" />
+          @if (editForm.get('agencia')!.invalid && (editForm.get('agencia')!.dirty || editForm.get('agencia')!.touched)) {
+            <div>
+              @if (editForm.get('agencia')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              @if (editForm.get('agencia')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '30' }"
+                  >Este campo não pode ter mais de 30 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_conta" jhiTranslate="erpDobemcontabilidadeApp.bancoContador.conta">Conta</label>
+          <input type="text" class="form-control" name="conta" id="field_conta" data-cy="conta" formControlName="conta" />
+          @if (editForm.get('conta')!.invalid && (editForm.get('conta')!.dirty || editForm.get('conta')!.touched)) {
+            <div>
+              @if (editForm.get('conta')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              @if (editForm.get('conta')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '30' }"
+                  >Este campo não pode ter mais de 30 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_digitoAgencia" jhiTranslate="erpDobemcontabilidadeApp.bancoContador.digitoAgencia"
+            >Digito Agencia</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="digitoAgencia"
+            id="field_digitoAgencia"
+            data-cy="digitoAgencia"
+            formControlName="digitoAgencia"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_digitoConta" jhiTranslate="erpDobemcontabilidadeApp.bancoContador.digitoConta"
+            >Digito Conta</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="digitoConta"
+            id="field_digitoConta"
+            data-cy="digitoConta"
+            formControlName="digitoConta"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_principal" jhiTranslate="erpDobemcontabilidadeApp.bancoContador.principal">Principal</label>
+          <input type="checkbox" class="form-check" name="principal" id="field_principal" data-cy="principal" formControlName="principal" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contador" jhiTranslate="erpDobemcontabilidadeApp.bancoContador.contador">Contador</label>
+          <select
+            class="form-control"
+            id="field_contador"
+            data-cy="contador"
+            name="contador"
+            formControlName="contador"
+            [compareWith]="compareContador"
+          >
+            @if (editForm.get(['contador'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (contadorOption of contadorsSharedCollection; track $index) {
+              <option [ngValue]="contadorOption">{{ contadorOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['contador'])!.invalid && (editForm.get(['contador'])!.dirty || editForm.get(['contador'])!.touched)) {
+          <div>
+            @if (editForm.get(['contador'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_banco" jhiTranslate="erpDobemcontabilidadeApp.bancoContador.banco">Banco</label>
+          <select class="form-control" id="field_banco" data-cy="banco" name="banco" formControlName="banco" [compareWith]="compareBanco">
+            @if (editForm.get(['banco'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (bancoOption of bancosSharedCollection; track $index) {
+              <option [ngValue]="bancoOption">{{ bancoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['banco'])!.invalid && (editForm.get(['banco'])!.dirty || editForm.get(['banco'])!.touched)) {
+          <div>
+            @if (editForm.get(['banco'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

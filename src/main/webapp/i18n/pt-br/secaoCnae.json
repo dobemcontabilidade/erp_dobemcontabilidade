@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "secaoCnae": {
+      "home": {
+        "title": "Secao Cnaes",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Secao Cnae",
+        "createOrEditLabel": "Criar ou editar Secao Cnae",
+        "notFound": "Nenhum Secao Cnae encontrado"
+      },
+      "created": "Um novo Secao Cnae foi criado com o identificador {{ param }}",
+      "updated": "Um Secao Cnae foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Secao Cnae foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Secao Cnae {{ id }}?"
+      },
+      "detail": {
+        "title": "Secao Cnae"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "descricao": "Descricao",
+      "divisaoCnae": "Divisao Cnae"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+export enum TipoSegmentoEnum {
+  SERVICO = 'SERVICO',
+
+  COMERCIO = 'COMERCIO',
+
+  SERVICO_COMERCIO = 'SERVICO_COMERCIO',
+
+  INDUSTRIA = 'INDUSTRIA',
+}
