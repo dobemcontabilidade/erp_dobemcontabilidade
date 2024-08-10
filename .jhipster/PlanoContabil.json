@@ -1,0 +1,105 @@
+{
+  "annotations": {
+    "changelogDate": "20240810031503"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adicionalSocio",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "adicionalFuncionario",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "sociosIsentos",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "adicionalFaturamento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorBaseFaturamento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorBaseAbertura",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoPlanoContabilEnum",
+      "fieldValues": "ATIVO,INATIVO,EXCLUIDO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PlanoContabil",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "calculoPlanoAssinatura",
+      "otherEntityRelationshipName": "planoContabil",
+      "relationshipName": "calculoPlanoAssinatura",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "assinaturaEmpresa",
+      "otherEntityRelationshipName": "planoContabil",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "descontoPlanoContabil",
+      "otherEntityRelationshipName": "planoContabil",
+      "relationshipName": "descontoPlanoContabil",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalRamo",
+      "otherEntityRelationshipName": "planoContabil",
+      "relationshipName": "adicionalRamo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalTributacao",
+      "otherEntityRelationshipName": "planoContabil",
+      "relationshipName": "adicionalTributacao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "termoContratoContabil",
+      "otherEntityRelationshipName": "planoContabil",
+      "relationshipName": "termoContratoContabil",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalEnquadramento",
+      "otherEntityRelationshipName": "planoContabil",
+      "relationshipName": "adicionalEnquadramento",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "valorBaseRamo",
+      "otherEntityRelationshipName": "planoContabil",
+      "relationshipName": "valorBaseRamo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

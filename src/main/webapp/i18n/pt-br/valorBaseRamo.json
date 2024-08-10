@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "valorBaseRamo": {
+      "home": {
+        "title": "Valor Base Ramos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Valor Base Ramo",
+        "createOrEditLabel": "Criar ou editar Valor Base Ramo",
+        "notFound": "Nenhum Valor Base Ramo encontrado"
+      },
+      "created": "Um novo Valor Base Ramo foi criado com o identificador {{ param }}",
+      "updated": "Um Valor Base Ramo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Valor Base Ramo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Valor Base Ramo {{ id }}?"
+      },
+      "detail": {
+        "title": "Valor Base Ramo"
+      },
+      "id": "ID",
+      "valorBase": "Valor Base",
+      "ramo": "Ramo",
+      "planoContabil": "Plano Contabil"
+    }
+  }
+}

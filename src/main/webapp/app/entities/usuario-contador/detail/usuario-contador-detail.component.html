@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (usuarioContador()) {
+      <div>
+        <h2 data-cy="usuarioContadorDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.detail.title">Usuario Contador</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ usuarioContador()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.email">Email</span></dt>
+          <dd>
+            <span>{{ usuarioContador()!.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.senha">Senha</span></dt>
+          <dd>
+            <span>{{ usuarioContador()!.senha }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.token">Token</span></dt>
+          <dd>
+            <span>{{ usuarioContador()!.token }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.dataHoraAtivacao">Data Hora Ativacao</span></dt>
+          <dd>
+            <span>{{ usuarioContador()!.dataHoraAtivacao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.dataLimiteAcesso">Data Limite Acesso</span></dt>
+          <dd>
+            <span>{{ usuarioContador()!.dataLimiteAcesso | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.situacao">Situacao</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoUsuarioContadorEnum.' + (usuarioContador()!.situacao ?? 'null')">{{
+              { null: '', ATIVO: 'ATIVO', INATIVO: 'INATIVO', BLOQUEADO: 'BLOQUEADO', EXCLUIDO: 'EXCLUIDO' }[
+                usuarioContador()!.situacao ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.contador">Contador</span></dt>
+          <dd>
+            @if (usuarioContador()!.contador) {
+              <div>
+                <a [routerLink]="['/contador', usuarioContador()!.contador?.id, 'view']">{{ usuarioContador()!.contador?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioContador.administrador">Administrador</span></dt>
+          <dd>
+            @if (usuarioContador()!.administrador) {
+              <div>
+                <a [routerLink]="['/administrador', usuarioContador()!.administrador?.id, 'view']">{{
+                  usuarioContador()!.administrador?.funcao
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/usuario-contador', usuarioContador()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

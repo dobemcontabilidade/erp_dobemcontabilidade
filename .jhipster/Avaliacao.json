@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20240810031430"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "name": "Avaliacao",
+  "relationships": [
+    {
+      "otherEntityName": "avaliacaoContador",
+      "otherEntityRelationshipName": "avaliacao",
+      "relationshipName": "avaliacaoContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

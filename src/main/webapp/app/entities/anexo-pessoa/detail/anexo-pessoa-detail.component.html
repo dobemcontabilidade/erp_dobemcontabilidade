@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (anexoPessoa()) {
+      <div>
+        <h2 data-cy="anexoPessoaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.anexoPessoa.detail.title">Anexo Pessoa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ anexoPessoa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoPessoa.urlArquivo">Url Arquivo</span></dt>
+          <dd>
+            <span>{{ anexoPessoa()!.urlArquivo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoPessoa.tipo">Tipo</span></dt>
+          <dd>
+            <span>{{ anexoPessoa()!.tipo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoPessoa.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ anexoPessoa()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoPessoa.pessoa">Pessoa</span></dt>
+          <dd>
+            @if (anexoPessoa()!.pessoa) {
+              <div>
+                <a [routerLink]="['/pessoa', anexoPessoa()!.pessoa?.id, 'view']">{{ anexoPessoa()!.pessoa?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/anexo-pessoa', anexoPessoa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20240810031420"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "20"
+    }
+  ],
+  "name": "Banco",
+  "relationships": [
+    {
+      "otherEntityName": "bancoContador",
+      "otherEntityRelationshipName": "banco",
+      "relationshipName": "bancoContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

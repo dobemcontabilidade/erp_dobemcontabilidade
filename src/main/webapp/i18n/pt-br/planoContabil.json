@@ -1,0 +1,39 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "planoContabil": {
+      "home": {
+        "title": "Plano Contabils",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Plano Contabil",
+        "createOrEditLabel": "Criar ou editar Plano Contabil",
+        "notFound": "Nenhum Plano Contabil encontrado"
+      },
+      "created": "Um novo Plano Contabil foi criado com o identificador {{ param }}",
+      "updated": "Um Plano Contabil foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Plano Contabil foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Plano Contabil {{ id }}?"
+      },
+      "detail": {
+        "title": "Plano Contabil"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "adicionalSocio": "Adicional Socio",
+      "adicionalFuncionario": "Adicional Funcionario",
+      "sociosIsentos": "Socios Isentos",
+      "adicionalFaturamento": "Adicional Faturamento",
+      "valorBaseFaturamento": "Valor Base Faturamento",
+      "valorBaseAbertura": "Valor Base Abertura",
+      "situacao": "Situacao",
+      "calculoPlanoAssinatura": "Calculo Plano Assinatura",
+      "assinaturaEmpresa": "Assinatura Empresa",
+      "descontoPlanoContabil": "Desconto Plano Contabil",
+      "adicionalRamo": "Adicional Ramo",
+      "adicionalTributacao": "Adicional Tributacao",
+      "termoContratoContabil": "Termo Contrato Contabil",
+      "adicionalEnquadramento": "Adicional Enquadramento",
+      "valorBaseRamo": "Valor Base Ramo"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "opcaoRazaoSocialEmpresa": {
+      "home": {
+        "title": "Opcao Razao Social Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Opcao Razao Social Empresa",
+        "createOrEditLabel": "Create or edit a Opcao Razao Social Empresa",
+        "notFound": "No Opcao Razao Social Empresas found"
+      },
+      "created": "A new Opcao Razao Social Empresa is created with identifier {{ param }}",
+      "updated": "A Opcao Razao Social Empresa is updated with identifier {{ param }}",
+      "deleted": "A Opcao Razao Social Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Opcao Razao Social Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Opcao Razao Social Empresa"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "ordem": "Ordem",
+      "selecionado": "Selecionado",
+      "empresa": "Empresa"
+    }
+  }
+}

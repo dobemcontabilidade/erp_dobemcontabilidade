@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (formaDePagamento()) {
+      <div>
+        <h2 data-cy="formaDePagamentoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.formaDePagamento.detail.title">Forma De Pagamento</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ formaDePagamento()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.formaDePagamento.forma">Forma</span></dt>
+          <dd>
+            <span>{{ formaDePagamento()!.forma }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.formaDePagamento.disponivel">Disponivel</span></dt>
+          <dd>
+            <span>{{ formaDePagamento()!.disponivel }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/forma-de-pagamento', formaDePagamento()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "profissao": {
+      "home": {
+        "title": "Profissaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Profissao",
+        "createOrEditLabel": "Criar ou editar Profissao",
+        "notFound": "Nenhum Profissao encontrado"
+      },
+      "created": "Um novo Profissao foi criado com o identificador {{ param }}",
+      "updated": "Um Profissao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Profissao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Profissao {{ id }}?"
+      },
+      "detail": {
+        "title": "Profissao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "socio": "Socio"
+    }
+  }
+}

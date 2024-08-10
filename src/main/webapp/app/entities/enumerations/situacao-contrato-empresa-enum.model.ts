@@ -1,0 +1,15 @@
+export enum SituacaoContratoEmpresaEnum {
+  PROPOSTA = 'PROPOSTA',
+
+  ATIVO = 'ATIVO',
+
+  INATIVO = 'INATIVO',
+
+  PENDENTE = 'PENDENTE',
+
+  BLOQUEADO = 'BLOQUEADO',
+
+  CANCELADO = 'CANCELADO',
+
+  EXCLUIDO = 'EXCLUIDO',
+}

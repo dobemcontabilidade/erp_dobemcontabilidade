@@ -1,0 +1,48 @@
+{
+  "annotations": {
+    "changelogDate": "20240810031441"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "percentualExperiencia",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "descricaoExperiencia",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pontuacaoEntrevista",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "pontuacaoAvaliacao",
+      "fieldType": "Double"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "DepartamentoContador",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "departamento",
+      "relationshipName": "departamento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "contador",
+      "relationshipName": "contador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

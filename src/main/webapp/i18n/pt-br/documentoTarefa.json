@@ -1,0 +1,25 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "documentoTarefa": {
+      "home": {
+        "title": "Documento Tarefas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Documento Tarefa",
+        "createOrEditLabel": "Criar ou editar Documento Tarefa",
+        "notFound": "Nenhum Documento Tarefa encontrado"
+      },
+      "created": "Um novo Documento Tarefa foi criado com o identificador {{ param }}",
+      "updated": "Um Documento Tarefa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Documento Tarefa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Documento Tarefa {{ id }}?"
+      },
+      "detail": {
+        "title": "Documento Tarefa"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "tarefa": "Tarefa"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "bancoContador": {
+      "home": {
+        "title": "Banco Contadors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Banco Contador",
+        "createOrEditLabel": "Create or edit a Banco Contador",
+        "notFound": "No Banco Contadors found"
+      },
+      "created": "A new Banco Contador is created with identifier {{ param }}",
+      "updated": "A Banco Contador is updated with identifier {{ param }}",
+      "deleted": "A Banco Contador is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Banco Contador {{ id }}?"
+      },
+      "detail": {
+        "title": "Banco Contador"
+      },
+      "id": "ID",
+      "agencia": "Agencia",
+      "conta": "Conta",
+      "digitoAgencia": "Digito Agencia",
+      "digitoConta": "Digito Conta",
+      "principal": "Principal",
+      "contador": "Contador",
+      "banco": "Banco"
+    }
+  }
+}

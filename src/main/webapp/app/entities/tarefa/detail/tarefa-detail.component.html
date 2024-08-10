@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (tarefa()) {
+      <div>
+        <h2 data-cy="tarefaDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.detail.title">Tarefa</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ tarefa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.titulo">Titulo</span></dt>
+          <dd>
+            <span>{{ tarefa()!.titulo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.numeroDias">Numero Dias</span></dt>
+          <dd>
+            <span>{{ tarefa()!.numeroDias }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.diaUtil">Dia Util</span></dt>
+          <dd>
+            <span>{{ tarefa()!.diaUtil }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.valor">Valor</span></dt>
+          <dd>
+            <span>{{ tarefa()!.valor }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.notificarCliente">Notificar Cliente</span></dt>
+          <dd>
+            <span>{{ tarefa()!.notificarCliente }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.geraMulta">Gera Multa</span></dt>
+          <dd>
+            <span>{{ tarefa()!.geraMulta }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.exibirEmpresa">Exibir Empresa</span></dt>
+          <dd>
+            <span>{{ tarefa()!.exibirEmpresa }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.dataLegal">Data Legal</span></dt>
+          <dd>
+            <span>{{ tarefa()!.dataLegal | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.pontos">Pontos</span></dt>
+          <dd>
+            <span>{{ tarefa()!.pontos }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.tipoTarefa">Tipo Tarefa</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoTarefaEnum.' + (tarefa()!.tipoTarefa ?? 'null')">{{
+              { null: '', RECORRENTE: 'RECORRENTE', ORDEM_SERVICO: 'ORDEM_SERVICO' }[tarefa()!.tipoTarefa ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.esfera">Esfera</span></dt>
+          <dd>
+            @if (tarefa()!.esfera) {
+              <div>
+                <a [routerLink]="['/esfera', tarefa()!.esfera?.id, 'view']">{{ tarefa()!.esfera?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.frequencia">Frequencia</span></dt>
+          <dd>
+            @if (tarefa()!.frequencia) {
+              <div>
+                <a [routerLink]="['/frequencia', tarefa()!.frequencia?.id, 'view']">{{ tarefa()!.frequencia?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefa.competencia">Competencia</span></dt>
+          <dd>
+            @if (tarefa()!.competencia) {
+              <div>
+                <a [routerLink]="['/competencia', tarefa()!.competencia?.id, 'view']">{{ tarefa()!.competencia?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/tarefa', tarefa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,144 @@
+<div>
+  <h2 id="page-heading" data-cy="BancoContadorHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.home.title">Banco Contadors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-banco-contador"
+        [routerLink]="['/banco-contador/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.home.createLabel">Criar novo Banco Contador</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (bancoContadors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.home.notFound">Nenhum Banco Contador encontrado</span>
+    </div>
+  }
+
+  @if (bancoContadors && bancoContadors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="agencia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.agencia">Agencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="conta">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.conta">Conta</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="digitoAgencia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.digitoAgencia">Digito Agencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="digitoConta">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.digitoConta">Digito Conta</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="principal">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.principal">Principal</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contador.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.contador">Contador</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="banco.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoContador.banco">Banco</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (bancoContador of bancoContadors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/banco-contador', bancoContador.id, 'view']">{{ bancoContador.id }}</a>
+              </td>
+              <td>{{ bancoContador.agencia }}</td>
+              <td>{{ bancoContador.conta }}</td>
+              <td>{{ bancoContador.digitoAgencia }}</td>
+              <td>{{ bancoContador.digitoConta }}</td>
+              <td>{{ bancoContador.principal }}</td>
+              <td>
+                @if (bancoContador.contador) {
+                  <div>
+                    <a [routerLink]="['/contador', bancoContador.contador.id, 'view']">{{ bancoContador.contador.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (bancoContador.banco) {
+                  <div>
+                    <a [routerLink]="['/banco', bancoContador.banco.id, 'view']">{{ bancoContador.banco.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/banco-contador', bancoContador.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/banco-contador', bancoContador.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(bancoContador)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

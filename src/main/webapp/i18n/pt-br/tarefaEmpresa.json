@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "tarefaEmpresa": {
+      "home": {
+        "title": "Tarefa Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Tarefa Empresa",
+        "createOrEditLabel": "Criar ou editar Tarefa Empresa",
+        "notFound": "Nenhum Tarefa Empresa encontrado"
+      },
+      "created": "Um novo Tarefa Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Tarefa Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tarefa Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tarefa Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarefa Empresa"
+      },
+      "id": "ID",
+      "dataHora": "Data Hora",
+      "empresa": "Empresa",
+      "contador": "Contador",
+      "tarefa": "Tarefa"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "SituacaoFuncionarioEnum": {
+      "null": "",
+      "ADMITIDO": "ADMITIDO",
+      "AFASTADO": "AFASTADO",
+      "DEMITIDO": "DEMITIDO",
+      "EXPERIENCIA": "EXPERIENCIA",
+      "DEMITIDO_JUSTA_CAUSA": "DEMITIDO_JUSTA_CAUSA"
+    }
+  }
+}

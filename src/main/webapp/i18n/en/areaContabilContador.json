@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "areaContabilContador": {
+      "home": {
+        "title": "Area Contabil Contadors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Area Contabil Contador",
+        "createOrEditLabel": "Create or edit a Area Contabil Contador",
+        "notFound": "No Area Contabil Contadors found"
+      },
+      "created": "A new Area Contabil Contador is created with identifier {{ param }}",
+      "updated": "A Area Contabil Contador is updated with identifier {{ param }}",
+      "deleted": "A Area Contabil Contador is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Area Contabil Contador {{ id }}?"
+      },
+      "detail": {
+        "title": "Area Contabil Contador"
+      },
+      "id": "ID",
+      "percentualExperiencia": "Percentual Experiencia",
+      "descricaoExperiencia": "Descricao Experiencia",
+      "pontuacaoEntrevista": "Pontuacao Entrevista",
+      "pontuacaoAvaliacao": "Pontuacao Avaliacao",
+      "areaContabil": "Area Contabil",
+      "contador": "Contador"
+    }
+  }
+}

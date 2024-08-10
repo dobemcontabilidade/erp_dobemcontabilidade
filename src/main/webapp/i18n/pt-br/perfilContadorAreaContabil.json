@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "perfilContadorAreaContabil": {
+      "home": {
+        "title": "Perfil Contador Area Contabils",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Perfil Contador Area Contabil",
+        "createOrEditLabel": "Criar ou editar Perfil Contador Area Contabil",
+        "notFound": "Nenhum Perfil Contador Area Contabil encontrado"
+      },
+      "created": "Um novo Perfil Contador Area Contabil foi criado com o identificador {{ param }}",
+      "updated": "Um Perfil Contador Area Contabil foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Perfil Contador Area Contabil foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Perfil Contador Area Contabil {{ id }}?"
+      },
+      "detail": {
+        "title": "Perfil Contador Area Contabil"
+      },
+      "id": "ID",
+      "quantidadeEmpresas": "Quantidade Empresas",
+      "percentualExperiencia": "Percentual Experiencia",
+      "areaContabil": "Area Contabil",
+      "perfilContador": "Perfil Contador"
+    }
+  }
+}

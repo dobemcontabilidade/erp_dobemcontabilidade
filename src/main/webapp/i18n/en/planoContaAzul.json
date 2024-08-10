@@ -1,0 +1,35 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "planoContaAzul": {
+      "home": {
+        "title": "Plano Conta Azuls",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Plano Conta Azul",
+        "createOrEditLabel": "Create or edit a Plano Conta Azul",
+        "notFound": "No Plano Conta Azuls found"
+      },
+      "created": "A new Plano Conta Azul is created with identifier {{ param }}",
+      "updated": "A Plano Conta Azul is updated with identifier {{ param }}",
+      "deleted": "A Plano Conta Azul is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Plano Conta Azul {{ id }}?"
+      },
+      "detail": {
+        "title": "Plano Conta Azul"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "valorBase": "Valor Base",
+      "usuarios": "Usuarios",
+      "boletos": "Boletos",
+      "notaFiscalProduto": "Nota Fiscal Produto",
+      "notaFiscalServico": "Nota Fiscal Servico",
+      "notaFiscalCe": "Nota Fiscal Ce",
+      "suporte": "Suporte",
+      "situacao": "Situacao",
+      "calculoPlanoAssinatura": "Calculo Plano Assinatura",
+      "assinaturaEmpresa": "Assinatura Empresa",
+      "descontoPlanoContaAzul": "Desconto Plano Conta Azul"
+    }
+  }
+}

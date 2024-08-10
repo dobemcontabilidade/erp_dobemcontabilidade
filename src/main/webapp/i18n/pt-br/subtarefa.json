@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "subtarefa": {
+      "home": {
+        "title": "Subtarefas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Subtarefa",
+        "createOrEditLabel": "Criar ou editar Subtarefa",
+        "notFound": "Nenhum Subtarefa encontrado"
+      },
+      "created": "Um novo Subtarefa foi criado com o identificador {{ param }}",
+      "updated": "Um Subtarefa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Subtarefa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Subtarefa {{ id }}?"
+      },
+      "detail": {
+        "title": "Subtarefa"
+      },
+      "id": "ID",
+      "ordem": "Ordem",
+      "item": "Item",
+      "descricao": "Descricao",
+      "tarefa": "Tarefa"
+    }
+  }
+}

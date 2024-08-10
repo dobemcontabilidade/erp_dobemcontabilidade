@@ -1,0 +1,45 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "empresa": {
+      "home": {
+        "title": "Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Empresa",
+        "createOrEditLabel": "Create or edit a Empresa",
+        "notFound": "No Empresas found"
+      },
+      "created": "A new Empresa is created with identifier {{ param }}",
+      "updated": "A Empresa is updated with identifier {{ param }}",
+      "deleted": "A Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Empresa"
+      },
+      "id": "ID",
+      "razaoSocial": "Razao Social",
+      "nomeFantasia": "Nome Fantasia",
+      "descricaoDoNegocio": "Descricao Do Negocio",
+      "cnpj": "Cnpj",
+      "dataAbertura": "Data Abertura",
+      "urlContratoSocial": "Url Contrato Social",
+      "capitalSocial": "Capital Social",
+      "assinaturaEmpresa": "Assinatura Empresa",
+      "funcionario": "Funcionario",
+      "departamentoEmpresa": "Departamento Empresa",
+      "tarefaEmpresa": "Tarefa Empresa",
+      "enderecoEmpresa": "Endereco Empresa",
+      "atividadeEmpresa": "Atividade Empresa",
+      "socio": "Socio",
+      "anexoEmpresa": "Anexo Empresa",
+      "certificadoDigital": "Certificado Digital",
+      "usuarioEmpresa": "Usuario Empresa",
+      "opcaoRazaoSocialEmpresa": "Opcao Razao Social Empresa",
+      "opcaoNomeFantasiaEmpresa": "Opcao Nome Fantasia Empresa",
+      "ramo": "Ramo",
+      "tributacao": "Tributacao",
+      "enquadramento": "Enquadramento"
+    }
+  }
+}

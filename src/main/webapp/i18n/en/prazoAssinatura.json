@@ -1,0 +1,25 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "prazoAssinatura": {
+      "home": {
+        "title": "Prazo Assinaturas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Prazo Assinatura",
+        "createOrEditLabel": "Create or edit a Prazo Assinatura",
+        "notFound": "No Prazo Assinaturas found"
+      },
+      "created": "A new Prazo Assinatura is created with identifier {{ param }}",
+      "updated": "A Prazo Assinatura is updated with identifier {{ param }}",
+      "deleted": "A Prazo Assinatura is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Prazo Assinatura {{ id }}?"
+      },
+      "detail": {
+        "title": "Prazo Assinatura"
+      },
+      "id": "ID",
+      "prazo": "Prazo",
+      "meses": "Meses"
+    }
+  }
+}

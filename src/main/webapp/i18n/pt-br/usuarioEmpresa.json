@@ -1,0 +1,31 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "usuarioEmpresa": {
+      "home": {
+        "title": "Usuario Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Usuario Empresa",
+        "createOrEditLabel": "Criar ou editar Usuario Empresa",
+        "notFound": "Nenhum Usuario Empresa encontrado"
+      },
+      "created": "Um novo Usuario Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Usuario Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Usuario Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Usuario Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Usuario Empresa"
+      },
+      "id": "ID",
+      "email": "Email",
+      "senha": "Senha",
+      "token": "Token",
+      "dataHoraAtivacao": "Data Hora Ativacao",
+      "dataLimiteAcesso": "Data Limite Acesso",
+      "situacao": "Situacao",
+      "pessoa": "Pessoa",
+      "empresa": "Empresa"
+    }
+  }
+}

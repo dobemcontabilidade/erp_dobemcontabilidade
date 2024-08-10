@@ -1,0 +1,28 @@
+@if (denuncia) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(denuncia.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="denunciaDeleteDialogHeading" jhiTranslate="entity.delete.title">Confirme a exclusão</h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error></jhi-alert-error>
+      <p
+        id="jhi-delete-denuncia-heading"
+        jhiTranslate="erpDobemcontabilidadeApp.denuncia.delete.question"
+        [translateValues]="{ id: denuncia.id }"
+      >
+        Tem certeza de que deseja excluir Denuncia {{ denuncia.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+      </button>
+
+      <button id="jhi-confirm-delete-denuncia" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Excluir</span>
+      </button>
+    </div>
+  </form>
+}

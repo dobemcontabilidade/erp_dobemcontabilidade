@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoEmpresa": {
+      "home": {
+        "title": "Anexo Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Anexo Empresa",
+        "createOrEditLabel": "Criar ou editar Anexo Empresa",
+        "notFound": "Nenhum Anexo Empresa encontrado"
+      },
+      "created": "Um novo Anexo Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Anexo Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Anexo Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Anexo Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Empresa"
+      },
+      "id": "ID",
+      "urlAnexo": "Url Anexo",
+      "tipo": "Tipo",
+      "descricao": "Descricao",
+      "empresa": "Empresa"
+    }
+  }
+}

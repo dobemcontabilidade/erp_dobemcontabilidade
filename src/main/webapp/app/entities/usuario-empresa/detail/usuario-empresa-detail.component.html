@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (usuarioEmpresa()) {
+      <div>
+        <h2 data-cy="usuarioEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.detail.title">Usuario Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ usuarioEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.email">Email</span></dt>
+          <dd>
+            <span>{{ usuarioEmpresa()!.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.senha">Senha</span></dt>
+          <dd>
+            <span>{{ usuarioEmpresa()!.senha }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.token">Token</span></dt>
+          <dd>
+            <span>{{ usuarioEmpresa()!.token }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.dataHoraAtivacao">Data Hora Ativacao</span></dt>
+          <dd>
+            <span>{{ usuarioEmpresa()!.dataHoraAtivacao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.dataLimiteAcesso">Data Limite Acesso</span></dt>
+          <dd>
+            <span>{{ usuarioEmpresa()!.dataLimiteAcesso | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.situacao">Situacao</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoUsuarioEmpresaEnum.' + (usuarioEmpresa()!.situacao ?? 'null')">{{
+              { null: '', ATIVO: 'ATIVO', INATIVO: 'INATIVO', BLOQUEADO: 'BLOQUEADO', EXCLUIDO: 'EXCLUIDO' }[
+                usuarioEmpresa()!.situacao ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.pessoa">Pessoa</span></dt>
+          <dd>
+            @if (usuarioEmpresa()!.pessoa) {
+              <div>
+                <a [routerLink]="['/pessoa', usuarioEmpresa()!.pessoa?.id, 'view']">{{ usuarioEmpresa()!.pessoa?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioEmpresa.empresa">Empresa</span></dt>
+          <dd>
+            @if (usuarioEmpresa()!.empresa) {
+              <div>
+                <a [routerLink]="['/empresa', usuarioEmpresa()!.empresa?.id, 'view']">{{ usuarioEmpresa()!.empresa?.razaoSocial }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/usuario-empresa', usuarioEmpresa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

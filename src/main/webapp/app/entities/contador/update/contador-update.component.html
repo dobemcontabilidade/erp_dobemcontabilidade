@@ -1,0 +1,179 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-contador-heading"
+        data-cy="ContadorCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.contador.home.createOrEditLabel"
+      >
+        Criar ou editar Contador
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.contador.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nome" jhiTranslate="erpDobemcontabilidadeApp.contador.nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+          @if (editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)) {
+            <div>
+              @if (editForm.get('nome')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '200' }"
+                  >Este campo não pode ter mais de 200 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_crc" jhiTranslate="erpDobemcontabilidadeApp.contador.crc">Crc</label>
+          <input type="text" class="form-control" name="crc" id="field_crc" data-cy="crc" formControlName="crc" />
+          @if (editForm.get('crc')!.invalid && (editForm.get('crc')!.dirty || editForm.get('crc')!.touched)) {
+            <div>
+              @if (editForm.get('crc')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_limiteEmpresas" jhiTranslate="erpDobemcontabilidadeApp.contador.limiteEmpresas"
+            >Limite Empresas</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="limiteEmpresas"
+            id="field_limiteEmpresas"
+            data-cy="limiteEmpresas"
+            formControlName="limiteEmpresas"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_limiteAreaContabils" jhiTranslate="erpDobemcontabilidadeApp.contador.limiteAreaContabils"
+            >Limite Area Contabils</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="limiteAreaContabils"
+            id="field_limiteAreaContabils"
+            data-cy="limiteAreaContabils"
+            formControlName="limiteAreaContabils"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_limiteFaturamento" jhiTranslate="erpDobemcontabilidadeApp.contador.limiteFaturamento"
+            >Limite Faturamento</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="limiteFaturamento"
+            id="field_limiteFaturamento"
+            data-cy="limiteFaturamento"
+            formControlName="limiteFaturamento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_limiteDepartamentos" jhiTranslate="erpDobemcontabilidadeApp.contador.limiteDepartamentos"
+            >Limite Departamentos</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="limiteDepartamentos"
+            id="field_limiteDepartamentos"
+            data-cy="limiteDepartamentos"
+            formControlName="limiteDepartamentos"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pessoa" jhiTranslate="erpDobemcontabilidadeApp.contador.pessoa">Pessoa</label>
+          <select
+            class="form-control"
+            id="field_pessoa"
+            data-cy="pessoa"
+            name="pessoa"
+            formControlName="pessoa"
+            [compareWith]="comparePessoa"
+          >
+            @if (editForm.get(['pessoa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (pessoaOption of pessoasCollection; track $index) {
+              <option [ngValue]="pessoaOption">{{ pessoaOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['pessoa'])!.invalid && (editForm.get(['pessoa'])!.dirty || editForm.get(['pessoa'])!.touched)) {
+          <div>
+            @if (editForm.get(['pessoa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_perfilContador" jhiTranslate="erpDobemcontabilidadeApp.contador.perfilContador"
+            >Perfil Contador</label
+          >
+          <select
+            class="form-control"
+            id="field_perfilContador"
+            data-cy="perfilContador"
+            name="perfilContador"
+            formControlName="perfilContador"
+            [compareWith]="comparePerfilContador"
+          >
+            @if (editForm.get(['perfilContador'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (perfilContadorOption of perfilContadorsSharedCollection; track $index) {
+              <option [ngValue]="perfilContadorOption">{{ perfilContadorOption.perfil }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['perfilContador'])!.invalid &&
+          (editForm.get(['perfilContador'])!.dirty || editForm.get(['perfilContador'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['perfilContador'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

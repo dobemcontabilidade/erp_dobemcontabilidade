@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (termoContratoContabil()) {
+      <div>
+        <h2 data-cy="termoContratoContabilDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.termoContratoContabil.detail.title">Termo Contrato Contabil</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ termoContratoContabil()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoContratoContabil.documento">Documento</span></dt>
+          <dd>
+            <span>{{ termoContratoContabil()!.documento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoContratoContabil.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ termoContratoContabil()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoContratoContabil.titulo">Titulo</span></dt>
+          <dd>
+            <span>{{ termoContratoContabil()!.titulo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoContratoContabil.planoContabil">Plano Contabil</span></dt>
+          <dd>
+            @if (termoContratoContabil()!.planoContabil) {
+              <div>
+                <a [routerLink]="['/plano-contabil', termoContratoContabil()!.planoContabil?.id, 'view']">{{
+                  termoContratoContabil()!.planoContabil?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/termo-contrato-contabil', termoContratoContabil()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,51 @@
+{
+  "annotations": {
+    "changelogDate": "20240810031419"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contratacao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "abertura",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Cidade",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "enderecoPessoa",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "enderecoPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "enderecoEmpresa",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "enderecoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "estado",
+      "relationshipName": "estado",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

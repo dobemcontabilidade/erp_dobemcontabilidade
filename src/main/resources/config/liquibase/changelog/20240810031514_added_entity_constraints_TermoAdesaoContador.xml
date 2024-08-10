@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity TermoAdesaoContador.
+    -->
+    <changeSet id="20240810031514-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="contador_id"
+                                 baseTableName="termo_adesao_contador"
+                                 constraintName="fk_termo_adesao_contador__contador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contador"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="termo_de_adesao_id"
+                                 baseTableName="termo_adesao_contador"
+                                 constraintName="fk_termo_adesao_contador__termo_de_adesao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="termo_de_adesao"
+                                 />
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20240810031459"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "quantidadeEmpresas",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "percentualExperiencia",
+      "fieldType": "Double"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PerfilContadorDepartamento",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "departamento",
+      "relationshipName": "departamento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "perfil",
+      "otherEntityName": "perfilContador",
+      "relationshipName": "perfilContador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

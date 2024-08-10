@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "atividadeEmpresa": {
+      "home": {
+        "title": "Atividade Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Atividade Empresa",
+        "createOrEditLabel": "Create or edit a Atividade Empresa",
+        "notFound": "No Atividade Empresas found"
+      },
+      "created": "A new Atividade Empresa is created with identifier {{ param }}",
+      "updated": "A Atividade Empresa is updated with identifier {{ param }}",
+      "deleted": "A Atividade Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Atividade Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Atividade Empresa"
+      },
+      "id": "ID",
+      "principal": "Principal",
+      "ordem": "Ordem",
+      "descricaoAtividade": "Descricao Atividade",
+      "empresa": "Empresa"
+    }
+  }
+}

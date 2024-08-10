@@ -1,0 +1,11 @@
+id;email;senha;token;data_hora_ativacao;data_limite_acesso;situacao;contador_id;administrador_id
+1;Felicia4@live.com;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2024-08-10T02:52:01;2024-08-09T12:57:00;ATIVO;1;1
+2;Fabiano_Batista@live.com;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2024-08-09T19:24:11;2024-08-09T06:06:40;INATIVO;2;2
+3;Alessandro85@bol.com.br;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2024-08-09T03:42:12;2024-08-09T18:37:54;ATIVO;3;3
+4;Mariana60@bol.com.br;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2024-08-10T00:58:40;2024-08-09T13:55:03;ATIVO;4;4
+5;Ricardo_Macedo@bol.com.br;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2024-08-09T13:43:58;2024-08-09T12:24:22;ATIVO;5;5
+6;Gael_Albuquerque@live.com;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2024-08-09T08:32:10;2024-08-10T02:58:58;BLOQUEADO;6;6
+7;Fabio.Barros70@live.com;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2024-08-09T17:18:50;2024-08-10T03:03:43;BLOQUEADO;7;7
+8;MariaAlice.Costa43@hotmail.com;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2024-08-09T11:17:17;2024-08-09T19:12:50;ATIVO;8;8
+9;Paula88@hotmail.com;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2024-08-09T06:06:25;2024-08-09T17:36:43;BLOQUEADO;9;9
+10;Giovanna_Santos@hotmail.com;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2024-08-09T18:59:23;2024-08-09T12:39:38;BLOQUEADO;10;10
