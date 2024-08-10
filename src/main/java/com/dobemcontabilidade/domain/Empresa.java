@@ -1,5 +1,6 @@
 package com.dobemcontabilidade.domain;
 
+import com.dobemcontabilidade.domain.enumeration.TipoSegmentoEnum;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -52,12 +53,14 @@ public class Empresa implements Serializable {
     @Column(name = "capital_social")
     private Double capitalSocial;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_segmento")
+    private TipoSegmentoEnum tipoSegmento;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "empresa")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
-        value = {
-            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa", "planoContaAzul",
-        },
+        value = { "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa" },
         allowSetters = true
     )
     private Set<AssinaturaEmpresa> assinaturaEmpresas = new HashSet<>();
@@ -236,6 +239,19 @@ public class Empresa implements Serializable {
 
     public void setCapitalSocial(Double capitalSocial) {
         this.capitalSocial = capitalSocial;
+    }
+
+    public TipoSegmentoEnum getTipoSegmento() {
+        return this.tipoSegmento;
+    }
+
+    public Empresa tipoSegmento(TipoSegmentoEnum tipoSegmento) {
+        this.setTipoSegmento(tipoSegmento);
+        return this;
+    }
+
+    public void setTipoSegmento(TipoSegmentoEnum tipoSegmento) {
+        this.tipoSegmento = tipoSegmento;
     }
 
     public Set<AssinaturaEmpresa> getAssinaturaEmpresas() {
@@ -680,6 +696,7 @@ public class Empresa implements Serializable {
             ", dataAbertura='" + getDataAbertura() + "'" +
             ", urlContratoSocial='" + getUrlContratoSocial() + "'" +
             ", capitalSocial=" + getCapitalSocial() +
+            ", tipoSegmento='" + getTipoSegmento() + "'" +
             "}";
     }
 }

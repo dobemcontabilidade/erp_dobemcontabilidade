@@ -20,8 +20,8 @@ export const sampleWithFullData: IUsuarioGestao = {
   email: 'Eduardo32@yahoo.com',
   senha: '../fake-data/blob/hipster.txt',
   token: '../fake-data/blob/hipster.txt',
-  dataHoraAtivacao: dayjs('2024-08-10T03:03'),
-  dataLimiteAcesso: dayjs('2024-08-09T14:39'),
+  dataHoraAtivacao: dayjs('2024-08-10T04:41'),
+  dataLimiteAcesso: dayjs('2024-08-09T16:17'),
   situacao: 'ATIVO',
 };
 

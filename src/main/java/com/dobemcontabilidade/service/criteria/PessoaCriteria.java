@@ -88,6 +88,8 @@ public class PessoaCriteria implements Serializable, Criteria {
 
     private LongFilter telefoneId;
 
+    private LongFilter usuarioEmpresaId;
+
     private LongFilter administradorId;
 
     private LongFilter contadorId;
@@ -95,8 +97,6 @@ public class PessoaCriteria implements Serializable, Criteria {
     private LongFilter funcionarioId;
 
     private LongFilter socioId;
-
-    private LongFilter usuarioEmpresaId;
 
     private Boolean distinct;
 
@@ -118,11 +118,11 @@ public class PessoaCriteria implements Serializable, Criteria {
         this.anexoPessoaId = other.optionalAnexoPessoaId().map(LongFilter::copy).orElse(null);
         this.emailId = other.optionalEmailId().map(LongFilter::copy).orElse(null);
         this.telefoneId = other.optionalTelefoneId().map(LongFilter::copy).orElse(null);
+        this.usuarioEmpresaId = other.optionalUsuarioEmpresaId().map(LongFilter::copy).orElse(null);
         this.administradorId = other.optionalAdministradorId().map(LongFilter::copy).orElse(null);
         this.contadorId = other.optionalContadorId().map(LongFilter::copy).orElse(null);
         this.funcionarioId = other.optionalFuncionarioId().map(LongFilter::copy).orElse(null);
         this.socioId = other.optionalSocioId().map(LongFilter::copy).orElse(null);
-        this.usuarioEmpresaId = other.optionalUsuarioEmpresaId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
     }
 
@@ -416,6 +416,25 @@ public class PessoaCriteria implements Serializable, Criteria {
         this.telefoneId = telefoneId;
     }
 
+    public LongFilter getUsuarioEmpresaId() {
+        return usuarioEmpresaId;
+    }
+
+    public Optional<LongFilter> optionalUsuarioEmpresaId() {
+        return Optional.ofNullable(usuarioEmpresaId);
+    }
+
+    public LongFilter usuarioEmpresaId() {
+        if (usuarioEmpresaId == null) {
+            setUsuarioEmpresaId(new LongFilter());
+        }
+        return usuarioEmpresaId;
+    }
+
+    public void setUsuarioEmpresaId(LongFilter usuarioEmpresaId) {
+        this.usuarioEmpresaId = usuarioEmpresaId;
+    }
+
     public LongFilter getAdministradorId() {
         return administradorId;
     }
@@ -492,25 +511,6 @@ public class PessoaCriteria implements Serializable, Criteria {
         this.socioId = socioId;
     }
 
-    public LongFilter getUsuarioEmpresaId() {
-        return usuarioEmpresaId;
-    }
-
-    public Optional<LongFilter> optionalUsuarioEmpresaId() {
-        return Optional.ofNullable(usuarioEmpresaId);
-    }
-
-    public LongFilter usuarioEmpresaId() {
-        if (usuarioEmpresaId == null) {
-            setUsuarioEmpresaId(new LongFilter());
-        }
-        return usuarioEmpresaId;
-    }
-
-    public void setUsuarioEmpresaId(LongFilter usuarioEmpresaId) {
-        this.usuarioEmpresaId = usuarioEmpresaId;
-    }
-
     public Boolean getDistinct() {
         return distinct;
     }
@@ -555,11 +555,11 @@ public class PessoaCriteria implements Serializable, Criteria {
             Objects.equals(anexoPessoaId, that.anexoPessoaId) &&
             Objects.equals(emailId, that.emailId) &&
             Objects.equals(telefoneId, that.telefoneId) &&
+            Objects.equals(usuarioEmpresaId, that.usuarioEmpresaId) &&
             Objects.equals(administradorId, that.administradorId) &&
             Objects.equals(contadorId, that.contadorId) &&
             Objects.equals(funcionarioId, that.funcionarioId) &&
             Objects.equals(socioId, that.socioId) &&
-            Objects.equals(usuarioEmpresaId, that.usuarioEmpresaId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -582,11 +582,11 @@ public class PessoaCriteria implements Serializable, Criteria {
             anexoPessoaId,
             emailId,
             telefoneId,
+            usuarioEmpresaId,
             administradorId,
             contadorId,
             funcionarioId,
             socioId,
-            usuarioEmpresaId,
             distinct
         );
     }
@@ -610,11 +610,11 @@ public class PessoaCriteria implements Serializable, Criteria {
             optionalAnexoPessoaId().map(f -> "anexoPessoaId=" + f + ", ").orElse("") +
             optionalEmailId().map(f -> "emailId=" + f + ", ").orElse("") +
             optionalTelefoneId().map(f -> "telefoneId=" + f + ", ").orElse("") +
+            optionalUsuarioEmpresaId().map(f -> "usuarioEmpresaId=" + f + ", ").orElse("") +
             optionalAdministradorId().map(f -> "administradorId=" + f + ", ").orElse("") +
             optionalContadorId().map(f -> "contadorId=" + f + ", ").orElse("") +
             optionalFuncionarioId().map(f -> "funcionarioId=" + f + ", ").orElse("") +
             optionalSocioId().map(f -> "socioId=" + f + ", ").orElse("") +
-            optionalUsuarioEmpresaId().map(f -> "usuarioEmpresaId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +
         "}";
     }

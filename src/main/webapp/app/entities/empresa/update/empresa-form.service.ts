@@ -38,6 +38,7 @@ type EmpresaFormGroupContent = {
   dataAbertura: FormControl<EmpresaFormRawValue['dataAbertura']>;
   urlContratoSocial: FormControl<EmpresaFormRawValue['urlContratoSocial']>;
   capitalSocial: FormControl<EmpresaFormRawValue['capitalSocial']>;
+  tipoSegmento: FormControl<EmpresaFormRawValue['tipoSegmento']>;
   ramo: FormControl<EmpresaFormRawValue['ramo']>;
   tributacao: FormControl<EmpresaFormRawValue['tributacao']>;
   enquadramento: FormControl<EmpresaFormRawValue['enquadramento']>;
@@ -73,6 +74,7 @@ export class EmpresaFormService {
       dataAbertura: new FormControl(empresaRawValue.dataAbertura),
       urlContratoSocial: new FormControl(empresaRawValue.urlContratoSocial),
       capitalSocial: new FormControl(empresaRawValue.capitalSocial),
+      tipoSegmento: new FormControl(empresaRawValue.tipoSegmento),
       ramo: new FormControl(empresaRawValue.ramo, {
         validators: [Validators.required],
       }),

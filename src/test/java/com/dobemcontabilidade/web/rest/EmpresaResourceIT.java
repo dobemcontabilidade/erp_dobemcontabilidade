@@ -13,6 +13,7 @@ import com.dobemcontabilidade.domain.Empresa;
 import com.dobemcontabilidade.domain.Enquadramento;
 import com.dobemcontabilidade.domain.Ramo;
 import com.dobemcontabilidade.domain.Tributacao;
+import com.dobemcontabilidade.domain.enumeration.TipoSegmentoEnum;
 import com.dobemcontabilidade.repository.EmpresaRepository;
 import com.dobemcontabilidade.service.EmpresaService;
 import com.dobemcontabilidade.service.dto.EmpresaDTO;
@@ -70,6 +71,9 @@ class EmpresaResourceIT {
     private static final Double UPDATED_CAPITAL_SOCIAL = 2D;
     private static final Double SMALLER_CAPITAL_SOCIAL = 1D - 1D;
 
+    private static final TipoSegmentoEnum DEFAULT_TIPO_SEGMENTO = TipoSegmentoEnum.SERVICO;
+    private static final TipoSegmentoEnum UPDATED_TIPO_SEGMENTO = TipoSegmentoEnum.COMERCIO;
+
     private static final String ENTITY_API_URL = "/api/empresas";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -115,7 +119,8 @@ class EmpresaResourceIT {
             .cnpj(DEFAULT_CNPJ)
             .dataAbertura(DEFAULT_DATA_ABERTURA)
             .urlContratoSocial(DEFAULT_URL_CONTRATO_SOCIAL)
-            .capitalSocial(DEFAULT_CAPITAL_SOCIAL);
+            .capitalSocial(DEFAULT_CAPITAL_SOCIAL)
+            .tipoSegmento(DEFAULT_TIPO_SEGMENTO);
         // Add required entity
         Ramo ramo;
         if (TestUtil.findAll(em, Ramo.class).isEmpty()) {
@@ -163,7 +168,8 @@ class EmpresaResourceIT {
             .cnpj(UPDATED_CNPJ)
             .dataAbertura(UPDATED_DATA_ABERTURA)
             .urlContratoSocial(UPDATED_URL_CONTRATO_SOCIAL)
-            .capitalSocial(UPDATED_CAPITAL_SOCIAL);
+            .capitalSocial(UPDATED_CAPITAL_SOCIAL)
+            .tipoSegmento(UPDATED_TIPO_SEGMENTO);
         // Add required entity
         Ramo ramo;
         if (TestUtil.findAll(em, Ramo.class).isEmpty()) {
@@ -304,7 +310,8 @@ class EmpresaResourceIT {
             .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ)))
             .andExpect(jsonPath("$.[*].dataAbertura").value(hasItem(DEFAULT_DATA_ABERTURA.toString())))
             .andExpect(jsonPath("$.[*].urlContratoSocial").value(hasItem(DEFAULT_URL_CONTRATO_SOCIAL)))
-            .andExpect(jsonPath("$.[*].capitalSocial").value(hasItem(DEFAULT_CAPITAL_SOCIAL.doubleValue())));
+            .andExpect(jsonPath("$.[*].capitalSocial").value(hasItem(DEFAULT_CAPITAL_SOCIAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].tipoSegmento").value(hasItem(DEFAULT_TIPO_SEGMENTO.toString())));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -342,7 +349,8 @@ class EmpresaResourceIT {
             .andExpect(jsonPath("$.cnpj").value(DEFAULT_CNPJ))
             .andExpect(jsonPath("$.dataAbertura").value(DEFAULT_DATA_ABERTURA.toString()))
             .andExpect(jsonPath("$.urlContratoSocial").value(DEFAULT_URL_CONTRATO_SOCIAL))
-            .andExpect(jsonPath("$.capitalSocial").value(DEFAULT_CAPITAL_SOCIAL.doubleValue()));
+            .andExpect(jsonPath("$.capitalSocial").value(DEFAULT_CAPITAL_SOCIAL.doubleValue()))
+            .andExpect(jsonPath("$.tipoSegmento").value(DEFAULT_TIPO_SEGMENTO.toString()));
     }
 
     @Test
@@ -698,6 +706,39 @@ class EmpresaResourceIT {
 
     @Test
     @Transactional
+    void getAllEmpresasByTipoSegmentoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where tipoSegmento equals to
+        defaultEmpresaFiltering("tipoSegmento.equals=" + DEFAULT_TIPO_SEGMENTO, "tipoSegmento.equals=" + UPDATED_TIPO_SEGMENTO);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByTipoSegmentoIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where tipoSegmento in
+        defaultEmpresaFiltering(
+            "tipoSegmento.in=" + DEFAULT_TIPO_SEGMENTO + "," + UPDATED_TIPO_SEGMENTO,
+            "tipoSegmento.in=" + UPDATED_TIPO_SEGMENTO
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByTipoSegmentoIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where tipoSegmento is not null
+        defaultEmpresaFiltering("tipoSegmento.specified=true", "tipoSegmento.specified=false");
+    }
+
+    @Test
+    @Transactional
     void getAllEmpresasByRamoIsEqualToSomething() throws Exception {
         Ramo ramo;
         if (TestUtil.findAll(em, Ramo.class).isEmpty()) {
@@ -782,7 +823,8 @@ class EmpresaResourceIT {
             .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ)))
             .andExpect(jsonPath("$.[*].dataAbertura").value(hasItem(DEFAULT_DATA_ABERTURA.toString())))
             .andExpect(jsonPath("$.[*].urlContratoSocial").value(hasItem(DEFAULT_URL_CONTRATO_SOCIAL)))
-            .andExpect(jsonPath("$.[*].capitalSocial").value(hasItem(DEFAULT_CAPITAL_SOCIAL.doubleValue())));
+            .andExpect(jsonPath("$.[*].capitalSocial").value(hasItem(DEFAULT_CAPITAL_SOCIAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].tipoSegmento").value(hasItem(DEFAULT_TIPO_SEGMENTO.toString())));
 
         // Check, that the count call also returns 1
         restEmpresaMockMvc
@@ -837,7 +879,8 @@ class EmpresaResourceIT {
             .cnpj(UPDATED_CNPJ)
             .dataAbertura(UPDATED_DATA_ABERTURA)
             .urlContratoSocial(UPDATED_URL_CONTRATO_SOCIAL)
-            .capitalSocial(UPDATED_CAPITAL_SOCIAL);
+            .capitalSocial(UPDATED_CAPITAL_SOCIAL)
+            .tipoSegmento(UPDATED_TIPO_SEGMENTO);
         EmpresaDTO empresaDTO = empresaMapper.toDto(updatedEmpresa);
 
         restEmpresaMockMvc
@@ -958,7 +1001,8 @@ class EmpresaResourceIT {
             .cnpj(UPDATED_CNPJ)
             .dataAbertura(UPDATED_DATA_ABERTURA)
             .urlContratoSocial(UPDATED_URL_CONTRATO_SOCIAL)
-            .capitalSocial(UPDATED_CAPITAL_SOCIAL);
+            .capitalSocial(UPDATED_CAPITAL_SOCIAL)
+            .tipoSegmento(UPDATED_TIPO_SEGMENTO);
 
         restEmpresaMockMvc
             .perform(

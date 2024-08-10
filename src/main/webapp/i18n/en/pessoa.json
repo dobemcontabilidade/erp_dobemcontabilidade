@@ -32,11 +32,11 @@
       "anexoPessoa": "Anexo Pessoa",
       "email": "Email",
       "telefone": "Telefone",
+      "usuarioEmpresa": "Usuario Empresa",
       "administrador": "Administrador",
       "contador": "Contador",
       "funcionario": "Funcionario",
-      "socio": "Socio",
-      "usuarioEmpresa": "Usuario Empresa"
+      "socio": "Socio"
     }
   }
 }

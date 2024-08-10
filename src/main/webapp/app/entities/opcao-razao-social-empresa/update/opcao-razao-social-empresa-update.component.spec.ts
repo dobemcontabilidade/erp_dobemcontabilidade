@@ -49,10 +49,10 @@ describe('OpcaoRazaoSocialEmpresa Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Empresa query and add missing value', () => {
       const opcaoRazaoSocialEmpresa: IOpcaoRazaoSocialEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 22577 };
+      const empresa: IEmpresa = { id: 19662 };
       opcaoRazaoSocialEmpresa.empresa = empresa;
 
-      const empresaCollection: IEmpresa[] = [{ id: 22633 }];
+      const empresaCollection: IEmpresa[] = [{ id: 13657 }];
       jest.spyOn(empresaService, 'query').mockReturnValue(of(new HttpResponse({ body: empresaCollection })));
       const additionalEmpresas = [empresa];
       const expectedCollection: IEmpresa[] = [...additionalEmpresas, ...empresaCollection];
@@ -71,7 +71,7 @@ describe('OpcaoRazaoSocialEmpresa Management Update Component', () => {
 
     it('Should update editForm', () => {
       const opcaoRazaoSocialEmpresa: IOpcaoRazaoSocialEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 13863 };
+      const empresa: IEmpresa = { id: 8279 };
       opcaoRazaoSocialEmpresa.empresa = empresa;
 
       activatedRoute.data = of({ opcaoRazaoSocialEmpresa });

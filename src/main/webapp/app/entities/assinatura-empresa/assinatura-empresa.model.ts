@@ -3,7 +3,6 @@ import { IPeriodoPagamento } from 'app/entities/periodo-pagamento/periodo-pagame
 import { IFormaDePagamento } from 'app/entities/forma-de-pagamento/forma-de-pagamento.model';
 import { IPlanoContabil } from 'app/entities/plano-contabil/plano-contabil.model';
 import { IEmpresa } from 'app/entities/empresa/empresa.model';
-import { IPlanoContaAzul } from 'app/entities/plano-conta-azul/plano-conta-azul.model';
 import { SituacaoContratoEmpresaEnum } from 'app/entities/enumerations/situacao-contrato-empresa-enum.model';
 import { TipoContratoEnum } from 'app/entities/enumerations/tipo-contrato-enum.model';
 
@@ -30,7 +29,6 @@ export interface IAssinaturaEmpresa {
   formaDePagamento?: Pick<IFormaDePagamento, 'id' | 'forma'> | null;
   planoContabil?: Pick<IPlanoContabil, 'id' | 'nome'> | null;
   empresa?: Pick<IEmpresa, 'id' | 'razaoSocial'> | null;
-  planoContaAzul?: Pick<IPlanoContaAzul, 'id'> | null;
 }
 
 export type NewAssinaturaEmpresa = Omit<IAssinaturaEmpresa, 'id'> & { id: null };

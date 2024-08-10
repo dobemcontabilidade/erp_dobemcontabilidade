@@ -374,25 +374,6 @@
             }
           </div>
         }
-
-        <div class="mb-3">
-          <label class="form-label" for="field_planoContaAzul" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContaAzul"
-            >Plano Conta Azul</label
-          >
-          <select
-            class="form-control"
-            id="field_planoContaAzul"
-            data-cy="planoContaAzul"
-            name="planoContaAzul"
-            formControlName="planoContaAzul"
-            [compareWith]="comparePlanoContaAzul"
-          >
-            <option [ngValue]="null"></option>
-            @for (planoContaAzulOption of planoContaAzulsSharedCollection; track $index) {
-              <option [ngValue]="planoContaAzulOption">{{ planoContaAzulOption.id }}</option>
-            }
-          </select>
-        </div>
       </div>
 
       <div>

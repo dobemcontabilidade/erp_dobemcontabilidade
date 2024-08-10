@@ -86,6 +86,10 @@ public class Pessoa implements Serializable {
     @JsonIgnoreProperties(value = { "pessoa" }, allowSetters = true)
     private Set<Telefone> telefones = new HashSet<>();
 
+    @JsonIgnoreProperties(value = { "pessoa", "empresa" }, allowSetters = true)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa")
+    private UsuarioEmpresa usuarioEmpresa;
+
     @JsonIgnoreProperties(value = { "pessoa", "usuarioContadors", "usuarioErp", "usuarioGestao" }, allowSetters = true)
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa")
     private Administrador administrador;
@@ -116,10 +120,6 @@ public class Pessoa implements Serializable {
     @JsonIgnoreProperties(value = { "pessoa", "profissaos", "empresa" }, allowSetters = true)
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa")
     private Socio socio;
-
-    @JsonIgnoreProperties(value = { "pessoa", "empresa" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa")
-    private UsuarioEmpresa usuarioEmpresa;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -390,6 +390,25 @@ public class Pessoa implements Serializable {
         return this;
     }
 
+    public UsuarioEmpresa getUsuarioEmpresa() {
+        return this.usuarioEmpresa;
+    }
+
+    public void setUsuarioEmpresa(UsuarioEmpresa usuarioEmpresa) {
+        if (this.usuarioEmpresa != null) {
+            this.usuarioEmpresa.setPessoa(null);
+        }
+        if (usuarioEmpresa != null) {
+            usuarioEmpresa.setPessoa(this);
+        }
+        this.usuarioEmpresa = usuarioEmpresa;
+    }
+
+    public Pessoa usuarioEmpresa(UsuarioEmpresa usuarioEmpresa) {
+        this.setUsuarioEmpresa(usuarioEmpresa);
+        return this;
+    }
+
     public Administrador getAdministrador() {
         return this.administrador;
     }
@@ -463,25 +482,6 @@ public class Pessoa implements Serializable {
 
     public Pessoa socio(Socio socio) {
         this.setSocio(socio);
-        return this;
-    }
-
-    public UsuarioEmpresa getUsuarioEmpresa() {
-        return this.usuarioEmpresa;
-    }
-
-    public void setUsuarioEmpresa(UsuarioEmpresa usuarioEmpresa) {
-        if (this.usuarioEmpresa != null) {
-            this.usuarioEmpresa.setPessoa(null);
-        }
-        if (usuarioEmpresa != null) {
-            usuarioEmpresa.setPessoa(this);
-        }
-        this.usuarioEmpresa = usuarioEmpresa;
-    }
-
-    public Pessoa usuarioEmpresa(UsuarioEmpresa usuarioEmpresa) {
-        this.setUsuarioEmpresa(usuarioEmpresa);
         return this;
     }
 

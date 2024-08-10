@@ -3,33 +3,34 @@ import dayjs from 'dayjs/esm';
 import { IEmpresa, NewEmpresa } from './empresa.model';
 
 export const sampleWithRequiredData: IEmpresa = {
-  id: 12369,
-  razaoSocial: 'paint puzzled perform',
-  nomeFantasia: 'gee',
+  id: 32156,
+  razaoSocial: 'swoon',
+  nomeFantasia: 'versus majority',
 };
 
 export const sampleWithPartialData: IEmpresa = {
-  id: 13833,
-  razaoSocial: 'affix',
-  nomeFantasia: 'energetically so',
-  cnpj: 'kindheartedly near',
-  urlContratoSocial: 'yum',
+  id: 15286,
+  razaoSocial: 'interest into',
+  nomeFantasia: 'faith blank whoa',
+  cnpj: 'finally as',
+  capitalSocial: 13339.95,
 };
 
 export const sampleWithFullData: IEmpresa = {
-  id: 31099,
-  razaoSocial: 'fatally',
-  nomeFantasia: 'rouse of following',
+  id: 24384,
+  razaoSocial: 'drat',
+  nomeFantasia: 'er politely',
   descricaoDoNegocio: '../fake-data/blob/hipster.txt',
-  cnpj: 'loving ringworm once',
-  dataAbertura: dayjs('2024-08-09T13:32'),
-  urlContratoSocial: 'although because ew',
-  capitalSocial: 14917.48,
+  cnpj: 'unhappy whenever yah',
+  dataAbertura: dayjs('2024-08-10T03:16'),
+  urlContratoSocial: 'properly program',
+  capitalSocial: 5111.91,
+  tipoSegmento: 'SERVICO',
 };
 
 export const sampleWithNewData: NewEmpresa = {
-  razaoSocial: 'absent',
-  nomeFantasia: 'blouse where',
+  razaoSocial: 'drat',
+  nomeFantasia: 'absent',
   id: null,
 };
 

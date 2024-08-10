@@ -93,8 +93,6 @@ class CalculoPlanoAssinaturaCriteriaTest {
         calculoPlanoAssinaturaCriteria.tributacaoId();
         calculoPlanoAssinaturaCriteria.descontoPlanoContabilId();
         calculoPlanoAssinaturaCriteria.assinaturaEmpresaId();
-        calculoPlanoAssinaturaCriteria.descontoPlanoContaAzulId();
-        calculoPlanoAssinaturaCriteria.planoContaAzulId();
         calculoPlanoAssinaturaCriteria.distinct();
     }
 
@@ -120,8 +118,6 @@ class CalculoPlanoAssinaturaCriteriaTest {
                 condition.apply(criteria.getTributacaoId()) &&
                 condition.apply(criteria.getDescontoPlanoContabilId()) &&
                 condition.apply(criteria.getAssinaturaEmpresaId()) &&
-                condition.apply(criteria.getDescontoPlanoContaAzulId()) &&
-                condition.apply(criteria.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getDistinct()),
             "every filter matches"
         );
@@ -152,8 +148,6 @@ class CalculoPlanoAssinaturaCriteriaTest {
                 condition.apply(criteria.getTributacaoId(), copy.getTributacaoId()) &&
                 condition.apply(criteria.getDescontoPlanoContabilId(), copy.getDescontoPlanoContabilId()) &&
                 condition.apply(criteria.getAssinaturaEmpresaId(), copy.getAssinaturaEmpresaId()) &&
-                condition.apply(criteria.getDescontoPlanoContaAzulId(), copy.getDescontoPlanoContaAzulId()) &&
-                condition.apply(criteria.getPlanoContaAzulId(), copy.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getDistinct(), copy.getDistinct()),
             "every filter matches"
         );

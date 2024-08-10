@@ -1,5 +1,6 @@
 package com.dobemcontabilidade.service.dto;
 
+import com.dobemcontabilidade.domain.enumeration.TipoSegmentoEnum;
 import jakarta.persistence.Lob;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
@@ -31,6 +32,8 @@ public class EmpresaDTO implements Serializable {
     private String urlContratoSocial;
 
     private Double capitalSocial;
+
+    private TipoSegmentoEnum tipoSegmento;
 
     @NotNull
     private RamoDTO ramo;
@@ -105,6 +108,14 @@ public class EmpresaDTO implements Serializable {
         this.capitalSocial = capitalSocial;
     }
 
+    public TipoSegmentoEnum getTipoSegmento() {
+        return tipoSegmento;
+    }
+
+    public void setTipoSegmento(TipoSegmentoEnum tipoSegmento) {
+        this.tipoSegmento = tipoSegmento;
+    }
+
     public RamoDTO getRamo() {
         return ramo;
     }
@@ -162,6 +173,7 @@ public class EmpresaDTO implements Serializable {
             ", dataAbertura='" + getDataAbertura() + "'" +
             ", urlContratoSocial='" + getUrlContratoSocial() + "'" +
             ", capitalSocial=" + getCapitalSocial() +
+            ", tipoSegmento='" + getTipoSegmento() + "'" +
             ", ramo=" + getRamo() +
             ", tributacao=" + getTributacao() +
             ", enquadramento=" + getEnquadramento() +

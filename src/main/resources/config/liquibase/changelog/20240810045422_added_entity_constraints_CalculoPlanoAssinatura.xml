@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity CalculoPlanoAssinatura.
+    -->
+    <changeSet id="20240810045422-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="periodo_pagamento_id"
+                                 baseTableName="calculo_plano_assinatura"
+                                 constraintName="fk_calculo_plano_assinatura__periodo_pagamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="periodo_pagamento"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="plano_contabil_id"
+                                 baseTableName="calculo_plano_assinatura"
+                                 constraintName="fk_calculo_plano_assinatura__plano_contabil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plano_contabil"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="ramo_id"
+                                 baseTableName="calculo_plano_assinatura"
+                                 constraintName="fk_calculo_plano_assinatura__ramo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ramo"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="tributacao_id"
+                                 baseTableName="calculo_plano_assinatura"
+                                 constraintName="fk_calculo_plano_assinatura__tributacao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tributacao"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="desconto_plano_contabil_id"
+                                 baseTableName="calculo_plano_assinatura"
+                                 constraintName="fk_calculo_plano_assinatura__desconto_plano_contabil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="desconto_plano_contabil"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="assinatura_empresa_id"
+                                 baseTableName="calculo_plano_assinatura"
+                                 constraintName="fk_calculo_plano_assinatura__assinatura_empresa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="assinatura_empresa"
+                                 />
+    </changeSet>
+</databaseChangeLog>

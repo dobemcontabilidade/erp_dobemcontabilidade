@@ -10,13 +10,13 @@ export const sampleWithRequiredData: ICertificadoDigital = {
 export const sampleWithPartialData: ICertificadoDigital = {
   id: 8419,
   urlCertificado: '../fake-data/blob/hipster.txt',
-  dataContratacao: dayjs('2024-08-09T21:42'),
+  dataContratacao: dayjs('2024-08-09T23:21'),
 };
 
 export const sampleWithFullData: ICertificadoDigital = {
   id: 20803,
   urlCertificado: '../fake-data/blob/hipster.txt',
-  dataContratacao: dayjs('2024-08-09T15:36'),
+  dataContratacao: dayjs('2024-08-09T17:15'),
   validade: 1466,
   tipoCertificado: 'A3',
 };

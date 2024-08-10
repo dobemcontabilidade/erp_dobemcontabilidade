@@ -12,7 +12,7 @@ export const sampleWithPartialData: ITermoAdesaoContador = {
 
 export const sampleWithFullData: ITermoAdesaoContador = {
   id: 10926,
-  dataAdesao: dayjs('2024-08-09T16:48'),
+  dataAdesao: dayjs('2024-08-09T18:27'),
 };
 
 export const sampleWithNewData: NewTermoAdesaoContador = {

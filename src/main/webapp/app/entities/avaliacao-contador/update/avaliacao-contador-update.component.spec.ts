@@ -53,10 +53,10 @@ describe('AvaliacaoContador Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Contador query and add missing value', () => {
       const avaliacaoContador: IAvaliacaoContador = { id: 456 };
-      const contador: IContador = { id: 3969 };
+      const contador: IContador = { id: 14000 };
       avaliacaoContador.contador = contador;
 
-      const contadorCollection: IContador[] = [{ id: 22968 }];
+      const contadorCollection: IContador[] = [{ id: 32745 }];
       jest.spyOn(contadorService, 'query').mockReturnValue(of(new HttpResponse({ body: contadorCollection })));
       const additionalContadors = [contador];
       const expectedCollection: IContador[] = [...additionalContadors, ...contadorCollection];
@@ -97,7 +97,7 @@ describe('AvaliacaoContador Management Update Component', () => {
 
     it('Should update editForm', () => {
       const avaliacaoContador: IAvaliacaoContador = { id: 456 };
-      const contador: IContador = { id: 5629 };
+      const contador: IContador = { id: 2210 };
       avaliacaoContador.contador = contador;
       const avaliacao: IAvaliacao = { id: 29126 };
       avaliacaoContador.avaliacao = avaliacao;

@@ -53,7 +53,8 @@ public class EmpresaAsserts {
             .satisfies(e -> assertThat(e.getCnpj()).as("check cnpj").isEqualTo(actual.getCnpj()))
             .satisfies(e -> assertThat(e.getDataAbertura()).as("check dataAbertura").isEqualTo(actual.getDataAbertura()))
             .satisfies(e -> assertThat(e.getUrlContratoSocial()).as("check urlContratoSocial").isEqualTo(actual.getUrlContratoSocial()))
-            .satisfies(e -> assertThat(e.getCapitalSocial()).as("check capitalSocial").isEqualTo(actual.getCapitalSocial()));
+            .satisfies(e -> assertThat(e.getCapitalSocial()).as("check capitalSocial").isEqualTo(actual.getCapitalSocial()))
+            .satisfies(e -> assertThat(e.getTipoSegmento()).as("check tipoSegmento").isEqualTo(actual.getTipoSegmento()));
     }
 
     /**

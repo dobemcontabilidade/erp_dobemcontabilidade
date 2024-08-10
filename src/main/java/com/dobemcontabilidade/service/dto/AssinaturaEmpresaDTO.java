@@ -61,8 +61,6 @@ public class AssinaturaEmpresaDTO implements Serializable {
     @NotNull
     private EmpresaDTO empresa;
 
-    private PlanoContaAzulDTO planoContaAzul;
-
     public Long getId() {
         return id;
     }
@@ -239,14 +237,6 @@ public class AssinaturaEmpresaDTO implements Serializable {
         this.empresa = empresa;
     }
 
-    public PlanoContaAzulDTO getPlanoContaAzul() {
-        return planoContaAzul;
-    }
-
-    public void setPlanoContaAzul(PlanoContaAzulDTO planoContaAzul) {
-        this.planoContaAzul = planoContaAzul;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -294,7 +284,6 @@ public class AssinaturaEmpresaDTO implements Serializable {
             ", formaDePagamento=" + getFormaDePagamento() +
             ", planoContabil=" + getPlanoContabil() +
             ", empresa=" + getEmpresa() +
-            ", planoContaAzul=" + getPlanoContaAzul() +
             "}";
     }
 }

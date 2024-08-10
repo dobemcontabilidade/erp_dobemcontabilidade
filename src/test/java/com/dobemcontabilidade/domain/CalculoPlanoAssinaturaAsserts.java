@@ -91,13 +91,6 @@ public class CalculoPlanoAssinaturaAsserts {
             .satisfies(
                 e -> assertThat(e.getDescontoPlanoContabil()).as("check descontoPlanoContabil").isEqualTo(actual.getDescontoPlanoContabil())
             )
-            .satisfies(e -> assertThat(e.getAssinaturaEmpresa()).as("check assinaturaEmpresa").isEqualTo(actual.getAssinaturaEmpresa()))
-            .satisfies(
-                e ->
-                    assertThat(e.getDescontoPlanoContaAzul())
-                        .as("check descontoPlanoContaAzul")
-                        .isEqualTo(actual.getDescontoPlanoContaAzul())
-            )
-            .satisfies(e -> assertThat(e.getPlanoContaAzul()).as("check planoContaAzul").isEqualTo(actual.getPlanoContaAzul()));
+            .satisfies(e -> assertThat(e.getAssinaturaEmpresa()).as("check assinaturaEmpresa").isEqualTo(actual.getAssinaturaEmpresa()));
     }
 }

@@ -2,10 +2,8 @@ package com.dobemcontabilidade.domain;
 
 import static com.dobemcontabilidade.domain.AssinaturaEmpresaTestSamples.*;
 import static com.dobemcontabilidade.domain.CalculoPlanoAssinaturaTestSamples.*;
-import static com.dobemcontabilidade.domain.DescontoPlanoContaAzulTestSamples.*;
 import static com.dobemcontabilidade.domain.DescontoPlanoContabilTestSamples.*;
 import static com.dobemcontabilidade.domain.PeriodoPagamentoTestSamples.*;
-import static com.dobemcontabilidade.domain.PlanoContaAzulTestSamples.*;
 import static com.dobemcontabilidade.domain.PlanoContabilTestSamples.*;
 import static com.dobemcontabilidade.domain.RamoTestSamples.*;
 import static com.dobemcontabilidade.domain.TributacaoTestSamples.*;
@@ -100,29 +98,5 @@ class CalculoPlanoAssinaturaTest {
 
         calculoPlanoAssinatura.assinaturaEmpresa(null);
         assertThat(calculoPlanoAssinatura.getAssinaturaEmpresa()).isNull();
-    }
-
-    @Test
-    void descontoPlanoContaAzulTest() {
-        CalculoPlanoAssinatura calculoPlanoAssinatura = getCalculoPlanoAssinaturaRandomSampleGenerator();
-        DescontoPlanoContaAzul descontoPlanoContaAzulBack = getDescontoPlanoContaAzulRandomSampleGenerator();
-
-        calculoPlanoAssinatura.setDescontoPlanoContaAzul(descontoPlanoContaAzulBack);
-        assertThat(calculoPlanoAssinatura.getDescontoPlanoContaAzul()).isEqualTo(descontoPlanoContaAzulBack);
-
-        calculoPlanoAssinatura.descontoPlanoContaAzul(null);
-        assertThat(calculoPlanoAssinatura.getDescontoPlanoContaAzul()).isNull();
-    }
-
-    @Test
-    void planoContaAzulTest() {
-        CalculoPlanoAssinatura calculoPlanoAssinatura = getCalculoPlanoAssinaturaRandomSampleGenerator();
-        PlanoContaAzul planoContaAzulBack = getPlanoContaAzulRandomSampleGenerator();
-
-        calculoPlanoAssinatura.setPlanoContaAzul(planoContaAzulBack);
-        assertThat(calculoPlanoAssinatura.getPlanoContaAzul()).isEqualTo(planoContaAzulBack);
-
-        calculoPlanoAssinatura.planoContaAzul(null);
-        assertThat(calculoPlanoAssinatura.getPlanoContaAzul()).isNull();
     }
 }

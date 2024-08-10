@@ -132,6 +132,18 @@
         </div>
 
         <div class="mb-3">
+          <label class="form-label" for="field_tipoSegmento" jhiTranslate="erpDobemcontabilidadeApp.empresa.tipoSegmento"
+            >Tipo Segmento</label
+          >
+          <select class="form-control" name="tipoSegmento" formControlName="tipoSegmento" id="field_tipoSegmento" data-cy="tipoSegmento">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoSegmentoEnum.null' | translate }}</option>
+            @for (tipoSegmentoEnum of tipoSegmentoEnumValues; track $index) {
+              <option [value]="tipoSegmentoEnum">{{ 'erpDobemcontabilidadeApp.TipoSegmentoEnum.' + tipoSegmentoEnum | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
           <label class="form-label" for="field_ramo" jhiTranslate="erpDobemcontabilidadeApp.empresa.ramo">Ramo</label>
           <select class="form-control" id="field_ramo" data-cy="ramo" name="ramo" formControlName="ramo" [compareWith]="compareRamo">
             @if (editForm.get(['ramo'])!.value == null) {

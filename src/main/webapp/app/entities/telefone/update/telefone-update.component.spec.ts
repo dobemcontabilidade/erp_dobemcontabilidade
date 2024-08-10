@@ -49,10 +49,10 @@ describe('Telefone Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Pessoa query and add missing value', () => {
       const telefone: ITelefone = { id: 456 };
-      const pessoa: IPessoa = { id: 16470 };
+      const pessoa: IPessoa = { id: 20378 };
       telefone.pessoa = pessoa;
 
-      const pessoaCollection: IPessoa[] = [{ id: 9730 }];
+      const pessoaCollection: IPessoa[] = [{ id: 14271 }];
       jest.spyOn(pessoaService, 'query').mockReturnValue(of(new HttpResponse({ body: pessoaCollection })));
       const additionalPessoas = [pessoa];
       const expectedCollection: IPessoa[] = [...additionalPessoas, ...pessoaCollection];
@@ -71,7 +71,7 @@ describe('Telefone Management Update Component', () => {
 
     it('Should update editForm', () => {
       const telefone: ITelefone = { id: 456 };
-      const pessoa: IPessoa = { id: 5372 };
+      const pessoa: IPessoa = { id: 13430 };
       telefone.pessoa = pessoa;
 
       activatedRoute.data = of({ telefone });

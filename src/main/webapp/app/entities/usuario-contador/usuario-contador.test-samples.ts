@@ -12,7 +12,7 @@ export const sampleWithPartialData: IUsuarioContador = {
   id: 5996,
   email: 'Isadora47@gmail.com',
   senha: '../fake-data/blob/hipster.txt',
-  dataHoraAtivacao: dayjs('2024-08-10T02:26'),
+  dataHoraAtivacao: dayjs('2024-08-10T04:04'),
 };
 
 export const sampleWithFullData: IUsuarioContador = {
@@ -20,8 +20,8 @@ export const sampleWithFullData: IUsuarioContador = {
   email: 'Karla.Moreira@bol.com.br',
   senha: '../fake-data/blob/hipster.txt',
   token: '../fake-data/blob/hipster.txt',
-  dataHoraAtivacao: dayjs('2024-08-09T20:05'),
-  dataLimiteAcesso: dayjs('2024-08-09T15:43'),
+  dataHoraAtivacao: dayjs('2024-08-09T21:43'),
+  dataLimiteAcesso: dayjs('2024-08-09T17:22'),
   situacao: 'BLOQUEADO',
 };
 

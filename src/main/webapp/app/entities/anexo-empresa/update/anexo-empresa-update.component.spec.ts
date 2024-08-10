@@ -49,10 +49,10 @@ describe('AnexoEmpresa Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Empresa query and add missing value', () => {
       const anexoEmpresa: IAnexoEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 28979 };
+      const empresa: IEmpresa = { id: 20745 };
       anexoEmpresa.empresa = empresa;
 
-      const empresaCollection: IEmpresa[] = [{ id: 7793 }];
+      const empresaCollection: IEmpresa[] = [{ id: 24027 }];
       jest.spyOn(empresaService, 'query').mockReturnValue(of(new HttpResponse({ body: empresaCollection })));
       const additionalEmpresas = [empresa];
       const expectedCollection: IEmpresa[] = [...additionalEmpresas, ...empresaCollection];
@@ -71,7 +71,7 @@ describe('AnexoEmpresa Management Update Component', () => {
 
     it('Should update editForm', () => {
       const anexoEmpresa: IAnexoEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 3696 };
+      const empresa: IEmpresa = { id: 8571 };
       anexoEmpresa.empresa = empresa;
 
       activatedRoute.data = of({ anexoEmpresa });

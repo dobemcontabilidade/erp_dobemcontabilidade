@@ -89,11 +89,11 @@ class PessoaCriteriaTest {
         pessoaCriteria.anexoPessoaId();
         pessoaCriteria.emailId();
         pessoaCriteria.telefoneId();
+        pessoaCriteria.usuarioEmpresaId();
         pessoaCriteria.administradorId();
         pessoaCriteria.contadorId();
         pessoaCriteria.funcionarioId();
         pessoaCriteria.socioId();
-        pessoaCriteria.usuarioEmpresaId();
         pessoaCriteria.distinct();
     }
 
@@ -115,11 +115,11 @@ class PessoaCriteriaTest {
                 condition.apply(criteria.getAnexoPessoaId()) &&
                 condition.apply(criteria.getEmailId()) &&
                 condition.apply(criteria.getTelefoneId()) &&
+                condition.apply(criteria.getUsuarioEmpresaId()) &&
                 condition.apply(criteria.getAdministradorId()) &&
                 condition.apply(criteria.getContadorId()) &&
                 condition.apply(criteria.getFuncionarioId()) &&
                 condition.apply(criteria.getSocioId()) &&
-                condition.apply(criteria.getUsuarioEmpresaId()) &&
                 condition.apply(criteria.getDistinct()),
             "every filter matches"
         );
@@ -143,11 +143,11 @@ class PessoaCriteriaTest {
                 condition.apply(criteria.getAnexoPessoaId(), copy.getAnexoPessoaId()) &&
                 condition.apply(criteria.getEmailId(), copy.getEmailId()) &&
                 condition.apply(criteria.getTelefoneId(), copy.getTelefoneId()) &&
+                condition.apply(criteria.getUsuarioEmpresaId(), copy.getUsuarioEmpresaId()) &&
                 condition.apply(criteria.getAdministradorId(), copy.getAdministradorId()) &&
                 condition.apply(criteria.getContadorId(), copy.getContadorId()) &&
                 condition.apply(criteria.getFuncionarioId(), copy.getFuncionarioId()) &&
                 condition.apply(criteria.getSocioId(), copy.getSocioId()) &&
-                condition.apply(criteria.getUsuarioEmpresaId(), copy.getUsuarioEmpresaId()) &&
                 condition.apply(criteria.getDistinct(), copy.getDistinct()),
             "every filter matches"
         );

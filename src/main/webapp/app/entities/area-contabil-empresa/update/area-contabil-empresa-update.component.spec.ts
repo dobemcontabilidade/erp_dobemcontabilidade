@@ -49,10 +49,10 @@ describe('AreaContabilEmpresa Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Contador query and add missing value', () => {
       const areaContabilEmpresa: IAreaContabilEmpresa = { id: 456 };
-      const contador: IContador = { id: 14000 };
+      const contador: IContador = { id: 32687 };
       areaContabilEmpresa.contador = contador;
 
-      const contadorCollection: IContador[] = [{ id: 32745 }];
+      const contadorCollection: IContador[] = [{ id: 23211 }];
       jest.spyOn(contadorService, 'query').mockReturnValue(of(new HttpResponse({ body: contadorCollection })));
       const additionalContadors = [contador];
       const expectedCollection: IContador[] = [...additionalContadors, ...contadorCollection];
@@ -71,7 +71,7 @@ describe('AreaContabilEmpresa Management Update Component', () => {
 
     it('Should update editForm', () => {
       const areaContabilEmpresa: IAreaContabilEmpresa = { id: 456 };
-      const contador: IContador = { id: 2210 };
+      const contador: IContador = { id: 18784 };
       areaContabilEmpresa.contador = contador;
 
       activatedRoute.data = of({ areaContabilEmpresa });

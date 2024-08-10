@@ -37,6 +37,21 @@ const routes: Routes = [
     loadChildren: () => import('./usuario-erp/usuario-erp.routes'),
   },
   {
+    path: 'usuario-contador',
+    data: { pageTitle: 'erpDobemcontabilidadeApp.usuarioContador.home.title' },
+    loadChildren: () => import('./usuario-contador/usuario-contador.routes'),
+  },
+  {
+    path: 'usuario-empresa',
+    data: { pageTitle: 'erpDobemcontabilidadeApp.usuarioEmpresa.home.title' },
+    loadChildren: () => import('./usuario-empresa/usuario-empresa.routes'),
+  },
+  {
+    path: 'usuario-gestao',
+    data: { pageTitle: 'erpDobemcontabilidadeApp.usuarioGestao.home.title' },
+    loadChildren: () => import('./usuario-gestao/usuario-gestao.routes'),
+  },
+  {
     path: 'adicional-enquadramento',
     data: { pageTitle: 'erpDobemcontabilidadeApp.adicionalEnquadramento.home.title' },
     loadChildren: () => import('./adicional-enquadramento/adicional-enquadramento.routes'),
@@ -142,11 +157,6 @@ const routes: Routes = [
     loadChildren: () => import('./departamento-funcionario/departamento-funcionario.routes'),
   },
   {
-    path: 'desconto-plano-conta-azul',
-    data: { pageTitle: 'erpDobemcontabilidadeApp.descontoPlanoContaAzul.home.title' },
-    loadChildren: () => import('./desconto-plano-conta-azul/desconto-plano-conta-azul.routes'),
-  },
-  {
     path: 'desconto-plano-contabil',
     data: { pageTitle: 'erpDobemcontabilidadeApp.descontoPlanoContabil.home.title' },
     loadChildren: () => import('./desconto-plano-contabil/desconto-plano-contabil.routes'),
@@ -242,11 +252,6 @@ const routes: Routes = [
     loadChildren: () => import('./plano-contabil/plano-contabil.routes'),
   },
   {
-    path: 'plano-conta-azul',
-    data: { pageTitle: 'erpDobemcontabilidadeApp.planoContaAzul.home.title' },
-    loadChildren: () => import('./plano-conta-azul/plano-conta-azul.routes'),
-  },
-  {
     path: 'prazo-assinatura',
     data: { pageTitle: 'erpDobemcontabilidadeApp.prazoAssinatura.home.title' },
     loadChildren: () => import('./prazo-assinatura/prazo-assinatura.routes'),
@@ -315,21 +320,6 @@ const routes: Routes = [
     path: 'tributacao',
     data: { pageTitle: 'erpDobemcontabilidadeApp.tributacao.home.title' },
     loadChildren: () => import('./tributacao/tributacao.routes'),
-  },
-  {
-    path: 'usuario-contador',
-    data: { pageTitle: 'erpDobemcontabilidadeApp.usuarioContador.home.title' },
-    loadChildren: () => import('./usuario-contador/usuario-contador.routes'),
-  },
-  {
-    path: 'usuario-empresa',
-    data: { pageTitle: 'erpDobemcontabilidadeApp.usuarioEmpresa.home.title' },
-    loadChildren: () => import('./usuario-empresa/usuario-empresa.routes'),
-  },
-  {
-    path: 'usuario-gestao',
-    data: { pageTitle: 'erpDobemcontabilidadeApp.usuarioGestao.home.title' },
-    loadChildren: () => import('./usuario-gestao/usuario-gestao.routes'),
   },
   {
     path: 'valor-base-ramo',

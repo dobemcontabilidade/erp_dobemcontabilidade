@@ -49,10 +49,10 @@ describe('AtividadeEmpresa Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Empresa query and add missing value', () => {
       const atividadeEmpresa: IAtividadeEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 8571 };
+      const empresa: IEmpresa = { id: 23892 };
       atividadeEmpresa.empresa = empresa;
 
-      const empresaCollection: IEmpresa[] = [{ id: 32451 }];
+      const empresaCollection: IEmpresa[] = [{ id: 621 }];
       jest.spyOn(empresaService, 'query').mockReturnValue(of(new HttpResponse({ body: empresaCollection })));
       const additionalEmpresas = [empresa];
       const expectedCollection: IEmpresa[] = [...additionalEmpresas, ...empresaCollection];
@@ -71,7 +71,7 @@ describe('AtividadeEmpresa Management Update Component', () => {
 
     it('Should update editForm', () => {
       const atividadeEmpresa: IAtividadeEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 5636 };
+      const empresa: IEmpresa = { id: 31603 };
       atividadeEmpresa.empresa = empresa;
 
       activatedRoute.data = of({ atividadeEmpresa });

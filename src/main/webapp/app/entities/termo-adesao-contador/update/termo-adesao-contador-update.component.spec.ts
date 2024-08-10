@@ -53,10 +53,10 @@ describe('TermoAdesaoContador Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Contador query and add missing value', () => {
       const termoAdesaoContador: ITermoAdesaoContador = { id: 456 };
-      const contador: IContador = { id: 20924 };
+      const contador: IContador = { id: 19405 };
       termoAdesaoContador.contador = contador;
 
-      const contadorCollection: IContador[] = [{ id: 14196 }];
+      const contadorCollection: IContador[] = [{ id: 30552 }];
       jest.spyOn(contadorService, 'query').mockReturnValue(of(new HttpResponse({ body: contadorCollection })));
       const additionalContadors = [contador];
       const expectedCollection: IContador[] = [...additionalContadors, ...contadorCollection];
@@ -97,7 +97,7 @@ describe('TermoAdesaoContador Management Update Component', () => {
 
     it('Should update editForm', () => {
       const termoAdesaoContador: ITermoAdesaoContador = { id: 456 };
-      const contador: IContador = { id: 31228 };
+      const contador: IContador = { id: 25108 };
       termoAdesaoContador.contador = contador;
       const termoDeAdesao: ITermoDeAdesao = { id: 5077 };
       termoAdesaoContador.termoDeAdesao = termoDeAdesao;

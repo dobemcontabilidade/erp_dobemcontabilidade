@@ -133,6 +133,14 @@ public class PessoaQueryService extends QueryService<Pessoa> {
                     buildSpecification(criteria.getTelefoneId(), root -> root.join(Pessoa_.telefones, JoinType.LEFT).get(Telefone_.id))
                 );
             }
+            if (criteria.getUsuarioEmpresaId() != null) {
+                specification = specification.and(
+                    buildSpecification(
+                        criteria.getUsuarioEmpresaId(),
+                        root -> root.join(Pessoa_.usuarioEmpresa, JoinType.LEFT).get(UsuarioEmpresa_.id)
+                    )
+                );
+            }
             if (criteria.getAdministradorId() != null) {
                 specification = specification.and(
                     buildSpecification(
@@ -157,14 +165,6 @@ public class PessoaQueryService extends QueryService<Pessoa> {
             if (criteria.getSocioId() != null) {
                 specification = specification.and(
                     buildSpecification(criteria.getSocioId(), root -> root.join(Pessoa_.socio, JoinType.LEFT).get(Socio_.id))
-                );
-            }
-            if (criteria.getUsuarioEmpresaId() != null) {
-                specification = specification.and(
-                    buildSpecification(
-                        criteria.getUsuarioEmpresaId(),
-                        root -> root.join(Pessoa_.usuarioEmpresa, JoinType.LEFT).get(UsuarioEmpresa_.id)
-                    )
                 );
             }
         }

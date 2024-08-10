@@ -81,6 +81,7 @@ class EmpresaCriteriaTest {
         empresaCriteria.dataAbertura();
         empresaCriteria.urlContratoSocial();
         empresaCriteria.capitalSocial();
+        empresaCriteria.tipoSegmento();
         empresaCriteria.assinaturaEmpresaId();
         empresaCriteria.funcionarioId();
         empresaCriteria.departamentoEmpresaId();
@@ -109,6 +110,7 @@ class EmpresaCriteriaTest {
                 condition.apply(criteria.getDataAbertura()) &&
                 condition.apply(criteria.getUrlContratoSocial()) &&
                 condition.apply(criteria.getCapitalSocial()) &&
+                condition.apply(criteria.getTipoSegmento()) &&
                 condition.apply(criteria.getAssinaturaEmpresaId()) &&
                 condition.apply(criteria.getFuncionarioId()) &&
                 condition.apply(criteria.getDepartamentoEmpresaId()) &&
@@ -139,6 +141,7 @@ class EmpresaCriteriaTest {
                 condition.apply(criteria.getDataAbertura(), copy.getDataAbertura()) &&
                 condition.apply(criteria.getUrlContratoSocial(), copy.getUrlContratoSocial()) &&
                 condition.apply(criteria.getCapitalSocial(), copy.getCapitalSocial()) &&
+                condition.apply(criteria.getTipoSegmento(), copy.getTipoSegmento()) &&
                 condition.apply(criteria.getAssinaturaEmpresaId(), copy.getAssinaturaEmpresaId()) &&
                 condition.apply(criteria.getFuncionarioId(), copy.getFuncionarioId()) &&
                 condition.apply(criteria.getDepartamentoEmpresaId(), copy.getDepartamentoEmpresaId()) &&

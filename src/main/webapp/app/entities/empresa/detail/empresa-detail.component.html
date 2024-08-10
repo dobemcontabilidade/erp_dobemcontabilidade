@@ -43,6 +43,14 @@
           <dd>
             <span>{{ empresa()!.capitalSocial }}</span>
           </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresa.tipoSegmento">Tipo Segmento</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoSegmentoEnum.' + (empresa()!.tipoSegmento ?? 'null')">{{
+              { null: '', SERVICO: 'SERVICO', COMERCIO: 'COMERCIO', SERVICO_COMERCIO: 'SERVICO_COMERCIO', INDUSTRIA: 'INDUSTRIA' }[
+                empresa()!.tipoSegmento ?? 'null'
+              ]
+            }}</span>
+          </dd>
           <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresa.ramo">Ramo</span></dt>
           <dd>
             @if (empresa()!.ramo) {

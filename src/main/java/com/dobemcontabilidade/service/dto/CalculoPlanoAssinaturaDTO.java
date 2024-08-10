@@ -54,10 +54,6 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
     @NotNull
     private AssinaturaEmpresaDTO assinaturaEmpresa;
 
-    private DescontoPlanoContaAzulDTO descontoPlanoContaAzul;
-
-    private PlanoContaAzulDTO planoContaAzul;
-
     public Long getId() {
         return id;
     }
@@ -210,22 +206,6 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
         this.assinaturaEmpresa = assinaturaEmpresa;
     }
 
-    public DescontoPlanoContaAzulDTO getDescontoPlanoContaAzul() {
-        return descontoPlanoContaAzul;
-    }
-
-    public void setDescontoPlanoContaAzul(DescontoPlanoContaAzulDTO descontoPlanoContaAzul) {
-        this.descontoPlanoContaAzul = descontoPlanoContaAzul;
-    }
-
-    public PlanoContaAzulDTO getPlanoContaAzul() {
-        return planoContaAzul;
-    }
-
-    public void setPlanoContaAzul(PlanoContaAzulDTO planoContaAzul) {
-        this.planoContaAzul = planoContaAzul;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -270,8 +250,6 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
             ", tributacao=" + getTributacao() +
             ", descontoPlanoContabil=" + getDescontoPlanoContabil() +
             ", assinaturaEmpresa=" + getAssinaturaEmpresa() +
-            ", descontoPlanoContaAzul=" + getDescontoPlanoContaAzul() +
-            ", planoContaAzul=" + getPlanoContaAzul() +
             "}";
     }
 }

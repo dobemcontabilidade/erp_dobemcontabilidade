@@ -127,28 +127,6 @@
               </div>
             }
           </dd>
-          <dt>
-            <span jhiTranslate="erpDobemcontabilidadeApp.calculoPlanoAssinatura.descontoPlanoContaAzul">Desconto Plano Conta Azul</span>
-          </dt>
-          <dd>
-            @if (calculoPlanoAssinatura()!.descontoPlanoContaAzul) {
-              <div>
-                <a [routerLink]="['/desconto-plano-conta-azul', calculoPlanoAssinatura()!.descontoPlanoContaAzul?.id, 'view']">{{
-                  calculoPlanoAssinatura()!.descontoPlanoContaAzul?.id
-                }}</a>
-              </div>
-            }
-          </dd>
-          <dt><span jhiTranslate="erpDobemcontabilidadeApp.calculoPlanoAssinatura.planoContaAzul">Plano Conta Azul</span></dt>
-          <dd>
-            @if (calculoPlanoAssinatura()!.planoContaAzul) {
-              <div>
-                <a [routerLink]="['/plano-conta-azul', calculoPlanoAssinatura()!.planoContaAzul?.id, 'view']">{{
-                  calculoPlanoAssinatura()!.planoContaAzul?.id
-                }}</a>
-              </div>
-            }
-          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

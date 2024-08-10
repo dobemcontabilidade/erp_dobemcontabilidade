@@ -12,8 +12,6 @@ import { IPlanoContabil } from 'app/entities/plano-contabil/plano-contabil.model
 import { PlanoContabilService } from 'app/entities/plano-contabil/service/plano-contabil.service';
 import { IEmpresa } from 'app/entities/empresa/empresa.model';
 import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
-import { IPlanoContaAzul } from 'app/entities/plano-conta-azul/plano-conta-azul.model';
-import { PlanoContaAzulService } from 'app/entities/plano-conta-azul/service/plano-conta-azul.service';
 import { IAssinaturaEmpresa } from '../assinatura-empresa.model';
 import { AssinaturaEmpresaService } from '../service/assinatura-empresa.service';
 import { AssinaturaEmpresaFormService } from './assinatura-empresa-form.service';
@@ -30,7 +28,6 @@ describe('AssinaturaEmpresa Management Update Component', () => {
   let formaDePagamentoService: FormaDePagamentoService;
   let planoContabilService: PlanoContabilService;
   let empresaService: EmpresaService;
-  let planoContaAzulService: PlanoContaAzulService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -57,7 +54,6 @@ describe('AssinaturaEmpresa Management Update Component', () => {
     formaDePagamentoService = TestBed.inject(FormaDePagamentoService);
     planoContabilService = TestBed.inject(PlanoContabilService);
     empresaService = TestBed.inject(EmpresaService);
-    planoContaAzulService = TestBed.inject(PlanoContaAzulService);
 
     comp = fixture.componentInstance;
   });
@@ -131,10 +127,10 @@ describe('AssinaturaEmpresa Management Update Component', () => {
 
     it('Should call Empresa query and add missing value', () => {
       const assinaturaEmpresa: IAssinaturaEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 9131 };
+      const empresa: IEmpresa = { id: 32451 };
       assinaturaEmpresa.empresa = empresa;
 
-      const empresaCollection: IEmpresa[] = [{ id: 20745 }];
+      const empresaCollection: IEmpresa[] = [{ id: 5636 }];
       jest.spyOn(empresaService, 'query').mockReturnValue(of(new HttpResponse({ body: empresaCollection })));
       const additionalEmpresas = [empresa];
       const expectedCollection: IEmpresa[] = [...additionalEmpresas, ...empresaCollection];
@@ -151,28 +147,6 @@ describe('AssinaturaEmpresa Management Update Component', () => {
       expect(comp.empresasSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call PlanoContaAzul query and add missing value', () => {
-      const assinaturaEmpresa: IAssinaturaEmpresa = { id: 456 };
-      const planoContaAzul: IPlanoContaAzul = { id: 1247 };
-      assinaturaEmpresa.planoContaAzul = planoContaAzul;
-
-      const planoContaAzulCollection: IPlanoContaAzul[] = [{ id: 15914 }];
-      jest.spyOn(planoContaAzulService, 'query').mockReturnValue(of(new HttpResponse({ body: planoContaAzulCollection })));
-      const additionalPlanoContaAzuls = [planoContaAzul];
-      const expectedCollection: IPlanoContaAzul[] = [...additionalPlanoContaAzuls, ...planoContaAzulCollection];
-      jest.spyOn(planoContaAzulService, 'addPlanoContaAzulToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ assinaturaEmpresa });
-      comp.ngOnInit();
-
-      expect(planoContaAzulService.query).toHaveBeenCalled();
-      expect(planoContaAzulService.addPlanoContaAzulToCollectionIfMissing).toHaveBeenCalledWith(
-        planoContaAzulCollection,
-        ...additionalPlanoContaAzuls.map(expect.objectContaining),
-      );
-      expect(comp.planoContaAzulsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const assinaturaEmpresa: IAssinaturaEmpresa = { id: 456 };
       const periodoPagamento: IPeriodoPagamento = { id: 20291 };
@@ -181,10 +155,8 @@ describe('AssinaturaEmpresa Management Update Component', () => {
       assinaturaEmpresa.formaDePagamento = formaDePagamento;
       const planoContabil: IPlanoContabil = { id: 6906 };
       assinaturaEmpresa.planoContabil = planoContabil;
-      const empresa: IEmpresa = { id: 24027 };
+      const empresa: IEmpresa = { id: 1364 };
       assinaturaEmpresa.empresa = empresa;
-      const planoContaAzul: IPlanoContaAzul = { id: 5589 };
-      assinaturaEmpresa.planoContaAzul = planoContaAzul;
 
       activatedRoute.data = of({ assinaturaEmpresa });
       comp.ngOnInit();
@@ -193,7 +165,6 @@ describe('AssinaturaEmpresa Management Update Component', () => {
       expect(comp.formaDePagamentosSharedCollection).toContain(formaDePagamento);
       expect(comp.planoContabilsSharedCollection).toContain(planoContabil);
       expect(comp.empresasSharedCollection).toContain(empresa);
-      expect(comp.planoContaAzulsSharedCollection).toContain(planoContaAzul);
       expect(comp.assinaturaEmpresa).toEqual(assinaturaEmpresa);
     });
   });
@@ -304,16 +275,6 @@ describe('AssinaturaEmpresa Management Update Component', () => {
         jest.spyOn(empresaService, 'compareEmpresa');
         comp.compareEmpresa(entity, entity2);
         expect(empresaService.compareEmpresa).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
-    describe('comparePlanoContaAzul', () => {
-      it('Should forward to planoContaAzulService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(planoContaAzulService, 'comparePlanoContaAzul');
-        comp.comparePlanoContaAzul(entity, entity2);
-        expect(planoContaAzulService.comparePlanoContaAzul).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

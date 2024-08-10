@@ -79,10 +79,10 @@ describe('DepartamentoEmpresa Management Update Component', () => {
 
     it('Should call Empresa query and add missing value', () => {
       const departamentoEmpresa: IDepartamentoEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 31603 };
+      const empresa: IEmpresa = { id: 31822 };
       departamentoEmpresa.empresa = empresa;
 
-      const empresaCollection: IEmpresa[] = [{ id: 7786 }];
+      const empresaCollection: IEmpresa[] = [{ id: 10404 }];
       jest.spyOn(empresaService, 'query').mockReturnValue(of(new HttpResponse({ body: empresaCollection })));
       const additionalEmpresas = [empresa];
       const expectedCollection: IEmpresa[] = [...additionalEmpresas, ...empresaCollection];
@@ -101,10 +101,10 @@ describe('DepartamentoEmpresa Management Update Component', () => {
 
     it('Should call Contador query and add missing value', () => {
       const departamentoEmpresa: IDepartamentoEmpresa = { id: 456 };
-      const contador: IContador = { id: 8635 };
+      const contador: IContador = { id: 17025 };
       departamentoEmpresa.contador = contador;
 
-      const contadorCollection: IContador[] = [{ id: 20407 }];
+      const contadorCollection: IContador[] = [{ id: 1963 }];
       jest.spyOn(contadorService, 'query').mockReturnValue(of(new HttpResponse({ body: contadorCollection })));
       const additionalContadors = [contador];
       const expectedCollection: IContador[] = [...additionalContadors, ...contadorCollection];
@@ -125,9 +125,9 @@ describe('DepartamentoEmpresa Management Update Component', () => {
       const departamentoEmpresa: IDepartamentoEmpresa = { id: 456 };
       const departamento: IDepartamento = { id: 15493 };
       departamentoEmpresa.departamento = departamento;
-      const empresa: IEmpresa = { id: 3668 };
+      const empresa: IEmpresa = { id: 18019 };
       departamentoEmpresa.empresa = empresa;
-      const contador: IContador = { id: 26084 };
+      const contador: IContador = { id: 12758 };
       departamentoEmpresa.contador = contador;
 
       activatedRoute.data = of({ departamentoEmpresa });

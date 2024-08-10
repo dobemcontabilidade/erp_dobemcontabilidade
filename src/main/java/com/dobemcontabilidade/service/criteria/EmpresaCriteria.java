@@ -1,5 +1,6 @@
 package com.dobemcontabilidade.service.criteria;
 
+import com.dobemcontabilidade.domain.enumeration.TipoSegmentoEnum;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,6 +21,23 @@ import tech.jhipster.service.filter.*;
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class EmpresaCriteria implements Serializable, Criteria {
 
+    /**
+     * Class for filtering TipoSegmentoEnum
+     */
+    public static class TipoSegmentoEnumFilter extends Filter<TipoSegmentoEnum> {
+
+        public TipoSegmentoEnumFilter() {}
+
+        public TipoSegmentoEnumFilter(TipoSegmentoEnumFilter filter) {
+            super(filter);
+        }
+
+        @Override
+        public TipoSegmentoEnumFilter copy() {
+            return new TipoSegmentoEnumFilter(this);
+        }
+    }
+
     private static final long serialVersionUID = 1L;
 
     private LongFilter id;
@@ -35,6 +53,8 @@ public class EmpresaCriteria implements Serializable, Criteria {
     private StringFilter urlContratoSocial;
 
     private DoubleFilter capitalSocial;
+
+    private TipoSegmentoEnumFilter tipoSegmento;
 
     private LongFilter assinaturaEmpresaId;
 
@@ -78,6 +98,7 @@ public class EmpresaCriteria implements Serializable, Criteria {
         this.dataAbertura = other.optionalDataAbertura().map(InstantFilter::copy).orElse(null);
         this.urlContratoSocial = other.optionalUrlContratoSocial().map(StringFilter::copy).orElse(null);
         this.capitalSocial = other.optionalCapitalSocial().map(DoubleFilter::copy).orElse(null);
+        this.tipoSegmento = other.optionalTipoSegmento().map(TipoSegmentoEnumFilter::copy).orElse(null);
         this.assinaturaEmpresaId = other.optionalAssinaturaEmpresaId().map(LongFilter::copy).orElse(null);
         this.funcionarioId = other.optionalFuncionarioId().map(LongFilter::copy).orElse(null);
         this.departamentoEmpresaId = other.optionalDepartamentoEmpresaId().map(LongFilter::copy).orElse(null);
@@ -232,6 +253,25 @@ public class EmpresaCriteria implements Serializable, Criteria {
 
     public void setCapitalSocial(DoubleFilter capitalSocial) {
         this.capitalSocial = capitalSocial;
+    }
+
+    public TipoSegmentoEnumFilter getTipoSegmento() {
+        return tipoSegmento;
+    }
+
+    public Optional<TipoSegmentoEnumFilter> optionalTipoSegmento() {
+        return Optional.ofNullable(tipoSegmento);
+    }
+
+    public TipoSegmentoEnumFilter tipoSegmento() {
+        if (tipoSegmento == null) {
+            setTipoSegmento(new TipoSegmentoEnumFilter());
+        }
+        return tipoSegmento;
+    }
+
+    public void setTipoSegmento(TipoSegmentoEnumFilter tipoSegmento) {
+        this.tipoSegmento = tipoSegmento;
     }
 
     public LongFilter getAssinaturaEmpresaId() {
@@ -555,6 +595,7 @@ public class EmpresaCriteria implements Serializable, Criteria {
             Objects.equals(dataAbertura, that.dataAbertura) &&
             Objects.equals(urlContratoSocial, that.urlContratoSocial) &&
             Objects.equals(capitalSocial, that.capitalSocial) &&
+            Objects.equals(tipoSegmento, that.tipoSegmento) &&
             Objects.equals(assinaturaEmpresaId, that.assinaturaEmpresaId) &&
             Objects.equals(funcionarioId, that.funcionarioId) &&
             Objects.equals(departamentoEmpresaId, that.departamentoEmpresaId) &&
@@ -584,6 +625,7 @@ public class EmpresaCriteria implements Serializable, Criteria {
             dataAbertura,
             urlContratoSocial,
             capitalSocial,
+            tipoSegmento,
             assinaturaEmpresaId,
             funcionarioId,
             departamentoEmpresaId,
@@ -614,6 +656,7 @@ public class EmpresaCriteria implements Serializable, Criteria {
             optionalDataAbertura().map(f -> "dataAbertura=" + f + ", ").orElse("") +
             optionalUrlContratoSocial().map(f -> "urlContratoSocial=" + f + ", ").orElse("") +
             optionalCapitalSocial().map(f -> "capitalSocial=" + f + ", ").orElse("") +
+            optionalTipoSegmento().map(f -> "tipoSegmento=" + f + ", ").orElse("") +
             optionalAssinaturaEmpresaId().map(f -> "assinaturaEmpresaId=" + f + ", ").orElse("") +
             optionalFuncionarioId().map(f -> "funcionarioId=" + f + ", ").orElse("") +
             optionalDepartamentoEmpresaId().map(f -> "departamentoEmpresaId=" + f + ", ").orElse("") +

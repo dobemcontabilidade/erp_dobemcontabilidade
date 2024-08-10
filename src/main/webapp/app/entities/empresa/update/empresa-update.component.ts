@@ -16,6 +16,7 @@ import { ITributacao } from 'app/entities/tributacao/tributacao.model';
 import { TributacaoService } from 'app/entities/tributacao/service/tributacao.service';
 import { IEnquadramento } from 'app/entities/enquadramento/enquadramento.model';
 import { EnquadramentoService } from 'app/entities/enquadramento/service/enquadramento.service';
+import { TipoSegmentoEnum } from 'app/entities/enumerations/tipo-segmento-enum.model';
 import { EmpresaService } from '../service/empresa.service';
 import { IEmpresa } from '../empresa.model';
 import { EmpresaFormService, EmpresaFormGroup } from './empresa-form.service';
@@ -29,6 +30,7 @@ import { EmpresaFormService, EmpresaFormGroup } from './empresa-form.service';
 export class EmpresaUpdateComponent implements OnInit {
   isSaving = false;
   empresa: IEmpresa | null = null;
+  tipoSegmentoEnumValues = Object.keys(TipoSegmentoEnum);
 
   ramosSharedCollection: IRamo[] = [];
   tributacaosSharedCollection: ITributacao[] = [];

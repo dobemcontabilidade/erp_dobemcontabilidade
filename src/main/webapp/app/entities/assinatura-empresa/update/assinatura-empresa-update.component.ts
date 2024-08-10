@@ -15,8 +15,6 @@ import { IPlanoContabil } from 'app/entities/plano-contabil/plano-contabil.model
 import { PlanoContabilService } from 'app/entities/plano-contabil/service/plano-contabil.service';
 import { IEmpresa } from 'app/entities/empresa/empresa.model';
 import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
-import { IPlanoContaAzul } from 'app/entities/plano-conta-azul/plano-conta-azul.model';
-import { PlanoContaAzulService } from 'app/entities/plano-conta-azul/service/plano-conta-azul.service';
 import { SituacaoContratoEmpresaEnum } from 'app/entities/enumerations/situacao-contrato-empresa-enum.model';
 import { TipoContratoEnum } from 'app/entities/enumerations/tipo-contrato-enum.model';
 import { AssinaturaEmpresaService } from '../service/assinatura-empresa.service';
@@ -39,7 +37,6 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
   formaDePagamentosSharedCollection: IFormaDePagamento[] = [];
   planoContabilsSharedCollection: IPlanoContabil[] = [];
   empresasSharedCollection: IEmpresa[] = [];
-  planoContaAzulsSharedCollection: IPlanoContaAzul[] = [];
 
   protected assinaturaEmpresaService = inject(AssinaturaEmpresaService);
   protected assinaturaEmpresaFormService = inject(AssinaturaEmpresaFormService);
@@ -47,7 +44,6 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
   protected formaDePagamentoService = inject(FormaDePagamentoService);
   protected planoContabilService = inject(PlanoContabilService);
   protected empresaService = inject(EmpresaService);
-  protected planoContaAzulService = inject(PlanoContaAzulService);
   protected activatedRoute = inject(ActivatedRoute);
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -63,9 +59,6 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
     this.planoContabilService.comparePlanoContabil(o1, o2);
 
   compareEmpresa = (o1: IEmpresa | null, o2: IEmpresa | null): boolean => this.empresaService.compareEmpresa(o1, o2);
-
-  comparePlanoContaAzul = (o1: IPlanoContaAzul | null, o2: IPlanoContaAzul | null): boolean =>
-    this.planoContaAzulService.comparePlanoContaAzul(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ assinaturaEmpresa }) => {
@@ -131,10 +124,6 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
       this.empresasSharedCollection,
       assinaturaEmpresa.empresa,
     );
-    this.planoContaAzulsSharedCollection = this.planoContaAzulService.addPlanoContaAzulToCollectionIfMissing<IPlanoContaAzul>(
-      this.planoContaAzulsSharedCollection,
-      assinaturaEmpresa.planoContaAzul,
-    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -186,18 +175,5 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
         ),
       )
       .subscribe((empresas: IEmpresa[]) => (this.empresasSharedCollection = empresas));
-
-    this.planoContaAzulService
-      .query()
-      .pipe(map((res: HttpResponse<IPlanoContaAzul[]>) => res.body ?? []))
-      .pipe(
-        map((planoContaAzuls: IPlanoContaAzul[]) =>
-          this.planoContaAzulService.addPlanoContaAzulToCollectionIfMissing<IPlanoContaAzul>(
-            planoContaAzuls,
-            this.assinaturaEmpresa?.planoContaAzul,
-          ),
-        ),
-      )
-      .subscribe((planoContaAzuls: IPlanoContaAzul[]) => (this.planoContaAzulsSharedCollection = planoContaAzuls));
   }
 }

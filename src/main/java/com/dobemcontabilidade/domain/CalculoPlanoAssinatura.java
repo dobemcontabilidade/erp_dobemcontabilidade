@@ -100,20 +100,10 @@ public class CalculoPlanoAssinatura implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties(
-        value = {
-            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa", "planoContaAzul",
-        },
+        value = { "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa" },
         allowSetters = true
     )
     private AssinaturaEmpresa assinaturaEmpresa;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "calculoPlanoAssinaturas", "planoContaAzul", "periodoPagamento" }, allowSetters = true)
-    private DescontoPlanoContaAzul descontoPlanoContaAzul;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "calculoPlanoAssinaturas", "assinaturaEmpresas", "descontoPlanoContaAzuls" }, allowSetters = true)
-    private PlanoContaAzul planoContaAzul;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -361,32 +351,6 @@ public class CalculoPlanoAssinatura implements Serializable {
 
     public CalculoPlanoAssinatura assinaturaEmpresa(AssinaturaEmpresa assinaturaEmpresa) {
         this.setAssinaturaEmpresa(assinaturaEmpresa);
-        return this;
-    }
-
-    public DescontoPlanoContaAzul getDescontoPlanoContaAzul() {
-        return this.descontoPlanoContaAzul;
-    }
-
-    public void setDescontoPlanoContaAzul(DescontoPlanoContaAzul descontoPlanoContaAzul) {
-        this.descontoPlanoContaAzul = descontoPlanoContaAzul;
-    }
-
-    public CalculoPlanoAssinatura descontoPlanoContaAzul(DescontoPlanoContaAzul descontoPlanoContaAzul) {
-        this.setDescontoPlanoContaAzul(descontoPlanoContaAzul);
-        return this;
-    }
-
-    public PlanoContaAzul getPlanoContaAzul() {
-        return this.planoContaAzul;
-    }
-
-    public void setPlanoContaAzul(PlanoContaAzul planoContaAzul) {
-        this.planoContaAzul = planoContaAzul;
-    }
-
-    public CalculoPlanoAssinatura planoContaAzul(PlanoContaAzul planoContaAzul) {
-        this.setPlanoContaAzul(planoContaAzul);
         return this;
     }
 

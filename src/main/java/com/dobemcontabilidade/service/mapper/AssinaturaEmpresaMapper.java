@@ -4,13 +4,11 @@ import com.dobemcontabilidade.domain.AssinaturaEmpresa;
 import com.dobemcontabilidade.domain.Empresa;
 import com.dobemcontabilidade.domain.FormaDePagamento;
 import com.dobemcontabilidade.domain.PeriodoPagamento;
-import com.dobemcontabilidade.domain.PlanoContaAzul;
 import com.dobemcontabilidade.domain.PlanoContabil;
 import com.dobemcontabilidade.service.dto.AssinaturaEmpresaDTO;
 import com.dobemcontabilidade.service.dto.EmpresaDTO;
 import com.dobemcontabilidade.service.dto.FormaDePagamentoDTO;
 import com.dobemcontabilidade.service.dto.PeriodoPagamentoDTO;
-import com.dobemcontabilidade.service.dto.PlanoContaAzulDTO;
 import com.dobemcontabilidade.service.dto.PlanoContabilDTO;
 import org.mapstruct.*;
 
@@ -23,7 +21,6 @@ public interface AssinaturaEmpresaMapper extends EntityMapper<AssinaturaEmpresaD
     @Mapping(target = "formaDePagamento", source = "formaDePagamento", qualifiedByName = "formaDePagamentoForma")
     @Mapping(target = "planoContabil", source = "planoContabil", qualifiedByName = "planoContabilNome")
     @Mapping(target = "empresa", source = "empresa", qualifiedByName = "empresaRazaoSocial")
-    @Mapping(target = "planoContaAzul", source = "planoContaAzul", qualifiedByName = "planoContaAzulId")
     AssinaturaEmpresaDTO toDto(AssinaturaEmpresa s);
 
     @Named("periodoPagamentoPeriodo")
@@ -49,9 +46,4 @@ public interface AssinaturaEmpresaMapper extends EntityMapper<AssinaturaEmpresaD
     @Mapping(target = "id", source = "id")
     @Mapping(target = "razaoSocial", source = "razaoSocial")
     EmpresaDTO toDtoEmpresaRazaoSocial(Empresa empresa);
-
-    @Named("planoContaAzulId")
-    @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "id", source = "id")
-    PlanoContaAzulDTO toDtoPlanoContaAzulId(PlanoContaAzul planoContaAzul);
 }

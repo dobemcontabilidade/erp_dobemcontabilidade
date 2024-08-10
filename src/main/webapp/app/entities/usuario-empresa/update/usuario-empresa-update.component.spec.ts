@@ -53,10 +53,10 @@ describe('UsuarioEmpresa Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call pessoa query and add missing value', () => {
       const usuarioEmpresa: IUsuarioEmpresa = { id: 456 };
-      const pessoa: IPessoa = { id: 12954 };
+      const pessoa: IPessoa = { id: 23559 };
       usuarioEmpresa.pessoa = pessoa;
 
-      const pessoaCollection: IPessoa[] = [{ id: 22411 }];
+      const pessoaCollection: IPessoa[] = [{ id: 12967 }];
       jest.spyOn(pessoaService, 'query').mockReturnValue(of(new HttpResponse({ body: pessoaCollection })));
       const expectedCollection: IPessoa[] = [pessoa, ...pessoaCollection];
       jest.spyOn(pessoaService, 'addPessoaToCollectionIfMissing').mockReturnValue(expectedCollection);
@@ -71,10 +71,10 @@ describe('UsuarioEmpresa Management Update Component', () => {
 
     it('Should call Empresa query and add missing value', () => {
       const usuarioEmpresa: IUsuarioEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 28437 };
+      const empresa: IEmpresa = { id: 7793 };
       usuarioEmpresa.empresa = empresa;
 
-      const empresaCollection: IEmpresa[] = [{ id: 27183 }];
+      const empresaCollection: IEmpresa[] = [{ id: 3696 }];
       jest.spyOn(empresaService, 'query').mockReturnValue(of(new HttpResponse({ body: empresaCollection })));
       const additionalEmpresas = [empresa];
       const expectedCollection: IEmpresa[] = [...additionalEmpresas, ...empresaCollection];
@@ -93,9 +93,9 @@ describe('UsuarioEmpresa Management Update Component', () => {
 
     it('Should update editForm', () => {
       const usuarioEmpresa: IUsuarioEmpresa = { id: 456 };
-      const pessoa: IPessoa = { id: 10797 };
+      const pessoa: IPessoa = { id: 24996 };
       usuarioEmpresa.pessoa = pessoa;
-      const empresa: IEmpresa = { id: 32064 };
+      const empresa: IEmpresa = { id: 9131 };
       usuarioEmpresa.empresa = empresa;
 
       activatedRoute.data = of({ usuarioEmpresa });

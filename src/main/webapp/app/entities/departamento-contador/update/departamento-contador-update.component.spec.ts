@@ -75,10 +75,10 @@ describe('DepartamentoContador Management Update Component', () => {
 
     it('Should call Contador query and add missing value', () => {
       const departamentoContador: IDepartamentoContador = { id: 456 };
-      const contador: IContador = { id: 15988 };
+      const contador: IContador = { id: 21546 };
       departamentoContador.contador = contador;
 
-      const contadorCollection: IContador[] = [{ id: 3433 }];
+      const contadorCollection: IContador[] = [{ id: 18111 }];
       jest.spyOn(contadorService, 'query').mockReturnValue(of(new HttpResponse({ body: contadorCollection })));
       const additionalContadors = [contador];
       const expectedCollection: IContador[] = [...additionalContadors, ...contadorCollection];
@@ -99,7 +99,7 @@ describe('DepartamentoContador Management Update Component', () => {
       const departamentoContador: IDepartamentoContador = { id: 456 };
       const departamento: IDepartamento = { id: 2318 };
       departamentoContador.departamento = departamento;
-      const contador: IContador = { id: 5991 };
+      const contador: IContador = { id: 21999 };
       departamentoContador.contador = contador;
 
       activatedRoute.data = of({ departamentoContador });

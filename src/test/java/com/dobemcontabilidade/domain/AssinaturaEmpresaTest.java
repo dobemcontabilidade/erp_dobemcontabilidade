@@ -6,7 +6,6 @@ import static com.dobemcontabilidade.domain.EmpresaTestSamples.*;
 import static com.dobemcontabilidade.domain.FormaDePagamentoTestSamples.*;
 import static com.dobemcontabilidade.domain.PagamentoTestSamples.*;
 import static com.dobemcontabilidade.domain.PeriodoPagamentoTestSamples.*;
-import static com.dobemcontabilidade.domain.PlanoContaAzulTestSamples.*;
 import static com.dobemcontabilidade.domain.PlanoContabilTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -121,17 +120,5 @@ class AssinaturaEmpresaTest {
 
         assinaturaEmpresa.empresa(null);
         assertThat(assinaturaEmpresa.getEmpresa()).isNull();
-    }
-
-    @Test
-    void planoContaAzulTest() {
-        AssinaturaEmpresa assinaturaEmpresa = getAssinaturaEmpresaRandomSampleGenerator();
-        PlanoContaAzul planoContaAzulBack = getPlanoContaAzulRandomSampleGenerator();
-
-        assinaturaEmpresa.setPlanoContaAzul(planoContaAzulBack);
-        assertThat(assinaturaEmpresa.getPlanoContaAzul()).isEqualTo(planoContaAzulBack);
-
-        assinaturaEmpresa.planoContaAzul(null);
-        assertThat(assinaturaEmpresa.getPlanoContaAzul()).isNull();
     }
 }

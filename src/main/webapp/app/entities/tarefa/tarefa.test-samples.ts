@@ -22,7 +22,7 @@ export const sampleWithFullData: ITarefa = {
   notificarCliente: false,
   geraMulta: false,
   exibirEmpresa: true,
-  dataLegal: dayjs('2024-08-10T02:09'),
+  dataLegal: dayjs('2024-08-10T03:48'),
   pontos: 25518,
   tipoTarefa: 'ORDEM_SERVICO',
 };

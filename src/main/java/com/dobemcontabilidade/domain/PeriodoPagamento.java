@@ -37,16 +37,7 @@ public class PeriodoPagamento implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "periodoPagamento")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
-        value = {
-            "periodoPagamento",
-            "planoContabil",
-            "ramo",
-            "tributacao",
-            "descontoPlanoContabil",
-            "assinaturaEmpresa",
-            "descontoPlanoContaAzul",
-            "planoContaAzul",
-        },
+        value = { "periodoPagamento", "planoContabil", "ramo", "tributacao", "descontoPlanoContabil", "assinaturaEmpresa" },
         allowSetters = true
     )
     private Set<CalculoPlanoAssinatura> calculoPlanoAssinaturas = new HashSet<>();
@@ -54,9 +45,7 @@ public class PeriodoPagamento implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "periodoPagamento")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
-        value = {
-            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa", "planoContaAzul",
-        },
+        value = { "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa" },
         allowSetters = true
     )
     private Set<AssinaturaEmpresa> assinaturaEmpresas = new HashSet<>();

@@ -1,29 +1,28 @@
 import { IContador, NewContador } from './contador.model';
 
 export const sampleWithRequiredData: IContador = {
-  id: 15647,
-  crc: 'punctual affectionate',
+  id: 32377,
+  crc: 'vengeful toast',
 };
 
 export const sampleWithPartialData: IContador = {
-  id: 30495,
-  nome: 'monthly fun via',
-  crc: 'wee',
-  limiteFaturamento: 24592.14,
+  id: 22034,
+  nome: 'faraway ah',
+  crc: 'overwhelm',
 };
 
 export const sampleWithFullData: IContador = {
-  id: 30086,
-  nome: 'openly rating mileage',
-  crc: 'waveform slushy duh',
-  limiteEmpresas: 18642,
-  limiteAreaContabils: 14700,
-  limiteFaturamento: 7829.13,
-  limiteDepartamentos: 21546,
+  id: 22772,
+  nome: 'pretty which',
+  crc: 'herbs',
+  limiteEmpresas: 25918,
+  limiteAreaContabils: 6669,
+  limiteFaturamento: 27509.73,
+  limiteDepartamentos: 18373,
 };
 
 export const sampleWithNewData: NewContador = {
-  crc: 'rankle safe',
+  crc: 'waveform slushy duh',
   id: null,
 };
 

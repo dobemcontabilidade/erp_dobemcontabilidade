@@ -11,10 +11,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.dobemcontabilidade.IntegrationTest;
 import com.dobemcontabilidade.domain.AssinaturaEmpresa;
 import com.dobemcontabilidade.domain.CalculoPlanoAssinatura;
-import com.dobemcontabilidade.domain.DescontoPlanoContaAzul;
 import com.dobemcontabilidade.domain.DescontoPlanoContabil;
 import com.dobemcontabilidade.domain.PeriodoPagamento;
-import com.dobemcontabilidade.domain.PlanoContaAzul;
 import com.dobemcontabilidade.domain.PlanoContabil;
 import com.dobemcontabilidade.domain.Ramo;
 import com.dobemcontabilidade.domain.Tributacao;
@@ -1589,50 +1587,6 @@ class CalculoPlanoAssinaturaResourceIT {
 
         // Get all the calculoPlanoAssinaturaList where assinaturaEmpresa equals to (assinaturaEmpresaId + 1)
         defaultCalculoPlanoAssinaturaShouldNotBeFound("assinaturaEmpresaId.equals=" + (assinaturaEmpresaId + 1));
-    }
-
-    @Test
-    @Transactional
-    void getAllCalculoPlanoAssinaturasByDescontoPlanoContaAzulIsEqualToSomething() throws Exception {
-        DescontoPlanoContaAzul descontoPlanoContaAzul;
-        if (TestUtil.findAll(em, DescontoPlanoContaAzul.class).isEmpty()) {
-            calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-            descontoPlanoContaAzul = DescontoPlanoContaAzulResourceIT.createEntity(em);
-        } else {
-            descontoPlanoContaAzul = TestUtil.findAll(em, DescontoPlanoContaAzul.class).get(0);
-        }
-        em.persist(descontoPlanoContaAzul);
-        em.flush();
-        calculoPlanoAssinatura.setDescontoPlanoContaAzul(descontoPlanoContaAzul);
-        calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-        Long descontoPlanoContaAzulId = descontoPlanoContaAzul.getId();
-        // Get all the calculoPlanoAssinaturaList where descontoPlanoContaAzul equals to descontoPlanoContaAzulId
-        defaultCalculoPlanoAssinaturaShouldBeFound("descontoPlanoContaAzulId.equals=" + descontoPlanoContaAzulId);
-
-        // Get all the calculoPlanoAssinaturaList where descontoPlanoContaAzul equals to (descontoPlanoContaAzulId + 1)
-        defaultCalculoPlanoAssinaturaShouldNotBeFound("descontoPlanoContaAzulId.equals=" + (descontoPlanoContaAzulId + 1));
-    }
-
-    @Test
-    @Transactional
-    void getAllCalculoPlanoAssinaturasByPlanoContaAzulIsEqualToSomething() throws Exception {
-        PlanoContaAzul planoContaAzul;
-        if (TestUtil.findAll(em, PlanoContaAzul.class).isEmpty()) {
-            calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-            planoContaAzul = PlanoContaAzulResourceIT.createEntity(em);
-        } else {
-            planoContaAzul = TestUtil.findAll(em, PlanoContaAzul.class).get(0);
-        }
-        em.persist(planoContaAzul);
-        em.flush();
-        calculoPlanoAssinatura.setPlanoContaAzul(planoContaAzul);
-        calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-        Long planoContaAzulId = planoContaAzul.getId();
-        // Get all the calculoPlanoAssinaturaList where planoContaAzul equals to planoContaAzulId
-        defaultCalculoPlanoAssinaturaShouldBeFound("planoContaAzulId.equals=" + planoContaAzulId);
-
-        // Get all the calculoPlanoAssinaturaList where planoContaAzul equals to (planoContaAzulId + 1)
-        defaultCalculoPlanoAssinaturaShouldNotBeFound("planoContaAzulId.equals=" + (planoContaAzulId + 1));
     }
 
     private void defaultCalculoPlanoAssinaturaFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {

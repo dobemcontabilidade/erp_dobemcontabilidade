@@ -75,10 +75,10 @@ describe('AreaContabilContador Management Update Component', () => {
 
     it('Should call Contador query and add missing value', () => {
       const areaContabilContador: IAreaContabilContador = { id: 456 };
-      const contador: IContador = { id: 30959 };
+      const contador: IContador = { id: 18642 };
       areaContabilContador.contador = contador;
 
-      const contadorCollection: IContador[] = [{ id: 29303 }];
+      const contadorCollection: IContador[] = [{ id: 14700 }];
       jest.spyOn(contadorService, 'query').mockReturnValue(of(new HttpResponse({ body: contadorCollection })));
       const additionalContadors = [contador];
       const expectedCollection: IContador[] = [...additionalContadors, ...contadorCollection];
@@ -99,7 +99,7 @@ describe('AreaContabilContador Management Update Component', () => {
       const areaContabilContador: IAreaContabilContador = { id: 456 };
       const areaContabil: IAreaContabil = { id: 23214 };
       areaContabilContador.areaContabil = areaContabil;
-      const contador: IContador = { id: 17259 };
+      const contador: IContador = { id: 7829 };
       areaContabilContador.contador = contador;
 
       activatedRoute.data = of({ areaContabilContador });

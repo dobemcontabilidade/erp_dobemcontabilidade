@@ -57,10 +57,10 @@ describe('TarefaEmpresa Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Empresa query and add missing value', () => {
       const tarefaEmpresa: ITarefaEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 32334 };
+      const empresa: IEmpresa = { id: 22577 };
       tarefaEmpresa.empresa = empresa;
 
-      const empresaCollection: IEmpresa[] = [{ id: 8119 }];
+      const empresaCollection: IEmpresa[] = [{ id: 22633 }];
       jest.spyOn(empresaService, 'query').mockReturnValue(of(new HttpResponse({ body: empresaCollection })));
       const additionalEmpresas = [empresa];
       const expectedCollection: IEmpresa[] = [...additionalEmpresas, ...empresaCollection];
@@ -79,10 +79,10 @@ describe('TarefaEmpresa Management Update Component', () => {
 
     it('Should call Contador query and add missing value', () => {
       const tarefaEmpresa: ITarefaEmpresa = { id: 456 };
-      const contador: IContador = { id: 5775 };
+      const contador: IContador = { id: 15748 };
       tarefaEmpresa.contador = contador;
 
-      const contadorCollection: IContador[] = [{ id: 2033 }];
+      const contadorCollection: IContador[] = [{ id: 22910 }];
       jest.spyOn(contadorService, 'query').mockReturnValue(of(new HttpResponse({ body: contadorCollection })));
       const additionalContadors = [contador];
       const expectedCollection: IContador[] = [...additionalContadors, ...contadorCollection];
@@ -123,9 +123,9 @@ describe('TarefaEmpresa Management Update Component', () => {
 
     it('Should update editForm', () => {
       const tarefaEmpresa: ITarefaEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 29993 };
+      const empresa: IEmpresa = { id: 13863 };
       tarefaEmpresa.empresa = empresa;
-      const contador: IContador = { id: 3493 };
+      const contador: IContador = { id: 22339 };
       tarefaEmpresa.contador = contador;
       const tarefa: ITarefa = { id: 24494 };
       tarefaEmpresa.tarefa = tarefa;

@@ -93,6 +93,13 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="tipoSegmento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.tipoSegmento">Tipo Segmento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col" jhiSortBy="ramo.nome">
               <div class="d-flex">
                 <span jhiTranslate="erpDobemcontabilidadeApp.empresa.ramo">Ramo</span>
@@ -127,6 +134,13 @@
               <td>{{ empresa.dataAbertura | formatMediumDatetime }}</td>
               <td>{{ empresa.urlContratoSocial }}</td>
               <td>{{ empresa.capitalSocial }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.TipoSegmentoEnum.' + (empresa.tipoSegmento ?? 'null')">
+                {{
+                  { null: '', SERVICO: 'SERVICO', COMERCIO: 'COMERCIO', SERVICO_COMERCIO: 'SERVICO_COMERCIO', INDUSTRIA: 'INDUSTRIA' }[
+                    empresa.tipoSegmento ?? 'null'
+                  ]
+                }}
+              </td>
               <td>
                 @if (empresa.ramo) {
                   <div>

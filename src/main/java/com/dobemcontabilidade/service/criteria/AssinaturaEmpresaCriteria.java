@@ -106,8 +106,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
 
     private LongFilter empresaId;
 
-    private LongFilter planoContaAzulId;
-
     private Boolean distinct;
 
     public AssinaturaEmpresaCriteria() {}
@@ -137,7 +135,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
         this.formaDePagamentoId = other.optionalFormaDePagamentoId().map(LongFilter::copy).orElse(null);
         this.planoContabilId = other.optionalPlanoContabilId().map(LongFilter::copy).orElse(null);
         this.empresaId = other.optionalEmpresaId().map(LongFilter::copy).orElse(null);
-        this.planoContaAzulId = other.optionalPlanoContaAzulId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
     }
 
@@ -602,25 +599,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
         this.empresaId = empresaId;
     }
 
-    public LongFilter getPlanoContaAzulId() {
-        return planoContaAzulId;
-    }
-
-    public Optional<LongFilter> optionalPlanoContaAzulId() {
-        return Optional.ofNullable(planoContaAzulId);
-    }
-
-    public LongFilter planoContaAzulId() {
-        if (planoContaAzulId == null) {
-            setPlanoContaAzulId(new LongFilter());
-        }
-        return planoContaAzulId;
-    }
-
-    public void setPlanoContaAzulId(LongFilter planoContaAzulId) {
-        this.planoContaAzulId = planoContaAzulId;
-    }
-
     public Boolean getDistinct() {
         return distinct;
     }
@@ -674,7 +652,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
             Objects.equals(formaDePagamentoId, that.formaDePagamentoId) &&
             Objects.equals(planoContabilId, that.planoContabilId) &&
             Objects.equals(empresaId, that.empresaId) &&
-            Objects.equals(planoContaAzulId, that.planoContaAzulId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -706,7 +683,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
             formaDePagamentoId,
             planoContabilId,
             empresaId,
-            planoContaAzulId,
             distinct
         );
     }
@@ -739,7 +715,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
             optionalFormaDePagamentoId().map(f -> "formaDePagamentoId=" + f + ", ").orElse("") +
             optionalPlanoContabilId().map(f -> "planoContabilId=" + f + ", ").orElse("") +
             optionalEmpresaId().map(f -> "empresaId=" + f + ", ").orElse("") +
-            optionalPlanoContaAzulId().map(f -> "planoContaAzulId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +
         "}";
     }

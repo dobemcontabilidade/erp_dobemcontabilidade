@@ -36,8 +36,6 @@ type CalculoPlanoAssinaturaFormGroupContent = {
   tributacao: FormControl<ICalculoPlanoAssinatura['tributacao']>;
   descontoPlanoContabil: FormControl<ICalculoPlanoAssinatura['descontoPlanoContabil']>;
   assinaturaEmpresa: FormControl<ICalculoPlanoAssinatura['assinaturaEmpresa']>;
-  descontoPlanoContaAzul: FormControl<ICalculoPlanoAssinatura['descontoPlanoContaAzul']>;
-  planoContaAzul: FormControl<ICalculoPlanoAssinatura['planoContaAzul']>;
 };
 
 export type CalculoPlanoAssinaturaFormGroup = FormGroup<CalculoPlanoAssinaturaFormGroupContent>;
@@ -89,8 +87,6 @@ export class CalculoPlanoAssinaturaFormService {
       assinaturaEmpresa: new FormControl(calculoPlanoAssinaturaRawValue.assinaturaEmpresa, {
         validators: [Validators.required],
       }),
-      descontoPlanoContaAzul: new FormControl(calculoPlanoAssinaturaRawValue.descontoPlanoContaAzul),
-      planoContaAzul: new FormControl(calculoPlanoAssinaturaRawValue.planoContaAzul),
     });
   }
 

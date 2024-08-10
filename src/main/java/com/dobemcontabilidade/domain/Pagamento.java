@@ -58,9 +58,7 @@ public class Pagamento implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties(
-        value = {
-            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa", "planoContaAzul",
-        },
+        value = { "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa" },
         allowSetters = true
     )
     private AssinaturaEmpresa assinaturaEmpresa;

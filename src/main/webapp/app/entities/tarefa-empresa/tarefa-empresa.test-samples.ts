@@ -12,7 +12,7 @@ export const sampleWithPartialData: ITarefaEmpresa = {
 
 export const sampleWithFullData: ITarefaEmpresa = {
   id: 28857,
-  dataHora: dayjs('2024-08-09T13:16'),
+  dataHora: dayjs('2024-08-09T14:55'),
 };
 
 export const sampleWithNewData: NewTarefaEmpresa = {

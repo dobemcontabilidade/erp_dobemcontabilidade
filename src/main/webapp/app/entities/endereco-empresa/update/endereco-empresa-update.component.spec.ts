@@ -53,10 +53,10 @@ describe('EnderecoEmpresa Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Empresa query and add missing value', () => {
       const enderecoEmpresa: IEnderecoEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 3154 };
+      const empresa: IEmpresa = { id: 29461 };
       enderecoEmpresa.empresa = empresa;
 
-      const empresaCollection: IEmpresa[] = [{ id: 26641 }];
+      const empresaCollection: IEmpresa[] = [{ id: 2959 }];
       jest.spyOn(empresaService, 'query').mockReturnValue(of(new HttpResponse({ body: empresaCollection })));
       const additionalEmpresas = [empresa];
       const expectedCollection: IEmpresa[] = [...additionalEmpresas, ...empresaCollection];
@@ -97,7 +97,7 @@ describe('EnderecoEmpresa Management Update Component', () => {
 
     it('Should update editForm', () => {
       const enderecoEmpresa: IEnderecoEmpresa = { id: 456 };
-      const empresa: IEmpresa = { id: 303 };
+      const empresa: IEmpresa = { id: 25586 };
       enderecoEmpresa.empresa = empresa;
       const cidade: ICidade = { id: 16837 };
       enderecoEmpresa.cidade = cidade;

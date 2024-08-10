@@ -182,22 +182,6 @@ public class CalculoPlanoAssinaturaQueryService extends QueryService<CalculoPlan
                     )
                 );
             }
-            if (criteria.getDescontoPlanoContaAzulId() != null) {
-                specification = specification.and(
-                    buildSpecification(
-                        criteria.getDescontoPlanoContaAzulId(),
-                        root -> root.join(CalculoPlanoAssinatura_.descontoPlanoContaAzul, JoinType.LEFT).get(DescontoPlanoContaAzul_.id)
-                    )
-                );
-            }
-            if (criteria.getPlanoContaAzulId() != null) {
-                specification = specification.and(
-                    buildSpecification(
-                        criteria.getPlanoContaAzulId(),
-                        root -> root.join(CalculoPlanoAssinatura_.planoContaAzul, JoinType.LEFT).get(PlanoContaAzul_.id)
-                    )
-                );
-            }
         }
         return specification;
     }

@@ -98,7 +98,6 @@ class AssinaturaEmpresaCriteriaTest {
         assinaturaEmpresaCriteria.formaDePagamentoId();
         assinaturaEmpresaCriteria.planoContabilId();
         assinaturaEmpresaCriteria.empresaId();
-        assinaturaEmpresaCriteria.planoContaAzulId();
         assinaturaEmpresaCriteria.distinct();
     }
 
@@ -129,7 +128,6 @@ class AssinaturaEmpresaCriteriaTest {
                 condition.apply(criteria.getFormaDePagamentoId()) &&
                 condition.apply(criteria.getPlanoContabilId()) &&
                 condition.apply(criteria.getEmpresaId()) &&
-                condition.apply(criteria.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getDistinct()),
             "every filter matches"
         );
@@ -165,7 +163,6 @@ class AssinaturaEmpresaCriteriaTest {
                 condition.apply(criteria.getFormaDePagamentoId(), copy.getFormaDePagamentoId()) &&
                 condition.apply(criteria.getPlanoContabilId(), copy.getPlanoContabilId()) &&
                 condition.apply(criteria.getEmpresaId(), copy.getEmpresaId()) &&
-                condition.apply(criteria.getPlanoContaAzulId(), copy.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getDistinct(), copy.getDistinct()),
             "every filter matches"
         );

@@ -122,6 +122,20 @@ class PessoaTest {
     }
 
     @Test
+    void usuarioEmpresaTest() {
+        Pessoa pessoa = getPessoaRandomSampleGenerator();
+        UsuarioEmpresa usuarioEmpresaBack = getUsuarioEmpresaRandomSampleGenerator();
+
+        pessoa.setUsuarioEmpresa(usuarioEmpresaBack);
+        assertThat(pessoa.getUsuarioEmpresa()).isEqualTo(usuarioEmpresaBack);
+        assertThat(usuarioEmpresaBack.getPessoa()).isEqualTo(pessoa);
+
+        pessoa.usuarioEmpresa(null);
+        assertThat(pessoa.getUsuarioEmpresa()).isNull();
+        assertThat(usuarioEmpresaBack.getPessoa()).isNull();
+    }
+
+    @Test
     void administradorTest() {
         Pessoa pessoa = getPessoaRandomSampleGenerator();
         Administrador administradorBack = getAdministradorRandomSampleGenerator();
@@ -175,19 +189,5 @@ class PessoaTest {
         pessoa.socio(null);
         assertThat(pessoa.getSocio()).isNull();
         assertThat(socioBack.getPessoa()).isNull();
-    }
-
-    @Test
-    void usuarioEmpresaTest() {
-        Pessoa pessoa = getPessoaRandomSampleGenerator();
-        UsuarioEmpresa usuarioEmpresaBack = getUsuarioEmpresaRandomSampleGenerator();
-
-        pessoa.setUsuarioEmpresa(usuarioEmpresaBack);
-        assertThat(pessoa.getUsuarioEmpresa()).isEqualTo(usuarioEmpresaBack);
-        assertThat(usuarioEmpresaBack.getPessoa()).isEqualTo(pessoa);
-
-        pessoa.usuarioEmpresa(null);
-        assertThat(pessoa.getUsuarioEmpresa()).isNull();
-        assertThat(usuarioEmpresaBack.getPessoa()).isNull();
     }
 }

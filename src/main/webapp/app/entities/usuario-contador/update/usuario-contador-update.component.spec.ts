@@ -53,10 +53,10 @@ describe('UsuarioContador Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call contador query and add missing value', () => {
       const usuarioContador: IUsuarioContador = { id: 456 };
-      const contador: IContador = { id: 2736 };
+      const contador: IContador = { id: 3969 };
       usuarioContador.contador = contador;
 
-      const contadorCollection: IContador[] = [{ id: 280 }];
+      const contadorCollection: IContador[] = [{ id: 22968 }];
       jest.spyOn(contadorService, 'query').mockReturnValue(of(new HttpResponse({ body: contadorCollection })));
       const expectedCollection: IContador[] = [contador, ...contadorCollection];
       jest.spyOn(contadorService, 'addContadorToCollectionIfMissing').mockReturnValue(expectedCollection);
@@ -71,10 +71,10 @@ describe('UsuarioContador Management Update Component', () => {
 
     it('Should call Administrador query and add missing value', () => {
       const usuarioContador: IUsuarioContador = { id: 456 };
-      const administrador: IAdministrador = { id: 31341 };
+      const administrador: IAdministrador = { id: 9822 };
       usuarioContador.administrador = administrador;
 
-      const administradorCollection: IAdministrador[] = [{ id: 2983 }];
+      const administradorCollection: IAdministrador[] = [{ id: 14701 }];
       jest.spyOn(administradorService, 'query').mockReturnValue(of(new HttpResponse({ body: administradorCollection })));
       const additionalAdministradors = [administrador];
       const expectedCollection: IAdministrador[] = [...additionalAdministradors, ...administradorCollection];
@@ -93,9 +93,9 @@ describe('UsuarioContador Management Update Component', () => {
 
     it('Should update editForm', () => {
       const usuarioContador: IUsuarioContador = { id: 456 };
-      const contador: IContador = { id: 28625 };
+      const contador: IContador = { id: 5629 };
       usuarioContador.contador = contador;
-      const administrador: IAdministrador = { id: 30793 };
+      const administrador: IAdministrador = { id: 26884 };
       usuarioContador.administrador = administrador;
 
       activatedRoute.data = of({ usuarioContador });

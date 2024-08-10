@@ -1,6 +1,6 @@
 {
   "annotations": {
-    "changelogDate": "20240810031447"
+    "changelogDate": "20240810045350"
   },
   "applications": "*",
   "dto": "mapstruct",
@@ -37,6 +37,11 @@
     {
       "fieldName": "capitalSocial",
       "fieldType": "Double"
+    },
+    {
+      "fieldName": "tipoSegmento",
+      "fieldType": "TipoSegmentoEnum",
+      "fieldValues": "SERVICO,COMERCIO,SERVICO_COMERCIO,INDUSTRIA"
     }
   ],
   "jpaMetamodelFiltering": true,

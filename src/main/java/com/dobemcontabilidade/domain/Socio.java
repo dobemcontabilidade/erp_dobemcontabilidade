@@ -57,7 +57,7 @@ public class Socio implements Serializable {
 
     @JsonIgnoreProperties(
         value = {
-            "enderecoPessoas", "anexoPessoas", "emails", "telefones", "administrador", "contador", "funcionario", "socio", "usuarioEmpresa",
+            "enderecoPessoas", "anexoPessoas", "emails", "telefones", "usuarioEmpresa", "administrador", "contador", "funcionario", "socio",
         },
         allowSetters = true
     )

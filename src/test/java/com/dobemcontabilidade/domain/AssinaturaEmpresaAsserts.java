@@ -83,7 +83,6 @@ public class AssinaturaEmpresaAsserts {
             .satisfies(e -> assertThat(e.getPeriodoPagamento()).as("check periodoPagamento").isEqualTo(actual.getPeriodoPagamento()))
             .satisfies(e -> assertThat(e.getFormaDePagamento()).as("check formaDePagamento").isEqualTo(actual.getFormaDePagamento()))
             .satisfies(e -> assertThat(e.getPlanoContabil()).as("check planoContabil").isEqualTo(actual.getPlanoContabil()))
-            .satisfies(e -> assertThat(e.getEmpresa()).as("check empresa").isEqualTo(actual.getEmpresa()))
-            .satisfies(e -> assertThat(e.getPlanoContaAzul()).as("check planoContaAzul").isEqualTo(actual.getPlanoContaAzul()));
+            .satisfies(e -> assertThat(e.getEmpresa()).as("check empresa").isEqualTo(actual.getEmpresa()));
     }
 }

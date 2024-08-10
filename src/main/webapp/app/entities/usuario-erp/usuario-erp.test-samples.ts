@@ -19,8 +19,8 @@ export const sampleWithFullData: IUsuarioErp = {
   id: 18953,
   email: 'Lorraine.Barros@yahoo.com',
   senha: '../fake-data/blob/hipster.txt',
-  dataHoraAtivacao: dayjs('2024-08-10T01:47'),
-  dataLimiteAcesso: dayjs('2024-08-09T08:22'),
+  dataHoraAtivacao: dayjs('2024-08-10T03:26'),
+  dataLimiteAcesso: dayjs('2024-08-09T10:01'),
   situacao: 'ATIVO',
 };
 

@@ -34,9 +34,7 @@ public class FormaDePagamento implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "formaDePagamento")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
-        value = {
-            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa", "planoContaAzul",
-        },
+        value = { "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa" },
         allowSetters = true
     )
     private Set<AssinaturaEmpresa> assinaturaEmpresas = new HashSet<>();

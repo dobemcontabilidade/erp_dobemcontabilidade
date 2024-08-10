@@ -49,10 +49,10 @@ describe('Administrador Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call pessoa query and add missing value', () => {
       const administrador: IAdministrador = { id: 456 };
-      const pessoa: IPessoa = { id: 23559 };
+      const pessoa: IPessoa = { id: 31210 };
       administrador.pessoa = pessoa;
 
-      const pessoaCollection: IPessoa[] = [{ id: 12967 }];
+      const pessoaCollection: IPessoa[] = [{ id: 30449 }];
       jest.spyOn(pessoaService, 'query').mockReturnValue(of(new HttpResponse({ body: pessoaCollection })));
       const expectedCollection: IPessoa[] = [pessoa, ...pessoaCollection];
       jest.spyOn(pessoaService, 'addPessoaToCollectionIfMissing').mockReturnValue(expectedCollection);
@@ -67,7 +67,7 @@ describe('Administrador Management Update Component', () => {
 
     it('Should update editForm', () => {
       const administrador: IAdministrador = { id: 456 };
-      const pessoa: IPessoa = { id: 24996 };
+      const pessoa: IPessoa = { id: 26109 };
       administrador.pessoa = pessoa;
 
       activatedRoute.data = of({ administrador });

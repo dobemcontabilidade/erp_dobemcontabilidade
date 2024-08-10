@@ -95,6 +95,9 @@ public class EmpresaQueryService extends QueryService<Empresa> {
             if (criteria.getCapitalSocial() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getCapitalSocial(), Empresa_.capitalSocial));
             }
+            if (criteria.getTipoSegmento() != null) {
+                specification = specification.and(buildSpecification(criteria.getTipoSegmento(), Empresa_.tipoSegmento));
+            }
             if (criteria.getAssinaturaEmpresaId() != null) {
                 specification = specification.and(
                     buildSpecification(

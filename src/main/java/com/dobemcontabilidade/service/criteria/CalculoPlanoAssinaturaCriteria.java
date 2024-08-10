@@ -60,10 +60,6 @@ public class CalculoPlanoAssinaturaCriteria implements Serializable, Criteria {
 
     private LongFilter assinaturaEmpresaId;
 
-    private LongFilter descontoPlanoContaAzulId;
-
-    private LongFilter planoContaAzulId;
-
     private Boolean distinct;
 
     public CalculoPlanoAssinaturaCriteria() {}
@@ -88,8 +84,6 @@ public class CalculoPlanoAssinaturaCriteria implements Serializable, Criteria {
         this.tributacaoId = other.optionalTributacaoId().map(LongFilter::copy).orElse(null);
         this.descontoPlanoContabilId = other.optionalDescontoPlanoContabilId().map(LongFilter::copy).orElse(null);
         this.assinaturaEmpresaId = other.optionalAssinaturaEmpresaId().map(LongFilter::copy).orElse(null);
-        this.descontoPlanoContaAzulId = other.optionalDescontoPlanoContaAzulId().map(LongFilter::copy).orElse(null);
-        this.planoContaAzulId = other.optionalPlanoContaAzulId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
     }
 
@@ -459,44 +453,6 @@ public class CalculoPlanoAssinaturaCriteria implements Serializable, Criteria {
         this.assinaturaEmpresaId = assinaturaEmpresaId;
     }
 
-    public LongFilter getDescontoPlanoContaAzulId() {
-        return descontoPlanoContaAzulId;
-    }
-
-    public Optional<LongFilter> optionalDescontoPlanoContaAzulId() {
-        return Optional.ofNullable(descontoPlanoContaAzulId);
-    }
-
-    public LongFilter descontoPlanoContaAzulId() {
-        if (descontoPlanoContaAzulId == null) {
-            setDescontoPlanoContaAzulId(new LongFilter());
-        }
-        return descontoPlanoContaAzulId;
-    }
-
-    public void setDescontoPlanoContaAzulId(LongFilter descontoPlanoContaAzulId) {
-        this.descontoPlanoContaAzulId = descontoPlanoContaAzulId;
-    }
-
-    public LongFilter getPlanoContaAzulId() {
-        return planoContaAzulId;
-    }
-
-    public Optional<LongFilter> optionalPlanoContaAzulId() {
-        return Optional.ofNullable(planoContaAzulId);
-    }
-
-    public LongFilter planoContaAzulId() {
-        if (planoContaAzulId == null) {
-            setPlanoContaAzulId(new LongFilter());
-        }
-        return planoContaAzulId;
-    }
-
-    public void setPlanoContaAzulId(LongFilter planoContaAzulId) {
-        this.planoContaAzulId = planoContaAzulId;
-    }
-
     public Boolean getDistinct() {
         return distinct;
     }
@@ -545,8 +501,6 @@ public class CalculoPlanoAssinaturaCriteria implements Serializable, Criteria {
             Objects.equals(tributacaoId, that.tributacaoId) &&
             Objects.equals(descontoPlanoContabilId, that.descontoPlanoContabilId) &&
             Objects.equals(assinaturaEmpresaId, that.assinaturaEmpresaId) &&
-            Objects.equals(descontoPlanoContaAzulId, that.descontoPlanoContaAzulId) &&
-            Objects.equals(planoContaAzulId, that.planoContaAzulId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -573,8 +527,6 @@ public class CalculoPlanoAssinaturaCriteria implements Serializable, Criteria {
             tributacaoId,
             descontoPlanoContabilId,
             assinaturaEmpresaId,
-            descontoPlanoContaAzulId,
-            planoContaAzulId,
             distinct
         );
     }
@@ -602,8 +554,6 @@ public class CalculoPlanoAssinaturaCriteria implements Serializable, Criteria {
             optionalTributacaoId().map(f -> "tributacaoId=" + f + ", ").orElse("") +
             optionalDescontoPlanoContabilId().map(f -> "descontoPlanoContabilId=" + f + ", ").orElse("") +
             optionalAssinaturaEmpresaId().map(f -> "assinaturaEmpresaId=" + f + ", ").orElse("") +
-            optionalDescontoPlanoContaAzulId().map(f -> "descontoPlanoContaAzulId=" + f + ", ").orElse("") +
-            optionalPlanoContaAzulId().map(f -> "planoContaAzulId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +
         "}";
     }

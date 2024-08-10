@@ -142,16 +142,6 @@
               </div>
             }
           </dd>
-          <dt><span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContaAzul">Plano Conta Azul</span></dt>
-          <dd>
-            @if (assinaturaEmpresa()!.planoContaAzul) {
-              <div>
-                <a [routerLink]="['/plano-conta-azul', assinaturaEmpresa()!.planoContaAzul?.id, 'view']">{{
-                  assinaturaEmpresa()!.planoContaAzul?.id
-                }}</a>
-              </div>
-            }
-          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

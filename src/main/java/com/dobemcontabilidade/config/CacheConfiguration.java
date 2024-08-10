@@ -60,6 +60,9 @@ public class CacheConfiguration {
             createCache(cm, com.dobemcontabilidade.domain.Banco.class.getName() + ".bancoContadors");
             createCache(cm, com.dobemcontabilidade.domain.EnderecoPessoa.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.UsuarioErp.class.getName());
+            createCache(cm, com.dobemcontabilidade.domain.UsuarioContador.class.getName());
+            createCache(cm, com.dobemcontabilidade.domain.UsuarioEmpresa.class.getName());
+            createCache(cm, com.dobemcontabilidade.domain.UsuarioGestao.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.AdicionalEnquadramento.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.AdicionalRamo.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.AdicionalTributacao.class.getName());
@@ -100,8 +103,6 @@ public class CacheConfiguration {
             createCache(cm, com.dobemcontabilidade.domain.DepartamentoContador.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.DepartamentoEmpresa.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.DepartamentoFuncionario.class.getName());
-            createCache(cm, com.dobemcontabilidade.domain.DescontoPlanoContaAzul.class.getName());
-            createCache(cm, com.dobemcontabilidade.domain.DescontoPlanoContaAzul.class.getName() + ".calculoPlanoAssinaturas");
             createCache(cm, com.dobemcontabilidade.domain.DescontoPlanoContabil.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.DescontoPlanoContabil.class.getName() + ".calculoPlanoAssinaturas");
             createCache(cm, com.dobemcontabilidade.domain.Email.class.getName());
@@ -143,7 +144,6 @@ public class CacheConfiguration {
             createCache(cm, com.dobemcontabilidade.domain.PeriodoPagamento.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.PeriodoPagamento.class.getName() + ".calculoPlanoAssinaturas");
             createCache(cm, com.dobemcontabilidade.domain.PeriodoPagamento.class.getName() + ".assinaturaEmpresas");
-            createCache(cm, com.dobemcontabilidade.domain.PeriodoPagamento.class.getName() + ".descontoPlanoContaAzuls");
             createCache(cm, com.dobemcontabilidade.domain.PeriodoPagamento.class.getName() + ".descontoPlanoContabils");
             createCache(cm, com.dobemcontabilidade.domain.Pessoa.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.Pessoa.class.getName() + ".enderecoPessoas");
@@ -159,10 +159,6 @@ public class CacheConfiguration {
             createCache(cm, com.dobemcontabilidade.domain.PlanoContabil.class.getName() + ".termoContratoContabils");
             createCache(cm, com.dobemcontabilidade.domain.PlanoContabil.class.getName() + ".adicionalEnquadramentos");
             createCache(cm, com.dobemcontabilidade.domain.PlanoContabil.class.getName() + ".valorBaseRamos");
-            createCache(cm, com.dobemcontabilidade.domain.PlanoContaAzul.class.getName());
-            createCache(cm, com.dobemcontabilidade.domain.PlanoContaAzul.class.getName() + ".calculoPlanoAssinaturas");
-            createCache(cm, com.dobemcontabilidade.domain.PlanoContaAzul.class.getName() + ".assinaturaEmpresas");
-            createCache(cm, com.dobemcontabilidade.domain.PlanoContaAzul.class.getName() + ".descontoPlanoContaAzuls");
             createCache(cm, com.dobemcontabilidade.domain.PrazoAssinatura.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.Profissao.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.Ramo.class.getName());
@@ -189,9 +185,6 @@ public class CacheConfiguration {
             createCache(cm, com.dobemcontabilidade.domain.Tributacao.class.getName() + ".calculoPlanoAssinaturas");
             createCache(cm, com.dobemcontabilidade.domain.Tributacao.class.getName() + ".empresas");
             createCache(cm, com.dobemcontabilidade.domain.Tributacao.class.getName() + ".adicionalTributacaos");
-            createCache(cm, com.dobemcontabilidade.domain.UsuarioContador.class.getName());
-            createCache(cm, com.dobemcontabilidade.domain.UsuarioEmpresa.class.getName());
-            createCache(cm, com.dobemcontabilidade.domain.UsuarioGestao.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.ValorBaseRamo.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.CalculoPlanoAssinatura.class.getName());
             createCache(cm, com.dobemcontabilidade.domain.AnexoPessoa.class.getName());

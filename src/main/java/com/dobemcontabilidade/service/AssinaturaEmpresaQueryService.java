@@ -199,14 +199,6 @@ public class AssinaturaEmpresaQueryService extends QueryService<AssinaturaEmpres
                     )
                 );
             }
-            if (criteria.getPlanoContaAzulId() != null) {
-                specification = specification.and(
-                    buildSpecification(
-                        criteria.getPlanoContaAzulId(),
-                        root -> root.join(AssinaturaEmpresa_.planoContaAzul, JoinType.LEFT).get(PlanoContaAzul_.id)
-                    )
-                );
-            }
         }
         return specification;
     }

@@ -85,16 +85,7 @@ public class AssinaturaEmpresa implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "assinaturaEmpresa")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
-        value = {
-            "periodoPagamento",
-            "planoContabil",
-            "ramo",
-            "tributacao",
-            "descontoPlanoContabil",
-            "assinaturaEmpresa",
-            "descontoPlanoContaAzul",
-            "planoContaAzul",
-        },
+        value = { "periodoPagamento", "planoContabil", "ramo", "tributacao", "descontoPlanoContabil", "assinaturaEmpresa" },
         allowSetters = true
     )
     private Set<CalculoPlanoAssinatura> calculoPlanoAssinaturas = new HashSet<>();
@@ -154,10 +145,6 @@ public class AssinaturaEmpresa implements Serializable {
         allowSetters = true
     )
     private Empresa empresa;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "calculoPlanoAssinaturas", "assinaturaEmpresas", "descontoPlanoContaAzuls" }, allowSetters = true)
-    private PlanoContaAzul planoContaAzul;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -506,19 +493,6 @@ public class AssinaturaEmpresa implements Serializable {
 
     public AssinaturaEmpresa empresa(Empresa empresa) {
         this.setEmpresa(empresa);
-        return this;
-    }
-
-    public PlanoContaAzul getPlanoContaAzul() {
-        return this.planoContaAzul;
-    }
-
-    public void setPlanoContaAzul(PlanoContaAzul planoContaAzul) {
-        this.planoContaAzul = planoContaAzul;
-    }
-
-    public AssinaturaEmpresa planoContaAzul(PlanoContaAzul planoContaAzul) {
-        this.setPlanoContaAzul(planoContaAzul);
         return this;
     }
 

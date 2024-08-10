@@ -49,10 +49,10 @@ describe('AnexoPessoa Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Pessoa query and add missing value', () => {
       const anexoPessoa: IAnexoPessoa = { id: 456 };
-      const pessoa: IPessoa = { id: 26326 };
+      const pessoa: IPessoa = { id: 25697 };
       anexoPessoa.pessoa = pessoa;
 
-      const pessoaCollection: IPessoa[] = [{ id: 27116 }];
+      const pessoaCollection: IPessoa[] = [{ id: 30038 }];
       jest.spyOn(pessoaService, 'query').mockReturnValue(of(new HttpResponse({ body: pessoaCollection })));
       const additionalPessoas = [pessoa];
       const expectedCollection: IPessoa[] = [...additionalPessoas, ...pessoaCollection];
@@ -71,7 +71,7 @@ describe('AnexoPessoa Management Update Component', () => {
 
     it('Should update editForm', () => {
       const anexoPessoa: IAnexoPessoa = { id: 456 };
-      const pessoa: IPessoa = { id: 6158 };
+      const pessoa: IPessoa = { id: 25584 };
       anexoPessoa.pessoa = pessoa;
 
       activatedRoute.data = of({ anexoPessoa });

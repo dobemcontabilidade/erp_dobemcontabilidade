@@ -9,8 +9,8 @@ export const sampleWithRequiredData: IPagamento = {
 
 export const sampleWithPartialData: IPagamento = {
   id: 516,
-  dataCobranca: dayjs('2024-08-09T13:23'),
-  dataPagamento: dayjs('2024-08-09T20:01'),
+  dataCobranca: dayjs('2024-08-09T15:03'),
+  dataPagamento: dayjs('2024-08-09T21:40'),
   valorCobrado: 7627.09,
   juros: 16582.37,
   situacao: 'PAGO',
@@ -18,9 +18,9 @@ export const sampleWithPartialData: IPagamento = {
 
 export const sampleWithFullData: IPagamento = {
   id: 31248,
-  dataCobranca: dayjs('2024-08-09T18:34'),
-  dataVencimento: dayjs('2024-08-09T13:24'),
-  dataPagamento: dayjs('2024-08-09T14:14'),
+  dataCobranca: dayjs('2024-08-09T20:13'),
+  dataVencimento: dayjs('2024-08-09T15:03'),
+  dataPagamento: dayjs('2024-08-09T15:53'),
   valorPago: 24915.04,
   valorCobrado: 8053.13,
   acrescimo: 25558.73,

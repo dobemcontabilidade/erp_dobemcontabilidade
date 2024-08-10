@@ -49,10 +49,10 @@ describe('CertificadoDigital Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Empresa query and add missing value', () => {
       const certificadoDigital: ICertificadoDigital = { id: 456 };
-      const empresa: IEmpresa = { id: 1364 };
+      const empresa: IEmpresa = { id: 7786 };
       certificadoDigital.empresa = empresa;
 
-      const empresaCollection: IEmpresa[] = [{ id: 23892 }];
+      const empresaCollection: IEmpresa[] = [{ id: 3668 }];
       jest.spyOn(empresaService, 'query').mockReturnValue(of(new HttpResponse({ body: empresaCollection })));
       const additionalEmpresas = [empresa];
       const expectedCollection: IEmpresa[] = [...additionalEmpresas, ...empresaCollection];
@@ -71,7 +71,7 @@ describe('CertificadoDigital Management Update Component', () => {
 
     it('Should update editForm', () => {
       const certificadoDigital: ICertificadoDigital = { id: 456 };
-      const empresa: IEmpresa = { id: 621 };
+      const empresa: IEmpresa = { id: 12369 };
       certificadoDigital.empresa = empresa;
 
       activatedRoute.data = of({ certificadoDigital });

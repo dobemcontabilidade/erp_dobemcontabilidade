@@ -41,7 +41,6 @@ describe('AssinaturaEmpresa Form Service', () => {
             formaDePagamento: expect.any(Object),
             planoContabil: expect.any(Object),
             empresa: expect.any(Object),
-            planoContaAzul: expect.any(Object),
           }),
         );
       });
@@ -73,7 +72,6 @@ describe('AssinaturaEmpresa Form Service', () => {
             formaDePagamento: expect.any(Object),
             planoContabil: expect.any(Object),
             empresa: expect.any(Object),
-            planoContaAzul: expect.any(Object),
           }),
         );
       });

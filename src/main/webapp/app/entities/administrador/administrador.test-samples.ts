@@ -1,26 +1,25 @@
 import { IAdministrador, NewAdministrador } from './administrador.model';
 
 export const sampleWithRequiredData: IAdministrador = {
-  id: 9822,
-  sobreNome: 'obtrude wheel',
+  id: 16711,
+  sobreNome: 'gently eek',
 };
 
 export const sampleWithPartialData: IAdministrador = {
-  id: 1185,
-  nome: 'daintily victoriously',
-  sobreNome: 'dynamite',
-  funcao: 'yowza blissfully',
+  id: 3817,
+  sobreNome: 'consult',
+  funcao: 'incomparable hyphenate what',
 };
 
 export const sampleWithFullData: IAdministrador = {
-  id: 28465,
-  nome: 'the gorilla',
-  sobreNome: 'but narrate anchovy',
-  funcao: 'once rust extremely',
+  id: 11140,
+  nome: 'wherever',
+  sobreNome: 'promptly against vouch',
+  funcao: 'configuration',
 };
 
 export const sampleWithNewData: NewAdministrador = {
-  sobreNome: 'temp than what',
+  sobreNome: 'contest',
   id: null,
 };
 

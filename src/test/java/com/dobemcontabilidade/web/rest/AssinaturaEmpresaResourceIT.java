@@ -13,7 +13,6 @@ import com.dobemcontabilidade.domain.AssinaturaEmpresa;
 import com.dobemcontabilidade.domain.Empresa;
 import com.dobemcontabilidade.domain.FormaDePagamento;
 import com.dobemcontabilidade.domain.PeriodoPagamento;
-import com.dobemcontabilidade.domain.PlanoContaAzul;
 import com.dobemcontabilidade.domain.PlanoContabil;
 import com.dobemcontabilidade.domain.enumeration.SituacaoContratoEmpresaEnum;
 import com.dobemcontabilidade.domain.enumeration.TipoContratoEnum;
@@ -1742,28 +1741,6 @@ class AssinaturaEmpresaResourceIT {
 
         // Get all the assinaturaEmpresaList where empresa equals to (empresaId + 1)
         defaultAssinaturaEmpresaShouldNotBeFound("empresaId.equals=" + (empresaId + 1));
-    }
-
-    @Test
-    @Transactional
-    void getAllAssinaturaEmpresasByPlanoContaAzulIsEqualToSomething() throws Exception {
-        PlanoContaAzul planoContaAzul;
-        if (TestUtil.findAll(em, PlanoContaAzul.class).isEmpty()) {
-            assinaturaEmpresaRepository.saveAndFlush(assinaturaEmpresa);
-            planoContaAzul = PlanoContaAzulResourceIT.createEntity(em);
-        } else {
-            planoContaAzul = TestUtil.findAll(em, PlanoContaAzul.class).get(0);
-        }
-        em.persist(planoContaAzul);
-        em.flush();
-        assinaturaEmpresa.setPlanoContaAzul(planoContaAzul);
-        assinaturaEmpresaRepository.saveAndFlush(assinaturaEmpresa);
-        Long planoContaAzulId = planoContaAzul.getId();
-        // Get all the assinaturaEmpresaList where planoContaAzul equals to planoContaAzulId
-        defaultAssinaturaEmpresaShouldBeFound("planoContaAzulId.equals=" + planoContaAzulId);
-
-        // Get all the assinaturaEmpresaList where planoContaAzul equals to (planoContaAzulId + 1)
-        defaultAssinaturaEmpresaShouldNotBeFound("planoContaAzulId.equals=" + (planoContaAzulId + 1));
     }
 
     private void defaultAssinaturaEmpresaFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {

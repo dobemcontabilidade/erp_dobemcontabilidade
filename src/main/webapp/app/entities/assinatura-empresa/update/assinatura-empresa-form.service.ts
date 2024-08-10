@@ -53,7 +53,6 @@ type AssinaturaEmpresaFormGroupContent = {
   formaDePagamento: FormControl<AssinaturaEmpresaFormRawValue['formaDePagamento']>;
   planoContabil: FormControl<AssinaturaEmpresaFormRawValue['planoContabil']>;
   empresa: FormControl<AssinaturaEmpresaFormRawValue['empresa']>;
-  planoContaAzul: FormControl<AssinaturaEmpresaFormRawValue['planoContaAzul']>;
 };
 
 export type AssinaturaEmpresaFormGroup = FormGroup<AssinaturaEmpresaFormGroupContent>;
@@ -102,7 +101,6 @@ export class AssinaturaEmpresaFormService {
       empresa: new FormControl(assinaturaEmpresaRawValue.empresa, {
         validators: [Validators.required],
       }),
-      planoContaAzul: new FormControl(assinaturaEmpresaRawValue.planoContaAzul),
     });
   }
 

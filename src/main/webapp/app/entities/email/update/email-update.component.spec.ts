@@ -49,10 +49,10 @@ describe('Email Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Pessoa query and add missing value', () => {
       const email: IEmail = { id: 456 };
-      const pessoa: IPessoa = { id: 2534 };
+      const pessoa: IPessoa = { id: 6004 };
       email.pessoa = pessoa;
 
-      const pessoaCollection: IPessoa[] = [{ id: 3405 }];
+      const pessoaCollection: IPessoa[] = [{ id: 1025 }];
       jest.spyOn(pessoaService, 'query').mockReturnValue(of(new HttpResponse({ body: pessoaCollection })));
       const additionalPessoas = [pessoa];
       const expectedCollection: IPessoa[] = [...additionalPessoas, ...pessoaCollection];
@@ -71,7 +71,7 @@ describe('Email Management Update Component', () => {
 
     it('Should update editForm', () => {
       const email: IEmail = { id: 456 };
-      const pessoa: IPessoa = { id: 5410 };
+      const pessoa: IPessoa = { id: 23594 };
       email.pessoa = pessoa;
 
       activatedRoute.data = of({ email });

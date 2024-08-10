@@ -4,8 +4,6 @@ import { IRamo } from 'app/entities/ramo/ramo.model';
 import { ITributacao } from 'app/entities/tributacao/tributacao.model';
 import { IDescontoPlanoContabil } from 'app/entities/desconto-plano-contabil/desconto-plano-contabil.model';
 import { IAssinaturaEmpresa } from 'app/entities/assinatura-empresa/assinatura-empresa.model';
-import { IDescontoPlanoContaAzul } from 'app/entities/desconto-plano-conta-azul/desconto-plano-conta-azul.model';
-import { IPlanoContaAzul } from 'app/entities/plano-conta-azul/plano-conta-azul.model';
 
 export interface ICalculoPlanoAssinatura {
   id: number;
@@ -27,8 +25,6 @@ export interface ICalculoPlanoAssinatura {
   tributacao?: Pick<ITributacao, 'id' | 'nome'> | null;
   descontoPlanoContabil?: Pick<IDescontoPlanoContabil, 'id' | 'percentual'> | null;
   assinaturaEmpresa?: Pick<IAssinaturaEmpresa, 'id' | 'codigoAssinatura'> | null;
-  descontoPlanoContaAzul?: Pick<IDescontoPlanoContaAzul, 'id'> | null;
-  planoContaAzul?: Pick<IPlanoContaAzul, 'id'> | null;
 }
 
 export type NewCalculoPlanoAssinatura = Omit<ICalculoPlanoAssinatura, 'id'> & { id: null };

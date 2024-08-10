@@ -189,12 +189,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="planoContaAzul.id">
-              <div class="d-flex">
-                <span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContaAzul">Plano Conta Azul</span>
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -271,15 +265,6 @@
                 @if (assinaturaEmpresa.empresa) {
                   <div>
                     <a [routerLink]="['/empresa', assinaturaEmpresa.empresa.id, 'view']">{{ assinaturaEmpresa.empresa.razaoSocial }}</a>
-                  </div>
-                }
-              </td>
-              <td>
-                @if (assinaturaEmpresa.planoContaAzul) {
-                  <div>
-                    <a [routerLink]="['/plano-conta-azul', assinaturaEmpresa.planoContaAzul.id, 'view']">{{
-                      assinaturaEmpresa.planoContaAzul.id
-                    }}</a>
                   </div>
                 }
               </td>

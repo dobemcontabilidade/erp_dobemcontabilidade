@@ -79,6 +79,19 @@ public class PessoaService {
     }
 
     /**
+     *  Get all the pessoas where UsuarioEmpresa is {@code null}.
+     *  @return the list of entities.
+     */
+    @Transactional(readOnly = true)
+    public List<PessoaDTO> findAllWhereUsuarioEmpresaIsNull() {
+        log.debug("Request to get all pessoas where UsuarioEmpresa is null");
+        return StreamSupport.stream(pessoaRepository.findAll().spliterator(), false)
+            .filter(pessoa -> pessoa.getUsuarioEmpresa() == null)
+            .map(pessoaMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    /**
      *  Get all the pessoas where Administrador is {@code null}.
      *  @return the list of entities.
      */
@@ -126,19 +139,6 @@ public class PessoaService {
         log.debug("Request to get all pessoas where Socio is null");
         return StreamSupport.stream(pessoaRepository.findAll().spliterator(), false)
             .filter(pessoa -> pessoa.getSocio() == null)
-            .map(pessoaMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
-    }
-
-    /**
-     *  Get all the pessoas where UsuarioEmpresa is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true)
-    public List<PessoaDTO> findAllWhereUsuarioEmpresaIsNull() {
-        log.debug("Request to get all pessoas where UsuarioEmpresa is null");
-        return StreamSupport.stream(pessoaRepository.findAll().spliterator(), false)
-            .filter(pessoa -> pessoa.getUsuarioEmpresa() == null)
             .map(pessoaMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

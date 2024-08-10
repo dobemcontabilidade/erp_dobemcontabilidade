@@ -38,8 +38,6 @@ describe('CalculoPlanoAssinatura Form Service', () => {
             tributacao: expect.any(Object),
             descontoPlanoContabil: expect.any(Object),
             assinaturaEmpresa: expect.any(Object),
-            descontoPlanoContaAzul: expect.any(Object),
-            planoContaAzul: expect.any(Object),
           }),
         );
       });
@@ -68,8 +66,6 @@ describe('CalculoPlanoAssinatura Form Service', () => {
             tributacao: expect.any(Object),
             descontoPlanoContabil: expect.any(Object),
             assinaturaEmpresa: expect.any(Object),
-            descontoPlanoContaAzul: expect.any(Object),
-            planoContaAzul: expect.any(Object),
           }),
         );
       });

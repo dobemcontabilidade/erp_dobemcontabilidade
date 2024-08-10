@@ -12,7 +12,7 @@ export const sampleWithPartialData: IUsuarioEmpresa = {
   id: 11443,
   email: 'Emanuel.Reis3@bol.com.br',
   senha: '../fake-data/blob/hipster.txt',
-  dataHoraAtivacao: dayjs('2024-08-10T01:47'),
+  dataHoraAtivacao: dayjs('2024-08-10T03:25'),
   situacao: 'EXCLUIDO',
 };
 
@@ -21,8 +21,8 @@ export const sampleWithFullData: IUsuarioEmpresa = {
   email: 'Emanuelly99@gmail.com',
   senha: '../fake-data/blob/hipster.txt',
   token: '../fake-data/blob/hipster.txt',
-  dataHoraAtivacao: dayjs('2024-08-09T15:36'),
-  dataLimiteAcesso: dayjs('2024-08-09T10:38'),
+  dataHoraAtivacao: dayjs('2024-08-09T17:14'),
+  dataLimiteAcesso: dayjs('2024-08-09T12:16'),
   situacao: 'ATIVO',
 };
 

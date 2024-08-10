@@ -53,10 +53,10 @@ describe('Contador Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call pessoa query and add missing value', () => {
       const contador: IContador = { id: 456 };
-      const pessoa: IPessoa = { id: 31210 };
+      const pessoa: IPessoa = { id: 2534 };
       contador.pessoa = pessoa;
 
-      const pessoaCollection: IPessoa[] = [{ id: 30449 }];
+      const pessoaCollection: IPessoa[] = [{ id: 3405 }];
       jest.spyOn(pessoaService, 'query').mockReturnValue(of(new HttpResponse({ body: pessoaCollection })));
       const expectedCollection: IPessoa[] = [pessoa, ...pessoaCollection];
       jest.spyOn(pessoaService, 'addPessoaToCollectionIfMissing').mockReturnValue(expectedCollection);
@@ -93,7 +93,7 @@ describe('Contador Management Update Component', () => {
 
     it('Should update editForm', () => {
       const contador: IContador = { id: 456 };
-      const pessoa: IPessoa = { id: 26109 };
+      const pessoa: IPessoa = { id: 5410 };
       contador.pessoa = pessoa;
       const perfilContador: IPerfilContador = { id: 681 };
       contador.perfilContador = perfilContador;
