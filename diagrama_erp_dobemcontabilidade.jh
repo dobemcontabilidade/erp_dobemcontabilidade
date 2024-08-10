@@ -39,6 +39,33 @@ entity UsuarioErp {
 	situacao SituacaoUsuarioErpEnum
 }
 
+entity UsuarioContador {
+	email String maxlength(200) required
+	senha TextBlob required
+	token TextBlob
+	dataHoraAtivacao Instant
+	dataLimiteAcesso Instant
+	situacao SituacaoUsuarioContadorEnum
+}
+
+entity UsuarioEmpresa {
+	email String maxlength(200) required
+	senha TextBlob required
+	token TextBlob
+	dataHoraAtivacao Instant
+	dataLimiteAcesso Instant
+	situacao SituacaoUsuarioEmpresaEnum
+}
+
+entity UsuarioGestao {
+	email String maxlength(200) required
+	senha TextBlob required
+	token TextBlob
+	dataHoraAtivacao Instant
+	dataLimiteAcesso Instant
+	situacao SituacaoUsuarioGestaoEnum
+}
+
 entity AdicionalEnquadramento {
 	valor Double
 }
@@ -147,8 +174,8 @@ entity AreaContabilContador {
 
 entity Denuncia {
 	titulo String required
-	  mensagem String required
-	  descricao TextBlob
+	mensagem String required
+	descricao TextBlob
 }
 
 entity Departamento {
@@ -161,19 +188,17 @@ entity DepartamentoContador {
 	descricaoExperiencia String
 	pontuacaoEntrevista Double
 	pontuacaoAvaliacao Double
-
 }
 
 entity DepartamentoEmpresa {
 	pontuacao Double
-	  depoimento String
-	  reclamacao String
+	depoimento String
+	reclamacao String
 }
 
 entity DepartamentoFuncionario {
 	cargo String	required
 }
-
 
 entity DescontoPlanoContabil {
 	percentual Double required
@@ -193,6 +218,7 @@ entity Empresa {
 	dataAbertura Instant
 	urlContratoSocial String
 	capitalSocial Double
+	tipoSegmento TipoSegmentoEnum
 }
 
 entity OpcaoRazaoSocialEmpresa {
@@ -409,33 +435,6 @@ entity Tributacao {
 	situacao SituacaoTributacaoEnum
 }
 
-entity UsuarioContador {
-	email String maxlength(200) required
-	senha TextBlob required
-	token TextBlob
-	dataHoraAtivacao Instant
-	dataLimiteAcesso Instant
-	situacao SituacaoUsuarioContadorEnum
-}
-
-entity UsuarioEmpresa {
-	email String maxlength(200) required
-	senha TextBlob required
-	token TextBlob
-	dataHoraAtivacao Instant
-	dataLimiteAcesso Instant
-	situacao SituacaoUsuarioEmpresaEnum
-}
-
-entity UsuarioGestao {
-	email String maxlength(200) required
-	senha TextBlob required
-	token TextBlob
-	dataHoraAtivacao Instant
-	dataLimiteAcesso Instant
-	situacao SituacaoUsuarioGestaoEnum
-}
-
 entity ValorBaseRamo {
 	valorBase Double required
 }
@@ -535,13 +534,13 @@ enum TipoRedeSocialEnum {
 }
 
 relationship OneToOne {
-    UsuarioErp  {Administrador(nome) required} to Administrador
 	Socio {Pessoa(nome) required} to Pessoa
 	Funcionario {Pessoa(nome) required} to Pessoa
 	Contador {Pessoa(nome) required} to Pessoa
 	Administrador {Pessoa(nome) required} to Pessoa
-	UsuarioContador {Contador(nome) required} to Contador
 	UsuarioEmpresa {Pessoa(nome) } to Pessoa
+	UsuarioContador {Contador(nome) required} to Contador
+    UsuarioErp  {Administrador(nome) required} to Administrador
 	UsuarioGestao  {Administrador(nome) required} to Administrador
 }
 
