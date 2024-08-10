@@ -73,7 +73,6 @@ entity AssinaturaEmpresa {
 	valorFaturamento Double
 	valorPlanoContabil Double
 	valorPlanoContabilComDesconto Double
-	valorPlanoContaAzulComDesconto Double
 	valorMensalidade Double
 	valorPeriodo Double
 	valorAno Double
@@ -175,9 +174,6 @@ entity DepartamentoFuncionario {
 	cargo String	required
 }
 
-entity DescontoPlanoContaAzul {
-	percentual Double
-}
 
 entity DescontoPlanoContabil {
 	percentual Double required
@@ -324,17 +320,7 @@ entity PlanoContabil {
 	situacao SituacaoPlanoContabilEnum
 }
 
-entity PlanoContaAzul {
-	nome String
-	valorBase Double
-	usuarios Integer
-	boletos Integer
-	notaFiscalProduto Integer
-	notaFiscalServico Integer
-	notaFiscalCe Integer
-	suporte Boolean
-	situacao SituacaoPlanoContaAzulEnum
-}
+
 
 entity PrazoAssinatura {
 	prazo String
@@ -464,7 +450,6 @@ entity CalculoPlanoAssinatura {
 	valorFaturamento Double
 	valorPlanoContabil Double
 	valorPlanoContabilComDesconto Double
-	valorPlanoContaAzulComDesconto Double
 	valorMensalidade Double
 	valorPeriodo Double
 	valorAno Double
@@ -512,9 +497,6 @@ enum SituacaoContratoEmpresaEnum {
 	PROPOSTA, ATIVO, INATIVO, PENDENTE, BLOQUEADO, CANCELADO, EXCLUIDO
 }
 
-enum SituacaoPlanoContaAzulEnum {
-	ATIVO, INATIVO, EXCLUIDO
-}
 
 enum SituacaoPlanoContabilEnum {
 	ATIVO, INATIVO, EXCLUIDO
@@ -570,21 +552,18 @@ relationship OneToMany {
 	Contador to AreaContabilContador{Contador(nome) required}
     PerfilContador to PerfilContadorAreaContabil{PerfilContador(perfil) required}
 	PeriodoPagamento to CalculoPlanoAssinatura{PeriodoPagamento(periodo) required}
-	PlanoContaAzul to CalculoPlanoAssinatura{PlanoContaAzul(nome) required}
+
 	PlanoContabil to CalculoPlanoAssinatura{PlanoContabil(nome) required}
 	Ramo to CalculoPlanoAssinatura{Ramo(nome) required}
 	Tributacao to CalculoPlanoAssinatura{Tributacao(nome) required}
 	DescontoPlanoContabil to CalculoPlanoAssinatura {DescontoPlanoContabil(percentual) required}
-	DescontoPlanoContaAzul to CalculoPlanoAssinatura {DescontoPlanoContaAzul(percentual) required}
+
 	AssinaturaEmpresa  to CalculoPlanoAssinatura{AssinaturaEmpresa(codigoAssinatura) required}
     AssinaturaEmpresa to Pagamento{AssinaturaEmpresa(codigoAssinatura) required}
 	PeriodoPagamento to AssinaturaEmpresa{PeriodoPagamento(periodo) required}
 	FormaDePagamento to AssinaturaEmpresa{FormaDePagamento(forma) required}
-	PlanoContaAzul to AssinaturaEmpresa{PlanoContaAzul(nome) required}
 	PlanoContabil to AssinaturaEmpresa{PlanoContabil(nome) required}
 	Empresa to AssinaturaEmpresa{Empresa(razaoSocial) required}
-	PlanoContaAzul to DescontoPlanoContaAzul{PlanoContaAzul(nome) required}
-	PeriodoPagamento to DescontoPlanoContaAzul{PeriodoPagamento(periodo) required}
 	PeriodoPagamento to DescontoPlanoContabil{PeriodoPagamento(periodo) required}
 	Ramo to Empresa{Ramo(nome) required}
 	Ramo to AdicionalRamo{Ramo(nome) required}
@@ -657,7 +636,6 @@ paginate
 	DepartamentoContador	,
 	DepartamentoEmpresa	,
 	DepartamentoFuncionario	,
-	DescontoPlanoContaAzul	,
 	DescontoPlanoContabil	,
 	DocumentoTarefa	,
 	Email	,
@@ -678,7 +656,6 @@ paginate
 	PeriodoPagamento	,
 	Pessoa	,
 	PlanoContabil	,
-	PlanoContaAzul	,
 	PrazoAssinatura	,
 	Profissao	,
 	Ramo	,
@@ -715,7 +692,6 @@ filter
 	DepartamentoContador	,
 	DepartamentoEmpresa	,
 	DepartamentoFuncionario	,
-	DescontoPlanoContaAzul	,
 	DescontoPlanoContabil	,
 	DocumentoTarefa,
 	Email	,
@@ -736,7 +712,6 @@ filter
 	PeriodoPagamento	,
 	Pessoa	,
 	PlanoContabil	,
-	PlanoContaAzul	,
 	PrazoAssinatura	,
 	Profissao	,
 	Ramo	,
