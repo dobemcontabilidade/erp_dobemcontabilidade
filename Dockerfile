@@ -1,13 +1,27 @@
-FROM maven:3.8.3 AS maven
-LABEL MAINTAINER="elton.jd.goncalves@gmail.com"
+# Use the official Maven image to build the Spring Boot app
+FROM maven:3.8.1-openjdk-17 as builder
 
+# Set the working directory
 WORKDIR /app
-COPY . /app
-RUN mvn package 
 
-FROM maven:3.8.3-openjdk-17
+# Copy the pom.xml and the project source code
+COPY pom.xml .
+COPY src ./src
 
-WORKDIR /opt/app
-COPY --from=maven /app/target/previsaotempo-0.0.1-SNAPSHOT.jar /opt/app/app.jar
+# Package the application
+RUN mvn clean package -Pprod -DskipTests
 
-ENTRYPOINT ["java","-jar","app.jar"]
+# Use a smaller base image to run the Spring Boot app
+FROM openjdk:17-jdk-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the JAR file from the builder stage
+COPY --from=builder /app/target/*.jar /app/erp_dobemcontabilidade.jar
+
+# Expose the application port
+EXPOSE 8080
+
+# Run the Spring Boot application
+CMD ["java", "-jar", "/app/erp_dobemcontabilidade.jar"]
