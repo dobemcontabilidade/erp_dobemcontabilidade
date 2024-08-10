@@ -9,8 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IPeriodoPagamento } from 'app/entities/periodo-pagamento/periodo-pagamento.model';
 import { PeriodoPagamentoService } from 'app/entities/periodo-pagamento/service/periodo-pagamento.service';
-import { IPlanoContaAzul } from 'app/entities/plano-conta-azul/plano-conta-azul.model';
-import { PlanoContaAzulService } from 'app/entities/plano-conta-azul/service/plano-conta-azul.service';
 import { IPlanoContabil } from 'app/entities/plano-contabil/plano-contabil.model';
 import { PlanoContabilService } from 'app/entities/plano-contabil/service/plano-contabil.service';
 import { IRamo } from 'app/entities/ramo/ramo.model';
@@ -19,10 +17,12 @@ import { ITributacao } from 'app/entities/tributacao/tributacao.model';
 import { TributacaoService } from 'app/entities/tributacao/service/tributacao.service';
 import { IDescontoPlanoContabil } from 'app/entities/desconto-plano-contabil/desconto-plano-contabil.model';
 import { DescontoPlanoContabilService } from 'app/entities/desconto-plano-contabil/service/desconto-plano-contabil.service';
-import { IDescontoPlanoContaAzul } from 'app/entities/desconto-plano-conta-azul/desconto-plano-conta-azul.model';
-import { DescontoPlanoContaAzulService } from 'app/entities/desconto-plano-conta-azul/service/desconto-plano-conta-azul.service';
 import { IAssinaturaEmpresa } from 'app/entities/assinatura-empresa/assinatura-empresa.model';
 import { AssinaturaEmpresaService } from 'app/entities/assinatura-empresa/service/assinatura-empresa.service';
+import { IDescontoPlanoContaAzul } from 'app/entities/desconto-plano-conta-azul/desconto-plano-conta-azul.model';
+import { DescontoPlanoContaAzulService } from 'app/entities/desconto-plano-conta-azul/service/desconto-plano-conta-azul.service';
+import { IPlanoContaAzul } from 'app/entities/plano-conta-azul/plano-conta-azul.model';
+import { PlanoContaAzulService } from 'app/entities/plano-conta-azul/service/plano-conta-azul.service';
 import { CalculoPlanoAssinaturaService } from '../service/calculo-plano-assinatura.service';
 import { ICalculoPlanoAssinatura } from '../calculo-plano-assinatura.model';
 import { CalculoPlanoAssinaturaFormService, CalculoPlanoAssinaturaFormGroup } from './calculo-plano-assinatura-form.service';
@@ -38,24 +38,24 @@ export class CalculoPlanoAssinaturaUpdateComponent implements OnInit {
   calculoPlanoAssinatura: ICalculoPlanoAssinatura | null = null;
 
   periodoPagamentosSharedCollection: IPeriodoPagamento[] = [];
-  planoContaAzulsSharedCollection: IPlanoContaAzul[] = [];
   planoContabilsSharedCollection: IPlanoContabil[] = [];
   ramosSharedCollection: IRamo[] = [];
   tributacaosSharedCollection: ITributacao[] = [];
   descontoPlanoContabilsSharedCollection: IDescontoPlanoContabil[] = [];
-  descontoPlanoContaAzulsSharedCollection: IDescontoPlanoContaAzul[] = [];
   assinaturaEmpresasSharedCollection: IAssinaturaEmpresa[] = [];
+  descontoPlanoContaAzulsSharedCollection: IDescontoPlanoContaAzul[] = [];
+  planoContaAzulsSharedCollection: IPlanoContaAzul[] = [];
 
   protected calculoPlanoAssinaturaService = inject(CalculoPlanoAssinaturaService);
   protected calculoPlanoAssinaturaFormService = inject(CalculoPlanoAssinaturaFormService);
   protected periodoPagamentoService = inject(PeriodoPagamentoService);
-  protected planoContaAzulService = inject(PlanoContaAzulService);
   protected planoContabilService = inject(PlanoContabilService);
   protected ramoService = inject(RamoService);
   protected tributacaoService = inject(TributacaoService);
   protected descontoPlanoContabilService = inject(DescontoPlanoContabilService);
-  protected descontoPlanoContaAzulService = inject(DescontoPlanoContaAzulService);
   protected assinaturaEmpresaService = inject(AssinaturaEmpresaService);
+  protected descontoPlanoContaAzulService = inject(DescontoPlanoContaAzulService);
+  protected planoContaAzulService = inject(PlanoContaAzulService);
   protected activatedRoute = inject(ActivatedRoute);
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -63,9 +63,6 @@ export class CalculoPlanoAssinaturaUpdateComponent implements OnInit {
 
   comparePeriodoPagamento = (o1: IPeriodoPagamento | null, o2: IPeriodoPagamento | null): boolean =>
     this.periodoPagamentoService.comparePeriodoPagamento(o1, o2);
-
-  comparePlanoContaAzul = (o1: IPlanoContaAzul | null, o2: IPlanoContaAzul | null): boolean =>
-    this.planoContaAzulService.comparePlanoContaAzul(o1, o2);
 
   comparePlanoContabil = (o1: IPlanoContabil | null, o2: IPlanoContabil | null): boolean =>
     this.planoContabilService.comparePlanoContabil(o1, o2);
@@ -77,11 +74,14 @@ export class CalculoPlanoAssinaturaUpdateComponent implements OnInit {
   compareDescontoPlanoContabil = (o1: IDescontoPlanoContabil | null, o2: IDescontoPlanoContabil | null): boolean =>
     this.descontoPlanoContabilService.compareDescontoPlanoContabil(o1, o2);
 
+  compareAssinaturaEmpresa = (o1: IAssinaturaEmpresa | null, o2: IAssinaturaEmpresa | null): boolean =>
+    this.assinaturaEmpresaService.compareAssinaturaEmpresa(o1, o2);
+
   compareDescontoPlanoContaAzul = (o1: IDescontoPlanoContaAzul | null, o2: IDescontoPlanoContaAzul | null): boolean =>
     this.descontoPlanoContaAzulService.compareDescontoPlanoContaAzul(o1, o2);
 
-  compareAssinaturaEmpresa = (o1: IAssinaturaEmpresa | null, o2: IAssinaturaEmpresa | null): boolean =>
-    this.assinaturaEmpresaService.compareAssinaturaEmpresa(o1, o2);
+  comparePlanoContaAzul = (o1: IPlanoContaAzul | null, o2: IPlanoContaAzul | null): boolean =>
+    this.planoContaAzulService.comparePlanoContaAzul(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ calculoPlanoAssinatura }) => {
@@ -135,10 +135,6 @@ export class CalculoPlanoAssinaturaUpdateComponent implements OnInit {
       this.periodoPagamentosSharedCollection,
       calculoPlanoAssinatura.periodoPagamento,
     );
-    this.planoContaAzulsSharedCollection = this.planoContaAzulService.addPlanoContaAzulToCollectionIfMissing<IPlanoContaAzul>(
-      this.planoContaAzulsSharedCollection,
-      calculoPlanoAssinatura.planoContaAzul,
-    );
     this.planoContabilsSharedCollection = this.planoContabilService.addPlanoContabilToCollectionIfMissing<IPlanoContabil>(
       this.planoContabilsSharedCollection,
       calculoPlanoAssinatura.planoContabil,
@@ -156,14 +152,18 @@ export class CalculoPlanoAssinaturaUpdateComponent implements OnInit {
         this.descontoPlanoContabilsSharedCollection,
         calculoPlanoAssinatura.descontoPlanoContabil,
       );
+    this.assinaturaEmpresasSharedCollection = this.assinaturaEmpresaService.addAssinaturaEmpresaToCollectionIfMissing<IAssinaturaEmpresa>(
+      this.assinaturaEmpresasSharedCollection,
+      calculoPlanoAssinatura.assinaturaEmpresa,
+    );
     this.descontoPlanoContaAzulsSharedCollection =
       this.descontoPlanoContaAzulService.addDescontoPlanoContaAzulToCollectionIfMissing<IDescontoPlanoContaAzul>(
         this.descontoPlanoContaAzulsSharedCollection,
         calculoPlanoAssinatura.descontoPlanoContaAzul,
       );
-    this.assinaturaEmpresasSharedCollection = this.assinaturaEmpresaService.addAssinaturaEmpresaToCollectionIfMissing<IAssinaturaEmpresa>(
-      this.assinaturaEmpresasSharedCollection,
-      calculoPlanoAssinatura.assinaturaEmpresa,
+    this.planoContaAzulsSharedCollection = this.planoContaAzulService.addPlanoContaAzulToCollectionIfMissing<IPlanoContaAzul>(
+      this.planoContaAzulsSharedCollection,
+      calculoPlanoAssinatura.planoContaAzul,
     );
   }
 
@@ -180,19 +180,6 @@ export class CalculoPlanoAssinaturaUpdateComponent implements OnInit {
         ),
       )
       .subscribe((periodoPagamentos: IPeriodoPagamento[]) => (this.periodoPagamentosSharedCollection = periodoPagamentos));
-
-    this.planoContaAzulService
-      .query()
-      .pipe(map((res: HttpResponse<IPlanoContaAzul[]>) => res.body ?? []))
-      .pipe(
-        map((planoContaAzuls: IPlanoContaAzul[]) =>
-          this.planoContaAzulService.addPlanoContaAzulToCollectionIfMissing<IPlanoContaAzul>(
-            planoContaAzuls,
-            this.calculoPlanoAssinatura?.planoContaAzul,
-          ),
-        ),
-      )
-      .subscribe((planoContaAzuls: IPlanoContaAzul[]) => (this.planoContaAzulsSharedCollection = planoContaAzuls));
 
     this.planoContabilService
       .query()
@@ -238,6 +225,19 @@ export class CalculoPlanoAssinaturaUpdateComponent implements OnInit {
         (descontoPlanoContabils: IDescontoPlanoContabil[]) => (this.descontoPlanoContabilsSharedCollection = descontoPlanoContabils),
       );
 
+    this.assinaturaEmpresaService
+      .query()
+      .pipe(map((res: HttpResponse<IAssinaturaEmpresa[]>) => res.body ?? []))
+      .pipe(
+        map((assinaturaEmpresas: IAssinaturaEmpresa[]) =>
+          this.assinaturaEmpresaService.addAssinaturaEmpresaToCollectionIfMissing<IAssinaturaEmpresa>(
+            assinaturaEmpresas,
+            this.calculoPlanoAssinatura?.assinaturaEmpresa,
+          ),
+        ),
+      )
+      .subscribe((assinaturaEmpresas: IAssinaturaEmpresa[]) => (this.assinaturaEmpresasSharedCollection = assinaturaEmpresas));
+
     this.descontoPlanoContaAzulService
       .query()
       .pipe(map((res: HttpResponse<IDescontoPlanoContaAzul[]>) => res.body ?? []))
@@ -253,17 +253,17 @@ export class CalculoPlanoAssinaturaUpdateComponent implements OnInit {
         (descontoPlanoContaAzuls: IDescontoPlanoContaAzul[]) => (this.descontoPlanoContaAzulsSharedCollection = descontoPlanoContaAzuls),
       );
 
-    this.assinaturaEmpresaService
+    this.planoContaAzulService
       .query()
-      .pipe(map((res: HttpResponse<IAssinaturaEmpresa[]>) => res.body ?? []))
+      .pipe(map((res: HttpResponse<IPlanoContaAzul[]>) => res.body ?? []))
       .pipe(
-        map((assinaturaEmpresas: IAssinaturaEmpresa[]) =>
-          this.assinaturaEmpresaService.addAssinaturaEmpresaToCollectionIfMissing<IAssinaturaEmpresa>(
-            assinaturaEmpresas,
-            this.calculoPlanoAssinatura?.assinaturaEmpresa,
+        map((planoContaAzuls: IPlanoContaAzul[]) =>
+          this.planoContaAzulService.addPlanoContaAzulToCollectionIfMissing<IPlanoContaAzul>(
+            planoContaAzuls,
+            this.calculoPlanoAssinatura?.planoContaAzul,
           ),
         ),
       )
-      .subscribe((assinaturaEmpresas: IAssinaturaEmpresa[]) => (this.assinaturaEmpresasSharedCollection = assinaturaEmpresas));
+      .subscribe((planoContaAzuls: IPlanoContaAzul[]) => (this.planoContaAzulsSharedCollection = planoContaAzuls));
   }
 }

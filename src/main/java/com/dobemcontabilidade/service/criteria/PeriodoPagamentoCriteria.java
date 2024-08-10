@@ -34,8 +34,6 @@ public class PeriodoPagamentoCriteria implements Serializable, Criteria {
 
     private LongFilter assinaturaEmpresaId;
 
-    private LongFilter descontoPlanoContaAzulId;
-
     private LongFilter descontoPlanoContabilId;
 
     private Boolean distinct;
@@ -49,7 +47,6 @@ public class PeriodoPagamentoCriteria implements Serializable, Criteria {
         this.idPlanGnet = other.optionalIdPlanGnet().map(StringFilter::copy).orElse(null);
         this.calculoPlanoAssinaturaId = other.optionalCalculoPlanoAssinaturaId().map(LongFilter::copy).orElse(null);
         this.assinaturaEmpresaId = other.optionalAssinaturaEmpresaId().map(LongFilter::copy).orElse(null);
-        this.descontoPlanoContaAzulId = other.optionalDescontoPlanoContaAzulId().map(LongFilter::copy).orElse(null);
         this.descontoPlanoContabilId = other.optionalDescontoPlanoContabilId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
     }
@@ -173,25 +170,6 @@ public class PeriodoPagamentoCriteria implements Serializable, Criteria {
         this.assinaturaEmpresaId = assinaturaEmpresaId;
     }
 
-    public LongFilter getDescontoPlanoContaAzulId() {
-        return descontoPlanoContaAzulId;
-    }
-
-    public Optional<LongFilter> optionalDescontoPlanoContaAzulId() {
-        return Optional.ofNullable(descontoPlanoContaAzulId);
-    }
-
-    public LongFilter descontoPlanoContaAzulId() {
-        if (descontoPlanoContaAzulId == null) {
-            setDescontoPlanoContaAzulId(new LongFilter());
-        }
-        return descontoPlanoContaAzulId;
-    }
-
-    public void setDescontoPlanoContaAzulId(LongFilter descontoPlanoContaAzulId) {
-        this.descontoPlanoContaAzulId = descontoPlanoContaAzulId;
-    }
-
     public LongFilter getDescontoPlanoContabilId() {
         return descontoPlanoContabilId;
     }
@@ -246,7 +224,6 @@ public class PeriodoPagamentoCriteria implements Serializable, Criteria {
             Objects.equals(idPlanGnet, that.idPlanGnet) &&
             Objects.equals(calculoPlanoAssinaturaId, that.calculoPlanoAssinaturaId) &&
             Objects.equals(assinaturaEmpresaId, that.assinaturaEmpresaId) &&
-            Objects.equals(descontoPlanoContaAzulId, that.descontoPlanoContaAzulId) &&
             Objects.equals(descontoPlanoContabilId, that.descontoPlanoContabilId) &&
             Objects.equals(distinct, that.distinct)
         );
@@ -261,7 +238,6 @@ public class PeriodoPagamentoCriteria implements Serializable, Criteria {
             idPlanGnet,
             calculoPlanoAssinaturaId,
             assinaturaEmpresaId,
-            descontoPlanoContaAzulId,
             descontoPlanoContabilId,
             distinct
         );
@@ -277,7 +253,6 @@ public class PeriodoPagamentoCriteria implements Serializable, Criteria {
             optionalIdPlanGnet().map(f -> "idPlanGnet=" + f + ", ").orElse("") +
             optionalCalculoPlanoAssinaturaId().map(f -> "calculoPlanoAssinaturaId=" + f + ", ").orElse("") +
             optionalAssinaturaEmpresaId().map(f -> "assinaturaEmpresaId=" + f + ", ").orElse("") +
-            optionalDescontoPlanoContaAzulId().map(f -> "descontoPlanoContaAzulId=" + f + ", ").orElse("") +
             optionalDescontoPlanoContabilId().map(f -> "descontoPlanoContabilId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +
         "}";

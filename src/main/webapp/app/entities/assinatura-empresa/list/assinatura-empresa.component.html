@@ -109,15 +109,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="valorPlanoContaAzulComDesconto">
-              <div class="d-flex">
-                <span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorPlanoContaAzulComDesconto"
-                  >Valor Plano Conta Azul Com Desconto</span
-                >
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col" jhiSortBy="valorMensalidade">
               <div class="d-flex">
                 <span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorMensalidade">Valor Mensalidade</span>
@@ -186,12 +177,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="planoContaAzul.nome">
-              <div class="d-flex">
-                <span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContaAzul">Plano Conta Azul</span>
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col" jhiSortBy="planoContabil.nome">
               <div class="d-flex">
                 <span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContabil">Plano Contabil</span>
@@ -201,6 +186,12 @@
             <th scope="col" jhiSortBy="empresa.razaoSocial">
               <div class="d-flex">
                 <span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.empresa">Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="planoContaAzul.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContaAzul">Plano Conta Azul</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
@@ -222,7 +213,6 @@
               <td>{{ assinaturaEmpresa.valorFaturamento }}</td>
               <td>{{ assinaturaEmpresa.valorPlanoContabil }}</td>
               <td>{{ assinaturaEmpresa.valorPlanoContabilComDesconto }}</td>
-              <td>{{ assinaturaEmpresa.valorPlanoContaAzulComDesconto }}</td>
               <td>{{ assinaturaEmpresa.valorMensalidade }}</td>
               <td>{{ assinaturaEmpresa.valorPeriodo }}</td>
               <td>{{ assinaturaEmpresa.valorAno }}</td>
@@ -269,15 +259,6 @@
                 }
               </td>
               <td>
-                @if (assinaturaEmpresa.planoContaAzul) {
-                  <div>
-                    <a [routerLink]="['/plano-conta-azul', assinaturaEmpresa.planoContaAzul.id, 'view']">{{
-                      assinaturaEmpresa.planoContaAzul.nome
-                    }}</a>
-                  </div>
-                }
-              </td>
-              <td>
                 @if (assinaturaEmpresa.planoContabil) {
                   <div>
                     <a [routerLink]="['/plano-contabil', assinaturaEmpresa.planoContabil.id, 'view']">{{
@@ -290,6 +271,15 @@
                 @if (assinaturaEmpresa.empresa) {
                   <div>
                     <a [routerLink]="['/empresa', assinaturaEmpresa.empresa.id, 'view']">{{ assinaturaEmpresa.empresa.razaoSocial }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (assinaturaEmpresa.planoContaAzul) {
+                  <div>
+                    <a [routerLink]="['/plano-conta-azul', assinaturaEmpresa.planoContaAzul.id, 'view']">{{
+                      assinaturaEmpresa.planoContaAzul.id
+                    }}</a>
                   </div>
                 }
               </td>

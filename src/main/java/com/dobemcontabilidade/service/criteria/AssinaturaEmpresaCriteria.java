@@ -78,8 +78,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
 
     private DoubleFilter valorPlanoContabilComDesconto;
 
-    private DoubleFilter valorPlanoContaAzulComDesconto;
-
     private DoubleFilter valorMensalidade;
 
     private DoubleFilter valorPeriodo;
@@ -104,11 +102,11 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
 
     private LongFilter formaDePagamentoId;
 
-    private LongFilter planoContaAzulId;
-
     private LongFilter planoContabilId;
 
     private LongFilter empresaId;
+
+    private LongFilter planoContaAzulId;
 
     private Boolean distinct;
 
@@ -125,7 +123,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
         this.valorFaturamento = other.optionalValorFaturamento().map(DoubleFilter::copy).orElse(null);
         this.valorPlanoContabil = other.optionalValorPlanoContabil().map(DoubleFilter::copy).orElse(null);
         this.valorPlanoContabilComDesconto = other.optionalValorPlanoContabilComDesconto().map(DoubleFilter::copy).orElse(null);
-        this.valorPlanoContaAzulComDesconto = other.optionalValorPlanoContaAzulComDesconto().map(DoubleFilter::copy).orElse(null);
         this.valorMensalidade = other.optionalValorMensalidade().map(DoubleFilter::copy).orElse(null);
         this.valorPeriodo = other.optionalValorPeriodo().map(DoubleFilter::copy).orElse(null);
         this.valorAno = other.optionalValorAno().map(DoubleFilter::copy).orElse(null);
@@ -138,9 +135,9 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
         this.pagamentoId = other.optionalPagamentoId().map(LongFilter::copy).orElse(null);
         this.periodoPagamentoId = other.optionalPeriodoPagamentoId().map(LongFilter::copy).orElse(null);
         this.formaDePagamentoId = other.optionalFormaDePagamentoId().map(LongFilter::copy).orElse(null);
-        this.planoContaAzulId = other.optionalPlanoContaAzulId().map(LongFilter::copy).orElse(null);
         this.planoContabilId = other.optionalPlanoContabilId().map(LongFilter::copy).orElse(null);
         this.empresaId = other.optionalEmpresaId().map(LongFilter::copy).orElse(null);
+        this.planoContaAzulId = other.optionalPlanoContaAzulId().map(LongFilter::copy).orElse(null);
         this.distinct = other.distinct;
     }
 
@@ -337,25 +334,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
 
     public void setValorPlanoContabilComDesconto(DoubleFilter valorPlanoContabilComDesconto) {
         this.valorPlanoContabilComDesconto = valorPlanoContabilComDesconto;
-    }
-
-    public DoubleFilter getValorPlanoContaAzulComDesconto() {
-        return valorPlanoContaAzulComDesconto;
-    }
-
-    public Optional<DoubleFilter> optionalValorPlanoContaAzulComDesconto() {
-        return Optional.ofNullable(valorPlanoContaAzulComDesconto);
-    }
-
-    public DoubleFilter valorPlanoContaAzulComDesconto() {
-        if (valorPlanoContaAzulComDesconto == null) {
-            setValorPlanoContaAzulComDesconto(new DoubleFilter());
-        }
-        return valorPlanoContaAzulComDesconto;
-    }
-
-    public void setValorPlanoContaAzulComDesconto(DoubleFilter valorPlanoContaAzulComDesconto) {
-        this.valorPlanoContaAzulComDesconto = valorPlanoContaAzulComDesconto;
     }
 
     public DoubleFilter getValorMensalidade() {
@@ -586,25 +564,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
         this.formaDePagamentoId = formaDePagamentoId;
     }
 
-    public LongFilter getPlanoContaAzulId() {
-        return planoContaAzulId;
-    }
-
-    public Optional<LongFilter> optionalPlanoContaAzulId() {
-        return Optional.ofNullable(planoContaAzulId);
-    }
-
-    public LongFilter planoContaAzulId() {
-        if (planoContaAzulId == null) {
-            setPlanoContaAzulId(new LongFilter());
-        }
-        return planoContaAzulId;
-    }
-
-    public void setPlanoContaAzulId(LongFilter planoContaAzulId) {
-        this.planoContaAzulId = planoContaAzulId;
-    }
-
     public LongFilter getPlanoContabilId() {
         return planoContabilId;
     }
@@ -641,6 +600,25 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
 
     public void setEmpresaId(LongFilter empresaId) {
         this.empresaId = empresaId;
+    }
+
+    public LongFilter getPlanoContaAzulId() {
+        return planoContaAzulId;
+    }
+
+    public Optional<LongFilter> optionalPlanoContaAzulId() {
+        return Optional.ofNullable(planoContaAzulId);
+    }
+
+    public LongFilter planoContaAzulId() {
+        if (planoContaAzulId == null) {
+            setPlanoContaAzulId(new LongFilter());
+        }
+        return planoContaAzulId;
+    }
+
+    public void setPlanoContaAzulId(LongFilter planoContaAzulId) {
+        this.planoContaAzulId = planoContaAzulId;
     }
 
     public Boolean getDistinct() {
@@ -682,7 +660,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
             Objects.equals(valorFaturamento, that.valorFaturamento) &&
             Objects.equals(valorPlanoContabil, that.valorPlanoContabil) &&
             Objects.equals(valorPlanoContabilComDesconto, that.valorPlanoContabilComDesconto) &&
-            Objects.equals(valorPlanoContaAzulComDesconto, that.valorPlanoContaAzulComDesconto) &&
             Objects.equals(valorMensalidade, that.valorMensalidade) &&
             Objects.equals(valorPeriodo, that.valorPeriodo) &&
             Objects.equals(valorAno, that.valorAno) &&
@@ -695,9 +672,9 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
             Objects.equals(pagamentoId, that.pagamentoId) &&
             Objects.equals(periodoPagamentoId, that.periodoPagamentoId) &&
             Objects.equals(formaDePagamentoId, that.formaDePagamentoId) &&
-            Objects.equals(planoContaAzulId, that.planoContaAzulId) &&
             Objects.equals(planoContabilId, that.planoContabilId) &&
             Objects.equals(empresaId, that.empresaId) &&
+            Objects.equals(planoContaAzulId, that.planoContaAzulId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -715,7 +692,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
             valorFaturamento,
             valorPlanoContabil,
             valorPlanoContabilComDesconto,
-            valorPlanoContaAzulComDesconto,
             valorMensalidade,
             valorPeriodo,
             valorAno,
@@ -728,9 +704,9 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
             pagamentoId,
             periodoPagamentoId,
             formaDePagamentoId,
-            planoContaAzulId,
             planoContabilId,
             empresaId,
+            planoContaAzulId,
             distinct
         );
     }
@@ -749,7 +725,6 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
             optionalValorFaturamento().map(f -> "valorFaturamento=" + f + ", ").orElse("") +
             optionalValorPlanoContabil().map(f -> "valorPlanoContabil=" + f + ", ").orElse("") +
             optionalValorPlanoContabilComDesconto().map(f -> "valorPlanoContabilComDesconto=" + f + ", ").orElse("") +
-            optionalValorPlanoContaAzulComDesconto().map(f -> "valorPlanoContaAzulComDesconto=" + f + ", ").orElse("") +
             optionalValorMensalidade().map(f -> "valorMensalidade=" + f + ", ").orElse("") +
             optionalValorPeriodo().map(f -> "valorPeriodo=" + f + ", ").orElse("") +
             optionalValorAno().map(f -> "valorAno=" + f + ", ").orElse("") +
@@ -762,9 +737,9 @@ public class AssinaturaEmpresaCriteria implements Serializable, Criteria {
             optionalPagamentoId().map(f -> "pagamentoId=" + f + ", ").orElse("") +
             optionalPeriodoPagamentoId().map(f -> "periodoPagamentoId=" + f + ", ").orElse("") +
             optionalFormaDePagamentoId().map(f -> "formaDePagamentoId=" + f + ", ").orElse("") +
-            optionalPlanoContaAzulId().map(f -> "planoContaAzulId=" + f + ", ").orElse("") +
             optionalPlanoContabilId().map(f -> "planoContabilId=" + f + ", ").orElse("") +
             optionalEmpresaId().map(f -> "empresaId=" + f + ", ").orElse("") +
+            optionalPlanoContaAzulId().map(f -> "planoContaAzulId=" + f + ", ").orElse("") +
             optionalDistinct().map(f -> "distinct=" + f + ", ").orElse("") +
         "}";
     }

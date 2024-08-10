@@ -86,10 +86,6 @@ class CalculoPlanoAssinaturaResourceIT {
     private static final Double UPDATED_VALOR_PLANO_CONTABIL_COM_DESCONTO = 2D;
     private static final Double SMALLER_VALOR_PLANO_CONTABIL_COM_DESCONTO = 1D - 1D;
 
-    private static final Double DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO = 1D;
-    private static final Double UPDATED_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO = 2D;
-    private static final Double SMALLER_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO = 1D - 1D;
-
     private static final Double DEFAULT_VALOR_MENSALIDADE = 1D;
     private static final Double UPDATED_VALOR_MENSALIDADE = 2D;
     private static final Double SMALLER_VALOR_MENSALIDADE = 1D - 1D;
@@ -150,7 +146,6 @@ class CalculoPlanoAssinaturaResourceIT {
             .valorFaturamento(DEFAULT_VALOR_FATURAMENTO)
             .valorPlanoContabil(DEFAULT_VALOR_PLANO_CONTABIL)
             .valorPlanoContabilComDesconto(DEFAULT_VALOR_PLANO_CONTABIL_COM_DESCONTO)
-            .valorPlanoContaAzulComDesconto(DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO)
             .valorMensalidade(DEFAULT_VALOR_MENSALIDADE)
             .valorPeriodo(DEFAULT_VALOR_PERIODO)
             .valorAno(DEFAULT_VALOR_ANO);
@@ -164,16 +159,6 @@ class CalculoPlanoAssinaturaResourceIT {
             periodoPagamento = TestUtil.findAll(em, PeriodoPagamento.class).get(0);
         }
         calculoPlanoAssinatura.setPeriodoPagamento(periodoPagamento);
-        // Add required entity
-        PlanoContaAzul planoContaAzul;
-        if (TestUtil.findAll(em, PlanoContaAzul.class).isEmpty()) {
-            planoContaAzul = PlanoContaAzulResourceIT.createEntity(em);
-            em.persist(planoContaAzul);
-            em.flush();
-        } else {
-            planoContaAzul = TestUtil.findAll(em, PlanoContaAzul.class).get(0);
-        }
-        calculoPlanoAssinatura.setPlanoContaAzul(planoContaAzul);
         // Add required entity
         PlanoContabil planoContabil;
         if (TestUtil.findAll(em, PlanoContabil.class).isEmpty()) {
@@ -215,16 +200,6 @@ class CalculoPlanoAssinaturaResourceIT {
         }
         calculoPlanoAssinatura.setDescontoPlanoContabil(descontoPlanoContabil);
         // Add required entity
-        DescontoPlanoContaAzul descontoPlanoContaAzul;
-        if (TestUtil.findAll(em, DescontoPlanoContaAzul.class).isEmpty()) {
-            descontoPlanoContaAzul = DescontoPlanoContaAzulResourceIT.createEntity(em);
-            em.persist(descontoPlanoContaAzul);
-            em.flush();
-        } else {
-            descontoPlanoContaAzul = TestUtil.findAll(em, DescontoPlanoContaAzul.class).get(0);
-        }
-        calculoPlanoAssinatura.setDescontoPlanoContaAzul(descontoPlanoContaAzul);
-        // Add required entity
         AssinaturaEmpresa assinaturaEmpresa;
         if (TestUtil.findAll(em, AssinaturaEmpresa.class).isEmpty()) {
             assinaturaEmpresa = AssinaturaEmpresaResourceIT.createEntity(em);
@@ -254,7 +229,6 @@ class CalculoPlanoAssinaturaResourceIT {
             .valorFaturamento(UPDATED_VALOR_FATURAMENTO)
             .valorPlanoContabil(UPDATED_VALOR_PLANO_CONTABIL)
             .valorPlanoContabilComDesconto(UPDATED_VALOR_PLANO_CONTABIL_COM_DESCONTO)
-            .valorPlanoContaAzulComDesconto(UPDATED_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO)
             .valorMensalidade(UPDATED_VALOR_MENSALIDADE)
             .valorPeriodo(UPDATED_VALOR_PERIODO)
             .valorAno(UPDATED_VALOR_ANO);
@@ -268,16 +242,6 @@ class CalculoPlanoAssinaturaResourceIT {
             periodoPagamento = TestUtil.findAll(em, PeriodoPagamento.class).get(0);
         }
         calculoPlanoAssinatura.setPeriodoPagamento(periodoPagamento);
-        // Add required entity
-        PlanoContaAzul planoContaAzul;
-        if (TestUtil.findAll(em, PlanoContaAzul.class).isEmpty()) {
-            planoContaAzul = PlanoContaAzulResourceIT.createUpdatedEntity(em);
-            em.persist(planoContaAzul);
-            em.flush();
-        } else {
-            planoContaAzul = TestUtil.findAll(em, PlanoContaAzul.class).get(0);
-        }
-        calculoPlanoAssinatura.setPlanoContaAzul(planoContaAzul);
         // Add required entity
         PlanoContabil planoContabil;
         if (TestUtil.findAll(em, PlanoContabil.class).isEmpty()) {
@@ -318,16 +282,6 @@ class CalculoPlanoAssinaturaResourceIT {
             descontoPlanoContabil = TestUtil.findAll(em, DescontoPlanoContabil.class).get(0);
         }
         calculoPlanoAssinatura.setDescontoPlanoContabil(descontoPlanoContabil);
-        // Add required entity
-        DescontoPlanoContaAzul descontoPlanoContaAzul;
-        if (TestUtil.findAll(em, DescontoPlanoContaAzul.class).isEmpty()) {
-            descontoPlanoContaAzul = DescontoPlanoContaAzulResourceIT.createUpdatedEntity(em);
-            em.persist(descontoPlanoContaAzul);
-            em.flush();
-        } else {
-            descontoPlanoContaAzul = TestUtil.findAll(em, DescontoPlanoContaAzul.class).get(0);
-        }
-        calculoPlanoAssinatura.setDescontoPlanoContaAzul(descontoPlanoContaAzul);
         // Add required entity
         AssinaturaEmpresa assinaturaEmpresa;
         if (TestUtil.findAll(em, AssinaturaEmpresa.class).isEmpty()) {
@@ -424,9 +378,6 @@ class CalculoPlanoAssinaturaResourceIT {
             .andExpect(
                 jsonPath("$.[*].valorPlanoContabilComDesconto").value(hasItem(DEFAULT_VALOR_PLANO_CONTABIL_COM_DESCONTO.doubleValue()))
             )
-            .andExpect(
-                jsonPath("$.[*].valorPlanoContaAzulComDesconto").value(hasItem(DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO.doubleValue()))
-            )
             .andExpect(jsonPath("$.[*].valorMensalidade").value(hasItem(DEFAULT_VALOR_MENSALIDADE.doubleValue())))
             .andExpect(jsonPath("$.[*].valorPeriodo").value(hasItem(DEFAULT_VALOR_PERIODO.doubleValue())))
             .andExpect(jsonPath("$.[*].valorAno").value(hasItem(DEFAULT_VALOR_ANO.doubleValue())));
@@ -470,7 +421,6 @@ class CalculoPlanoAssinaturaResourceIT {
             .andExpect(jsonPath("$.valorFaturamento").value(DEFAULT_VALOR_FATURAMENTO.doubleValue()))
             .andExpect(jsonPath("$.valorPlanoContabil").value(DEFAULT_VALOR_PLANO_CONTABIL.doubleValue()))
             .andExpect(jsonPath("$.valorPlanoContabilComDesconto").value(DEFAULT_VALOR_PLANO_CONTABIL_COM_DESCONTO.doubleValue()))
-            .andExpect(jsonPath("$.valorPlanoContaAzulComDesconto").value(DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO.doubleValue()))
             .andExpect(jsonPath("$.valorMensalidade").value(DEFAULT_VALOR_MENSALIDADE.doubleValue()))
             .andExpect(jsonPath("$.valorPeriodo").value(DEFAULT_VALOR_PERIODO.doubleValue()))
             .andExpect(jsonPath("$.valorAno").value(DEFAULT_VALOR_ANO.doubleValue()));
@@ -1256,100 +1206,6 @@ class CalculoPlanoAssinaturaResourceIT {
 
     @Test
     @Transactional
-    void getAllCalculoPlanoAssinaturasByValorPlanoContaAzulComDescontoIsEqualToSomething() throws Exception {
-        // Initialize the database
-        insertedCalculoPlanoAssinatura = calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-
-        // Get all the calculoPlanoAssinaturaList where valorPlanoContaAzulComDesconto equals to
-        defaultCalculoPlanoAssinaturaFiltering(
-            "valorPlanoContaAzulComDesconto.equals=" + DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO,
-            "valorPlanoContaAzulComDesconto.equals=" + UPDATED_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO
-        );
-    }
-
-    @Test
-    @Transactional
-    void getAllCalculoPlanoAssinaturasByValorPlanoContaAzulComDescontoIsInShouldWork() throws Exception {
-        // Initialize the database
-        insertedCalculoPlanoAssinatura = calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-
-        // Get all the calculoPlanoAssinaturaList where valorPlanoContaAzulComDesconto in
-        defaultCalculoPlanoAssinaturaFiltering(
-            "valorPlanoContaAzulComDesconto.in=" +
-            DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO +
-            "," +
-            UPDATED_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO,
-            "valorPlanoContaAzulComDesconto.in=" + UPDATED_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO
-        );
-    }
-
-    @Test
-    @Transactional
-    void getAllCalculoPlanoAssinaturasByValorPlanoContaAzulComDescontoIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        insertedCalculoPlanoAssinatura = calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-
-        // Get all the calculoPlanoAssinaturaList where valorPlanoContaAzulComDesconto is not null
-        defaultCalculoPlanoAssinaturaFiltering(
-            "valorPlanoContaAzulComDesconto.specified=true",
-            "valorPlanoContaAzulComDesconto.specified=false"
-        );
-    }
-
-    @Test
-    @Transactional
-    void getAllCalculoPlanoAssinaturasByValorPlanoContaAzulComDescontoIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        insertedCalculoPlanoAssinatura = calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-
-        // Get all the calculoPlanoAssinaturaList where valorPlanoContaAzulComDesconto is greater than or equal to
-        defaultCalculoPlanoAssinaturaFiltering(
-            "valorPlanoContaAzulComDesconto.greaterThanOrEqual=" + DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO,
-            "valorPlanoContaAzulComDesconto.greaterThanOrEqual=" + UPDATED_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO
-        );
-    }
-
-    @Test
-    @Transactional
-    void getAllCalculoPlanoAssinaturasByValorPlanoContaAzulComDescontoIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        insertedCalculoPlanoAssinatura = calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-
-        // Get all the calculoPlanoAssinaturaList where valorPlanoContaAzulComDesconto is less than or equal to
-        defaultCalculoPlanoAssinaturaFiltering(
-            "valorPlanoContaAzulComDesconto.lessThanOrEqual=" + DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO,
-            "valorPlanoContaAzulComDesconto.lessThanOrEqual=" + SMALLER_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO
-        );
-    }
-
-    @Test
-    @Transactional
-    void getAllCalculoPlanoAssinaturasByValorPlanoContaAzulComDescontoIsLessThanSomething() throws Exception {
-        // Initialize the database
-        insertedCalculoPlanoAssinatura = calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-
-        // Get all the calculoPlanoAssinaturaList where valorPlanoContaAzulComDesconto is less than
-        defaultCalculoPlanoAssinaturaFiltering(
-            "valorPlanoContaAzulComDesconto.lessThan=" + UPDATED_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO,
-            "valorPlanoContaAzulComDesconto.lessThan=" + DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO
-        );
-    }
-
-    @Test
-    @Transactional
-    void getAllCalculoPlanoAssinaturasByValorPlanoContaAzulComDescontoIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        insertedCalculoPlanoAssinatura = calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-
-        // Get all the calculoPlanoAssinaturaList where valorPlanoContaAzulComDesconto is greater than
-        defaultCalculoPlanoAssinaturaFiltering(
-            "valorPlanoContaAzulComDesconto.greaterThan=" + SMALLER_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO,
-            "valorPlanoContaAzulComDesconto.greaterThan=" + DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO
-        );
-    }
-
-    @Test
-    @Transactional
     void getAllCalculoPlanoAssinaturasByValorMensalidadeIsEqualToSomething() throws Exception {
         // Initialize the database
         insertedCalculoPlanoAssinatura = calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
@@ -1627,28 +1483,6 @@ class CalculoPlanoAssinaturaResourceIT {
 
     @Test
     @Transactional
-    void getAllCalculoPlanoAssinaturasByPlanoContaAzulIsEqualToSomething() throws Exception {
-        PlanoContaAzul planoContaAzul;
-        if (TestUtil.findAll(em, PlanoContaAzul.class).isEmpty()) {
-            calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-            planoContaAzul = PlanoContaAzulResourceIT.createEntity(em);
-        } else {
-            planoContaAzul = TestUtil.findAll(em, PlanoContaAzul.class).get(0);
-        }
-        em.persist(planoContaAzul);
-        em.flush();
-        calculoPlanoAssinatura.setPlanoContaAzul(planoContaAzul);
-        calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-        Long planoContaAzulId = planoContaAzul.getId();
-        // Get all the calculoPlanoAssinaturaList where planoContaAzul equals to planoContaAzulId
-        defaultCalculoPlanoAssinaturaShouldBeFound("planoContaAzulId.equals=" + planoContaAzulId);
-
-        // Get all the calculoPlanoAssinaturaList where planoContaAzul equals to (planoContaAzulId + 1)
-        defaultCalculoPlanoAssinaturaShouldNotBeFound("planoContaAzulId.equals=" + (planoContaAzulId + 1));
-    }
-
-    @Test
-    @Transactional
     void getAllCalculoPlanoAssinaturasByPlanoContabilIsEqualToSomething() throws Exception {
         PlanoContabil planoContabil;
         if (TestUtil.findAll(em, PlanoContabil.class).isEmpty()) {
@@ -1737,6 +1571,28 @@ class CalculoPlanoAssinaturaResourceIT {
 
     @Test
     @Transactional
+    void getAllCalculoPlanoAssinaturasByAssinaturaEmpresaIsEqualToSomething() throws Exception {
+        AssinaturaEmpresa assinaturaEmpresa;
+        if (TestUtil.findAll(em, AssinaturaEmpresa.class).isEmpty()) {
+            calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
+            assinaturaEmpresa = AssinaturaEmpresaResourceIT.createEntity(em);
+        } else {
+            assinaturaEmpresa = TestUtil.findAll(em, AssinaturaEmpresa.class).get(0);
+        }
+        em.persist(assinaturaEmpresa);
+        em.flush();
+        calculoPlanoAssinatura.setAssinaturaEmpresa(assinaturaEmpresa);
+        calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
+        Long assinaturaEmpresaId = assinaturaEmpresa.getId();
+        // Get all the calculoPlanoAssinaturaList where assinaturaEmpresa equals to assinaturaEmpresaId
+        defaultCalculoPlanoAssinaturaShouldBeFound("assinaturaEmpresaId.equals=" + assinaturaEmpresaId);
+
+        // Get all the calculoPlanoAssinaturaList where assinaturaEmpresa equals to (assinaturaEmpresaId + 1)
+        defaultCalculoPlanoAssinaturaShouldNotBeFound("assinaturaEmpresaId.equals=" + (assinaturaEmpresaId + 1));
+    }
+
+    @Test
+    @Transactional
     void getAllCalculoPlanoAssinaturasByDescontoPlanoContaAzulIsEqualToSomething() throws Exception {
         DescontoPlanoContaAzul descontoPlanoContaAzul;
         if (TestUtil.findAll(em, DescontoPlanoContaAzul.class).isEmpty()) {
@@ -1759,24 +1615,24 @@ class CalculoPlanoAssinaturaResourceIT {
 
     @Test
     @Transactional
-    void getAllCalculoPlanoAssinaturasByAssinaturaEmpresaIsEqualToSomething() throws Exception {
-        AssinaturaEmpresa assinaturaEmpresa;
-        if (TestUtil.findAll(em, AssinaturaEmpresa.class).isEmpty()) {
+    void getAllCalculoPlanoAssinaturasByPlanoContaAzulIsEqualToSomething() throws Exception {
+        PlanoContaAzul planoContaAzul;
+        if (TestUtil.findAll(em, PlanoContaAzul.class).isEmpty()) {
             calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-            assinaturaEmpresa = AssinaturaEmpresaResourceIT.createEntity(em);
+            planoContaAzul = PlanoContaAzulResourceIT.createEntity(em);
         } else {
-            assinaturaEmpresa = TestUtil.findAll(em, AssinaturaEmpresa.class).get(0);
+            planoContaAzul = TestUtil.findAll(em, PlanoContaAzul.class).get(0);
         }
-        em.persist(assinaturaEmpresa);
+        em.persist(planoContaAzul);
         em.flush();
-        calculoPlanoAssinatura.setAssinaturaEmpresa(assinaturaEmpresa);
+        calculoPlanoAssinatura.setPlanoContaAzul(planoContaAzul);
         calculoPlanoAssinaturaRepository.saveAndFlush(calculoPlanoAssinatura);
-        Long assinaturaEmpresaId = assinaturaEmpresa.getId();
-        // Get all the calculoPlanoAssinaturaList where assinaturaEmpresa equals to assinaturaEmpresaId
-        defaultCalculoPlanoAssinaturaShouldBeFound("assinaturaEmpresaId.equals=" + assinaturaEmpresaId);
+        Long planoContaAzulId = planoContaAzul.getId();
+        // Get all the calculoPlanoAssinaturaList where planoContaAzul equals to planoContaAzulId
+        defaultCalculoPlanoAssinaturaShouldBeFound("planoContaAzulId.equals=" + planoContaAzulId);
 
-        // Get all the calculoPlanoAssinaturaList where assinaturaEmpresa equals to (assinaturaEmpresaId + 1)
-        defaultCalculoPlanoAssinaturaShouldNotBeFound("assinaturaEmpresaId.equals=" + (assinaturaEmpresaId + 1));
+        // Get all the calculoPlanoAssinaturaList where planoContaAzul equals to (planoContaAzulId + 1)
+        defaultCalculoPlanoAssinaturaShouldNotBeFound("planoContaAzulId.equals=" + (planoContaAzulId + 1));
     }
 
     private void defaultCalculoPlanoAssinaturaFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
@@ -1803,9 +1659,6 @@ class CalculoPlanoAssinaturaResourceIT {
             .andExpect(jsonPath("$.[*].valorPlanoContabil").value(hasItem(DEFAULT_VALOR_PLANO_CONTABIL.doubleValue())))
             .andExpect(
                 jsonPath("$.[*].valorPlanoContabilComDesconto").value(hasItem(DEFAULT_VALOR_PLANO_CONTABIL_COM_DESCONTO.doubleValue()))
-            )
-            .andExpect(
-                jsonPath("$.[*].valorPlanoContaAzulComDesconto").value(hasItem(DEFAULT_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO.doubleValue()))
             )
             .andExpect(jsonPath("$.[*].valorMensalidade").value(hasItem(DEFAULT_VALOR_MENSALIDADE.doubleValue())))
             .andExpect(jsonPath("$.[*].valorPeriodo").value(hasItem(DEFAULT_VALOR_PERIODO.doubleValue())))
@@ -1869,7 +1722,6 @@ class CalculoPlanoAssinaturaResourceIT {
             .valorFaturamento(UPDATED_VALOR_FATURAMENTO)
             .valorPlanoContabil(UPDATED_VALOR_PLANO_CONTABIL)
             .valorPlanoContabilComDesconto(UPDATED_VALOR_PLANO_CONTABIL_COM_DESCONTO)
-            .valorPlanoContaAzulComDesconto(UPDATED_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO)
             .valorMensalidade(UPDATED_VALOR_MENSALIDADE)
             .valorPeriodo(UPDATED_VALOR_PERIODO)
             .valorAno(UPDATED_VALOR_ANO);
@@ -1967,8 +1819,8 @@ class CalculoPlanoAssinaturaResourceIT {
             .valorEnquadramento(UPDATED_VALOR_ENQUADRAMENTO)
             .valorTributacao(UPDATED_VALOR_TRIBUTACAO)
             .valorSocios(UPDATED_VALOR_SOCIOS)
-            .valorPlanoContaAzulComDesconto(UPDATED_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO)
-            .valorPeriodo(UPDATED_VALOR_PERIODO);
+            .valorMensalidade(UPDATED_VALOR_MENSALIDADE)
+            .valorAno(UPDATED_VALOR_ANO);
 
         restCalculoPlanoAssinaturaMockMvc
             .perform(
@@ -2009,7 +1861,6 @@ class CalculoPlanoAssinaturaResourceIT {
             .valorFaturamento(UPDATED_VALOR_FATURAMENTO)
             .valorPlanoContabil(UPDATED_VALOR_PLANO_CONTABIL)
             .valorPlanoContabilComDesconto(UPDATED_VALOR_PLANO_CONTABIL_COM_DESCONTO)
-            .valorPlanoContaAzulComDesconto(UPDATED_VALOR_PLANO_CONTA_AZUL_COM_DESCONTO)
             .valorMensalidade(UPDATED_VALOR_MENSALIDADE)
             .valorPeriodo(UPDATED_VALOR_PERIODO)
             .valorAno(UPDATED_VALOR_ANO);

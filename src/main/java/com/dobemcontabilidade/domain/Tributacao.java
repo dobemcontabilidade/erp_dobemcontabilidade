@@ -42,13 +42,13 @@ public class Tributacao implements Serializable {
     @JsonIgnoreProperties(
         value = {
             "periodoPagamento",
-            "planoContaAzul",
             "planoContabil",
             "ramo",
             "tributacao",
             "descontoPlanoContabil",
-            "descontoPlanoContaAzul",
             "assinaturaEmpresa",
+            "descontoPlanoContaAzul",
+            "planoContaAzul",
         },
         allowSetters = true
     )

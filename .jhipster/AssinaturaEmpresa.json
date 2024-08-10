@@ -42,10 +42,6 @@
       "fieldType": "Double"
     },
     {
-      "fieldName": "valorPlanoContaAzulComDesconto",
-      "fieldType": "Double"
-    },
-    {
       "fieldName": "valorMensalidade",
       "fieldType": "Double"
     },
@@ -110,14 +106,6 @@
       "otherEntityField": "forma",
       "otherEntityName": "formaDePagamento",
       "relationshipName": "formaDePagamento",
-      "relationshipSide": "right",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
-      "otherEntityField": "nome",
-      "otherEntityName": "planoContaAzul",
-      "relationshipName": "planoContaAzul",
       "relationshipSide": "right",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"

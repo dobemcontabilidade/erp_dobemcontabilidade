@@ -124,14 +124,6 @@ public class CalculoPlanoAssinaturaQueryService extends QueryService<CalculoPlan
                     )
                 );
             }
-            if (criteria.getValorPlanoContaAzulComDesconto() != null) {
-                specification = specification.and(
-                    buildRangeSpecification(
-                        criteria.getValorPlanoContaAzulComDesconto(),
-                        CalculoPlanoAssinatura_.valorPlanoContaAzulComDesconto
-                    )
-                );
-            }
             if (criteria.getValorMensalidade() != null) {
                 specification = specification.and(
                     buildRangeSpecification(criteria.getValorMensalidade(), CalculoPlanoAssinatura_.valorMensalidade)
@@ -150,14 +142,6 @@ public class CalculoPlanoAssinaturaQueryService extends QueryService<CalculoPlan
                     buildSpecification(
                         criteria.getPeriodoPagamentoId(),
                         root -> root.join(CalculoPlanoAssinatura_.periodoPagamento, JoinType.LEFT).get(PeriodoPagamento_.id)
-                    )
-                );
-            }
-            if (criteria.getPlanoContaAzulId() != null) {
-                specification = specification.and(
-                    buildSpecification(
-                        criteria.getPlanoContaAzulId(),
-                        root -> root.join(CalculoPlanoAssinatura_.planoContaAzul, JoinType.LEFT).get(PlanoContaAzul_.id)
                     )
                 );
             }
@@ -190,6 +174,14 @@ public class CalculoPlanoAssinaturaQueryService extends QueryService<CalculoPlan
                     )
                 );
             }
+            if (criteria.getAssinaturaEmpresaId() != null) {
+                specification = specification.and(
+                    buildSpecification(
+                        criteria.getAssinaturaEmpresaId(),
+                        root -> root.join(CalculoPlanoAssinatura_.assinaturaEmpresa, JoinType.LEFT).get(AssinaturaEmpresa_.id)
+                    )
+                );
+            }
             if (criteria.getDescontoPlanoContaAzulId() != null) {
                 specification = specification.and(
                     buildSpecification(
@@ -198,11 +190,11 @@ public class CalculoPlanoAssinaturaQueryService extends QueryService<CalculoPlan
                     )
                 );
             }
-            if (criteria.getAssinaturaEmpresaId() != null) {
+            if (criteria.getPlanoContaAzulId() != null) {
                 specification = specification.and(
                     buildSpecification(
-                        criteria.getAssinaturaEmpresaId(),
-                        root -> root.join(CalculoPlanoAssinatura_.assinaturaEmpresa, JoinType.LEFT).get(AssinaturaEmpresa_.id)
+                        criteria.getPlanoContaAzulId(),
+                        root -> root.join(CalculoPlanoAssinatura_.planoContaAzul, JoinType.LEFT).get(PlanoContaAzul_.id)
                     )
                 );
             }

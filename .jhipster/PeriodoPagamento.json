@@ -37,13 +37,6 @@
       "relationshipType": "one-to-many"
     },
     {
-      "otherEntityName": "descontoPlanoContaAzul",
-      "otherEntityRelationshipName": "periodoPagamento",
-      "relationshipName": "descontoPlanoContaAzul",
-      "relationshipSide": "left",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityName": "descontoPlanoContabil",
       "otherEntityRelationshipName": "periodoPagamento",
       "relationshipName": "descontoPlanoContabil",

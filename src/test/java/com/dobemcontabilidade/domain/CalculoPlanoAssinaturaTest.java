@@ -43,18 +43,6 @@ class CalculoPlanoAssinaturaTest {
     }
 
     @Test
-    void planoContaAzulTest() {
-        CalculoPlanoAssinatura calculoPlanoAssinatura = getCalculoPlanoAssinaturaRandomSampleGenerator();
-        PlanoContaAzul planoContaAzulBack = getPlanoContaAzulRandomSampleGenerator();
-
-        calculoPlanoAssinatura.setPlanoContaAzul(planoContaAzulBack);
-        assertThat(calculoPlanoAssinatura.getPlanoContaAzul()).isEqualTo(planoContaAzulBack);
-
-        calculoPlanoAssinatura.planoContaAzul(null);
-        assertThat(calculoPlanoAssinatura.getPlanoContaAzul()).isNull();
-    }
-
-    @Test
     void planoContabilTest() {
         CalculoPlanoAssinatura calculoPlanoAssinatura = getCalculoPlanoAssinaturaRandomSampleGenerator();
         PlanoContabil planoContabilBack = getPlanoContabilRandomSampleGenerator();
@@ -103,6 +91,18 @@ class CalculoPlanoAssinaturaTest {
     }
 
     @Test
+    void assinaturaEmpresaTest() {
+        CalculoPlanoAssinatura calculoPlanoAssinatura = getCalculoPlanoAssinaturaRandomSampleGenerator();
+        AssinaturaEmpresa assinaturaEmpresaBack = getAssinaturaEmpresaRandomSampleGenerator();
+
+        calculoPlanoAssinatura.setAssinaturaEmpresa(assinaturaEmpresaBack);
+        assertThat(calculoPlanoAssinatura.getAssinaturaEmpresa()).isEqualTo(assinaturaEmpresaBack);
+
+        calculoPlanoAssinatura.assinaturaEmpresa(null);
+        assertThat(calculoPlanoAssinatura.getAssinaturaEmpresa()).isNull();
+    }
+
+    @Test
     void descontoPlanoContaAzulTest() {
         CalculoPlanoAssinatura calculoPlanoAssinatura = getCalculoPlanoAssinaturaRandomSampleGenerator();
         DescontoPlanoContaAzul descontoPlanoContaAzulBack = getDescontoPlanoContaAzulRandomSampleGenerator();
@@ -115,14 +115,14 @@ class CalculoPlanoAssinaturaTest {
     }
 
     @Test
-    void assinaturaEmpresaTest() {
+    void planoContaAzulTest() {
         CalculoPlanoAssinatura calculoPlanoAssinatura = getCalculoPlanoAssinaturaRandomSampleGenerator();
-        AssinaturaEmpresa assinaturaEmpresaBack = getAssinaturaEmpresaRandomSampleGenerator();
+        PlanoContaAzul planoContaAzulBack = getPlanoContaAzulRandomSampleGenerator();
 
-        calculoPlanoAssinatura.setAssinaturaEmpresa(assinaturaEmpresaBack);
-        assertThat(calculoPlanoAssinatura.getAssinaturaEmpresa()).isEqualTo(assinaturaEmpresaBack);
+        calculoPlanoAssinatura.setPlanoContaAzul(planoContaAzulBack);
+        assertThat(calculoPlanoAssinatura.getPlanoContaAzul()).isEqualTo(planoContaAzulBack);
 
-        calculoPlanoAssinatura.assinaturaEmpresa(null);
-        assertThat(calculoPlanoAssinatura.getAssinaturaEmpresa()).isNull();
+        calculoPlanoAssinatura.planoContaAzul(null);
+        assertThat(calculoPlanoAssinatura.getPlanoContaAzul()).isNull();
     }
 }

@@ -80,7 +80,6 @@ class PeriodoPagamentoCriteriaTest {
         periodoPagamentoCriteria.idPlanGnet();
         periodoPagamentoCriteria.calculoPlanoAssinaturaId();
         periodoPagamentoCriteria.assinaturaEmpresaId();
-        periodoPagamentoCriteria.descontoPlanoContaAzulId();
         periodoPagamentoCriteria.descontoPlanoContabilId();
         periodoPagamentoCriteria.distinct();
     }
@@ -94,7 +93,6 @@ class PeriodoPagamentoCriteriaTest {
                 condition.apply(criteria.getIdPlanGnet()) &&
                 condition.apply(criteria.getCalculoPlanoAssinaturaId()) &&
                 condition.apply(criteria.getAssinaturaEmpresaId()) &&
-                condition.apply(criteria.getDescontoPlanoContaAzulId()) &&
                 condition.apply(criteria.getDescontoPlanoContabilId()) &&
                 condition.apply(criteria.getDistinct()),
             "every filter matches"
@@ -113,7 +111,6 @@ class PeriodoPagamentoCriteriaTest {
                 condition.apply(criteria.getIdPlanGnet(), copy.getIdPlanGnet()) &&
                 condition.apply(criteria.getCalculoPlanoAssinaturaId(), copy.getCalculoPlanoAssinaturaId()) &&
                 condition.apply(criteria.getAssinaturaEmpresaId(), copy.getAssinaturaEmpresaId()) &&
-                condition.apply(criteria.getDescontoPlanoContaAzulId(), copy.getDescontoPlanoContaAzulId()) &&
                 condition.apply(criteria.getDescontoPlanoContabilId(), copy.getDescontoPlanoContabilId()) &&
                 condition.apply(criteria.getDistinct(), copy.getDistinct()),
             "every filter matches"

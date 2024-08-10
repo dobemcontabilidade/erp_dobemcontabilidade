@@ -39,13 +39,13 @@ public class PeriodoPagamento implements Serializable {
     @JsonIgnoreProperties(
         value = {
             "periodoPagamento",
-            "planoContaAzul",
             "planoContabil",
             "ramo",
             "tributacao",
             "descontoPlanoContabil",
-            "descontoPlanoContaAzul",
             "assinaturaEmpresa",
+            "descontoPlanoContaAzul",
+            "planoContaAzul",
         },
         allowSetters = true
     )
@@ -55,16 +55,11 @@ public class PeriodoPagamento implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
         value = {
-            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContaAzul", "planoContabil", "empresa",
+            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa", "planoContaAzul",
         },
         allowSetters = true
     )
     private Set<AssinaturaEmpresa> assinaturaEmpresas = new HashSet<>();
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "periodoPagamento")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "calculoPlanoAssinaturas", "planoContaAzul", "periodoPagamento" }, allowSetters = true)
-    private Set<DescontoPlanoContaAzul> descontoPlanoContaAzuls = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "periodoPagamento")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -184,37 +179,6 @@ public class PeriodoPagamento implements Serializable {
     public PeriodoPagamento removeAssinaturaEmpresa(AssinaturaEmpresa assinaturaEmpresa) {
         this.assinaturaEmpresas.remove(assinaturaEmpresa);
         assinaturaEmpresa.setPeriodoPagamento(null);
-        return this;
-    }
-
-    public Set<DescontoPlanoContaAzul> getDescontoPlanoContaAzuls() {
-        return this.descontoPlanoContaAzuls;
-    }
-
-    public void setDescontoPlanoContaAzuls(Set<DescontoPlanoContaAzul> descontoPlanoContaAzuls) {
-        if (this.descontoPlanoContaAzuls != null) {
-            this.descontoPlanoContaAzuls.forEach(i -> i.setPeriodoPagamento(null));
-        }
-        if (descontoPlanoContaAzuls != null) {
-            descontoPlanoContaAzuls.forEach(i -> i.setPeriodoPagamento(this));
-        }
-        this.descontoPlanoContaAzuls = descontoPlanoContaAzuls;
-    }
-
-    public PeriodoPagamento descontoPlanoContaAzuls(Set<DescontoPlanoContaAzul> descontoPlanoContaAzuls) {
-        this.setDescontoPlanoContaAzuls(descontoPlanoContaAzuls);
-        return this;
-    }
-
-    public PeriodoPagamento addDescontoPlanoContaAzul(DescontoPlanoContaAzul descontoPlanoContaAzul) {
-        this.descontoPlanoContaAzuls.add(descontoPlanoContaAzul);
-        descontoPlanoContaAzul.setPeriodoPagamento(this);
-        return this;
-    }
-
-    public PeriodoPagamento removeDescontoPlanoContaAzul(DescontoPlanoContaAzul descontoPlanoContaAzul) {
-        this.descontoPlanoContaAzuls.remove(descontoPlanoContaAzul);
-        descontoPlanoContaAzul.setPeriodoPagamento(null);
         return this;
     }
 

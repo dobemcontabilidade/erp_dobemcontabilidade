@@ -53,10 +53,10 @@ describe('DescontoPlanoContabil Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call PeriodoPagamento query and add missing value', () => {
       const descontoPlanoContabil: IDescontoPlanoContabil = { id: 456 };
-      const periodoPagamento: IPeriodoPagamento = { id: 4859 };
+      const periodoPagamento: IPeriodoPagamento = { id: 26471 };
       descontoPlanoContabil.periodoPagamento = periodoPagamento;
 
-      const periodoPagamentoCollection: IPeriodoPagamento[] = [{ id: 15702 }];
+      const periodoPagamentoCollection: IPeriodoPagamento[] = [{ id: 1598 }];
       jest.spyOn(periodoPagamentoService, 'query').mockReturnValue(of(new HttpResponse({ body: periodoPagamentoCollection })));
       const additionalPeriodoPagamentos = [periodoPagamento];
       const expectedCollection: IPeriodoPagamento[] = [...additionalPeriodoPagamentos, ...periodoPagamentoCollection];
@@ -97,7 +97,7 @@ describe('DescontoPlanoContabil Management Update Component', () => {
 
     it('Should update editForm', () => {
       const descontoPlanoContabil: IDescontoPlanoContabil = { id: 456 };
-      const periodoPagamento: IPeriodoPagamento = { id: 1257 };
+      const periodoPagamento: IPeriodoPagamento = { id: 15434 };
       descontoPlanoContabil.periodoPagamento = periodoPagamento;
       const planoContabil: IPlanoContabil = { id: 28751 };
       descontoPlanoContabil.planoContabil = planoContabil;

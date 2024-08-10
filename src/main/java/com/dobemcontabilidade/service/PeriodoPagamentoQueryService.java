@@ -105,14 +105,6 @@ public class PeriodoPagamentoQueryService extends QueryService<PeriodoPagamento>
                     )
                 );
             }
-            if (criteria.getDescontoPlanoContaAzulId() != null) {
-                specification = specification.and(
-                    buildSpecification(
-                        criteria.getDescontoPlanoContaAzulId(),
-                        root -> root.join(PeriodoPagamento_.descontoPlanoContaAzuls, JoinType.LEFT).get(DescontoPlanoContaAzul_.id)
-                    )
-                );
-            }
             if (criteria.getDescontoPlanoContabilId() != null) {
                 specification = specification.and(
                     buildSpecification(

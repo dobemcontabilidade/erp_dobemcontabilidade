@@ -30,8 +30,6 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
 
     private Double valorPlanoContabilComDesconto;
 
-    private Double valorPlanoContaAzulComDesconto;
-
     private Double valorMensalidade;
 
     private Double valorPeriodo;
@@ -40,9 +38,6 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
 
     @NotNull
     private PeriodoPagamentoDTO periodoPagamento;
-
-    @NotNull
-    private PlanoContaAzulDTO planoContaAzul;
 
     @NotNull
     private PlanoContabilDTO planoContabil;
@@ -57,10 +52,11 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
     private DescontoPlanoContabilDTO descontoPlanoContabil;
 
     @NotNull
+    private AssinaturaEmpresaDTO assinaturaEmpresa;
+
     private DescontoPlanoContaAzulDTO descontoPlanoContaAzul;
 
-    @NotNull
-    private AssinaturaEmpresaDTO assinaturaEmpresa;
+    private PlanoContaAzulDTO planoContaAzul;
 
     public Long getId() {
         return id;
@@ -142,14 +138,6 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
         this.valorPlanoContabilComDesconto = valorPlanoContabilComDesconto;
     }
 
-    public Double getValorPlanoContaAzulComDesconto() {
-        return valorPlanoContaAzulComDesconto;
-    }
-
-    public void setValorPlanoContaAzulComDesconto(Double valorPlanoContaAzulComDesconto) {
-        this.valorPlanoContaAzulComDesconto = valorPlanoContaAzulComDesconto;
-    }
-
     public Double getValorMensalidade() {
         return valorMensalidade;
     }
@@ -180,14 +168,6 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
 
     public void setPeriodoPagamento(PeriodoPagamentoDTO periodoPagamento) {
         this.periodoPagamento = periodoPagamento;
-    }
-
-    public PlanoContaAzulDTO getPlanoContaAzul() {
-        return planoContaAzul;
-    }
-
-    public void setPlanoContaAzul(PlanoContaAzulDTO planoContaAzul) {
-        this.planoContaAzul = planoContaAzul;
     }
 
     public PlanoContabilDTO getPlanoContabil() {
@@ -222,6 +202,14 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
         this.descontoPlanoContabil = descontoPlanoContabil;
     }
 
+    public AssinaturaEmpresaDTO getAssinaturaEmpresa() {
+        return assinaturaEmpresa;
+    }
+
+    public void setAssinaturaEmpresa(AssinaturaEmpresaDTO assinaturaEmpresa) {
+        this.assinaturaEmpresa = assinaturaEmpresa;
+    }
+
     public DescontoPlanoContaAzulDTO getDescontoPlanoContaAzul() {
         return descontoPlanoContaAzul;
     }
@@ -230,12 +218,12 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
         this.descontoPlanoContaAzul = descontoPlanoContaAzul;
     }
 
-    public AssinaturaEmpresaDTO getAssinaturaEmpresa() {
-        return assinaturaEmpresa;
+    public PlanoContaAzulDTO getPlanoContaAzul() {
+        return planoContaAzul;
     }
 
-    public void setAssinaturaEmpresa(AssinaturaEmpresaDTO assinaturaEmpresa) {
-        this.assinaturaEmpresa = assinaturaEmpresa;
+    public void setPlanoContaAzul(PlanoContaAzulDTO planoContaAzul) {
+        this.planoContaAzul = planoContaAzul;
     }
 
     @Override
@@ -273,18 +261,17 @@ public class CalculoPlanoAssinaturaDTO implements Serializable {
             ", valorFaturamento=" + getValorFaturamento() +
             ", valorPlanoContabil=" + getValorPlanoContabil() +
             ", valorPlanoContabilComDesconto=" + getValorPlanoContabilComDesconto() +
-            ", valorPlanoContaAzulComDesconto=" + getValorPlanoContaAzulComDesconto() +
             ", valorMensalidade=" + getValorMensalidade() +
             ", valorPeriodo=" + getValorPeriodo() +
             ", valorAno=" + getValorAno() +
             ", periodoPagamento=" + getPeriodoPagamento() +
-            ", planoContaAzul=" + getPlanoContaAzul() +
             ", planoContabil=" + getPlanoContabil() +
             ", ramo=" + getRamo() +
             ", tributacao=" + getTributacao() +
             ", descontoPlanoContabil=" + getDescontoPlanoContabil() +
-            ", descontoPlanoContaAzul=" + getDescontoPlanoContaAzul() +
             ", assinaturaEmpresa=" + getAssinaturaEmpresa() +
+            ", descontoPlanoContaAzul=" + getDescontoPlanoContaAzul() +
+            ", planoContaAzul=" + getPlanoContaAzul() +
             "}";
     }
 }

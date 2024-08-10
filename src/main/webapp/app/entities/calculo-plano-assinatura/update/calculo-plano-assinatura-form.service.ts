@@ -27,18 +27,17 @@ type CalculoPlanoAssinaturaFormGroupContent = {
   valorFaturamento: FormControl<ICalculoPlanoAssinatura['valorFaturamento']>;
   valorPlanoContabil: FormControl<ICalculoPlanoAssinatura['valorPlanoContabil']>;
   valorPlanoContabilComDesconto: FormControl<ICalculoPlanoAssinatura['valorPlanoContabilComDesconto']>;
-  valorPlanoContaAzulComDesconto: FormControl<ICalculoPlanoAssinatura['valorPlanoContaAzulComDesconto']>;
   valorMensalidade: FormControl<ICalculoPlanoAssinatura['valorMensalidade']>;
   valorPeriodo: FormControl<ICalculoPlanoAssinatura['valorPeriodo']>;
   valorAno: FormControl<ICalculoPlanoAssinatura['valorAno']>;
   periodoPagamento: FormControl<ICalculoPlanoAssinatura['periodoPagamento']>;
-  planoContaAzul: FormControl<ICalculoPlanoAssinatura['planoContaAzul']>;
   planoContabil: FormControl<ICalculoPlanoAssinatura['planoContabil']>;
   ramo: FormControl<ICalculoPlanoAssinatura['ramo']>;
   tributacao: FormControl<ICalculoPlanoAssinatura['tributacao']>;
   descontoPlanoContabil: FormControl<ICalculoPlanoAssinatura['descontoPlanoContabil']>;
-  descontoPlanoContaAzul: FormControl<ICalculoPlanoAssinatura['descontoPlanoContaAzul']>;
   assinaturaEmpresa: FormControl<ICalculoPlanoAssinatura['assinaturaEmpresa']>;
+  descontoPlanoContaAzul: FormControl<ICalculoPlanoAssinatura['descontoPlanoContaAzul']>;
+  planoContaAzul: FormControl<ICalculoPlanoAssinatura['planoContaAzul']>;
 };
 
 export type CalculoPlanoAssinaturaFormGroup = FormGroup<CalculoPlanoAssinaturaFormGroupContent>;
@@ -69,14 +68,10 @@ export class CalculoPlanoAssinaturaFormService {
       valorFaturamento: new FormControl(calculoPlanoAssinaturaRawValue.valorFaturamento),
       valorPlanoContabil: new FormControl(calculoPlanoAssinaturaRawValue.valorPlanoContabil),
       valorPlanoContabilComDesconto: new FormControl(calculoPlanoAssinaturaRawValue.valorPlanoContabilComDesconto),
-      valorPlanoContaAzulComDesconto: new FormControl(calculoPlanoAssinaturaRawValue.valorPlanoContaAzulComDesconto),
       valorMensalidade: new FormControl(calculoPlanoAssinaturaRawValue.valorMensalidade),
       valorPeriodo: new FormControl(calculoPlanoAssinaturaRawValue.valorPeriodo),
       valorAno: new FormControl(calculoPlanoAssinaturaRawValue.valorAno),
       periodoPagamento: new FormControl(calculoPlanoAssinaturaRawValue.periodoPagamento, {
-        validators: [Validators.required],
-      }),
-      planoContaAzul: new FormControl(calculoPlanoAssinaturaRawValue.planoContaAzul, {
         validators: [Validators.required],
       }),
       planoContabil: new FormControl(calculoPlanoAssinaturaRawValue.planoContabil, {
@@ -91,12 +86,11 @@ export class CalculoPlanoAssinaturaFormService {
       descontoPlanoContabil: new FormControl(calculoPlanoAssinaturaRawValue.descontoPlanoContabil, {
         validators: [Validators.required],
       }),
-      descontoPlanoContaAzul: new FormControl(calculoPlanoAssinaturaRawValue.descontoPlanoContaAzul, {
-        validators: [Validators.required],
-      }),
       assinaturaEmpresa: new FormControl(calculoPlanoAssinaturaRawValue.assinaturaEmpresa, {
         validators: [Validators.required],
       }),
+      descontoPlanoContaAzul: new FormControl(calculoPlanoAssinaturaRawValue.descontoPlanoContaAzul),
+      planoContaAzul: new FormControl(calculoPlanoAssinaturaRawValue.planoContaAzul),
     });
   }
 

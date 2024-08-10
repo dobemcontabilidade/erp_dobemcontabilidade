@@ -51,9 +51,6 @@ public class CalculoPlanoAssinatura implements Serializable {
     @Column(name = "valor_plano_contabil_com_desconto")
     private Double valorPlanoContabilComDesconto;
 
-    @Column(name = "valor_plano_conta_azul_com_desconto")
-    private Double valorPlanoContaAzulComDesconto;
-
     @Column(name = "valor_mensalidade")
     private Double valorMensalidade;
 
@@ -65,16 +62,8 @@ public class CalculoPlanoAssinatura implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties(
-        value = { "calculoPlanoAssinaturas", "assinaturaEmpresas", "descontoPlanoContaAzuls", "descontoPlanoContabils" },
-        allowSetters = true
-    )
+    @JsonIgnoreProperties(value = { "calculoPlanoAssinaturas", "assinaturaEmpresas", "descontoPlanoContabils" }, allowSetters = true)
     private PeriodoPagamento periodoPagamento;
-
-    @ManyToOne(optional = false)
-    @NotNull
-    @JsonIgnoreProperties(value = { "calculoPlanoAssinaturas", "assinaturaEmpresas", "descontoPlanoContaAzuls" }, allowSetters = true)
-    private PlanoContaAzul planoContaAzul;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -110,18 +99,21 @@ public class CalculoPlanoAssinatura implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties(value = { "calculoPlanoAssinaturas", "planoContaAzul", "periodoPagamento" }, allowSetters = true)
-    private DescontoPlanoContaAzul descontoPlanoContaAzul;
-
-    @ManyToOne(optional = false)
-    @NotNull
     @JsonIgnoreProperties(
         value = {
-            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContaAzul", "planoContabil", "empresa",
+            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa", "planoContaAzul",
         },
         allowSetters = true
     )
     private AssinaturaEmpresa assinaturaEmpresa;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "calculoPlanoAssinaturas", "planoContaAzul", "periodoPagamento" }, allowSetters = true)
+    private DescontoPlanoContaAzul descontoPlanoContaAzul;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "calculoPlanoAssinaturas", "assinaturaEmpresas", "descontoPlanoContaAzuls" }, allowSetters = true)
+    private PlanoContaAzul planoContaAzul;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -255,19 +247,6 @@ public class CalculoPlanoAssinatura implements Serializable {
         this.valorPlanoContabilComDesconto = valorPlanoContabilComDesconto;
     }
 
-    public Double getValorPlanoContaAzulComDesconto() {
-        return this.valorPlanoContaAzulComDesconto;
-    }
-
-    public CalculoPlanoAssinatura valorPlanoContaAzulComDesconto(Double valorPlanoContaAzulComDesconto) {
-        this.setValorPlanoContaAzulComDesconto(valorPlanoContaAzulComDesconto);
-        return this;
-    }
-
-    public void setValorPlanoContaAzulComDesconto(Double valorPlanoContaAzulComDesconto) {
-        this.valorPlanoContaAzulComDesconto = valorPlanoContaAzulComDesconto;
-    }
-
     public Double getValorMensalidade() {
         return this.valorMensalidade;
     }
@@ -317,19 +296,6 @@ public class CalculoPlanoAssinatura implements Serializable {
 
     public CalculoPlanoAssinatura periodoPagamento(PeriodoPagamento periodoPagamento) {
         this.setPeriodoPagamento(periodoPagamento);
-        return this;
-    }
-
-    public PlanoContaAzul getPlanoContaAzul() {
-        return this.planoContaAzul;
-    }
-
-    public void setPlanoContaAzul(PlanoContaAzul planoContaAzul) {
-        this.planoContaAzul = planoContaAzul;
-    }
-
-    public CalculoPlanoAssinatura planoContaAzul(PlanoContaAzul planoContaAzul) {
-        this.setPlanoContaAzul(planoContaAzul);
         return this;
     }
 
@@ -385,6 +351,19 @@ public class CalculoPlanoAssinatura implements Serializable {
         return this;
     }
 
+    public AssinaturaEmpresa getAssinaturaEmpresa() {
+        return this.assinaturaEmpresa;
+    }
+
+    public void setAssinaturaEmpresa(AssinaturaEmpresa assinaturaEmpresa) {
+        this.assinaturaEmpresa = assinaturaEmpresa;
+    }
+
+    public CalculoPlanoAssinatura assinaturaEmpresa(AssinaturaEmpresa assinaturaEmpresa) {
+        this.setAssinaturaEmpresa(assinaturaEmpresa);
+        return this;
+    }
+
     public DescontoPlanoContaAzul getDescontoPlanoContaAzul() {
         return this.descontoPlanoContaAzul;
     }
@@ -398,16 +377,16 @@ public class CalculoPlanoAssinatura implements Serializable {
         return this;
     }
 
-    public AssinaturaEmpresa getAssinaturaEmpresa() {
-        return this.assinaturaEmpresa;
+    public PlanoContaAzul getPlanoContaAzul() {
+        return this.planoContaAzul;
     }
 
-    public void setAssinaturaEmpresa(AssinaturaEmpresa assinaturaEmpresa) {
-        this.assinaturaEmpresa = assinaturaEmpresa;
+    public void setPlanoContaAzul(PlanoContaAzul planoContaAzul) {
+        this.planoContaAzul = planoContaAzul;
     }
 
-    public CalculoPlanoAssinatura assinaturaEmpresa(AssinaturaEmpresa assinaturaEmpresa) {
-        this.setAssinaturaEmpresa(assinaturaEmpresa);
+    public CalculoPlanoAssinatura planoContaAzul(PlanoContaAzul planoContaAzul) {
+        this.setPlanoContaAzul(planoContaAzul);
         return this;
     }
 
@@ -444,7 +423,6 @@ public class CalculoPlanoAssinatura implements Serializable {
             ", valorFaturamento=" + getValorFaturamento() +
             ", valorPlanoContabil=" + getValorPlanoContabil() +
             ", valorPlanoContabilComDesconto=" + getValorPlanoContabilComDesconto() +
-            ", valorPlanoContaAzulComDesconto=" + getValorPlanoContaAzulComDesconto() +
             ", valorMensalidade=" + getValorMensalidade() +
             ", valorPeriodo=" + getValorPeriodo() +
             ", valorAno=" + getValorAno() +

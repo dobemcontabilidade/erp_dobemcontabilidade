@@ -42,10 +42,6 @@
       "fieldType": "Double"
     },
     {
-      "fieldName": "valorPlanoContaAzulComDesconto",
-      "fieldType": "Double"
-    },
-    {
       "fieldName": "valorMensalidade",
       "fieldType": "Double"
     },
@@ -66,14 +62,6 @@
       "otherEntityField": "periodo",
       "otherEntityName": "periodoPagamento",
       "relationshipName": "periodoPagamento",
-      "relationshipSide": "right",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
-      "otherEntityField": "nome",
-      "otherEntityName": "planoContaAzul",
-      "relationshipName": "planoContaAzul",
       "relationshipSide": "right",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"
@@ -106,14 +94,6 @@
       "otherEntityField": "percentual",
       "otherEntityName": "descontoPlanoContabil",
       "relationshipName": "descontoPlanoContabil",
-      "relationshipSide": "right",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": "required"
-    },
-    {
-      "otherEntityField": "percentual",
-      "otherEntityName": "descontoPlanoContaAzul",
-      "relationshipName": "descontoPlanoContaAzul",
       "relationshipSide": "right",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"

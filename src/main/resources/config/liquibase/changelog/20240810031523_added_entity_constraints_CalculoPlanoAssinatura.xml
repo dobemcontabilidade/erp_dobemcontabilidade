@@ -17,13 +17,6 @@
                                  referencedTableName="periodo_pagamento"
                                  />
 
-        <addForeignKeyConstraint baseColumnNames="plano_conta_azul_id"
-                                 baseTableName="calculo_plano_assinatura"
-                                 constraintName="fk_calculo_plano_assinatura__plano_conta_azul_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="plano_conta_azul"
-                                 />
-
         <addForeignKeyConstraint baseColumnNames="plano_contabil_id"
                                  baseTableName="calculo_plano_assinatura"
                                  constraintName="fk_calculo_plano_assinatura__plano_contabil_id"
@@ -52,6 +45,13 @@
                                  referencedTableName="desconto_plano_contabil"
                                  />
 
+        <addForeignKeyConstraint baseColumnNames="assinatura_empresa_id"
+                                 baseTableName="calculo_plano_assinatura"
+                                 constraintName="fk_calculo_plano_assinatura__assinatura_empresa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="assinatura_empresa"
+                                 />
+
         <addForeignKeyConstraint baseColumnNames="desconto_plano_conta_azul_id"
                                  baseTableName="calculo_plano_assinatura"
                                  constraintName="fk_calculo_plano_assinatura__desconto_plano_conta_azul_id"
@@ -59,11 +59,11 @@
                                  referencedTableName="desconto_plano_conta_azul"
                                  />
 
-        <addForeignKeyConstraint baseColumnNames="assinatura_empresa_id"
+        <addForeignKeyConstraint baseColumnNames="plano_conta_azul_id"
                                  baseTableName="calculo_plano_assinatura"
-                                 constraintName="fk_calculo_plano_assinatura__assinatura_empresa_id"
+                                 constraintName="fk_calculo_plano_assinatura__plano_conta_azul_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="assinatura_empresa"
+                                 referencedTableName="plano_conta_azul"
                                  />
     </changeSet>
 </databaseChangeLog>

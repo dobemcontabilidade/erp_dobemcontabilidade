@@ -151,23 +151,6 @@
         </div>
 
         <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_valorPlanoContaAzulComDesconto"
-            jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorPlanoContaAzulComDesconto"
-            >Valor Plano Conta Azul Com Desconto</label
-          >
-          <input
-            type="number"
-            class="form-control"
-            name="valorPlanoContaAzulComDesconto"
-            id="field_valorPlanoContaAzulComDesconto"
-            data-cy="valorPlanoContaAzulComDesconto"
-            formControlName="valorPlanoContaAzulComDesconto"
-          />
-        </div>
-
-        <div class="mb-3">
           <label class="form-label" for="field_valorMensalidade" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorMensalidade"
             >Valor Mensalidade</label
           >
@@ -337,37 +320,6 @@
         }
 
         <div class="mb-3">
-          <label class="form-label" for="field_planoContaAzul" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContaAzul"
-            >Plano Conta Azul</label
-          >
-          <select
-            class="form-control"
-            id="field_planoContaAzul"
-            data-cy="planoContaAzul"
-            name="planoContaAzul"
-            formControlName="planoContaAzul"
-            [compareWith]="comparePlanoContaAzul"
-          >
-            @if (editForm.get(['planoContaAzul'])!.value == null) {
-              <option [ngValue]="null" selected></option>
-            }
-            @for (planoContaAzulOption of planoContaAzulsSharedCollection; track $index) {
-              <option [ngValue]="planoContaAzulOption">{{ planoContaAzulOption.nome }}</option>
-            }
-          </select>
-        </div>
-        @if (
-          editForm.get(['planoContaAzul'])!.invalid &&
-          (editForm.get(['planoContaAzul'])!.dirty || editForm.get(['planoContaAzul'])!.touched)
-        ) {
-          <div>
-            @if (editForm.get(['planoContaAzul'])?.errors?.required) {
-              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
-            }
-          </div>
-        }
-
-        <div class="mb-3">
           <label class="form-label" for="field_planoContabil" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContabil"
             >Plano Contabil</label
           >
@@ -422,6 +374,25 @@
             }
           </div>
         }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_planoContaAzul" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContaAzul"
+            >Plano Conta Azul</label
+          >
+          <select
+            class="form-control"
+            id="field_planoContaAzul"
+            data-cy="planoContaAzul"
+            name="planoContaAzul"
+            formControlName="planoContaAzul"
+            [compareWith]="comparePlanoContaAzul"
+          >
+            <option [ngValue]="null"></option>
+            @for (planoContaAzulOption of planoContaAzulsSharedCollection; track $index) {
+              <option [ngValue]="planoContaAzulOption">{{ planoContaAzulOption.id }}</option>
+            }
+          </select>
+        </div>
       </div>
 
       <div>

@@ -26,13 +26,13 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface CalculoPlanoAssinaturaMapper extends EntityMapper<CalculoPlanoAssinaturaDTO, CalculoPlanoAssinatura> {
     @Mapping(target = "periodoPagamento", source = "periodoPagamento", qualifiedByName = "periodoPagamentoPeriodo")
-    @Mapping(target = "planoContaAzul", source = "planoContaAzul", qualifiedByName = "planoContaAzulNome")
     @Mapping(target = "planoContabil", source = "planoContabil", qualifiedByName = "planoContabilNome")
     @Mapping(target = "ramo", source = "ramo", qualifiedByName = "ramoNome")
     @Mapping(target = "tributacao", source = "tributacao", qualifiedByName = "tributacaoNome")
     @Mapping(target = "descontoPlanoContabil", source = "descontoPlanoContabil", qualifiedByName = "descontoPlanoContabilPercentual")
-    @Mapping(target = "descontoPlanoContaAzul", source = "descontoPlanoContaAzul", qualifiedByName = "descontoPlanoContaAzulPercentual")
     @Mapping(target = "assinaturaEmpresa", source = "assinaturaEmpresa", qualifiedByName = "assinaturaEmpresaCodigoAssinatura")
+    @Mapping(target = "descontoPlanoContaAzul", source = "descontoPlanoContaAzul", qualifiedByName = "descontoPlanoContaAzulId")
+    @Mapping(target = "planoContaAzul", source = "planoContaAzul", qualifiedByName = "planoContaAzulId")
     CalculoPlanoAssinaturaDTO toDto(CalculoPlanoAssinatura s);
 
     @Named("periodoPagamentoPeriodo")
@@ -40,12 +40,6 @@ public interface CalculoPlanoAssinaturaMapper extends EntityMapper<CalculoPlanoA
     @Mapping(target = "id", source = "id")
     @Mapping(target = "periodo", source = "periodo")
     PeriodoPagamentoDTO toDtoPeriodoPagamentoPeriodo(PeriodoPagamento periodoPagamento);
-
-    @Named("planoContaAzulNome")
-    @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "nome", source = "nome")
-    PlanoContaAzulDTO toDtoPlanoContaAzulNome(PlanoContaAzul planoContaAzul);
 
     @Named("planoContabilNome")
     @BeanMapping(ignoreByDefault = true)
@@ -71,15 +65,19 @@ public interface CalculoPlanoAssinaturaMapper extends EntityMapper<CalculoPlanoA
     @Mapping(target = "percentual", source = "percentual")
     DescontoPlanoContabilDTO toDtoDescontoPlanoContabilPercentual(DescontoPlanoContabil descontoPlanoContabil);
 
-    @Named("descontoPlanoContaAzulPercentual")
-    @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "percentual", source = "percentual")
-    DescontoPlanoContaAzulDTO toDtoDescontoPlanoContaAzulPercentual(DescontoPlanoContaAzul descontoPlanoContaAzul);
-
     @Named("assinaturaEmpresaCodigoAssinatura")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
     @Mapping(target = "codigoAssinatura", source = "codigoAssinatura")
     AssinaturaEmpresaDTO toDtoAssinaturaEmpresaCodigoAssinatura(AssinaturaEmpresa assinaturaEmpresa);
+
+    @Named("descontoPlanoContaAzulId")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    DescontoPlanoContaAzulDTO toDtoDescontoPlanoContaAzulId(DescontoPlanoContaAzul descontoPlanoContaAzul);
+
+    @Named("planoContaAzulId")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    PlanoContaAzulDTO toDtoPlanoContaAzulId(PlanoContaAzul planoContaAzul);
 }

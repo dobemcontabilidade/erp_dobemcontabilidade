@@ -109,15 +109,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="valorPlanoContaAzulComDesconto">
-              <div class="d-flex">
-                <span jhiTranslate="erpDobemcontabilidadeApp.calculoPlanoAssinatura.valorPlanoContaAzulComDesconto"
-                  >Valor Plano Conta Azul Com Desconto</span
-                >
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col" jhiSortBy="valorMensalidade">
               <div class="d-flex">
                 <span jhiTranslate="erpDobemcontabilidadeApp.calculoPlanoAssinatura.valorMensalidade">Valor Mensalidade</span>
@@ -145,12 +136,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="planoContaAzul.nome">
-              <div class="d-flex">
-                <span jhiTranslate="erpDobemcontabilidadeApp.calculoPlanoAssinatura.planoContaAzul">Plano Conta Azul</span>
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col" jhiSortBy="planoContabil.nome">
               <div class="d-flex">
                 <span jhiTranslate="erpDobemcontabilidadeApp.calculoPlanoAssinatura.planoContabil">Plano Contabil</span>
@@ -175,15 +160,21 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="descontoPlanoContaAzul.percentual">
+            <th scope="col" jhiSortBy="assinaturaEmpresa.codigoAssinatura">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.calculoPlanoAssinatura.assinaturaEmpresa">Assinatura Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descontoPlanoContaAzul.id">
               <div class="d-flex">
                 <span jhiTranslate="erpDobemcontabilidadeApp.calculoPlanoAssinatura.descontoPlanoContaAzul">Desconto Plano Conta Azul</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="assinaturaEmpresa.codigoAssinatura">
+            <th scope="col" jhiSortBy="planoContaAzul.id">
               <div class="d-flex">
-                <span jhiTranslate="erpDobemcontabilidadeApp.calculoPlanoAssinatura.assinaturaEmpresa">Assinatura Empresa</span>
+                <span jhiTranslate="erpDobemcontabilidadeApp.calculoPlanoAssinatura.planoContaAzul">Plano Conta Azul</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
@@ -205,7 +196,6 @@
               <td>{{ calculoPlanoAssinatura.valorFaturamento }}</td>
               <td>{{ calculoPlanoAssinatura.valorPlanoContabil }}</td>
               <td>{{ calculoPlanoAssinatura.valorPlanoContabilComDesconto }}</td>
-              <td>{{ calculoPlanoAssinatura.valorPlanoContaAzulComDesconto }}</td>
               <td>{{ calculoPlanoAssinatura.valorMensalidade }}</td>
               <td>{{ calculoPlanoAssinatura.valorPeriodo }}</td>
               <td>{{ calculoPlanoAssinatura.valorAno }}</td>
@@ -214,15 +204,6 @@
                   <div>
                     <a [routerLink]="['/periodo-pagamento', calculoPlanoAssinatura.periodoPagamento.id, 'view']">{{
                       calculoPlanoAssinatura.periodoPagamento.periodo
-                    }}</a>
-                  </div>
-                }
-              </td>
-              <td>
-                @if (calculoPlanoAssinatura.planoContaAzul) {
-                  <div>
-                    <a [routerLink]="['/plano-conta-azul', calculoPlanoAssinatura.planoContaAzul.id, 'view']">{{
-                      calculoPlanoAssinatura.planoContaAzul.nome
                     }}</a>
                   </div>
                 }
@@ -262,19 +243,28 @@
                 }
               </td>
               <td>
-                @if (calculoPlanoAssinatura.descontoPlanoContaAzul) {
+                @if (calculoPlanoAssinatura.assinaturaEmpresa) {
                   <div>
-                    <a [routerLink]="['/desconto-plano-conta-azul', calculoPlanoAssinatura.descontoPlanoContaAzul.id, 'view']">{{
-                      calculoPlanoAssinatura.descontoPlanoContaAzul.percentual
+                    <a [routerLink]="['/assinatura-empresa', calculoPlanoAssinatura.assinaturaEmpresa.id, 'view']">{{
+                      calculoPlanoAssinatura.assinaturaEmpresa.codigoAssinatura
                     }}</a>
                   </div>
                 }
               </td>
               <td>
-                @if (calculoPlanoAssinatura.assinaturaEmpresa) {
+                @if (calculoPlanoAssinatura.descontoPlanoContaAzul) {
                   <div>
-                    <a [routerLink]="['/assinatura-empresa', calculoPlanoAssinatura.assinaturaEmpresa.id, 'view']">{{
-                      calculoPlanoAssinatura.assinaturaEmpresa.codigoAssinatura
+                    <a [routerLink]="['/desconto-plano-conta-azul', calculoPlanoAssinatura.descontoPlanoContaAzul.id, 'view']">{{
+                      calculoPlanoAssinatura.descontoPlanoContaAzul.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (calculoPlanoAssinatura.planoContaAzul) {
+                  <div>
+                    <a [routerLink]="['/plano-conta-azul', calculoPlanoAssinatura.planoContaAzul.id, 'view']">{{
+                      calculoPlanoAssinatura.planoContaAzul.id
                     }}</a>
                   </div>
                 }

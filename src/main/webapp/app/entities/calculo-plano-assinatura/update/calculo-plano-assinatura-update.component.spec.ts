@@ -6,8 +6,6 @@ import { of, Subject, from } from 'rxjs';
 
 import { IPeriodoPagamento } from 'app/entities/periodo-pagamento/periodo-pagamento.model';
 import { PeriodoPagamentoService } from 'app/entities/periodo-pagamento/service/periodo-pagamento.service';
-import { IPlanoContaAzul } from 'app/entities/plano-conta-azul/plano-conta-azul.model';
-import { PlanoContaAzulService } from 'app/entities/plano-conta-azul/service/plano-conta-azul.service';
 import { IPlanoContabil } from 'app/entities/plano-contabil/plano-contabil.model';
 import { PlanoContabilService } from 'app/entities/plano-contabil/service/plano-contabil.service';
 import { IRamo } from 'app/entities/ramo/ramo.model';
@@ -16,10 +14,12 @@ import { ITributacao } from 'app/entities/tributacao/tributacao.model';
 import { TributacaoService } from 'app/entities/tributacao/service/tributacao.service';
 import { IDescontoPlanoContabil } from 'app/entities/desconto-plano-contabil/desconto-plano-contabil.model';
 import { DescontoPlanoContabilService } from 'app/entities/desconto-plano-contabil/service/desconto-plano-contabil.service';
-import { IDescontoPlanoContaAzul } from 'app/entities/desconto-plano-conta-azul/desconto-plano-conta-azul.model';
-import { DescontoPlanoContaAzulService } from 'app/entities/desconto-plano-conta-azul/service/desconto-plano-conta-azul.service';
 import { IAssinaturaEmpresa } from 'app/entities/assinatura-empresa/assinatura-empresa.model';
 import { AssinaturaEmpresaService } from 'app/entities/assinatura-empresa/service/assinatura-empresa.service';
+import { IDescontoPlanoContaAzul } from 'app/entities/desconto-plano-conta-azul/desconto-plano-conta-azul.model';
+import { DescontoPlanoContaAzulService } from 'app/entities/desconto-plano-conta-azul/service/desconto-plano-conta-azul.service';
+import { IPlanoContaAzul } from 'app/entities/plano-conta-azul/plano-conta-azul.model';
+import { PlanoContaAzulService } from 'app/entities/plano-conta-azul/service/plano-conta-azul.service';
 import { ICalculoPlanoAssinatura } from '../calculo-plano-assinatura.model';
 import { CalculoPlanoAssinaturaService } from '../service/calculo-plano-assinatura.service';
 import { CalculoPlanoAssinaturaFormService } from './calculo-plano-assinatura-form.service';
@@ -33,13 +33,13 @@ describe('CalculoPlanoAssinatura Management Update Component', () => {
   let calculoPlanoAssinaturaFormService: CalculoPlanoAssinaturaFormService;
   let calculoPlanoAssinaturaService: CalculoPlanoAssinaturaService;
   let periodoPagamentoService: PeriodoPagamentoService;
-  let planoContaAzulService: PlanoContaAzulService;
   let planoContabilService: PlanoContabilService;
   let ramoService: RamoService;
   let tributacaoService: TributacaoService;
   let descontoPlanoContabilService: DescontoPlanoContabilService;
-  let descontoPlanoContaAzulService: DescontoPlanoContaAzulService;
   let assinaturaEmpresaService: AssinaturaEmpresaService;
+  let descontoPlanoContaAzulService: DescontoPlanoContaAzulService;
+  let planoContaAzulService: PlanoContaAzulService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -63,13 +63,13 @@ describe('CalculoPlanoAssinatura Management Update Component', () => {
     calculoPlanoAssinaturaFormService = TestBed.inject(CalculoPlanoAssinaturaFormService);
     calculoPlanoAssinaturaService = TestBed.inject(CalculoPlanoAssinaturaService);
     periodoPagamentoService = TestBed.inject(PeriodoPagamentoService);
-    planoContaAzulService = TestBed.inject(PlanoContaAzulService);
     planoContabilService = TestBed.inject(PlanoContabilService);
     ramoService = TestBed.inject(RamoService);
     tributacaoService = TestBed.inject(TributacaoService);
     descontoPlanoContabilService = TestBed.inject(DescontoPlanoContabilService);
-    descontoPlanoContaAzulService = TestBed.inject(DescontoPlanoContaAzulService);
     assinaturaEmpresaService = TestBed.inject(AssinaturaEmpresaService);
+    descontoPlanoContaAzulService = TestBed.inject(DescontoPlanoContaAzulService);
+    planoContaAzulService = TestBed.inject(PlanoContaAzulService);
 
     comp = fixture.componentInstance;
   });
@@ -77,10 +77,10 @@ describe('CalculoPlanoAssinatura Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call PeriodoPagamento query and add missing value', () => {
       const calculoPlanoAssinatura: ICalculoPlanoAssinatura = { id: 456 };
-      const periodoPagamento: IPeriodoPagamento = { id: 17338 };
+      const periodoPagamento: IPeriodoPagamento = { id: 11465 };
       calculoPlanoAssinatura.periodoPagamento = periodoPagamento;
 
-      const periodoPagamentoCollection: IPeriodoPagamento[] = [{ id: 4093 }];
+      const periodoPagamentoCollection: IPeriodoPagamento[] = [{ id: 29786 }];
       jest.spyOn(periodoPagamentoService, 'query').mockReturnValue(of(new HttpResponse({ body: periodoPagamentoCollection })));
       const additionalPeriodoPagamentos = [periodoPagamento];
       const expectedCollection: IPeriodoPagamento[] = [...additionalPeriodoPagamentos, ...periodoPagamentoCollection];
@@ -95,28 +95,6 @@ describe('CalculoPlanoAssinatura Management Update Component', () => {
         ...additionalPeriodoPagamentos.map(expect.objectContaining),
       );
       expect(comp.periodoPagamentosSharedCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call PlanoContaAzul query and add missing value', () => {
-      const calculoPlanoAssinatura: ICalculoPlanoAssinatura = { id: 456 };
-      const planoContaAzul: IPlanoContaAzul = { id: 13417 };
-      calculoPlanoAssinatura.planoContaAzul = planoContaAzul;
-
-      const planoContaAzulCollection: IPlanoContaAzul[] = [{ id: 14125 }];
-      jest.spyOn(planoContaAzulService, 'query').mockReturnValue(of(new HttpResponse({ body: planoContaAzulCollection })));
-      const additionalPlanoContaAzuls = [planoContaAzul];
-      const expectedCollection: IPlanoContaAzul[] = [...additionalPlanoContaAzuls, ...planoContaAzulCollection];
-      jest.spyOn(planoContaAzulService, 'addPlanoContaAzulToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ calculoPlanoAssinatura });
-      comp.ngOnInit();
-
-      expect(planoContaAzulService.query).toHaveBeenCalled();
-      expect(planoContaAzulService.addPlanoContaAzulToCollectionIfMissing).toHaveBeenCalledWith(
-        planoContaAzulCollection,
-        ...additionalPlanoContaAzuls.map(expect.objectContaining),
-      );
-      expect(comp.planoContaAzulsSharedCollection).toEqual(expectedCollection);
     });
 
     it('Should call PlanoContabil query and add missing value', () => {
@@ -207,34 +185,12 @@ describe('CalculoPlanoAssinatura Management Update Component', () => {
       expect(comp.descontoPlanoContabilsSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call DescontoPlanoContaAzul query and add missing value', () => {
-      const calculoPlanoAssinatura: ICalculoPlanoAssinatura = { id: 456 };
-      const descontoPlanoContaAzul: IDescontoPlanoContaAzul = { id: 32160 };
-      calculoPlanoAssinatura.descontoPlanoContaAzul = descontoPlanoContaAzul;
-
-      const descontoPlanoContaAzulCollection: IDescontoPlanoContaAzul[] = [{ id: 19253 }];
-      jest.spyOn(descontoPlanoContaAzulService, 'query').mockReturnValue(of(new HttpResponse({ body: descontoPlanoContaAzulCollection })));
-      const additionalDescontoPlanoContaAzuls = [descontoPlanoContaAzul];
-      const expectedCollection: IDescontoPlanoContaAzul[] = [...additionalDescontoPlanoContaAzuls, ...descontoPlanoContaAzulCollection];
-      jest.spyOn(descontoPlanoContaAzulService, 'addDescontoPlanoContaAzulToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ calculoPlanoAssinatura });
-      comp.ngOnInit();
-
-      expect(descontoPlanoContaAzulService.query).toHaveBeenCalled();
-      expect(descontoPlanoContaAzulService.addDescontoPlanoContaAzulToCollectionIfMissing).toHaveBeenCalledWith(
-        descontoPlanoContaAzulCollection,
-        ...additionalDescontoPlanoContaAzuls.map(expect.objectContaining),
-      );
-      expect(comp.descontoPlanoContaAzulsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should call AssinaturaEmpresa query and add missing value', () => {
       const calculoPlanoAssinatura: ICalculoPlanoAssinatura = { id: 456 };
-      const assinaturaEmpresa: IAssinaturaEmpresa = { id: 25848 };
+      const assinaturaEmpresa: IAssinaturaEmpresa = { id: 16507 };
       calculoPlanoAssinatura.assinaturaEmpresa = assinaturaEmpresa;
 
-      const assinaturaEmpresaCollection: IAssinaturaEmpresa[] = [{ id: 28797 }];
+      const assinaturaEmpresaCollection: IAssinaturaEmpresa[] = [{ id: 27467 }];
       jest.spyOn(assinaturaEmpresaService, 'query').mockReturnValue(of(new HttpResponse({ body: assinaturaEmpresaCollection })));
       const additionalAssinaturaEmpresas = [assinaturaEmpresa];
       const expectedCollection: IAssinaturaEmpresa[] = [...additionalAssinaturaEmpresas, ...assinaturaEmpresaCollection];
@@ -251,12 +207,54 @@ describe('CalculoPlanoAssinatura Management Update Component', () => {
       expect(comp.assinaturaEmpresasSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call DescontoPlanoContaAzul query and add missing value', () => {
+      const calculoPlanoAssinatura: ICalculoPlanoAssinatura = { id: 456 };
+      const descontoPlanoContaAzul: IDescontoPlanoContaAzul = { id: 2757 };
+      calculoPlanoAssinatura.descontoPlanoContaAzul = descontoPlanoContaAzul;
+
+      const descontoPlanoContaAzulCollection: IDescontoPlanoContaAzul[] = [{ id: 4484 }];
+      jest.spyOn(descontoPlanoContaAzulService, 'query').mockReturnValue(of(new HttpResponse({ body: descontoPlanoContaAzulCollection })));
+      const additionalDescontoPlanoContaAzuls = [descontoPlanoContaAzul];
+      const expectedCollection: IDescontoPlanoContaAzul[] = [...additionalDescontoPlanoContaAzuls, ...descontoPlanoContaAzulCollection];
+      jest.spyOn(descontoPlanoContaAzulService, 'addDescontoPlanoContaAzulToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ calculoPlanoAssinatura });
+      comp.ngOnInit();
+
+      expect(descontoPlanoContaAzulService.query).toHaveBeenCalled();
+      expect(descontoPlanoContaAzulService.addDescontoPlanoContaAzulToCollectionIfMissing).toHaveBeenCalledWith(
+        descontoPlanoContaAzulCollection,
+        ...additionalDescontoPlanoContaAzuls.map(expect.objectContaining),
+      );
+      expect(comp.descontoPlanoContaAzulsSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should call PlanoContaAzul query and add missing value', () => {
+      const calculoPlanoAssinatura: ICalculoPlanoAssinatura = { id: 456 };
+      const planoContaAzul: IPlanoContaAzul = { id: 23839 };
+      calculoPlanoAssinatura.planoContaAzul = planoContaAzul;
+
+      const planoContaAzulCollection: IPlanoContaAzul[] = [{ id: 10601 }];
+      jest.spyOn(planoContaAzulService, 'query').mockReturnValue(of(new HttpResponse({ body: planoContaAzulCollection })));
+      const additionalPlanoContaAzuls = [planoContaAzul];
+      const expectedCollection: IPlanoContaAzul[] = [...additionalPlanoContaAzuls, ...planoContaAzulCollection];
+      jest.spyOn(planoContaAzulService, 'addPlanoContaAzulToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ calculoPlanoAssinatura });
+      comp.ngOnInit();
+
+      expect(planoContaAzulService.query).toHaveBeenCalled();
+      expect(planoContaAzulService.addPlanoContaAzulToCollectionIfMissing).toHaveBeenCalledWith(
+        planoContaAzulCollection,
+        ...additionalPlanoContaAzuls.map(expect.objectContaining),
+      );
+      expect(comp.planoContaAzulsSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const calculoPlanoAssinatura: ICalculoPlanoAssinatura = { id: 456 };
-      const periodoPagamento: IPeriodoPagamento = { id: 13100 };
+      const periodoPagamento: IPeriodoPagamento = { id: 15562 };
       calculoPlanoAssinatura.periodoPagamento = periodoPagamento;
-      const planoContaAzul: IPlanoContaAzul = { id: 29836 };
-      calculoPlanoAssinatura.planoContaAzul = planoContaAzul;
       const planoContabil: IPlanoContabil = { id: 18730 };
       calculoPlanoAssinatura.planoContabil = planoContabil;
       const ramo: IRamo = { id: 19680 };
@@ -265,22 +263,24 @@ describe('CalculoPlanoAssinatura Management Update Component', () => {
       calculoPlanoAssinatura.tributacao = tributacao;
       const descontoPlanoContabil: IDescontoPlanoContabil = { id: 13647 };
       calculoPlanoAssinatura.descontoPlanoContabil = descontoPlanoContabil;
-      const descontoPlanoContaAzul: IDescontoPlanoContaAzul = { id: 28970 };
-      calculoPlanoAssinatura.descontoPlanoContaAzul = descontoPlanoContaAzul;
-      const assinaturaEmpresa: IAssinaturaEmpresa = { id: 21511 };
+      const assinaturaEmpresa: IAssinaturaEmpresa = { id: 26949 };
       calculoPlanoAssinatura.assinaturaEmpresa = assinaturaEmpresa;
+      const descontoPlanoContaAzul: IDescontoPlanoContaAzul = { id: 23276 };
+      calculoPlanoAssinatura.descontoPlanoContaAzul = descontoPlanoContaAzul;
+      const planoContaAzul: IPlanoContaAzul = { id: 6435 };
+      calculoPlanoAssinatura.planoContaAzul = planoContaAzul;
 
       activatedRoute.data = of({ calculoPlanoAssinatura });
       comp.ngOnInit();
 
       expect(comp.periodoPagamentosSharedCollection).toContain(periodoPagamento);
-      expect(comp.planoContaAzulsSharedCollection).toContain(planoContaAzul);
       expect(comp.planoContabilsSharedCollection).toContain(planoContabil);
       expect(comp.ramosSharedCollection).toContain(ramo);
       expect(comp.tributacaosSharedCollection).toContain(tributacao);
       expect(comp.descontoPlanoContabilsSharedCollection).toContain(descontoPlanoContabil);
-      expect(comp.descontoPlanoContaAzulsSharedCollection).toContain(descontoPlanoContaAzul);
       expect(comp.assinaturaEmpresasSharedCollection).toContain(assinaturaEmpresa);
+      expect(comp.descontoPlanoContaAzulsSharedCollection).toContain(descontoPlanoContaAzul);
+      expect(comp.planoContaAzulsSharedCollection).toContain(planoContaAzul);
       expect(comp.calculoPlanoAssinatura).toEqual(calculoPlanoAssinatura);
     });
   });
@@ -364,16 +364,6 @@ describe('CalculoPlanoAssinatura Management Update Component', () => {
       });
     });
 
-    describe('comparePlanoContaAzul', () => {
-      it('Should forward to planoContaAzulService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(planoContaAzulService, 'comparePlanoContaAzul');
-        comp.comparePlanoContaAzul(entity, entity2);
-        expect(planoContaAzulService.comparePlanoContaAzul).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
     describe('comparePlanoContabil', () => {
       it('Should forward to planoContabilService', () => {
         const entity = { id: 123 };
@@ -414,6 +404,16 @@ describe('CalculoPlanoAssinatura Management Update Component', () => {
       });
     });
 
+    describe('compareAssinaturaEmpresa', () => {
+      it('Should forward to assinaturaEmpresaService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(assinaturaEmpresaService, 'compareAssinaturaEmpresa');
+        comp.compareAssinaturaEmpresa(entity, entity2);
+        expect(assinaturaEmpresaService.compareAssinaturaEmpresa).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
     describe('compareDescontoPlanoContaAzul', () => {
       it('Should forward to descontoPlanoContaAzulService', () => {
         const entity = { id: 123 };
@@ -424,13 +424,13 @@ describe('CalculoPlanoAssinatura Management Update Component', () => {
       });
     });
 
-    describe('compareAssinaturaEmpresa', () => {
-      it('Should forward to assinaturaEmpresaService', () => {
+    describe('comparePlanoContaAzul', () => {
+      it('Should forward to planoContaAzulService', () => {
         const entity = { id: 123 };
         const entity2 = { id: 456 };
-        jest.spyOn(assinaturaEmpresaService, 'compareAssinaturaEmpresa');
-        comp.compareAssinaturaEmpresa(entity, entity2);
-        expect(assinaturaEmpresaService.compareAssinaturaEmpresa).toHaveBeenCalledWith(entity, entity2);
+        jest.spyOn(planoContaAzulService, 'comparePlanoContaAzul');
+        comp.comparePlanoContaAzul(entity, entity2);
+        expect(planoContaAzulService.comparePlanoContaAzul).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

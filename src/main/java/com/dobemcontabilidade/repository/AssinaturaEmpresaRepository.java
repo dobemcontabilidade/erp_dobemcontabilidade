@@ -27,18 +27,18 @@ public interface AssinaturaEmpresaRepository extends JpaRepository<AssinaturaEmp
     }
 
     @Query(
-        value = "select assinaturaEmpresa from AssinaturaEmpresa assinaturaEmpresa left join fetch assinaturaEmpresa.periodoPagamento left join fetch assinaturaEmpresa.formaDePagamento left join fetch assinaturaEmpresa.planoContaAzul left join fetch assinaturaEmpresa.planoContabil left join fetch assinaturaEmpresa.empresa",
+        value = "select assinaturaEmpresa from AssinaturaEmpresa assinaturaEmpresa left join fetch assinaturaEmpresa.periodoPagamento left join fetch assinaturaEmpresa.formaDePagamento left join fetch assinaturaEmpresa.planoContabil left join fetch assinaturaEmpresa.empresa",
         countQuery = "select count(assinaturaEmpresa) from AssinaturaEmpresa assinaturaEmpresa"
     )
     Page<AssinaturaEmpresa> findAllWithToOneRelationships(Pageable pageable);
 
     @Query(
-        "select assinaturaEmpresa from AssinaturaEmpresa assinaturaEmpresa left join fetch assinaturaEmpresa.periodoPagamento left join fetch assinaturaEmpresa.formaDePagamento left join fetch assinaturaEmpresa.planoContaAzul left join fetch assinaturaEmpresa.planoContabil left join fetch assinaturaEmpresa.empresa"
+        "select assinaturaEmpresa from AssinaturaEmpresa assinaturaEmpresa left join fetch assinaturaEmpresa.periodoPagamento left join fetch assinaturaEmpresa.formaDePagamento left join fetch assinaturaEmpresa.planoContabil left join fetch assinaturaEmpresa.empresa"
     )
     List<AssinaturaEmpresa> findAllWithToOneRelationships();
 
     @Query(
-        "select assinaturaEmpresa from AssinaturaEmpresa assinaturaEmpresa left join fetch assinaturaEmpresa.periodoPagamento left join fetch assinaturaEmpresa.formaDePagamento left join fetch assinaturaEmpresa.planoContaAzul left join fetch assinaturaEmpresa.planoContabil left join fetch assinaturaEmpresa.empresa where assinaturaEmpresa.id =:id"
+        "select assinaturaEmpresa from AssinaturaEmpresa assinaturaEmpresa left join fetch assinaturaEmpresa.periodoPagamento left join fetch assinaturaEmpresa.formaDePagamento left join fetch assinaturaEmpresa.planoContabil left join fetch assinaturaEmpresa.empresa where assinaturaEmpresa.id =:id"
     )
     Optional<AssinaturaEmpresa> findOneWithToOneRelationships(@Param("id") Long id);
 }

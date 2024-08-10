@@ -121,11 +121,6 @@ public class AssinaturaEmpresaQueryService extends QueryService<AssinaturaEmpres
                     buildRangeSpecification(criteria.getValorPlanoContabilComDesconto(), AssinaturaEmpresa_.valorPlanoContabilComDesconto)
                 );
             }
-            if (criteria.getValorPlanoContaAzulComDesconto() != null) {
-                specification = specification.and(
-                    buildRangeSpecification(criteria.getValorPlanoContaAzulComDesconto(), AssinaturaEmpresa_.valorPlanoContaAzulComDesconto)
-                );
-            }
             if (criteria.getValorMensalidade() != null) {
                 specification = specification.and(
                     buildRangeSpecification(criteria.getValorMensalidade(), AssinaturaEmpresa_.valorMensalidade)
@@ -188,14 +183,6 @@ public class AssinaturaEmpresaQueryService extends QueryService<AssinaturaEmpres
                     )
                 );
             }
-            if (criteria.getPlanoContaAzulId() != null) {
-                specification = specification.and(
-                    buildSpecification(
-                        criteria.getPlanoContaAzulId(),
-                        root -> root.join(AssinaturaEmpresa_.planoContaAzul, JoinType.LEFT).get(PlanoContaAzul_.id)
-                    )
-                );
-            }
             if (criteria.getPlanoContabilId() != null) {
                 specification = specification.and(
                     buildSpecification(
@@ -209,6 +196,14 @@ public class AssinaturaEmpresaQueryService extends QueryService<AssinaturaEmpres
                     buildSpecification(
                         criteria.getEmpresaId(),
                         root -> root.join(AssinaturaEmpresa_.empresa, JoinType.LEFT).get(Empresa_.id)
+                    )
+                );
+            }
+            if (criteria.getPlanoContaAzulId() != null) {
+                specification = specification.and(
+                    buildSpecification(
+                        criteria.getPlanoContaAzulId(),
+                        root -> root.join(AssinaturaEmpresa_.planoContaAzul, JoinType.LEFT).get(PlanoContaAzul_.id)
                     )
                 );
             }

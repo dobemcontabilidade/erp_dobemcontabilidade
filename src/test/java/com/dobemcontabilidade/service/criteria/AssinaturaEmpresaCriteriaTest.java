@@ -84,7 +84,6 @@ class AssinaturaEmpresaCriteriaTest {
         assinaturaEmpresaCriteria.valorFaturamento();
         assinaturaEmpresaCriteria.valorPlanoContabil();
         assinaturaEmpresaCriteria.valorPlanoContabilComDesconto();
-        assinaturaEmpresaCriteria.valorPlanoContaAzulComDesconto();
         assinaturaEmpresaCriteria.valorMensalidade();
         assinaturaEmpresaCriteria.valorPeriodo();
         assinaturaEmpresaCriteria.valorAno();
@@ -97,9 +96,9 @@ class AssinaturaEmpresaCriteriaTest {
         assinaturaEmpresaCriteria.pagamentoId();
         assinaturaEmpresaCriteria.periodoPagamentoId();
         assinaturaEmpresaCriteria.formaDePagamentoId();
-        assinaturaEmpresaCriteria.planoContaAzulId();
         assinaturaEmpresaCriteria.planoContabilId();
         assinaturaEmpresaCriteria.empresaId();
+        assinaturaEmpresaCriteria.planoContaAzulId();
         assinaturaEmpresaCriteria.distinct();
     }
 
@@ -116,7 +115,6 @@ class AssinaturaEmpresaCriteriaTest {
                 condition.apply(criteria.getValorFaturamento()) &&
                 condition.apply(criteria.getValorPlanoContabil()) &&
                 condition.apply(criteria.getValorPlanoContabilComDesconto()) &&
-                condition.apply(criteria.getValorPlanoContaAzulComDesconto()) &&
                 condition.apply(criteria.getValorMensalidade()) &&
                 condition.apply(criteria.getValorPeriodo()) &&
                 condition.apply(criteria.getValorAno()) &&
@@ -129,9 +127,9 @@ class AssinaturaEmpresaCriteriaTest {
                 condition.apply(criteria.getPagamentoId()) &&
                 condition.apply(criteria.getPeriodoPagamentoId()) &&
                 condition.apply(criteria.getFormaDePagamentoId()) &&
-                condition.apply(criteria.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getPlanoContabilId()) &&
                 condition.apply(criteria.getEmpresaId()) &&
+                condition.apply(criteria.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getDistinct()),
             "every filter matches"
         );
@@ -153,7 +151,6 @@ class AssinaturaEmpresaCriteriaTest {
                 condition.apply(criteria.getValorFaturamento(), copy.getValorFaturamento()) &&
                 condition.apply(criteria.getValorPlanoContabil(), copy.getValorPlanoContabil()) &&
                 condition.apply(criteria.getValorPlanoContabilComDesconto(), copy.getValorPlanoContabilComDesconto()) &&
-                condition.apply(criteria.getValorPlanoContaAzulComDesconto(), copy.getValorPlanoContaAzulComDesconto()) &&
                 condition.apply(criteria.getValorMensalidade(), copy.getValorMensalidade()) &&
                 condition.apply(criteria.getValorPeriodo(), copy.getValorPeriodo()) &&
                 condition.apply(criteria.getValorAno(), copy.getValorAno()) &&
@@ -166,9 +163,9 @@ class AssinaturaEmpresaCriteriaTest {
                 condition.apply(criteria.getPagamentoId(), copy.getPagamentoId()) &&
                 condition.apply(criteria.getPeriodoPagamentoId(), copy.getPeriodoPagamentoId()) &&
                 condition.apply(criteria.getFormaDePagamentoId(), copy.getFormaDePagamentoId()) &&
-                condition.apply(criteria.getPlanoContaAzulId(), copy.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getPlanoContabilId(), copy.getPlanoContabilId()) &&
                 condition.apply(criteria.getEmpresaId(), copy.getEmpresaId()) &&
+                condition.apply(criteria.getPlanoContaAzulId(), copy.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getDistinct(), copy.getDistinct()),
             "every filter matches"
         );

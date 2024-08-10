@@ -84,18 +84,17 @@ class CalculoPlanoAssinaturaCriteriaTest {
         calculoPlanoAssinaturaCriteria.valorFaturamento();
         calculoPlanoAssinaturaCriteria.valorPlanoContabil();
         calculoPlanoAssinaturaCriteria.valorPlanoContabilComDesconto();
-        calculoPlanoAssinaturaCriteria.valorPlanoContaAzulComDesconto();
         calculoPlanoAssinaturaCriteria.valorMensalidade();
         calculoPlanoAssinaturaCriteria.valorPeriodo();
         calculoPlanoAssinaturaCriteria.valorAno();
         calculoPlanoAssinaturaCriteria.periodoPagamentoId();
-        calculoPlanoAssinaturaCriteria.planoContaAzulId();
         calculoPlanoAssinaturaCriteria.planoContabilId();
         calculoPlanoAssinaturaCriteria.ramoId();
         calculoPlanoAssinaturaCriteria.tributacaoId();
         calculoPlanoAssinaturaCriteria.descontoPlanoContabilId();
-        calculoPlanoAssinaturaCriteria.descontoPlanoContaAzulId();
         calculoPlanoAssinaturaCriteria.assinaturaEmpresaId();
+        calculoPlanoAssinaturaCriteria.descontoPlanoContaAzulId();
+        calculoPlanoAssinaturaCriteria.planoContaAzulId();
         calculoPlanoAssinaturaCriteria.distinct();
     }
 
@@ -112,18 +111,17 @@ class CalculoPlanoAssinaturaCriteriaTest {
                 condition.apply(criteria.getValorFaturamento()) &&
                 condition.apply(criteria.getValorPlanoContabil()) &&
                 condition.apply(criteria.getValorPlanoContabilComDesconto()) &&
-                condition.apply(criteria.getValorPlanoContaAzulComDesconto()) &&
                 condition.apply(criteria.getValorMensalidade()) &&
                 condition.apply(criteria.getValorPeriodo()) &&
                 condition.apply(criteria.getValorAno()) &&
                 condition.apply(criteria.getPeriodoPagamentoId()) &&
-                condition.apply(criteria.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getPlanoContabilId()) &&
                 condition.apply(criteria.getRamoId()) &&
                 condition.apply(criteria.getTributacaoId()) &&
                 condition.apply(criteria.getDescontoPlanoContabilId()) &&
-                condition.apply(criteria.getDescontoPlanoContaAzulId()) &&
                 condition.apply(criteria.getAssinaturaEmpresaId()) &&
+                condition.apply(criteria.getDescontoPlanoContaAzulId()) &&
+                condition.apply(criteria.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getDistinct()),
             "every filter matches"
         );
@@ -145,18 +143,17 @@ class CalculoPlanoAssinaturaCriteriaTest {
                 condition.apply(criteria.getValorFaturamento(), copy.getValorFaturamento()) &&
                 condition.apply(criteria.getValorPlanoContabil(), copy.getValorPlanoContabil()) &&
                 condition.apply(criteria.getValorPlanoContabilComDesconto(), copy.getValorPlanoContabilComDesconto()) &&
-                condition.apply(criteria.getValorPlanoContaAzulComDesconto(), copy.getValorPlanoContaAzulComDesconto()) &&
                 condition.apply(criteria.getValorMensalidade(), copy.getValorMensalidade()) &&
                 condition.apply(criteria.getValorPeriodo(), copy.getValorPeriodo()) &&
                 condition.apply(criteria.getValorAno(), copy.getValorAno()) &&
                 condition.apply(criteria.getPeriodoPagamentoId(), copy.getPeriodoPagamentoId()) &&
-                condition.apply(criteria.getPlanoContaAzulId(), copy.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getPlanoContabilId(), copy.getPlanoContabilId()) &&
                 condition.apply(criteria.getRamoId(), copy.getRamoId()) &&
                 condition.apply(criteria.getTributacaoId(), copy.getTributacaoId()) &&
                 condition.apply(criteria.getDescontoPlanoContabilId(), copy.getDescontoPlanoContabilId()) &&
-                condition.apply(criteria.getDescontoPlanoContaAzulId(), copy.getDescontoPlanoContaAzulId()) &&
                 condition.apply(criteria.getAssinaturaEmpresaId(), copy.getAssinaturaEmpresaId()) &&
+                condition.apply(criteria.getDescontoPlanoContaAzulId(), copy.getDescontoPlanoContaAzulId()) &&
+                condition.apply(criteria.getPlanoContaAzulId(), copy.getPlanoContaAzulId()) &&
                 condition.apply(criteria.getDistinct(), copy.getDistinct()),
             "every filter matches"
         );

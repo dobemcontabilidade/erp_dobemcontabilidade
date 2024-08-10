@@ -67,12 +67,6 @@ public class CalculoPlanoAssinaturaAsserts {
                         .as("check valorPlanoContabilComDesconto")
                         .isEqualTo(actual.getValorPlanoContabilComDesconto())
             )
-            .satisfies(
-                e ->
-                    assertThat(e.getValorPlanoContaAzulComDesconto())
-                        .as("check valorPlanoContaAzulComDesconto")
-                        .isEqualTo(actual.getValorPlanoContaAzulComDesconto())
-            )
             .satisfies(e -> assertThat(e.getValorMensalidade()).as("check valorMensalidade").isEqualTo(actual.getValorMensalidade()))
             .satisfies(e -> assertThat(e.getValorPeriodo()).as("check valorPeriodo").isEqualTo(actual.getValorPeriodo()))
             .satisfies(e -> assertThat(e.getValorAno()).as("check valorAno").isEqualTo(actual.getValorAno()));
@@ -91,19 +85,19 @@ public class CalculoPlanoAssinaturaAsserts {
         assertThat(expected)
             .as("Verify CalculoPlanoAssinatura relationships")
             .satisfies(e -> assertThat(e.getPeriodoPagamento()).as("check periodoPagamento").isEqualTo(actual.getPeriodoPagamento()))
-            .satisfies(e -> assertThat(e.getPlanoContaAzul()).as("check planoContaAzul").isEqualTo(actual.getPlanoContaAzul()))
             .satisfies(e -> assertThat(e.getPlanoContabil()).as("check planoContabil").isEqualTo(actual.getPlanoContabil()))
             .satisfies(e -> assertThat(e.getRamo()).as("check ramo").isEqualTo(actual.getRamo()))
             .satisfies(e -> assertThat(e.getTributacao()).as("check tributacao").isEqualTo(actual.getTributacao()))
             .satisfies(
                 e -> assertThat(e.getDescontoPlanoContabil()).as("check descontoPlanoContabil").isEqualTo(actual.getDescontoPlanoContabil())
             )
+            .satisfies(e -> assertThat(e.getAssinaturaEmpresa()).as("check assinaturaEmpresa").isEqualTo(actual.getAssinaturaEmpresa()))
             .satisfies(
                 e ->
                     assertThat(e.getDescontoPlanoContaAzul())
                         .as("check descontoPlanoContaAzul")
                         .isEqualTo(actual.getDescontoPlanoContaAzul())
             )
-            .satisfies(e -> assertThat(e.getAssinaturaEmpresa()).as("check assinaturaEmpresa").isEqualTo(actual.getAssinaturaEmpresa()));
+            .satisfies(e -> assertThat(e.getPlanoContaAzul()).as("check planoContaAzul").isEqualTo(actual.getPlanoContaAzul()));
     }
 }

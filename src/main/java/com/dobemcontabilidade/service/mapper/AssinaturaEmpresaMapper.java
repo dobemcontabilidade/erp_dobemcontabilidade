@@ -21,9 +21,9 @@ import org.mapstruct.*;
 public interface AssinaturaEmpresaMapper extends EntityMapper<AssinaturaEmpresaDTO, AssinaturaEmpresa> {
     @Mapping(target = "periodoPagamento", source = "periodoPagamento", qualifiedByName = "periodoPagamentoPeriodo")
     @Mapping(target = "formaDePagamento", source = "formaDePagamento", qualifiedByName = "formaDePagamentoForma")
-    @Mapping(target = "planoContaAzul", source = "planoContaAzul", qualifiedByName = "planoContaAzulNome")
     @Mapping(target = "planoContabil", source = "planoContabil", qualifiedByName = "planoContabilNome")
     @Mapping(target = "empresa", source = "empresa", qualifiedByName = "empresaRazaoSocial")
+    @Mapping(target = "planoContaAzul", source = "planoContaAzul", qualifiedByName = "planoContaAzulId")
     AssinaturaEmpresaDTO toDto(AssinaturaEmpresa s);
 
     @Named("periodoPagamentoPeriodo")
@@ -38,12 +38,6 @@ public interface AssinaturaEmpresaMapper extends EntityMapper<AssinaturaEmpresaD
     @Mapping(target = "forma", source = "forma")
     FormaDePagamentoDTO toDtoFormaDePagamentoForma(FormaDePagamento formaDePagamento);
 
-    @Named("planoContaAzulNome")
-    @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "nome", source = "nome")
-    PlanoContaAzulDTO toDtoPlanoContaAzulNome(PlanoContaAzul planoContaAzul);
-
     @Named("planoContabilNome")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
@@ -55,4 +49,9 @@ public interface AssinaturaEmpresaMapper extends EntityMapper<AssinaturaEmpresaD
     @Mapping(target = "id", source = "id")
     @Mapping(target = "razaoSocial", source = "razaoSocial")
     EmpresaDTO toDtoEmpresaRazaoSocial(Empresa empresa);
+
+    @Named("planoContaAzulId")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    PlanoContaAzulDTO toDtoPlanoContaAzulId(PlanoContaAzul planoContaAzul);
 }

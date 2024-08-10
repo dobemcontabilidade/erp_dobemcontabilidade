@@ -2,7 +2,6 @@ package com.dobemcontabilidade.domain;
 
 import static com.dobemcontabilidade.domain.AssinaturaEmpresaTestSamples.*;
 import static com.dobemcontabilidade.domain.CalculoPlanoAssinaturaTestSamples.*;
-import static com.dobemcontabilidade.domain.DescontoPlanoContaAzulTestSamples.*;
 import static com.dobemcontabilidade.domain.DescontoPlanoContabilTestSamples.*;
 import static com.dobemcontabilidade.domain.PeriodoPagamentoTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -70,28 +69,6 @@ class PeriodoPagamentoTest {
         periodoPagamento.setAssinaturaEmpresas(new HashSet<>());
         assertThat(periodoPagamento.getAssinaturaEmpresas()).doesNotContain(assinaturaEmpresaBack);
         assertThat(assinaturaEmpresaBack.getPeriodoPagamento()).isNull();
-    }
-
-    @Test
-    void descontoPlanoContaAzulTest() {
-        PeriodoPagamento periodoPagamento = getPeriodoPagamentoRandomSampleGenerator();
-        DescontoPlanoContaAzul descontoPlanoContaAzulBack = getDescontoPlanoContaAzulRandomSampleGenerator();
-
-        periodoPagamento.addDescontoPlanoContaAzul(descontoPlanoContaAzulBack);
-        assertThat(periodoPagamento.getDescontoPlanoContaAzuls()).containsOnly(descontoPlanoContaAzulBack);
-        assertThat(descontoPlanoContaAzulBack.getPeriodoPagamento()).isEqualTo(periodoPagamento);
-
-        periodoPagamento.removeDescontoPlanoContaAzul(descontoPlanoContaAzulBack);
-        assertThat(periodoPagamento.getDescontoPlanoContaAzuls()).doesNotContain(descontoPlanoContaAzulBack);
-        assertThat(descontoPlanoContaAzulBack.getPeriodoPagamento()).isNull();
-
-        periodoPagamento.descontoPlanoContaAzuls(new HashSet<>(Set.of(descontoPlanoContaAzulBack)));
-        assertThat(periodoPagamento.getDescontoPlanoContaAzuls()).containsOnly(descontoPlanoContaAzulBack);
-        assertThat(descontoPlanoContaAzulBack.getPeriodoPagamento()).isEqualTo(periodoPagamento);
-
-        periodoPagamento.setDescontoPlanoContaAzuls(new HashSet<>());
-        assertThat(periodoPagamento.getDescontoPlanoContaAzuls()).doesNotContain(descontoPlanoContaAzulBack);
-        assertThat(descontoPlanoContaAzulBack.getPeriodoPagamento()).isNull();
     }
 
     @Test

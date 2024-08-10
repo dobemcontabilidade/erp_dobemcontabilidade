@@ -28,18 +28,18 @@ public interface CalculoPlanoAssinaturaRepository
     }
 
     @Query(
-        value = "select calculoPlanoAssinatura from CalculoPlanoAssinatura calculoPlanoAssinatura left join fetch calculoPlanoAssinatura.periodoPagamento left join fetch calculoPlanoAssinatura.planoContaAzul left join fetch calculoPlanoAssinatura.planoContabil left join fetch calculoPlanoAssinatura.ramo left join fetch calculoPlanoAssinatura.tributacao left join fetch calculoPlanoAssinatura.descontoPlanoContabil left join fetch calculoPlanoAssinatura.descontoPlanoContaAzul left join fetch calculoPlanoAssinatura.assinaturaEmpresa",
+        value = "select calculoPlanoAssinatura from CalculoPlanoAssinatura calculoPlanoAssinatura left join fetch calculoPlanoAssinatura.periodoPagamento left join fetch calculoPlanoAssinatura.planoContabil left join fetch calculoPlanoAssinatura.ramo left join fetch calculoPlanoAssinatura.tributacao left join fetch calculoPlanoAssinatura.descontoPlanoContabil left join fetch calculoPlanoAssinatura.assinaturaEmpresa",
         countQuery = "select count(calculoPlanoAssinatura) from CalculoPlanoAssinatura calculoPlanoAssinatura"
     )
     Page<CalculoPlanoAssinatura> findAllWithToOneRelationships(Pageable pageable);
 
     @Query(
-        "select calculoPlanoAssinatura from CalculoPlanoAssinatura calculoPlanoAssinatura left join fetch calculoPlanoAssinatura.periodoPagamento left join fetch calculoPlanoAssinatura.planoContaAzul left join fetch calculoPlanoAssinatura.planoContabil left join fetch calculoPlanoAssinatura.ramo left join fetch calculoPlanoAssinatura.tributacao left join fetch calculoPlanoAssinatura.descontoPlanoContabil left join fetch calculoPlanoAssinatura.descontoPlanoContaAzul left join fetch calculoPlanoAssinatura.assinaturaEmpresa"
+        "select calculoPlanoAssinatura from CalculoPlanoAssinatura calculoPlanoAssinatura left join fetch calculoPlanoAssinatura.periodoPagamento left join fetch calculoPlanoAssinatura.planoContabil left join fetch calculoPlanoAssinatura.ramo left join fetch calculoPlanoAssinatura.tributacao left join fetch calculoPlanoAssinatura.descontoPlanoContabil left join fetch calculoPlanoAssinatura.assinaturaEmpresa"
     )
     List<CalculoPlanoAssinatura> findAllWithToOneRelationships();
 
     @Query(
-        "select calculoPlanoAssinatura from CalculoPlanoAssinatura calculoPlanoAssinatura left join fetch calculoPlanoAssinatura.periodoPagamento left join fetch calculoPlanoAssinatura.planoContaAzul left join fetch calculoPlanoAssinatura.planoContabil left join fetch calculoPlanoAssinatura.ramo left join fetch calculoPlanoAssinatura.tributacao left join fetch calculoPlanoAssinatura.descontoPlanoContabil left join fetch calculoPlanoAssinatura.descontoPlanoContaAzul left join fetch calculoPlanoAssinatura.assinaturaEmpresa where calculoPlanoAssinatura.id =:id"
+        "select calculoPlanoAssinatura from CalculoPlanoAssinatura calculoPlanoAssinatura left join fetch calculoPlanoAssinatura.periodoPagamento left join fetch calculoPlanoAssinatura.planoContabil left join fetch calculoPlanoAssinatura.ramo left join fetch calculoPlanoAssinatura.tributacao left join fetch calculoPlanoAssinatura.descontoPlanoContabil left join fetch calculoPlanoAssinatura.assinaturaEmpresa where calculoPlanoAssinatura.id =:id"
     )
     Optional<CalculoPlanoAssinatura> findOneWithToOneRelationships(@Param("id") Long id);
 }

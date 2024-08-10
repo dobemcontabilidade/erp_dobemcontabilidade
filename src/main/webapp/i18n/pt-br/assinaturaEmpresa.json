@@ -27,7 +27,6 @@
       "valorFaturamento": "Valor Faturamento",
       "valorPlanoContabil": "Valor Plano Contabil",
       "valorPlanoContabilComDesconto": "Valor Plano Contabil Com Desconto",
-      "valorPlanoContaAzulComDesconto": "Valor Plano Conta Azul Com Desconto",
       "valorMensalidade": "Valor Mensalidade",
       "valorPeriodo": "Valor Periodo",
       "valorAno": "Valor Ano",
@@ -40,9 +39,9 @@
       "pagamento": "Pagamento",
       "periodoPagamento": "Periodo Pagamento",
       "formaDePagamento": "Forma De Pagamento",
-      "planoContaAzul": "Plano Conta Azul",
       "planoContabil": "Plano Contabil",
-      "empresa": "Empresa"
+      "empresa": "Empresa",
+      "planoContaAzul": "Plano Conta Azul"
     }
   }
 }

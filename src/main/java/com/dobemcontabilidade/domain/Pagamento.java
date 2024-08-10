@@ -59,7 +59,7 @@ public class Pagamento implements Serializable {
     @NotNull
     @JsonIgnoreProperties(
         value = {
-            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContaAzul", "planoContabil", "empresa",
+            "calculoPlanoAssinaturas", "pagamentos", "periodoPagamento", "formaDePagamento", "planoContabil", "empresa", "planoContaAzul",
         },
         allowSetters = true
     )

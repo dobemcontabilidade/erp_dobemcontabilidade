@@ -1,34 +1,33 @@
 import { ICalculoPlanoAssinatura, NewCalculoPlanoAssinatura } from './calculo-plano-assinatura.model';
 
 export const sampleWithRequiredData: ICalculoPlanoAssinatura = {
-  id: 32751,
+  id: 23237,
 };
 
 export const sampleWithPartialData: ICalculoPlanoAssinatura = {
-  id: 1065,
-  codigoAtendimento: 'boohoo',
-  valorRamo: 3721.01,
-  valorSocios: 25434.24,
-  valorFaturamento: 11261.54,
-  valorPlanoContaAzulComDesconto: 18655.72,
-  valorMensalidade: 228.77,
+  id: 16444,
+  valorEnquadramento: 16749.18,
+  valorFuncionarios: 1065.76,
+  valorFaturamento: 8823.29,
+  valorPlanoContabil: 8506.55,
+  valorPeriodo: 30416.02,
+  valorAno: 13061.82,
 };
 
 export const sampleWithFullData: ICalculoPlanoAssinatura = {
-  id: 23003,
-  codigoAtendimento: 'intercut barring uh-huh',
-  valorEnquadramento: 7807.75,
-  valorTributacao: 19073.45,
-  valorRamo: 13243.92,
-  valorFuncionarios: 13854.46,
-  valorSocios: 2861.84,
-  valorFaturamento: 461.15,
-  valorPlanoContabil: 24168.2,
-  valorPlanoContabilComDesconto: 27315.36,
-  valorPlanoContaAzulComDesconto: 12780.67,
-  valorMensalidade: 5142.04,
-  valorPeriodo: 17693.37,
-  valorAno: 31669.09,
+  id: 24345,
+  codigoAtendimento: 'acrylic',
+  valorEnquadramento: 23002.51,
+  valorTributacao: 30709.34,
+  valorRamo: 1319.25,
+  valorFuncionarios: 15489.87,
+  valorSocios: 14540.51,
+  valorFaturamento: 17581.22,
+  valorPlanoContabil: 22991.9,
+  valorPlanoContabilComDesconto: 16707.12,
+  valorMensalidade: 15045.89,
+  valorPeriodo: 30531.3,
+  valorAno: 22446.29,
 };
 
 export const sampleWithNewData: NewCalculoPlanoAssinatura = {

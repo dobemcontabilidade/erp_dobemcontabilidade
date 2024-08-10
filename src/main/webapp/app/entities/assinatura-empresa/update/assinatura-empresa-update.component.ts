@@ -11,12 +11,12 @@ import { IPeriodoPagamento } from 'app/entities/periodo-pagamento/periodo-pagame
 import { PeriodoPagamentoService } from 'app/entities/periodo-pagamento/service/periodo-pagamento.service';
 import { IFormaDePagamento } from 'app/entities/forma-de-pagamento/forma-de-pagamento.model';
 import { FormaDePagamentoService } from 'app/entities/forma-de-pagamento/service/forma-de-pagamento.service';
-import { IPlanoContaAzul } from 'app/entities/plano-conta-azul/plano-conta-azul.model';
-import { PlanoContaAzulService } from 'app/entities/plano-conta-azul/service/plano-conta-azul.service';
 import { IPlanoContabil } from 'app/entities/plano-contabil/plano-contabil.model';
 import { PlanoContabilService } from 'app/entities/plano-contabil/service/plano-contabil.service';
 import { IEmpresa } from 'app/entities/empresa/empresa.model';
 import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
+import { IPlanoContaAzul } from 'app/entities/plano-conta-azul/plano-conta-azul.model';
+import { PlanoContaAzulService } from 'app/entities/plano-conta-azul/service/plano-conta-azul.service';
 import { SituacaoContratoEmpresaEnum } from 'app/entities/enumerations/situacao-contrato-empresa-enum.model';
 import { TipoContratoEnum } from 'app/entities/enumerations/tipo-contrato-enum.model';
 import { AssinaturaEmpresaService } from '../service/assinatura-empresa.service';
@@ -37,17 +37,17 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
 
   periodoPagamentosSharedCollection: IPeriodoPagamento[] = [];
   formaDePagamentosSharedCollection: IFormaDePagamento[] = [];
-  planoContaAzulsSharedCollection: IPlanoContaAzul[] = [];
   planoContabilsSharedCollection: IPlanoContabil[] = [];
   empresasSharedCollection: IEmpresa[] = [];
+  planoContaAzulsSharedCollection: IPlanoContaAzul[] = [];
 
   protected assinaturaEmpresaService = inject(AssinaturaEmpresaService);
   protected assinaturaEmpresaFormService = inject(AssinaturaEmpresaFormService);
   protected periodoPagamentoService = inject(PeriodoPagamentoService);
   protected formaDePagamentoService = inject(FormaDePagamentoService);
-  protected planoContaAzulService = inject(PlanoContaAzulService);
   protected planoContabilService = inject(PlanoContabilService);
   protected empresaService = inject(EmpresaService);
+  protected planoContaAzulService = inject(PlanoContaAzulService);
   protected activatedRoute = inject(ActivatedRoute);
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -59,13 +59,13 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
   compareFormaDePagamento = (o1: IFormaDePagamento | null, o2: IFormaDePagamento | null): boolean =>
     this.formaDePagamentoService.compareFormaDePagamento(o1, o2);
 
-  comparePlanoContaAzul = (o1: IPlanoContaAzul | null, o2: IPlanoContaAzul | null): boolean =>
-    this.planoContaAzulService.comparePlanoContaAzul(o1, o2);
-
   comparePlanoContabil = (o1: IPlanoContabil | null, o2: IPlanoContabil | null): boolean =>
     this.planoContabilService.comparePlanoContabil(o1, o2);
 
   compareEmpresa = (o1: IEmpresa | null, o2: IEmpresa | null): boolean => this.empresaService.compareEmpresa(o1, o2);
+
+  comparePlanoContaAzul = (o1: IPlanoContaAzul | null, o2: IPlanoContaAzul | null): boolean =>
+    this.planoContaAzulService.comparePlanoContaAzul(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ assinaturaEmpresa }) => {
@@ -123,10 +123,6 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
       this.formaDePagamentosSharedCollection,
       assinaturaEmpresa.formaDePagamento,
     );
-    this.planoContaAzulsSharedCollection = this.planoContaAzulService.addPlanoContaAzulToCollectionIfMissing<IPlanoContaAzul>(
-      this.planoContaAzulsSharedCollection,
-      assinaturaEmpresa.planoContaAzul,
-    );
     this.planoContabilsSharedCollection = this.planoContabilService.addPlanoContabilToCollectionIfMissing<IPlanoContabil>(
       this.planoContabilsSharedCollection,
       assinaturaEmpresa.planoContabil,
@@ -134,6 +130,10 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
     this.empresasSharedCollection = this.empresaService.addEmpresaToCollectionIfMissing<IEmpresa>(
       this.empresasSharedCollection,
       assinaturaEmpresa.empresa,
+    );
+    this.planoContaAzulsSharedCollection = this.planoContaAzulService.addPlanoContaAzulToCollectionIfMissing<IPlanoContaAzul>(
+      this.planoContaAzulsSharedCollection,
+      assinaturaEmpresa.planoContaAzul,
     );
   }
 
@@ -164,19 +164,6 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
       )
       .subscribe((formaDePagamentos: IFormaDePagamento[]) => (this.formaDePagamentosSharedCollection = formaDePagamentos));
 
-    this.planoContaAzulService
-      .query()
-      .pipe(map((res: HttpResponse<IPlanoContaAzul[]>) => res.body ?? []))
-      .pipe(
-        map((planoContaAzuls: IPlanoContaAzul[]) =>
-          this.planoContaAzulService.addPlanoContaAzulToCollectionIfMissing<IPlanoContaAzul>(
-            planoContaAzuls,
-            this.assinaturaEmpresa?.planoContaAzul,
-          ),
-        ),
-      )
-      .subscribe((planoContaAzuls: IPlanoContaAzul[]) => (this.planoContaAzulsSharedCollection = planoContaAzuls));
-
     this.planoContabilService
       .query()
       .pipe(map((res: HttpResponse<IPlanoContabil[]>) => res.body ?? []))
@@ -199,5 +186,18 @@ export class AssinaturaEmpresaUpdateComponent implements OnInit {
         ),
       )
       .subscribe((empresas: IEmpresa[]) => (this.empresasSharedCollection = empresas));
+
+    this.planoContaAzulService
+      .query()
+      .pipe(map((res: HttpResponse<IPlanoContaAzul[]>) => res.body ?? []))
+      .pipe(
+        map((planoContaAzuls: IPlanoContaAzul[]) =>
+          this.planoContaAzulService.addPlanoContaAzulToCollectionIfMissing<IPlanoContaAzul>(
+            planoContaAzuls,
+            this.assinaturaEmpresa?.planoContaAzul,
+          ),
+        ),
+      )
+      .subscribe((planoContaAzuls: IPlanoContaAzul[]) => (this.planoContaAzulsSharedCollection = planoContaAzuls));
   }
 }

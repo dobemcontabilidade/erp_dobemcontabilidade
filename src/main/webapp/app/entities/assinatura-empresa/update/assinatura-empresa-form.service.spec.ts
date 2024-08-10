@@ -29,7 +29,6 @@ describe('AssinaturaEmpresa Form Service', () => {
             valorFaturamento: expect.any(Object),
             valorPlanoContabil: expect.any(Object),
             valorPlanoContabilComDesconto: expect.any(Object),
-            valorPlanoContaAzulComDesconto: expect.any(Object),
             valorMensalidade: expect.any(Object),
             valorPeriodo: expect.any(Object),
             valorAno: expect.any(Object),
@@ -40,9 +39,9 @@ describe('AssinaturaEmpresa Form Service', () => {
             tipoContrato: expect.any(Object),
             periodoPagamento: expect.any(Object),
             formaDePagamento: expect.any(Object),
-            planoContaAzul: expect.any(Object),
             planoContabil: expect.any(Object),
             empresa: expect.any(Object),
+            planoContaAzul: expect.any(Object),
           }),
         );
       });
@@ -62,7 +61,6 @@ describe('AssinaturaEmpresa Form Service', () => {
             valorFaturamento: expect.any(Object),
             valorPlanoContabil: expect.any(Object),
             valorPlanoContabilComDesconto: expect.any(Object),
-            valorPlanoContaAzulComDesconto: expect.any(Object),
             valorMensalidade: expect.any(Object),
             valorPeriodo: expect.any(Object),
             valorAno: expect.any(Object),
@@ -73,9 +71,9 @@ describe('AssinaturaEmpresa Form Service', () => {
             tipoContrato: expect.any(Object),
             periodoPagamento: expect.any(Object),
             formaDePagamento: expect.any(Object),
-            planoContaAzul: expect.any(Object),
             planoContabil: expect.any(Object),
             empresa: expect.any(Object),
+            planoContaAzul: expect.any(Object),
           }),
         );
       });

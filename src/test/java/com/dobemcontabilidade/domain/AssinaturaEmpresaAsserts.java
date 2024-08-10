@@ -61,12 +61,6 @@ public class AssinaturaEmpresaAsserts {
                         .as("check valorPlanoContabilComDesconto")
                         .isEqualTo(actual.getValorPlanoContabilComDesconto())
             )
-            .satisfies(
-                e ->
-                    assertThat(e.getValorPlanoContaAzulComDesconto())
-                        .as("check valorPlanoContaAzulComDesconto")
-                        .isEqualTo(actual.getValorPlanoContaAzulComDesconto())
-            )
             .satisfies(e -> assertThat(e.getValorMensalidade()).as("check valorMensalidade").isEqualTo(actual.getValorMensalidade()))
             .satisfies(e -> assertThat(e.getValorPeriodo()).as("check valorPeriodo").isEqualTo(actual.getValorPeriodo()))
             .satisfies(e -> assertThat(e.getValorAno()).as("check valorAno").isEqualTo(actual.getValorAno()))
@@ -88,8 +82,8 @@ public class AssinaturaEmpresaAsserts {
             .as("Verify AssinaturaEmpresa relationships")
             .satisfies(e -> assertThat(e.getPeriodoPagamento()).as("check periodoPagamento").isEqualTo(actual.getPeriodoPagamento()))
             .satisfies(e -> assertThat(e.getFormaDePagamento()).as("check formaDePagamento").isEqualTo(actual.getFormaDePagamento()))
-            .satisfies(e -> assertThat(e.getPlanoContaAzul()).as("check planoContaAzul").isEqualTo(actual.getPlanoContaAzul()))
             .satisfies(e -> assertThat(e.getPlanoContabil()).as("check planoContabil").isEqualTo(actual.getPlanoContabil()))
-            .satisfies(e -> assertThat(e.getEmpresa()).as("check empresa").isEqualTo(actual.getEmpresa()));
+            .satisfies(e -> assertThat(e.getEmpresa()).as("check empresa").isEqualTo(actual.getEmpresa()))
+            .satisfies(e -> assertThat(e.getPlanoContaAzul()).as("check planoContaAzul").isEqualTo(actual.getPlanoContaAzul()));
     }
 }

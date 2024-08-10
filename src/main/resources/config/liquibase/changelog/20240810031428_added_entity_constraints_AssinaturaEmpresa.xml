@@ -24,13 +24,6 @@
                                  referencedTableName="forma_de_pagamento"
                                  />
 
-        <addForeignKeyConstraint baseColumnNames="plano_conta_azul_id"
-                                 baseTableName="assinatura_empresa"
-                                 constraintName="fk_assinatura_empresa__plano_conta_azul_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="plano_conta_azul"
-                                 />
-
         <addForeignKeyConstraint baseColumnNames="plano_contabil_id"
                                  baseTableName="assinatura_empresa"
                                  constraintName="fk_assinatura_empresa__plano_contabil_id"
@@ -43,6 +36,13 @@
                                  constraintName="fk_assinatura_empresa__empresa_id"
                                  referencedColumnNames="id"
                                  referencedTableName="empresa"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="plano_conta_azul_id"
+                                 baseTableName="assinatura_empresa"
+                                 constraintName="fk_assinatura_empresa__plano_conta_azul_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plano_conta_azul"
                                  />
     </changeSet>
 </databaseChangeLog>

@@ -57,14 +57,6 @@
           <dd>
             <span>{{ assinaturaEmpresa()!.valorPlanoContabilComDesconto }}</span>
           </dd>
-          <dt>
-            <span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorPlanoContaAzulComDesconto"
-              >Valor Plano Conta Azul Com Desconto</span
-            >
-          </dt>
-          <dd>
-            <span>{{ assinaturaEmpresa()!.valorPlanoContaAzulComDesconto }}</span>
-          </dd>
           <dt><span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorMensalidade">Valor Mensalidade</span></dt>
           <dd>
             <span>{{ assinaturaEmpresa()!.valorMensalidade }}</span>
@@ -132,16 +124,6 @@
               </div>
             }
           </dd>
-          <dt><span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContaAzul">Plano Conta Azul</span></dt>
-          <dd>
-            @if (assinaturaEmpresa()!.planoContaAzul) {
-              <div>
-                <a [routerLink]="['/plano-conta-azul', assinaturaEmpresa()!.planoContaAzul?.id, 'view']">{{
-                  assinaturaEmpresa()!.planoContaAzul?.nome
-                }}</a>
-              </div>
-            }
-          </dd>
           <dt><span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContabil">Plano Contabil</span></dt>
           <dd>
             @if (assinaturaEmpresa()!.planoContabil) {
@@ -157,6 +139,16 @@
             @if (assinaturaEmpresa()!.empresa) {
               <div>
                 <a [routerLink]="['/empresa', assinaturaEmpresa()!.empresa?.id, 'view']">{{ assinaturaEmpresa()!.empresa?.razaoSocial }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.planoContaAzul">Plano Conta Azul</span></dt>
+          <dd>
+            @if (assinaturaEmpresa()!.planoContaAzul) {
+              <div>
+                <a [routerLink]="['/plano-conta-azul', assinaturaEmpresa()!.planoContaAzul?.id, 'view']">{{
+                  assinaturaEmpresa()!.planoContaAzul?.id
+                }}</a>
               </div>
             }
           </dd>

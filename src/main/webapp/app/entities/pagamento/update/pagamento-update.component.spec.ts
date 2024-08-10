@@ -49,10 +49,10 @@ describe('Pagamento Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call AssinaturaEmpresa query and add missing value', () => {
       const pagamento: IPagamento = { id: 456 };
-      const assinaturaEmpresa: IAssinaturaEmpresa = { id: 8007 };
+      const assinaturaEmpresa: IAssinaturaEmpresa = { id: 6114 };
       pagamento.assinaturaEmpresa = assinaturaEmpresa;
 
-      const assinaturaEmpresaCollection: IAssinaturaEmpresa[] = [{ id: 12006 }];
+      const assinaturaEmpresaCollection: IAssinaturaEmpresa[] = [{ id: 26677 }];
       jest.spyOn(assinaturaEmpresaService, 'query').mockReturnValue(of(new HttpResponse({ body: assinaturaEmpresaCollection })));
       const additionalAssinaturaEmpresas = [assinaturaEmpresa];
       const expectedCollection: IAssinaturaEmpresa[] = [...additionalAssinaturaEmpresas, ...assinaturaEmpresaCollection];
@@ -71,7 +71,7 @@ describe('Pagamento Management Update Component', () => {
 
     it('Should update editForm', () => {
       const pagamento: IPagamento = { id: 456 };
-      const assinaturaEmpresa: IAssinaturaEmpresa = { id: 17103 };
+      const assinaturaEmpresa: IAssinaturaEmpresa = { id: 27655 };
       pagamento.assinaturaEmpresa = assinaturaEmpresa;
 
       activatedRoute.data = of({ pagamento });

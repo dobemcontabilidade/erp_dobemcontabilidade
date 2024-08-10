@@ -35,13 +35,13 @@ public class DescontoPlanoContabil implements Serializable {
     @JsonIgnoreProperties(
         value = {
             "periodoPagamento",
-            "planoContaAzul",
             "planoContabil",
             "ramo",
             "tributacao",
             "descontoPlanoContabil",
-            "descontoPlanoContaAzul",
             "assinaturaEmpresa",
+            "descontoPlanoContaAzul",
+            "planoContaAzul",
         },
         allowSetters = true
     )
@@ -49,10 +49,7 @@ public class DescontoPlanoContabil implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties(
-        value = { "calculoPlanoAssinaturas", "assinaturaEmpresas", "descontoPlanoContaAzuls", "descontoPlanoContabils" },
-        allowSetters = true
-    )
+    @JsonIgnoreProperties(value = { "calculoPlanoAssinaturas", "assinaturaEmpresas", "descontoPlanoContabils" }, allowSetters = true)
     private PeriodoPagamento periodoPagamento;
 
     @ManyToOne(optional = false)

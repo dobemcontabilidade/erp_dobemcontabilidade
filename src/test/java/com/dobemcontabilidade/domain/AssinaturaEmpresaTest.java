@@ -100,18 +100,6 @@ class AssinaturaEmpresaTest {
     }
 
     @Test
-    void planoContaAzulTest() {
-        AssinaturaEmpresa assinaturaEmpresa = getAssinaturaEmpresaRandomSampleGenerator();
-        PlanoContaAzul planoContaAzulBack = getPlanoContaAzulRandomSampleGenerator();
-
-        assinaturaEmpresa.setPlanoContaAzul(planoContaAzulBack);
-        assertThat(assinaturaEmpresa.getPlanoContaAzul()).isEqualTo(planoContaAzulBack);
-
-        assinaturaEmpresa.planoContaAzul(null);
-        assertThat(assinaturaEmpresa.getPlanoContaAzul()).isNull();
-    }
-
-    @Test
     void planoContabilTest() {
         AssinaturaEmpresa assinaturaEmpresa = getAssinaturaEmpresaRandomSampleGenerator();
         PlanoContabil planoContabilBack = getPlanoContabilRandomSampleGenerator();
@@ -133,5 +121,17 @@ class AssinaturaEmpresaTest {
 
         assinaturaEmpresa.empresa(null);
         assertThat(assinaturaEmpresa.getEmpresa()).isNull();
+    }
+
+    @Test
+    void planoContaAzulTest() {
+        AssinaturaEmpresa assinaturaEmpresa = getAssinaturaEmpresaRandomSampleGenerator();
+        PlanoContaAzul planoContaAzulBack = getPlanoContaAzulRandomSampleGenerator();
+
+        assinaturaEmpresa.setPlanoContaAzul(planoContaAzulBack);
+        assertThat(assinaturaEmpresa.getPlanoContaAzul()).isEqualTo(planoContaAzulBack);
+
+        assinaturaEmpresa.planoContaAzul(null);
+        assertThat(assinaturaEmpresa.getPlanoContaAzul()).isNull();
     }
 }

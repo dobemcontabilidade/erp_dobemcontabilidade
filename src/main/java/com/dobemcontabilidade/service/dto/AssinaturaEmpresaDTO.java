@@ -33,8 +33,6 @@ public class AssinaturaEmpresaDTO implements Serializable {
 
     private Double valorPlanoContabilComDesconto;
 
-    private Double valorPlanoContaAzulComDesconto;
-
     private Double valorMensalidade;
 
     private Double valorPeriodo;
@@ -58,13 +56,12 @@ public class AssinaturaEmpresaDTO implements Serializable {
     private FormaDePagamentoDTO formaDePagamento;
 
     @NotNull
-    private PlanoContaAzulDTO planoContaAzul;
-
-    @NotNull
     private PlanoContabilDTO planoContabil;
 
     @NotNull
     private EmpresaDTO empresa;
+
+    private PlanoContaAzulDTO planoContaAzul;
 
     public Long getId() {
         return id;
@@ -144,14 +141,6 @@ public class AssinaturaEmpresaDTO implements Serializable {
 
     public void setValorPlanoContabilComDesconto(Double valorPlanoContabilComDesconto) {
         this.valorPlanoContabilComDesconto = valorPlanoContabilComDesconto;
-    }
-
-    public Double getValorPlanoContaAzulComDesconto() {
-        return valorPlanoContaAzulComDesconto;
-    }
-
-    public void setValorPlanoContaAzulComDesconto(Double valorPlanoContaAzulComDesconto) {
-        this.valorPlanoContaAzulComDesconto = valorPlanoContaAzulComDesconto;
     }
 
     public Double getValorMensalidade() {
@@ -234,14 +223,6 @@ public class AssinaturaEmpresaDTO implements Serializable {
         this.formaDePagamento = formaDePagamento;
     }
 
-    public PlanoContaAzulDTO getPlanoContaAzul() {
-        return planoContaAzul;
-    }
-
-    public void setPlanoContaAzul(PlanoContaAzulDTO planoContaAzul) {
-        this.planoContaAzul = planoContaAzul;
-    }
-
     public PlanoContabilDTO getPlanoContabil() {
         return planoContabil;
     }
@@ -256,6 +237,14 @@ public class AssinaturaEmpresaDTO implements Serializable {
 
     public void setEmpresa(EmpresaDTO empresa) {
         this.empresa = empresa;
+    }
+
+    public PlanoContaAzulDTO getPlanoContaAzul() {
+        return planoContaAzul;
+    }
+
+    public void setPlanoContaAzul(PlanoContaAzulDTO planoContaAzul) {
+        this.planoContaAzul = planoContaAzul;
     }
 
     @Override
@@ -293,7 +282,6 @@ public class AssinaturaEmpresaDTO implements Serializable {
             ", valorFaturamento=" + getValorFaturamento() +
             ", valorPlanoContabil=" + getValorPlanoContabil() +
             ", valorPlanoContabilComDesconto=" + getValorPlanoContabilComDesconto() +
-            ", valorPlanoContaAzulComDesconto=" + getValorPlanoContaAzulComDesconto() +
             ", valorMensalidade=" + getValorMensalidade() +
             ", valorPeriodo=" + getValorPeriodo() +
             ", valorAno=" + getValorAno() +
@@ -304,9 +292,9 @@ public class AssinaturaEmpresaDTO implements Serializable {
             ", tipoContrato='" + getTipoContrato() + "'" +
             ", periodoPagamento=" + getPeriodoPagamento() +
             ", formaDePagamento=" + getFormaDePagamento() +
-            ", planoContaAzul=" + getPlanoContaAzul() +
             ", planoContabil=" + getPlanoContabil() +
             ", empresa=" + getEmpresa() +
+            ", planoContaAzul=" + getPlanoContaAzul() +
             "}";
     }
 }
