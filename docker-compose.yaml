@@ -1,41 +1,61 @@
 version: "3.7"
 
 services:
-  spring_boot_api:
-    image: dobemcontabilidade/erpdobemcontabilidade:latest
-    networks:
-      - minha_rede
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - SERVER_PORT=8080
-      - DB_POSTGRESDB_DATABASE=erpDobemcontabilidade
-      - DB_POSTGRESDB_HOST=servidordigitalocean.dobemcontabilidade.com
-      - DB_POSTGRESDB_PORT=5432
-      - DB_POSTGRESDB_USER=postgres
-      - DB_POSTGRESDB_PASSWORD=AdminAdmin
-#    ports:
-#        - "8080:8080"
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints:
-          - node.role == manager
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 1024M
-      labels:
-        - traefik.enable=true
-        - traefik.http.routers.spring_boot_api.rule=Host(`erpdobem.dobemcontabilidade.com`)
-        - traefik.http.routers.spring_boot_api.entrypoints=websecure
-        - traefik.http.routers.spring_boot_api.priority=1
-        - traefik.http.routers.spring_boot_api.tls.certresolver=letsencryptresolver
-        - traefik.http.routers.spring_boot_api.service=spring_boot_api
-        - traefik.http.services.spring_boot_api.loadbalancer.server.port=8080
-        - traefik.http.services.spring_boot_api.loadbalancer.passHostHeader=1
+    db:
+        image: postgres:latest
+        environment:
+            POSTGRES_DB: erpDobemcontabilidade
+            POSTGRES_USER: erpDobemcontabilidade
+            POSTGRES_PASSWORD: senhaSegura
+        # remove the "127.0.0.1:" prefix
+        ports:
+            - 127.0.0.1:5432:5432
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        networks:
+            - pgnetwork
+
+    pgadmin:
+        image: dpage/pgadmin4:latest
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@dobemcontabilidade.com
+            PGADMIN_DEFAULT_PASSWORD: senhaAdmin
+        ports:
+            - "9000:80"
+        depends_on:
+            - db
+        networks:
+            - pgnetwork
+    api-erp:
+     image: dobemcontabilidade/erpdobemcontabilidade:latest
+     environment:
+       - SPRING_PROFILES_ACTIVE=dev
+       - SERVER_PORT=8080
+       - DB_POSTGRESDB_DATABASE=erpDobemcontabilidade
+       - DB_POSTGRESDB_HOST=127.0.0.1
+       - DB_POSTGRESDB_PORT=5432
+       - DB_POSTGRESDB_USER=erpDobemcontabilidade
+       - DB_POSTGRESDB_PASSWORD=senhaSegura
+     ports:
+       - "8080:8080"
+     depends_on:
+        - db
+     networks:
+        - pgnetwork
+     deploy:
+       mode: replicated
+       replicas: 1
+       placement:
+         constraints:
+           - node.role == manager
+       resources:
+         limits:
+           cpus: "0.5"
+           memory: 1024M
 
 networks:
-  minha_rede:
-    name: minha_rede
-    external: true
+    pgnetwork:
+        driver: bridge
+
+volumes:
+    pgdata:
