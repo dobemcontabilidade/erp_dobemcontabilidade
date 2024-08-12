@@ -9,7 +9,7 @@ services:
       - SPRING_PROFILES_ACTIVE=prod
       - SERVER_PORT=8080
       - DB_POSTGRESDB_DATABASE=erpDobemcontabilidade
-      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_HOST=servidordigitalocean.dobemcontabilidade.com
       - DB_POSTGRESDB_PORT=5432
       - DB_POSTGRESDB_USER=postgres
       - DB_POSTGRESDB_PASSWORD=AdminAdmin
