@@ -33,7 +33,7 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://${DB_POSTGRESDB_HOST}:${DB_POSTGRESDB_PORT}}/${DB_POSTGRESDB_DATABASE}
+    url: jdbc:postgresql://${DB_POSTGRESDB_HOST}:${DB_POSTGRESDB_PORT}/${DB_POSTGRESDB_DATABASE}
     username: ${DB_POSTGRESDB_USER}
     password: ${DB_POSTGRESDB_PASSWORD}
     hikari:

@@ -258,6 +258,14 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 
 # Gerar uma imagem no Docker hub
 
+## Mais lento
+
 ```
 ./mvnw package -Pprod verify jib:build -Djib.to.image=dobemcontabilidade/erpdobemcontabilidade
+```
+
+## Mais rapido
+
+```
+./mvnw package -Pprod -DskipTests jib:build -Djib.to.image=dobemcontabilidade/erpdobemcontabilidade
 ```
