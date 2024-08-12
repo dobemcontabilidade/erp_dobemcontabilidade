@@ -2,10 +2,7 @@ version: "3.7"
 
 services:
   spring_boot_api:
-    build:
-      context: https://github.com/dobemcontabilidade/erp_dobemcontabilidade.git
-      dockerfile: Dockerfile
-    command: java -jar /app/erp_dobemcontabilidade.jar
+    image: dobemcontabilidade/erpdobemcontabilidade:latest
     networks:
       - minha_rede
     environment:
@@ -16,6 +13,8 @@ services:
       - DB_POSTGRESDB_PORT=5432
       - DB_POSTGRESDB_USER=postgres
       - DB_POSTGRESDB_PASSWORD=AdminAdmin
+#    ports:
+#        - "8080:8080"
     deploy:
       mode: replicated
       replicas: 1
