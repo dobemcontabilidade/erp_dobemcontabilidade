@@ -1,0 +1,78 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051626"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contratacao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "abertura",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Cidade",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "instituicaoEnsino",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "instituicaoEnsino",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "agenteIntegracaoEstagio",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "agenteIntegracaoEstagio",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "empresaModelo",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "empresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "fluxoModelo",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "fluxoModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "enderecoPessoa",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "enderecoPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "enderecoEmpresa",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "enderecoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "estado",
+      "relationshipName": "estado",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

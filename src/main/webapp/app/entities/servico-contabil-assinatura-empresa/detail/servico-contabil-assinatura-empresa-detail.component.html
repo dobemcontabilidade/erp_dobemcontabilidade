@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (servicoContabilAssinaturaEmpresa()) {
+      <div>
+        <h2 data-cy="servicoContabilAssinaturaEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilAssinaturaEmpresa.detail.title"
+            >Servico Contabil Assinatura Empresa</span
+          >
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ servicoContabilAssinaturaEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilAssinaturaEmpresa.dataLegal">Data Legal</span></dt>
+          <dd>
+            <span>{{ servicoContabilAssinaturaEmpresa()!.dataLegal | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilAssinaturaEmpresa.dataAdmin">Data Admin</span></dt>
+          <dd>
+            <span>{{ servicoContabilAssinaturaEmpresa()!.dataAdmin | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilAssinaturaEmpresa.servicoContabil">Servico Contabil</span></dt>
+          <dd>
+            @if (servicoContabilAssinaturaEmpresa()!.servicoContabil) {
+              <div>
+                <a [routerLink]="['/servico-contabil', servicoContabilAssinaturaEmpresa()!.servicoContabil?.id, 'view']">{{
+                  servicoContabilAssinaturaEmpresa()!.servicoContabil?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilAssinaturaEmpresa.assinaturaEmpresa">Assinatura Empresa</span>
+          </dt>
+          <dd>
+            @if (servicoContabilAssinaturaEmpresa()!.assinaturaEmpresa) {
+              <div>
+                <a [routerLink]="['/assinatura-empresa', servicoContabilAssinaturaEmpresa()!.assinaturaEmpresa?.id, 'view']">{{
+                  servicoContabilAssinaturaEmpresa()!.assinaturaEmpresa?.codigoAssinatura
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/servico-contabil-assinatura-empresa', servicoContabilAssinaturaEmpresa()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

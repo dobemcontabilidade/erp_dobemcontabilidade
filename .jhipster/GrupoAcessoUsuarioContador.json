@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051708"
+  },
+  "applications": "*",
+  "entityTableName": "grou_acess_usua_cont",
+  "fields": [
+    {
+      "fieldName": "dataExpiracao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "ilimitado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "desabilitar",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "GrupoAcessoUsuarioContador",
+  "relationships": [
+    {
+      "otherEntityField": "email",
+      "otherEntityName": "usuarioContador",
+      "relationshipName": "usuarioContador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "grupoAcessoPadrao",
+      "relationshipName": "grupoAcessoPadrao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

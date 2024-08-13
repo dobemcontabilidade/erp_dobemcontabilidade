@@ -1,0 +1,34 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "socio": {
+      "home": {
+        "title": "Socios",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Socio",
+        "createOrEditLabel": "Criar ou editar Socio",
+        "notFound": "Nenhum Socio encontrado"
+      },
+      "created": "Um novo Socio foi criado com o identificador {{ param }}",
+      "updated": "Um Socio foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Socio foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Socio {{ id }}?"
+      },
+      "detail": {
+        "title": "Socio"
+      },
+      "id": "ID",
+      "prolabore": "Prolabore",
+      "percentualSociedade": "Percentual Sociedade",
+      "adminstrador": "Adminstrador",
+      "distribuicaoLucro": "Distribuicao Lucro",
+      "responsavelReceita": "Responsavel Receita",
+      "percentualDistribuicaoLucro": "Percentual Distribuicao Lucro",
+      "funcaoSocio": "Funcao Socio",
+      "pessoa": "Pessoa",
+      "usuarioEmpresa": "Usuario Empresa",
+      "empresa": "Empresa",
+      "profissao": "Profissao"
+    }
+  }
+}

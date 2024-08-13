@@ -1,0 +1,124 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-imposto-empresa-modelo-heading"
+        data-cy="ImpostoEmpresaModeloCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.home.createOrEditLabel"
+      >
+        Criar ou editar Imposto Empresa Modelo
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nome" jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_observacao" jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.observacao"
+            >Observacao</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="observacao"
+            id="field_observacao"
+            data-cy="observacao"
+            formControlName="observacao"
+          />
+          @if (editForm.get('observacao')!.invalid && (editForm.get('observacao')!.dirty || editForm.get('observacao')!.touched)) {
+            <div>
+              @if (editForm.get('observacao')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '200' }"
+                  >Este campo não pode ter mais de 200 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_empresaModelo" jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.empresaModelo"
+            >Empresa Modelo</label
+          >
+          <select
+            class="form-control"
+            id="field_empresaModelo"
+            data-cy="empresaModelo"
+            name="empresaModelo"
+            formControlName="empresaModelo"
+            [compareWith]="compareEmpresaModelo"
+          >
+            @if (editForm.get(['empresaModelo'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (empresaModeloOption of empresaModelosSharedCollection; track $index) {
+              <option [ngValue]="empresaModeloOption">{{ empresaModeloOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['empresaModelo'])!.invalid && (editForm.get(['empresaModelo'])!.dirty || editForm.get(['empresaModelo'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['empresaModelo'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_imposto" jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.imposto">Imposto</label>
+          <select
+            class="form-control"
+            id="field_imposto"
+            data-cy="imposto"
+            name="imposto"
+            formControlName="imposto"
+            [compareWith]="compareImposto"
+          >
+            @if (editForm.get(['imposto'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (impostoOption of impostosSharedCollection; track $index) {
+              <option [ngValue]="impostoOption">{{ impostoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['imposto'])!.invalid && (editForm.get(['imposto'])!.dirty || editForm.get(['imposto'])!.touched)) {
+          <div>
+            @if (editForm.get(['imposto'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

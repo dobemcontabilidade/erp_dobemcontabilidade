@@ -1,0 +1,194 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-parcelamento-imposto-heading"
+        data-cy="ParcelamentoImpostoCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.home.createOrEditLabel"
+      >
+        Criar ou editar Parcelamento Imposto
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diaVencimento" jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.diaVencimento"
+            >Dia Vencimento</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="diaVencimento"
+            id="field_diaVencimento"
+            data-cy="diaVencimento"
+            formControlName="diaVencimento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_numeroParcelas" jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.numeroParcelas"
+            >Numero Parcelas</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numeroParcelas"
+            id="field_numeroParcelas"
+            data-cy="numeroParcelas"
+            formControlName="numeroParcelas"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_urlArquivoNegociacao"
+            jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.urlArquivoNegociacao"
+            >Url Arquivo Negociacao</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="urlArquivoNegociacao"
+            id="field_urlArquivoNegociacao"
+            data-cy="urlArquivoNegociacao"
+            formControlName="urlArquivoNegociacao"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_numeroParcelasPagas"
+            jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.numeroParcelasPagas"
+            >Numero Parcelas Pagas</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numeroParcelasPagas"
+            id="field_numeroParcelasPagas"
+            data-cy="numeroParcelasPagas"
+            formControlName="numeroParcelasPagas"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_numeroParcelasRegatantes"
+            jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.numeroParcelasRegatantes"
+            >Numero Parcelas Regatantes</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numeroParcelasRegatantes"
+            id="field_numeroParcelasRegatantes"
+            data-cy="numeroParcelasRegatantes"
+            formControlName="numeroParcelasRegatantes"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_situacaoSolicitacaoParcelamentoEnum"
+            jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.situacaoSolicitacaoParcelamentoEnum"
+            >Situacao Solicitacao Parcelamento Enum</label
+          >
+          <select
+            class="form-control"
+            name="situacaoSolicitacaoParcelamentoEnum"
+            formControlName="situacaoSolicitacaoParcelamentoEnum"
+            id="field_situacaoSolicitacaoParcelamentoEnum"
+            data-cy="situacaoSolicitacaoParcelamentoEnum"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.SituacaoSolicitacaoParcelamentoEnum.null' | translate }}</option>
+            @for (situacaoSolicitacaoParcelamentoEnum of situacaoSolicitacaoParcelamentoEnumValues; track $index) {
+              <option [value]="situacaoSolicitacaoParcelamentoEnum">
+                {{ 'erpDobemcontabilidadeApp.SituacaoSolicitacaoParcelamentoEnum.' + situacaoSolicitacaoParcelamentoEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_imposto" jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.imposto">Imposto</label>
+          <select
+            class="form-control"
+            id="field_imposto"
+            data-cy="imposto"
+            name="imposto"
+            formControlName="imposto"
+            [compareWith]="compareImposto"
+          >
+            @if (editForm.get(['imposto'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (impostoOption of impostosSharedCollection; track $index) {
+              <option [ngValue]="impostoOption">{{ impostoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['imposto'])!.invalid && (editForm.get(['imposto'])!.dirty || editForm.get(['imposto'])!.touched)) {
+          <div>
+            @if (editForm.get(['imposto'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_empresa" jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.empresa">Empresa</label>
+          <select
+            class="form-control"
+            id="field_empresa"
+            data-cy="empresa"
+            name="empresa"
+            formControlName="empresa"
+            [compareWith]="compareEmpresa"
+          >
+            @if (editForm.get(['empresa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (empresaOption of empresasSharedCollection; track $index) {
+              <option [ngValue]="empresaOption">{{ empresaOption.razaoSocial }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['empresa'])!.invalid && (editForm.get(['empresa'])!.dirty || editForm.get(['empresa'])!.touched)) {
+          <div>
+            @if (editForm.get(['empresa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051623"
+  },
+  "applications": "*",
+  "entityTableName": "cont_respo_ordem_serv",
+  "fields": [
+    {
+      "fieldName": "dataAtribuicao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataRevogacao",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "ContadorResponsavelOrdemServico",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tarefaOrdemServicoExecucao",
+      "relationshipName": "tarefaOrdemServicoExecucao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "crc",
+      "otherEntityName": "contador",
+      "relationshipName": "contador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

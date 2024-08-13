@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051718"
+  },
+  "applications": "*",
+  "entityTableName": "serv_cont_empresa_modelo",
+  "fields": [
+    {
+      "fieldName": "obrigatorio",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "ServicoContabilEmpresaModelo",
+  "relationships": [
+    {
+      "otherEntityName": "tarefaRecorrenteEmpresaModelo",
+      "otherEntityRelationshipName": "servicoContabilEmpresaModelo",
+      "relationshipName": "tarefaRecorrenteEmpresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "empresaModelo",
+      "relationshipName": "empresaModelo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "servicoContabil",
+      "relationshipName": "servicoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

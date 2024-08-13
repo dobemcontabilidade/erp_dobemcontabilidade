@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "subTarefaRecorrente": {
+      "home": {
+        "title": "Sub Tarefa Recorrentes",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Sub Tarefa Recorrente",
+        "createOrEditLabel": "Criar ou editar Sub Tarefa Recorrente",
+        "notFound": "Nenhum Sub Tarefa Recorrente encontrado"
+      },
+      "created": "Um novo Sub Tarefa Recorrente foi criado com o identificador {{ param }}",
+      "updated": "Um Sub Tarefa Recorrente foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Sub Tarefa Recorrente foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Sub Tarefa Recorrente {{ id }}?"
+      },
+      "detail": {
+        "title": "Sub Tarefa Recorrente"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "ordem": "Ordem",
+      "concluida": "Concluida",
+      "tarefaRecorrenteExecucao": "Tarefa Recorrente Execucao"
+    }
+  }
+}

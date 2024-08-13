@@ -1,0 +1,159 @@
+<div>
+  <h2 id="page-heading" data-cy="TermoAdesaoContadorHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.home.title">Termo Adesao Contadors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-termo-adesao-contador"
+        [routerLink]="['/termo-adesao-contador/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.home.createLabel">Criar novo Termo Adesao Contador</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (termoAdesaoContadors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.home.notFound">Nenhum Termo Adesao Contador encontrado</span>
+    </div>
+  }
+
+  @if (termoAdesaoContadors && termoAdesaoContadors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataAdesao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.dataAdesao">Data Adesao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="checked">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.checked">Checked</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlDoc">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.urlDoc">Url Doc</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contador.crc">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.contador">Contador</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="termoDeAdesao.titulo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.termoDeAdesao">Termo De Adesao</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (termoAdesaoContador of termoAdesaoContadors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/termo-adesao-contador', termoAdesaoContador.id, 'view']">{{ termoAdesaoContador.id }}</a>
+              </td>
+              <td>{{ termoAdesaoContador.dataAdesao | formatMediumDatetime }}</td>
+              <td>{{ termoAdesaoContador.checked }}</td>
+              <td>{{ termoAdesaoContador.urlDoc }}</td>
+              <td>
+                @if (termoAdesaoContador.contador) {
+                  <div>
+                    <a [routerLink]="['/contador', termoAdesaoContador.contador.id, 'view']">{{ termoAdesaoContador.contador.crc }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (termoAdesaoContador.termoDeAdesao) {
+                  <div>
+                    <a [routerLink]="['/termo-de-adesao', termoAdesaoContador.termoDeAdesao.id, 'view']">{{
+                      termoAdesaoContador.termoDeAdesao.titulo
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/termo-adesao-contador', termoAdesaoContador.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/termo-adesao-contador', termoAdesaoContador.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(termoAdesaoContador)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (termoAdesaoContadors && termoAdesaoContadors.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

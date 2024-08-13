@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (sistema()) {
+      <div>
+        <h2 data-cy="sistemaDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.sistema.detail.title">Sistema</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ sistema()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.sistema.nome">Nome</span></dt>
+          <dd>
+            <span>{{ sistema()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.sistema.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ sistema()!.descricao }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/sistema', sistema()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051803"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "diaVencimento",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "ImpostoEmpresa",
+  "relationships": [
+    {
+      "otherEntityName": "impostoAPagarEmpresa",
+      "otherEntityRelationshipName": "imposto",
+      "relationshipName": "impostoAPagarEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "imposto",
+      "relationshipName": "imposto",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

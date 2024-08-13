@@ -1,0 +1,25 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "tipoDenuncia": {
+      "home": {
+        "title": "Tipo Denuncias",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Tipo Denuncia",
+        "createOrEditLabel": "Create or edit a Tipo Denuncia",
+        "notFound": "No Tipo Denuncias found"
+      },
+      "created": "A new Tipo Denuncia is created with identifier {{ param }}",
+      "updated": "A Tipo Denuncia is updated with identifier {{ param }}",
+      "deleted": "A Tipo Denuncia is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tipo Denuncia {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Denuncia"
+      },
+      "id": "ID",
+      "tipo": "Tipo",
+      "descricao": "Descricao"
+    }
+  }
+}

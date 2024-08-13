@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (impostoEmpresaModelo()) {
+      <div>
+        <h2 data-cy="impostoEmpresaModeloDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.detail.title">Imposto Empresa Modelo</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ impostoEmpresaModelo()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.nome">Nome</span></dt>
+          <dd>
+            <span>{{ impostoEmpresaModelo()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.observacao">Observacao</span></dt>
+          <dd>
+            <span>{{ impostoEmpresaModelo()!.observacao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.empresaModelo">Empresa Modelo</span></dt>
+          <dd>
+            @if (impostoEmpresaModelo()!.empresaModelo) {
+              <div>
+                <a [routerLink]="['/empresa-modelo', impostoEmpresaModelo()!.empresaModelo?.id, 'view']">{{
+                  impostoEmpresaModelo()!.empresaModelo?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoEmpresaModelo.imposto">Imposto</span></dt>
+          <dd>
+            @if (impostoEmpresaModelo()!.imposto) {
+              <div>
+                <a [routerLink]="['/imposto', impostoEmpresaModelo()!.imposto?.id, 'view']">{{ impostoEmpresaModelo()!.imposto?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/imposto-empresa-modelo', impostoEmpresaModelo()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

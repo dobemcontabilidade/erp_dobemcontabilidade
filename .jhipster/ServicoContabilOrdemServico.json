@@ -1,0 +1,44 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051756"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "dataAdmin",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataLegal",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "ServicoContabilOrdemServico",
+  "relationships": [
+    {
+      "otherEntityName": "tarefaOrdemServico",
+      "otherEntityRelationshipName": "servicoContabilOrdemServico",
+      "relationshipName": "tarefaOrdemServico",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "servicoContabil",
+      "relationshipName": "servicoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "descricao",
+      "otherEntityName": "ordemServico",
+      "relationshipName": "ordemServico",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

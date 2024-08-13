@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "servicoContabilEtapaFluxoExecucao": {
+      "home": {
+        "title": "Servico Contabil Etapa Fluxo Execucaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Servico Contabil Etapa Fluxo Execucao",
+        "createOrEditLabel": "Criar ou editar Servico Contabil Etapa Fluxo Execucao",
+        "notFound": "Nenhum Servico Contabil Etapa Fluxo Execucao encontrado"
+      },
+      "created": "Um novo Servico Contabil Etapa Fluxo Execucao foi criado com o identificador {{ param }}",
+      "updated": "Um Servico Contabil Etapa Fluxo Execucao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Servico Contabil Etapa Fluxo Execucao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Servico Contabil Etapa Fluxo Execucao {{ id }}?"
+      },
+      "detail": {
+        "title": "Servico Contabil Etapa Fluxo Execucao"
+      },
+      "id": "ID",
+      "ordem": "Ordem",
+      "feito": "Feito",
+      "prazo": "Prazo",
+      "servicoContabil": "Servico Contabil",
+      "etapaFluxoExecucao": "Etapa Fluxo Execucao"
+    }
+  }
+}

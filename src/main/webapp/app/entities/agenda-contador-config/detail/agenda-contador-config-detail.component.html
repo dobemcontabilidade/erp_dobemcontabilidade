@@ -1,0 +1,93 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (agendaContadorConfig()) {
+      <div>
+        <h2 data-cy="agendaContadorConfigDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.detail.title">Agenda Contador Config</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ agendaContadorConfig()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.ativo">Ativo</span></dt>
+          <dd>
+            <span>{{ agendaContadorConfig()!.ativo }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.tipoVisualizacaoAgendaEnum"
+              >Tipo Visualizacao Agenda Enum</span
+            >
+          </dt>
+          <dd>
+            <span
+              [jhiTranslate]="
+                'erpDobemcontabilidadeApp.TipoVisualizacaoAgendaEnum.' + (agendaContadorConfig()!.tipoVisualizacaoAgendaEnum ?? 'null')
+              "
+              >{{
+                {
+                  null: '',
+                  RECORRENTE: 'RECORRENTE',
+                  ORDEMSERVICO: 'ORDEMSERVICO',
+                  SEMANAL: 'SEMANAL',
+                  DIA: 'DIA',
+                  MES: 'MES',
+                  EMPRESA: 'EMPRESA',
+                }[agendaContadorConfig()!.tipoVisualizacaoAgendaEnum ?? 'null']
+              }}</span
+            >
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.agendaTarefaRecorrenteExecucao"
+              >Agenda Tarefa Recorrente Execucao</span
+            >
+          </dt>
+          <dd>
+            @if (agendaContadorConfig()!.agendaTarefaRecorrenteExecucao) {
+              <div>
+                <a
+                  [routerLink]="['/agenda-tarefa-recorrente-execucao', agendaContadorConfig()!.agendaTarefaRecorrenteExecucao?.id, 'view']"
+                  >{{ agendaContadorConfig()!.agendaTarefaRecorrenteExecucao?.id }}</a
+                >
+              </div>
+            }
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.agendaTarefaOrdemServicoExecucao"
+              >Agenda Tarefa Ordem Servico Execucao</span
+            >
+          </dt>
+          <dd>
+            @if (agendaContadorConfig()!.agendaTarefaOrdemServicoExecucao) {
+              <div>
+                <a
+                  [routerLink]="[
+                    '/agenda-tarefa-ordem-servico-execucao',
+                    agendaContadorConfig()!.agendaTarefaOrdemServicoExecucao?.id,
+                    'view',
+                  ]"
+                  >{{ agendaContadorConfig()!.agendaTarefaOrdemServicoExecucao?.id }}</a
+                >
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/agenda-contador-config', agendaContadorConfig()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

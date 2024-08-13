@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (tarefaOrdemServico()) {
+      <div>
+        <h2 data-cy="tarefaOrdemServicoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.detail.title">Tarefa Ordem Servico</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServico()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.nome">Nome</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServico()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServico()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.notificarCliente">Notificar Cliente</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServico()!.notificarCliente }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.notificarContador">Notificar Contador</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServico()!.notificarContador }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.anoReferencia">Ano Referencia</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServico()!.anoReferencia }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.dataAdmin">Data Admin</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServico()!.dataAdmin | formatMediumDatetime }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.servicoContabilOrdemServico"
+              >Servico Contabil Ordem Servico</span
+            >
+          </dt>
+          <dd>
+            @if (tarefaOrdemServico()!.servicoContabilOrdemServico) {
+              <div>
+                <a [routerLink]="['/servico-contabil-ordem-servico', tarefaOrdemServico()!.servicoContabilOrdemServico?.id, 'view']">{{
+                  tarefaOrdemServico()!.servicoContabilOrdemServico?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/tarefa-ordem-servico', tarefaOrdemServico()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

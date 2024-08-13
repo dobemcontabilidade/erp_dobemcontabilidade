@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "contadorResponsavelOrdemServico": {
+      "home": {
+        "title": "Contador Responsavel Ordem Servicos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Contador Responsavel Ordem Servico",
+        "createOrEditLabel": "Criar ou editar Contador Responsavel Ordem Servico",
+        "notFound": "Nenhum Contador Responsavel Ordem Servico encontrado"
+      },
+      "created": "Um novo Contador Responsavel Ordem Servico foi criado com o identificador {{ param }}",
+      "updated": "Um Contador Responsavel Ordem Servico foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Contador Responsavel Ordem Servico foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Contador Responsavel Ordem Servico {{ id }}?"
+      },
+      "detail": {
+        "title": "Contador Responsavel Ordem Servico"
+      },
+      "id": "ID",
+      "dataAtribuicao": "Data Atribuicao",
+      "dataRevogacao": "Data Revogacao",
+      "tarefaOrdemServicoExecucao": "Tarefa Ordem Servico Execucao",
+      "contador": "Contador"
+    }
+  }
+}

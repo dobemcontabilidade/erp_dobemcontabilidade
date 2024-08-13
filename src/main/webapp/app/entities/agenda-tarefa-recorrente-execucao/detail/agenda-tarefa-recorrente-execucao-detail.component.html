@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (agendaTarefaRecorrenteExecucao()) {
+      <div>
+        <h2 data-cy="agendaTarefaRecorrenteExecucaoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.detail.title">Agenda Tarefa Recorrente Execucao</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ agendaTarefaRecorrenteExecucao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.ativo">Ativo</span></dt>
+          <dd>
+            <span>{{ agendaTarefaRecorrenteExecucao()!.ativo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.horaInicio">Hora Inicio</span></dt>
+          <dd>
+            <span>{{ agendaTarefaRecorrenteExecucao()!.horaInicio | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.horaFim">Hora Fim</span></dt>
+          <dd>
+            <span>{{ agendaTarefaRecorrenteExecucao()!.horaFim | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.diaInteiro">Dia Inteiro</span></dt>
+          <dd>
+            <span>{{ agendaTarefaRecorrenteExecucao()!.diaInteiro }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.comentario">Comentario</span></dt>
+          <dd>
+            <span>{{ agendaTarefaRecorrenteExecucao()!.comentario }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.tarefaRecorrenteExecucao"
+              >Tarefa Recorrente Execucao</span
+            >
+          </dt>
+          <dd>
+            @if (agendaTarefaRecorrenteExecucao()!.tarefaRecorrenteExecucao) {
+              <div>
+                <a [routerLink]="['/tarefa-recorrente-execucao', agendaTarefaRecorrenteExecucao()!.tarefaRecorrenteExecucao?.id, 'view']">{{
+                  agendaTarefaRecorrenteExecucao()!.tarefaRecorrenteExecucao?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/agenda-tarefa-recorrente-execucao', agendaTarefaRecorrenteExecucao()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

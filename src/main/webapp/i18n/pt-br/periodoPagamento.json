@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "periodoPagamento": {
+      "home": {
+        "title": "Periodo Pagamentos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Periodo Pagamento",
+        "createOrEditLabel": "Criar ou editar Periodo Pagamento",
+        "notFound": "Nenhum Periodo Pagamento encontrado"
+      },
+      "created": "Um novo Periodo Pagamento foi criado com o identificador {{ param }}",
+      "updated": "Um Periodo Pagamento foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Periodo Pagamento foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Periodo Pagamento {{ id }}?"
+      },
+      "detail": {
+        "title": "Periodo Pagamento"
+      },
+      "id": "ID",
+      "periodo": "Periodo",
+      "numeroDias": "Numero Dias",
+      "idPlanGnet": "Id Plan Gnet",
+      "calculoPlanoAssinatura": "Calculo Plano Assinatura",
+      "assinaturaEmpresa": "Assinatura Empresa",
+      "descontoPlanoContaAzul": "Desconto Plano Conta Azul",
+      "descontoPlanoContabil": "Desconto Plano Contabil"
+    }
+  }
+}

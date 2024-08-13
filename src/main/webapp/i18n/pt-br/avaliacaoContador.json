@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "avaliacaoContador": {
+      "home": {
+        "title": "Avaliacao Contadors",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Avaliacao Contador",
+        "createOrEditLabel": "Criar ou editar Avaliacao Contador",
+        "notFound": "Nenhum Avaliacao Contador encontrado"
+      },
+      "created": "Um novo Avaliacao Contador foi criado com o identificador {{ param }}",
+      "updated": "Um Avaliacao Contador foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Avaliacao Contador foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Avaliacao Contador {{ id }}?"
+      },
+      "detail": {
+        "title": "Avaliacao Contador"
+      },
+      "id": "ID",
+      "pontuacao": "Pontuacao",
+      "contador": "Contador",
+      "avaliacao": "Avaliacao"
+    }
+  }
+}

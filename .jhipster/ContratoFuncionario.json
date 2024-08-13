@@ -1,0 +1,155 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051630"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "salarioFixo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "salarioVariavel",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "estagio",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "naturezaEstagioEnum",
+      "fieldType": "NaturezaEstagioEnum",
+      "fieldValues": "OBRIGATORIO,NAOOBRIGATORIO"
+    },
+    {
+      "fieldName": "ctps",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "serieCtps",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "orgaoEmissorDocumento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataValidadeDocumento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataAdmissao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cargo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricaoAtividades",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoFuncionarioEnum",
+      "fieldValues": "CADASTROEMANDAMENTO,CADASTRADO,ADMISSAOEMANDAMENTO,ADMISSAOSOLICITADA,ADMITIDO,DEMISSAOEMANDAMENTO,DEMISSAOCANCELADO,DEMITIDO,AFASTADO,CANCELAMENTOSOLICTAIDO,CANCELADO,EXPERIENCIA,BAIXASOLICITADA,DEMITIDOJUSTACAUSA"
+    },
+    {
+      "fieldName": "valorSalarioFixo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valorSalarioVariavel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataTerminoContrato",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "datainicioContrato",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "horasATrabalhadar",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "codigoCargo",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "categoriaTrabalhador",
+      "fieldType": "CategoriaTrabalhadorEnum",
+      "fieldValues": "EMPREGADO,ESTAGIARIO"
+    },
+    {
+      "fieldName": "tipoVinculoTrabalho",
+      "fieldType": "TipoVinculoTrabalhoEnum",
+      "fieldValues": "URBANO,RURAL"
+    },
+    {
+      "fieldName": "fgtsOpcao",
+      "fieldType": "FgtsOpcaoEnum",
+      "fieldValues": "OPTANTE,NAOOPTANTE"
+    },
+    {
+      "fieldName": "tIpoDocumentoEnum",
+      "fieldType": "TipoDocumentoEnum",
+      "fieldValues": "RG,CNH,RNE,RIC,OC"
+    },
+    {
+      "fieldName": "periodoExperiencia",
+      "fieldType": "PeriodoExperienciaEnum",
+      "fieldValues": "QUINZE,TRINTA,NOVENTA,SESENTA"
+    },
+    {
+      "fieldName": "tipoAdmisaoEnum",
+      "fieldType": "TipoAdmisaoEnum",
+      "fieldValues": "ADMISSAO,TRANSFERENCIA,SUCESSAO,INCORPORACAO,FUSAO,CEDIDO"
+    },
+    {
+      "fieldName": "periodoIntermitente",
+      "fieldType": "PeriodoIntermitenteEnum",
+      "fieldValues": "QUATROMESES,CINCOMESES,SEISMESES,SETEMESES,OITOMESES,NOVEMESES,DEZMESES,ONZEMESES,DOZEMESES,UMANOUMMESES,UMANODOISMESES,UMANOANOTRESMESES,UMANOANOQUATROMESES,UMANOANOCINCOMESES,UMANOSEISMESES,UMANOSETEMESES,UMANOOITOMESES,UMANONOVEMESES,UMANODEZMESES,UMANOONZEMESES,UMANODOZEMESES"
+    },
+    {
+      "fieldName": "indicativoAdmissao",
+      "fieldType": "IndicativoAdmissaoEnum",
+      "fieldValues": "NORMAL,ACAOFISCAL,DECISAOJUDICIAL"
+    },
+    {
+      "fieldName": "numeroPisNisPasep",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "ContratoFuncionario",
+  "relationships": [
+    {
+      "otherEntityName": "funcionario",
+      "relationshipName": "funcionario",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "agenteIntegracaoEstagio",
+      "relationshipName": "agenteIntegracaoEstagio",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "instituicaoEnsino",
+      "relationshipName": "instituicaoEnsino",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

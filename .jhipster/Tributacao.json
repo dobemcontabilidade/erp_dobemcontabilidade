@@ -1,0 +1,59 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051746"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoTributacaoEnum",
+      "fieldValues": "ATIVO,INATIVO,BLOQUEADO,EXCLUIDO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Tributacao",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "anexoRequeridoEmpresa",
+      "otherEntityRelationshipName": "tributacao",
+      "relationshipName": "anexoRequeridoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "empresaModelo",
+      "otherEntityRelationshipName": "tributacao",
+      "relationshipName": "empresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "calculoPlanoAssinatura",
+      "otherEntityRelationshipName": "tributacao",
+      "relationshipName": "calculoPlanoAssinatura",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalTributacao",
+      "otherEntityRelationshipName": "tributacao",
+      "relationshipName": "adicionalTributacao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

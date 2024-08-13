@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (grupoAcessoUsuarioContador()) {
+      <div>
+        <h2 data-cy="grupoAcessoUsuarioContadorDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.detail.title">Grupo Acesso Usuario Contador</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ grupoAcessoUsuarioContador()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.dataExpiracao">Data Expiracao</span></dt>
+          <dd>
+            <span>{{ grupoAcessoUsuarioContador()!.dataExpiracao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.ilimitado">Ilimitado</span></dt>
+          <dd>
+            <span>{{ grupoAcessoUsuarioContador()!.ilimitado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.desabilitar">Desabilitar</span></dt>
+          <dd>
+            <span>{{ grupoAcessoUsuarioContador()!.desabilitar }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.usuarioContador">Usuario Contador</span></dt>
+          <dd>
+            @if (grupoAcessoUsuarioContador()!.usuarioContador) {
+              <div>
+                <a [routerLink]="['/usuario-contador', grupoAcessoUsuarioContador()!.usuarioContador?.id, 'view']">{{
+                  grupoAcessoUsuarioContador()!.usuarioContador?.email
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.grupoAcessoPadrao">Grupo Acesso Padrao</span></dt>
+          <dd>
+            @if (grupoAcessoUsuarioContador()!.grupoAcessoPadrao) {
+              <div>
+                <a [routerLink]="['/grupo-acesso-padrao', grupoAcessoUsuarioContador()!.grupoAcessoPadrao?.id, 'view']">{{
+                  grupoAcessoUsuarioContador()!.grupoAcessoPadrao?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/grupo-acesso-usuario-contador', grupoAcessoUsuarioContador()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

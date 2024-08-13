@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "bancoPessoa": {
+      "home": {
+        "title": "Banco Pessoas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Banco Pessoa",
+        "createOrEditLabel": "Criar ou editar Banco Pessoa",
+        "notFound": "Nenhum Banco Pessoa encontrado"
+      },
+      "created": "Um novo Banco Pessoa foi criado com o identificador {{ param }}",
+      "updated": "Um Banco Pessoa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Banco Pessoa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Banco Pessoa {{ id }}?"
+      },
+      "detail": {
+        "title": "Banco Pessoa"
+      },
+      "id": "ID",
+      "agencia": "Agencia",
+      "conta": "Conta",
+      "tipoConta": "Tipo Conta",
+      "principal": "Principal",
+      "pessoa": "Pessoa",
+      "banco": "Banco"
+    }
+  }
+}

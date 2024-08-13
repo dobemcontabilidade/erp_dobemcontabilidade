@@ -1,0 +1,11 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoInscricaoEmpresaVinculadaEnum": {
+      "null": "",
+      "CNPJ": "CNPJ",
+      "CPF": "CPF",
+      "CAEPF": "CAEPF",
+      "CNO": "CNO"
+    }
+  }
+}

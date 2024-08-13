@@ -1,0 +1,11 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "JornadaEspecialEnum": {
+      "null": "",
+      "DOZEPORTRINTASEIS": "DOZEPORTRINTASEIS",
+      "VINTEQUATROPORSETENTADOIS": "VINTEQUATROPORSETENTADOIS",
+      "OUTROS": "OUTROS",
+      "NAOAPLICA": "NAOAPLICA"
+    }
+  }
+}

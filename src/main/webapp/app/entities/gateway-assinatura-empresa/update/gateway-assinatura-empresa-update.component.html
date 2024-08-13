@@ -1,0 +1,130 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-gateway-assinatura-empresa-heading"
+        data-cy="GatewayAssinaturaEmpresaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.home.createOrEditLabel"
+      >
+        Criar ou editar Gateway Assinatura Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ativo" jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.ativo">Ativo</label>
+          <input type="checkbox" class="form-check" name="ativo" id="field_ativo" data-cy="ativo" formControlName="ativo" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_codigoAssinatura"
+            jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.codigoAssinatura"
+            >Codigo Assinatura</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codigoAssinatura"
+            id="field_codigoAssinatura"
+            data-cy="codigoAssinatura"
+            formControlName="codigoAssinatura"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_assinaturaEmpresa"
+            jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.assinaturaEmpresa"
+            >Assinatura Empresa</label
+          >
+          <select
+            class="form-control"
+            id="field_assinaturaEmpresa"
+            data-cy="assinaturaEmpresa"
+            name="assinaturaEmpresa"
+            formControlName="assinaturaEmpresa"
+            [compareWith]="compareAssinaturaEmpresa"
+          >
+            @if (editForm.get(['assinaturaEmpresa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (assinaturaEmpresaOption of assinaturaEmpresasSharedCollection; track $index) {
+              <option [ngValue]="assinaturaEmpresaOption">{{ assinaturaEmpresaOption.codigoAssinatura }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['assinaturaEmpresa'])!.invalid &&
+          (editForm.get(['assinaturaEmpresa'])!.dirty || editForm.get(['assinaturaEmpresa'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['assinaturaEmpresa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_gatewayPagamento"
+            jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.gatewayPagamento"
+            >Gateway Pagamento</label
+          >
+          <select
+            class="form-control"
+            id="field_gatewayPagamento"
+            data-cy="gatewayPagamento"
+            name="gatewayPagamento"
+            formControlName="gatewayPagamento"
+            [compareWith]="compareGatewayPagamento"
+          >
+            @if (editForm.get(['gatewayPagamento'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (gatewayPagamentoOption of gatewayPagamentosSharedCollection; track $index) {
+              <option [ngValue]="gatewayPagamentoOption">{{ gatewayPagamentoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['gatewayPagamento'])!.invalid &&
+          (editForm.get(['gatewayPagamento'])!.dirty || editForm.get(['gatewayPagamento'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['gatewayPagamento'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

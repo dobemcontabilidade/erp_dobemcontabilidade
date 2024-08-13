@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051758"
+  },
+  "applications": "*",
+  "entityTableName": "parcela_imposto_a_pagar",
+  "fields": [
+    {
+      "fieldName": "numeroParcela",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dataVencimento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataPagamento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorMulta",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "urlArquivoPagamento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "urlArquivoComprovante",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mesCompetencia",
+      "fieldType": "MesCompetenciaEnum",
+      "fieldValues": "JANEIRO,FEVEREIRO,MARCO,ABRIL,MAIO,JUNHO,JULHO,AGOSTO,SETEMBRO,OUTUBRO,NOVEMBRO,DEZEMBRO"
+    }
+  ],
+  "name": "ParcelaImpostoAPagar",
+  "relationships": [
+    {
+      "otherEntityName": "parcelamentoImposto",
+      "relationshipName": "parcelamentoImposto",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

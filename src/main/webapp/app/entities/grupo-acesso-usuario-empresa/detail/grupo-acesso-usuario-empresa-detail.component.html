@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (grupoAcessoUsuarioEmpresa()) {
+      <div>
+        <h2 data-cy="grupoAcessoUsuarioEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioEmpresa.detail.title">Grupo Acesso Usuario Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ grupoAcessoUsuarioEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioEmpresa.nome">Nome</span></dt>
+          <dd>
+            <span>{{ grupoAcessoUsuarioEmpresa()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioEmpresa.dataExpiracao">Data Expiracao</span></dt>
+          <dd>
+            <span>{{ grupoAcessoUsuarioEmpresa()!.dataExpiracao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioEmpresa.ilimitado">Ilimitado</span></dt>
+          <dd>
+            <span>{{ grupoAcessoUsuarioEmpresa()!.ilimitado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioEmpresa.desabilitar">Desabilitar</span></dt>
+          <dd>
+            <span>{{ grupoAcessoUsuarioEmpresa()!.desabilitar }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioEmpresa.grupoAcessoEmpresa">Grupo Acesso Empresa</span></dt>
+          <dd>
+            @if (grupoAcessoUsuarioEmpresa()!.grupoAcessoEmpresa) {
+              <div>
+                <a [routerLink]="['/grupo-acesso-empresa', grupoAcessoUsuarioEmpresa()!.grupoAcessoEmpresa?.id, 'view']">{{
+                  grupoAcessoUsuarioEmpresa()!.grupoAcessoEmpresa?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioEmpresa.usuarioEmpresa">Usuario Empresa</span></dt>
+          <dd>
+            @if (grupoAcessoUsuarioEmpresa()!.usuarioEmpresa) {
+              <div>
+                <a [routerLink]="['/usuario-empresa', grupoAcessoUsuarioEmpresa()!.usuarioEmpresa?.id, 'view']">{{
+                  grupoAcessoUsuarioEmpresa()!.usuarioEmpresa?.email
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/grupo-acesso-usuario-empresa', grupoAcessoUsuarioEmpresa()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

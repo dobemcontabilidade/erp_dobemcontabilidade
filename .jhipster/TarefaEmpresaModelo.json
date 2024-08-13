@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051811"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "dataAdmin",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataLegal",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "TarefaEmpresaModelo",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "empresaModelo",
+      "relationshipName": "empresaModelo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "servicoContabil",
+      "relationshipName": "servicoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

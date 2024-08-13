@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "frequencia": {
+      "home": {
+        "title": "Frequencias",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Frequencia",
+        "createOrEditLabel": "Criar ou editar Frequencia",
+        "notFound": "Nenhum Frequencia encontrado"
+      },
+      "created": "Um novo Frequencia foi criado com o identificador {{ param }}",
+      "updated": "Um Frequencia foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Frequencia foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Frequencia {{ id }}?"
+      },
+      "detail": {
+        "title": "Frequencia"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "numeroDias": "Numero Dias",
+      "tarefa": "Tarefa"
+    }
+  }
+}

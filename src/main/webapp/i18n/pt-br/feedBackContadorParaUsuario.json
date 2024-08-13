@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "feedBackContadorParaUsuario": {
+      "home": {
+        "title": "Feed Back Contador Para Usuarios",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Feed Back Contador Para Usuario",
+        "createOrEditLabel": "Criar ou editar Feed Back Contador Para Usuario",
+        "notFound": "Nenhum Feed Back Contador Para Usuario encontrado"
+      },
+      "created": "Um novo Feed Back Contador Para Usuario foi criado com o identificador {{ param }}",
+      "updated": "Um Feed Back Contador Para Usuario foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Feed Back Contador Para Usuario foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Feed Back Contador Para Usuario {{ id }}?"
+      },
+      "detail": {
+        "title": "Feed Back Contador Para Usuario"
+      },
+      "id": "ID",
+      "comentario": "Comentario",
+      "pontuacao": "Pontuacao",
+      "criterioAvaliacaoAtor": "Criterio Avaliacao Ator",
+      "usuarioEmpresa": "Usuario Empresa",
+      "contador": "Contador",
+      "ordemServico": "Ordem Servico"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "perfilAcesso": {
+      "home": {
+        "title": "Perfil Acessos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Perfil Acesso",
+        "createOrEditLabel": "Criar ou editar Perfil Acesso",
+        "notFound": "Nenhum Perfil Acesso encontrado"
+      },
+      "created": "Um novo Perfil Acesso foi criado com o identificador {{ param }}",
+      "updated": "Um Perfil Acesso foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Perfil Acesso foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Perfil Acesso {{ id }}?"
+      },
+      "detail": {
+        "title": "Perfil Acesso"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao"
+    }
+  }
+}

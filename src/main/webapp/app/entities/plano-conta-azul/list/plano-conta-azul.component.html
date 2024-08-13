@@ -1,0 +1,226 @@
+<div>
+  <h2 id="page-heading" data-cy="PlanoContaAzulHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.home.title">Plano Conta Azuls</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-plano-conta-azul"
+        [routerLink]="['/plano-conta-azul/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.home.createLabel">Criar novo Plano Conta Azul</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (planoContaAzuls?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.home.notFound">Nenhum Plano Conta Azul encontrado</span>
+    </div>
+  }
+
+  @if (planoContaAzuls && planoContaAzuls.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorBase">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.valorBase">Valor Base</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="usuarios">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.usuarios">Usuarios</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="boletos">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.boletos">Boletos</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="notaFiscalProduto">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.notaFiscalProduto">Nota Fiscal Produto</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="notaFiscalServico">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.notaFiscalServico">Nota Fiscal Servico</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="notaFiscalCe">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.notaFiscalCe">Nota Fiscal Ce</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="suporte">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.suporte">Suporte</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="situacao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoContaAzul.situacao">Situacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (planoContaAzul of planoContaAzuls; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/plano-conta-azul', planoContaAzul.id, 'view']">{{ planoContaAzul.id }}</a>
+              </td>
+              <td>{{ planoContaAzul.nome }}</td>
+              <td>{{ planoContaAzul.valorBase }}</td>
+              <td>{{ planoContaAzul.usuarios }}</td>
+              <td>{{ planoContaAzul.boletos }}</td>
+              <td>{{ planoContaAzul.notaFiscalProduto }}</td>
+              <td>{{ planoContaAzul.notaFiscalServico }}</td>
+              <td>{{ planoContaAzul.notaFiscalCe }}</td>
+              <td>{{ planoContaAzul.suporte }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoPlanoContaAzul.' + (planoContaAzul.situacao ?? 'null')">
+                {{ { null: '', ATIVO: 'ATIVO', INATIVO: 'INATIVO', EXCLUIDO: 'EXCLUIDO' }[planoContaAzul.situacao ?? 'null'] }}
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <button
+                    type="submit"
+                    [routerLink]="['/calculo-plano-assinatura']"
+                    [queryParams]="{ 'filter[planoContaAzulId.in]': planoContaAzul.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('erpDobemcontabilidadeApp.planoContaAzul.calculoPlanoAssinatura' | translate) }"
+                      >Mostrar Calculo Plano Assinatura</span
+                    >
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/assinatura-empresa']"
+                    [queryParams]="{ 'filter[planoContaAzulId.in]': planoContaAzul.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('erpDobemcontabilidadeApp.planoContaAzul.assinaturaEmpresa' | translate) }"
+                      >Mostrar Assinatura Empresa</span
+                    >
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/desconto-plano-conta-azul']"
+                    [queryParams]="{ 'filter[planoContaAzulId.in]': planoContaAzul.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('erpDobemcontabilidadeApp.planoContaAzul.descontoPlanoContaAzul' | translate) }"
+                      >Mostrar Desconto Plano Conta Azul</span
+                    >
+                  </button>
+                  <a
+                    [routerLink]="['/plano-conta-azul', planoContaAzul.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/plano-conta-azul', planoContaAzul.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(planoContaAzul)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (planoContaAzuls && planoContaAzuls.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

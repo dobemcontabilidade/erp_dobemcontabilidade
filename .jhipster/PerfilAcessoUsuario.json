@@ -1,0 +1,26 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051723"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autorizado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dataExpiracao",
+      "fieldType": "Instant"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PerfilAcessoUsuario",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051809"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "linkTermo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "titulo",
+      "fieldType": "String"
+    }
+  ],
+  "name": "TermoContratoContabil",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "planoContabil",
+      "relationshipName": "planoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

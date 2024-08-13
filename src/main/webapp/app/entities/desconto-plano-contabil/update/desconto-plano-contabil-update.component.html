@@ -1,0 +1,131 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-desconto-plano-contabil-heading"
+        data-cy="DescontoPlanoContabilCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.descontoPlanoContabil.home.createOrEditLabel"
+      >
+        Criar ou editar Desconto Plano Contabil
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.descontoPlanoContabil.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_percentual" jhiTranslate="erpDobemcontabilidadeApp.descontoPlanoContabil.percentual"
+            >Percentual</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="percentual"
+            id="field_percentual"
+            data-cy="percentual"
+            formControlName="percentual"
+          />
+          @if (editForm.get('percentual')!.invalid && (editForm.get('percentual')!.dirty || editForm.get('percentual')!.touched)) {
+            <div>
+              @if (editForm.get('percentual')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('percentual')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo é do tipo numérico.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_periodoPagamento"
+            jhiTranslate="erpDobemcontabilidadeApp.descontoPlanoContabil.periodoPagamento"
+            >Periodo Pagamento</label
+          >
+          <select
+            class="form-control"
+            id="field_periodoPagamento"
+            data-cy="periodoPagamento"
+            name="periodoPagamento"
+            formControlName="periodoPagamento"
+            [compareWith]="comparePeriodoPagamento"
+          >
+            @if (editForm.get(['periodoPagamento'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (periodoPagamentoOption of periodoPagamentosSharedCollection; track $index) {
+              <option [ngValue]="periodoPagamentoOption">{{ periodoPagamentoOption.periodo }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['periodoPagamento'])!.invalid &&
+          (editForm.get(['periodoPagamento'])!.dirty || editForm.get(['periodoPagamento'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['periodoPagamento'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_planoContabil" jhiTranslate="erpDobemcontabilidadeApp.descontoPlanoContabil.planoContabil"
+            >Plano Contabil</label
+          >
+          <select
+            class="form-control"
+            id="field_planoContabil"
+            data-cy="planoContabil"
+            name="planoContabil"
+            formControlName="planoContabil"
+            [compareWith]="comparePlanoContabil"
+          >
+            @if (editForm.get(['planoContabil'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (planoContabilOption of planoContabilsSharedCollection; track $index) {
+              <option [ngValue]="planoContabilOption">{{ planoContabilOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['planoContabil'])!.invalid && (editForm.get(['planoContabil'])!.dirty || editForm.get(['planoContabil'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['planoContabil'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

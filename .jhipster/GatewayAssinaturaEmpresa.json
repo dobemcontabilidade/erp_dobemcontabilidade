@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051711"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "codigoAssinatura",
+      "fieldType": "String"
+    }
+  ],
+  "name": "GatewayAssinaturaEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "codigoAssinatura",
+      "otherEntityName": "assinaturaEmpresa",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "gatewayPagamento",
+      "relationshipName": "gatewayPagamento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

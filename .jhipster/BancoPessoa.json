@@ -1,0 +1,50 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051619"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "agencia",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "conta",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "tipoConta",
+      "fieldType": "TipoContaBancoEnum",
+      "fieldValues": "CONTACORRENTE,CONTAPOUPANCA,CONTASALARIO"
+    },
+    {
+      "fieldName": "principal",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "BancoPessoa",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoa",
+      "relationshipName": "pessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "banco",
+      "relationshipName": "banco",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051652"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "naturalidade",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Estado",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "cidade",
+      "otherEntityRelationshipName": "estado",
+      "relationshipName": "cidade",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

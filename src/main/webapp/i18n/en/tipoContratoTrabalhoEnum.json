@@ -1,0 +1,11 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoContratoTrabalhoEnum": {
+      "null": "",
+      "INDETERMINADO": "INDETERMINADO",
+      "DETERMINADO": "DETERMINADO",
+      "DETERMINADOEXPERIENCIA": "DETERMINADOEXPERIENCIA",
+      "INTERMITENTE": "INTERMITENTE"
+    }
+  }
+}

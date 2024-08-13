@@ -1,0 +1,10 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "SituacaoPagamentoEnum": {
+      "null": "",
+      "APAGAR": "APAGAR",
+      "PAGO": "PAGO",
+      "EMATRASO": "EMATRASO"
+    }
+  }
+}

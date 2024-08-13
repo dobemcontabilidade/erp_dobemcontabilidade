@@ -1,0 +1,11 @@
+export enum TipoDependenteFuncionarioEnum {
+  CONJUGE = 'CONJUGE',
+
+  FILHO = 'FILHO',
+
+  IRMAONETOBISNETO = 'IRMAONETOBISNETO',
+
+  PAISAVOS = 'PAISAVOS',
+
+  MENORCOMGUARDAR = 'MENORCOMGUARDAR',
+}

@@ -1,0 +1,196 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-feed-back-usuario-para-contador-heading"
+        data-cy="FeedBackUsuarioParaContadorCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.home.createOrEditLabel"
+      >
+        Criar ou editar Feed Back Usuario Para Contador
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_comentario" jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.comentario"
+            >Comentario</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="comentario"
+            id="field_comentario"
+            data-cy="comentario"
+            formControlName="comentario"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pontuacao" jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.pontuacao"
+            >Pontuacao</label
+          >
+          <input type="number" class="form-control" name="pontuacao" id="field_pontuacao" data-cy="pontuacao" formControlName="pontuacao" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_usuarioEmpresa"
+            jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.usuarioEmpresa"
+            >Usuario Empresa</label
+          >
+          <select
+            class="form-control"
+            id="field_usuarioEmpresa"
+            data-cy="usuarioEmpresa"
+            name="usuarioEmpresa"
+            formControlName="usuarioEmpresa"
+            [compareWith]="compareUsuarioEmpresa"
+          >
+            @if (editForm.get(['usuarioEmpresa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (usuarioEmpresaOption of usuarioEmpresasSharedCollection; track $index) {
+              <option [ngValue]="usuarioEmpresaOption">{{ usuarioEmpresaOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['usuarioEmpresa'])!.invalid &&
+          (editForm.get(['usuarioEmpresa'])!.dirty || editForm.get(['usuarioEmpresa'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['usuarioEmpresa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_usuarioContador"
+            jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.usuarioContador"
+            >Usuario Contador</label
+          >
+          <select
+            class="form-control"
+            id="field_usuarioContador"
+            data-cy="usuarioContador"
+            name="usuarioContador"
+            formControlName="usuarioContador"
+            [compareWith]="compareUsuarioContador"
+          >
+            @if (editForm.get(['usuarioContador'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (usuarioContadorOption of usuarioContadorsSharedCollection; track $index) {
+              <option [ngValue]="usuarioContadorOption">{{ usuarioContadorOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['usuarioContador'])!.invalid &&
+          (editForm.get(['usuarioContador'])!.dirty || editForm.get(['usuarioContador'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['usuarioContador'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_criterioAvaliacaoAtor"
+            jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.criterioAvaliacaoAtor"
+            >Criterio Avaliacao Ator</label
+          >
+          <select
+            class="form-control"
+            id="field_criterioAvaliacaoAtor"
+            data-cy="criterioAvaliacaoAtor"
+            name="criterioAvaliacaoAtor"
+            formControlName="criterioAvaliacaoAtor"
+            [compareWith]="compareCriterioAvaliacaoAtor"
+          >
+            @if (editForm.get(['criterioAvaliacaoAtor'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (criterioAvaliacaoAtorOption of criterioAvaliacaoAtorsSharedCollection; track $index) {
+              <option [ngValue]="criterioAvaliacaoAtorOption">{{ criterioAvaliacaoAtorOption.descricao }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['criterioAvaliacaoAtor'])!.invalid &&
+          (editForm.get(['criterioAvaliacaoAtor'])!.dirty || editForm.get(['criterioAvaliacaoAtor'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['criterioAvaliacaoAtor'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_ordemServico"
+            jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.ordemServico"
+            >Ordem Servico</label
+          >
+          <select
+            class="form-control"
+            id="field_ordemServico"
+            data-cy="ordemServico"
+            name="ordemServico"
+            formControlName="ordemServico"
+            [compareWith]="compareOrdemServico"
+          >
+            @if (editForm.get(['ordemServico'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (ordemServicoOption of ordemServicosSharedCollection; track $index) {
+              <option [ngValue]="ordemServicoOption">{{ ordemServicoOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['ordemServico'])!.invalid && (editForm.get(['ordemServico'])!.dirty || editForm.get(['ordemServico'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['ordemServico'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

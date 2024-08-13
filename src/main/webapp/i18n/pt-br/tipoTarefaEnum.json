@@ -1,0 +1,9 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoTarefaEnum": {
+      "null": "",
+      "RECORRENTE": "RECORRENTE",
+      "ORDEMSERVICO": "ORDEMSERVICO"
+    }
+  }
+}

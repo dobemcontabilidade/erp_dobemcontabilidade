@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "areaContabilAssinaturaEmpresa": {
+      "home": {
+        "title": "Area Contabil Assinatura Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Area Contabil Assinatura Empresa",
+        "createOrEditLabel": "Criar ou editar Area Contabil Assinatura Empresa",
+        "notFound": "Nenhum Area Contabil Assinatura Empresa encontrado"
+      },
+      "created": "Um novo Area Contabil Assinatura Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Area Contabil Assinatura Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Area Contabil Assinatura Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Area Contabil Assinatura Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Area Contabil Assinatura Empresa"
+      },
+      "id": "ID",
+      "ativo": "Ativo",
+      "dataAtribuicao": "Data Atribuicao",
+      "dataRevogacao": "Data Revogacao",
+      "areaContabil": "Area Contabil",
+      "assinaturaEmpresa": "Assinatura Empresa",
+      "contador": "Contador"
+    }
+  }
+}

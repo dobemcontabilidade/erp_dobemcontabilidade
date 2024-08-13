@@ -1,0 +1,122 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-servico-contabil-etapa-fluxo-modelo-heading"
+        data-cy="ServicoContabilEtapaFluxoModeloCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.home.createOrEditLabel"
+      >
+        Criar ou editar Servico Contabil Etapa Fluxo Modelo
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ordem" jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.ordem"
+            >Ordem</label
+          >
+          <input type="number" class="form-control" name="ordem" id="field_ordem" data-cy="ordem" formControlName="ordem" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_prazo" jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.prazo"
+            >Prazo</label
+          >
+          <input type="number" class="form-control" name="prazo" id="field_prazo" data-cy="prazo" formControlName="prazo" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_etapaFluxoModelo"
+            jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.etapaFluxoModelo"
+            >Etapa Fluxo Modelo</label
+          >
+          <select
+            class="form-control"
+            id="field_etapaFluxoModelo"
+            data-cy="etapaFluxoModelo"
+            name="etapaFluxoModelo"
+            formControlName="etapaFluxoModelo"
+            [compareWith]="compareEtapaFluxoModelo"
+          >
+            @if (editForm.get(['etapaFluxoModelo'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (etapaFluxoModeloOption of etapaFluxoModelosSharedCollection; track $index) {
+              <option [ngValue]="etapaFluxoModeloOption">{{ etapaFluxoModeloOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['etapaFluxoModelo'])!.invalid &&
+          (editForm.get(['etapaFluxoModelo'])!.dirty || editForm.get(['etapaFluxoModelo'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['etapaFluxoModelo'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_servicoContabil"
+            jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.servicoContabil"
+            >Servico Contabil</label
+          >
+          <select
+            class="form-control"
+            id="field_servicoContabil"
+            data-cy="servicoContabil"
+            name="servicoContabil"
+            formControlName="servicoContabil"
+            [compareWith]="compareServicoContabil"
+          >
+            @if (editForm.get(['servicoContabil'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (servicoContabilOption of servicoContabilsSharedCollection; track $index) {
+              <option [ngValue]="servicoContabilOption">{{ servicoContabilOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['servicoContabil'])!.invalid &&
+          (editForm.get(['servicoContabil'])!.dirty || editForm.get(['servicoContabil'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['servicoContabil'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

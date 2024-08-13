@@ -1,0 +1,70 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051747"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "senha",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "token",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dataHoraAtivacao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataLimiteAcesso",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoUsuarioContadorEnum",
+      "fieldValues": "ATIVO,INATIVO,BLOQUEADO,EXCLUIDO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "UsuarioContador",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "grupoAcessoEmpresaUsuarioContador",
+      "otherEntityRelationshipName": "usuarioContador",
+      "relationshipName": "grupoAcessoEmpresaUsuarioContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "grupoAcessoUsuarioContador",
+      "otherEntityRelationshipName": "usuarioContador",
+      "relationshipName": "grupoAcessoUsuarioContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "feedBackUsuarioParaContador",
+      "otherEntityRelationshipName": "usuarioContador",
+      "relationshipName": "feedBackUsuarioParaContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

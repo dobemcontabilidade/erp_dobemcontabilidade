@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051706"
+  },
+  "applications": "*",
+  "entityTableName": "grup_acess_usua_empresa",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataExpiracao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "ilimitado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "desabilitar",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "GrupoAcessoUsuarioEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "grupoAcessoEmpresa",
+      "relationshipName": "grupoAcessoEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "email",
+      "otherEntityName": "usuarioEmpresa",
+      "relationshipName": "usuarioEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

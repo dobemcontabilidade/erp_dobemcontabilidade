@@ -1,0 +1,10 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "IndicativoAdmissaoEnum": {
+      "null": "",
+      "NORMAL": "NORMAL",
+      "ACAOFISCAL": "ACAOFISCAL",
+      "DECISAOJUDICIAL": "DECISAOJUDICIAL"
+    }
+  }
+}

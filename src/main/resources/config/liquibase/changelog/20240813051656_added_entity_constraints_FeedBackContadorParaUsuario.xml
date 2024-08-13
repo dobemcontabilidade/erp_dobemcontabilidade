@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity FeedBackContadorParaUsuario.
+    -->
+    <changeSet id="20240813051656-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="criterio_avaliacao_ator_id"
+                                 baseTableName="feed_contador_para_usuario"
+                                 constraintName="fk_feed_contador_para_usuario__criterio_avaliacao_ator_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="criterio_avaliacao_ator"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="usuario_empresa_id"
+                                 baseTableName="feed_contador_para_usuario"
+                                 constraintName="fk_feed_contador_para_usuario__usuario_empresa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario_empresa"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="contador_id"
+                                 baseTableName="feed_contador_para_usuario"
+                                 constraintName="fk_feed_contador_para_usuario__contador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contador"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="ordem_servico_id"
+                                 baseTableName="feed_contador_para_usuario"
+                                 constraintName="fk_feed_contador_para_usuario__ordem_servico_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ordem_servico"
+                                 />
+    </changeSet>
+</databaseChangeLog>

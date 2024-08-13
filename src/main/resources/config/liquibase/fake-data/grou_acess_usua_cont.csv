@@ -1,0 +1,11 @@
+id;data_expiracao;ilimitado;desabilitar;usuario_contador_id;grupo_acesso_padrao_id
+1;2024-08-12T13:58:31;true;true;1;1
+2;2024-08-12T21:15:02;false;true;2;2
+3;2024-08-12T11:35:52;false;false;3;3
+4;2024-08-12T16:29:37;true;true;4;4
+5;2024-08-13T00:46:54;false;false;5;5
+6;2024-08-12T21:23:42;false;true;6;6
+7;2024-08-12T18:45:32;true;true;7;7
+8;2024-08-12T05:31:52;false;false;8;8
+9;2024-08-12T17:07:36;false;true;9;9
+10;2024-08-12T10:06:48;false;false;10;10

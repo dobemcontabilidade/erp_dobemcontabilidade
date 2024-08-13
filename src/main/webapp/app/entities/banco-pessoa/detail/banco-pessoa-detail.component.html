@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (bancoPessoa()) {
+      <div>
+        <h2 data-cy="bancoPessoaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.detail.title">Banco Pessoa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ bancoPessoa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.agencia">Agencia</span></dt>
+          <dd>
+            <span>{{ bancoPessoa()!.agencia }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.conta">Conta</span></dt>
+          <dd>
+            <span>{{ bancoPessoa()!.conta }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.tipoConta">Tipo Conta</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoContaBancoEnum.' + (bancoPessoa()!.tipoConta ?? 'null')">{{
+              { null: '', CONTACORRENTE: 'CONTACORRENTE', CONTAPOUPANCA: 'CONTAPOUPANCA', CONTASALARIO: 'CONTASALARIO' }[
+                bancoPessoa()!.tipoConta ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.principal">Principal</span></dt>
+          <dd>
+            <span>{{ bancoPessoa()!.principal }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.pessoa">Pessoa</span></dt>
+          <dd>
+            @if (bancoPessoa()!.pessoa) {
+              <div>
+                <a [routerLink]="['/pessoa', bancoPessoa()!.pessoa?.id, 'view']">{{ bancoPessoa()!.pessoa?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.banco">Banco</span></dt>
+          <dd>
+            @if (bancoPessoa()!.banco) {
+              <div>
+                <a [routerLink]="['/banco', bancoPessoa()!.banco?.id, 'view']">{{ bancoPessoa()!.banco?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/banco-pessoa', bancoPessoa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

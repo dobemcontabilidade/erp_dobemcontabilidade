@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "perfilAcessoUsuario": {
+      "home": {
+        "title": "Perfil Acesso Usuarios",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Perfil Acesso Usuario",
+        "createOrEditLabel": "Create or edit a Perfil Acesso Usuario",
+        "notFound": "No Perfil Acesso Usuarios found"
+      },
+      "created": "A new Perfil Acesso Usuario is created with identifier {{ param }}",
+      "updated": "A Perfil Acesso Usuario is updated with identifier {{ param }}",
+      "deleted": "A Perfil Acesso Usuario is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Perfil Acesso Usuario {{ id }}?"
+      },
+      "detail": {
+        "title": "Perfil Acesso Usuario"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "autorizado": "Autorizado",
+      "dataExpiracao": "Data Expiracao"
+    }
+  }
+}

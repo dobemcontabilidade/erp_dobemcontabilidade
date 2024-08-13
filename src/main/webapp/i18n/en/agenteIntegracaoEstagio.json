@@ -1,0 +1,35 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "agenteIntegracaoEstagio": {
+      "home": {
+        "title": "Agente Integracao Estagios",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Agente Integracao Estagio",
+        "createOrEditLabel": "Create or edit a Agente Integracao Estagio",
+        "notFound": "No Agente Integracao Estagios found"
+      },
+      "created": "A new Agente Integracao Estagio is created with identifier {{ param }}",
+      "updated": "A Agente Integracao Estagio is updated with identifier {{ param }}",
+      "deleted": "A Agente Integracao Estagio is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Agente Integracao Estagio {{ id }}?"
+      },
+      "detail": {
+        "title": "Agente Integracao Estagio"
+      },
+      "id": "ID",
+      "cnpj": "Cnpj",
+      "razaoSocial": "Razao Social",
+      "coordenador": "Coordenador",
+      "cpfCoordenadorEstagio": "Cpf Coordenador Estagio",
+      "logradouro": "Logradouro",
+      "numero": "Numero",
+      "complemento": "Complemento",
+      "bairro": "Bairro",
+      "cep": "Cep",
+      "principal": "Principal",
+      "contratoFuncionario": "Contrato Funcionario",
+      "cidade": "Cidade"
+    }
+  }
+}

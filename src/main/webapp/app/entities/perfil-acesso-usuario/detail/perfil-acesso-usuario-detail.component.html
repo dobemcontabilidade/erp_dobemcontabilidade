@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (perfilAcessoUsuario()) {
+      <div>
+        <h2 data-cy="perfilAcessoUsuarioDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.perfilAcessoUsuario.detail.title">Perfil Acesso Usuario</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ perfilAcessoUsuario()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.perfilAcessoUsuario.nome">Nome</span></dt>
+          <dd>
+            <span>{{ perfilAcessoUsuario()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.perfilAcessoUsuario.autorizado">Autorizado</span></dt>
+          <dd>
+            <span>{{ perfilAcessoUsuario()!.autorizado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.perfilAcessoUsuario.dataExpiracao">Data Expiracao</span></dt>
+          <dd>
+            <span>{{ perfilAcessoUsuario()!.dataExpiracao | formatMediumDatetime }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/perfil-acesso-usuario', perfilAcessoUsuario()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

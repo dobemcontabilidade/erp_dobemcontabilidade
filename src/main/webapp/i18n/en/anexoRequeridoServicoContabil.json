@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoRequeridoServicoContabil": {
+      "home": {
+        "title": "Anexo Requerido Servico Contabils",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Anexo Requerido Servico Contabil",
+        "createOrEditLabel": "Create or edit a Anexo Requerido Servico Contabil",
+        "notFound": "No Anexo Requerido Servico Contabils found"
+      },
+      "created": "A new Anexo Requerido Servico Contabil is created with identifier {{ param }}",
+      "updated": "A Anexo Requerido Servico Contabil is updated with identifier {{ param }}",
+      "deleted": "A Anexo Requerido Servico Contabil is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Anexo Requerido Servico Contabil {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Requerido Servico Contabil"
+      },
+      "id": "ID",
+      "obrigatorio": "Obrigatorio",
+      "servicoContabil": "Servico Contabil",
+      "anexoRequerido": "Anexo Requerido"
+    }
+  }
+}

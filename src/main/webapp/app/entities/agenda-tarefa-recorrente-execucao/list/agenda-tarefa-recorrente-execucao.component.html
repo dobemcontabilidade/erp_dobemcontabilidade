@@ -1,0 +1,154 @@
+<div>
+  <h2 id="page-heading" data-cy="AgendaTarefaRecorrenteExecucaoHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.home.title">Agenda Tarefa Recorrente Execucaos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-agenda-tarefa-recorrente-execucao"
+        [routerLink]="['/agenda-tarefa-recorrente-execucao/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.home.createLabel"
+          >Criar novo Agenda Tarefa Recorrente Execucao</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (agendaTarefaRecorrenteExecucaos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.home.notFound"
+        >Nenhum Agenda Tarefa Recorrente Execucao encontrado</span
+      >
+    </div>
+  }
+
+  @if (agendaTarefaRecorrenteExecucaos && agendaTarefaRecorrenteExecucaos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ativo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.ativo">Ativo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="horaInicio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.horaInicio">Hora Inicio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="horaFim">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.horaFim">Hora Fim</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diaInteiro">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.diaInteiro">Dia Inteiro</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="comentario">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.comentario">Comentario</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tarefaRecorrenteExecucao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.tarefaRecorrenteExecucao"
+                  >Tarefa Recorrente Execucao</span
+                >
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (agendaTarefaRecorrenteExecucao of agendaTarefaRecorrenteExecucaos; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/agenda-tarefa-recorrente-execucao', agendaTarefaRecorrenteExecucao.id, 'view']">{{
+                  agendaTarefaRecorrenteExecucao.id
+                }}</a>
+              </td>
+              <td>{{ agendaTarefaRecorrenteExecucao.ativo }}</td>
+              <td>{{ agendaTarefaRecorrenteExecucao.horaInicio | formatMediumDatetime }}</td>
+              <td>{{ agendaTarefaRecorrenteExecucao.horaFim | formatMediumDatetime }}</td>
+              <td>{{ agendaTarefaRecorrenteExecucao.diaInteiro }}</td>
+              <td>{{ agendaTarefaRecorrenteExecucao.comentario }}</td>
+              <td>
+                @if (agendaTarefaRecorrenteExecucao.tarefaRecorrenteExecucao) {
+                  <div>
+                    <a [routerLink]="['/tarefa-recorrente-execucao', agendaTarefaRecorrenteExecucao.tarefaRecorrenteExecucao.id, 'view']">{{
+                      agendaTarefaRecorrenteExecucao.tarefaRecorrenteExecucao.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/agenda-tarefa-recorrente-execucao', agendaTarefaRecorrenteExecucao.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/agenda-tarefa-recorrente-execucao', agendaTarefaRecorrenteExecucao.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(agendaTarefaRecorrenteExecucao)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

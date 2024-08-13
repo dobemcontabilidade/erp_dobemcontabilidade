@@ -1,0 +1,35 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051558"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "urlAnexo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "AnexoEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "anexoRequeridoEmpresa",
+      "relationshipName": "anexoRequeridoEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

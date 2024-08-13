@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051814"
+  },
+  "applications": "*",
+  "entityTableName": "serv_cont_assinatura_empresa",
+  "fields": [
+    {
+      "fieldName": "dataLegal",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataAdmin",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "ServicoContabilAssinaturaEmpresa",
+  "relationships": [
+    {
+      "otherEntityName": "anexoServicoContabilEmpresa",
+      "otherEntityRelationshipName": "servicoContabilAssinaturaEmpresa",
+      "relationshipName": "anexoServicoContabilEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tarefaRecorrente",
+      "otherEntityRelationshipName": "servicoContabilAssinaturaEmpresa",
+      "relationshipName": "tarefaRecorrente",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "servicoContabil",
+      "relationshipName": "servicoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "codigoAssinatura",
+      "otherEntityName": "assinaturaEmpresa",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

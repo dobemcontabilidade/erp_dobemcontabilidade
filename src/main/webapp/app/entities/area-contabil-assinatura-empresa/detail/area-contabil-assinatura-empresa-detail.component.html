@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (areaContabilAssinaturaEmpresa()) {
+      <div>
+        <h2 data-cy="areaContabilAssinaturaEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.areaContabilAssinaturaEmpresa.detail.title">Area Contabil Assinatura Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ areaContabilAssinaturaEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.areaContabilAssinaturaEmpresa.ativo">Ativo</span></dt>
+          <dd>
+            <span>{{ areaContabilAssinaturaEmpresa()!.ativo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.areaContabilAssinaturaEmpresa.dataAtribuicao">Data Atribuicao</span></dt>
+          <dd>
+            <span>{{ areaContabilAssinaturaEmpresa()!.dataAtribuicao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.areaContabilAssinaturaEmpresa.dataRevogacao">Data Revogacao</span></dt>
+          <dd>
+            <span>{{ areaContabilAssinaturaEmpresa()!.dataRevogacao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.areaContabilAssinaturaEmpresa.areaContabil">Area Contabil</span></dt>
+          <dd>
+            @if (areaContabilAssinaturaEmpresa()!.areaContabil) {
+              <div>
+                <a [routerLink]="['/area-contabil', areaContabilAssinaturaEmpresa()!.areaContabil?.id, 'view']">{{
+                  areaContabilAssinaturaEmpresa()!.areaContabil?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.areaContabilAssinaturaEmpresa.assinaturaEmpresa">Assinatura Empresa</span></dt>
+          <dd>
+            @if (areaContabilAssinaturaEmpresa()!.assinaturaEmpresa) {
+              <div>
+                <a [routerLink]="['/assinatura-empresa', areaContabilAssinaturaEmpresa()!.assinaturaEmpresa?.id, 'view']">{{
+                  areaContabilAssinaturaEmpresa()!.assinaturaEmpresa?.codigoAssinatura
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.areaContabilAssinaturaEmpresa.contador">Contador</span></dt>
+          <dd>
+            @if (areaContabilAssinaturaEmpresa()!.contador) {
+              <div>
+                <a [routerLink]="['/contador', areaContabilAssinaturaEmpresa()!.contador?.id, 'view']">{{
+                  areaContabilAssinaturaEmpresa()!.contador?.crc
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/area-contabil-assinatura-empresa', areaContabilAssinaturaEmpresa()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "subTarefaOrdemServico": {
+      "home": {
+        "title": "Sub Tarefa Ordem Servicos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Sub Tarefa Ordem Servico",
+        "createOrEditLabel": "Create or edit a Sub Tarefa Ordem Servico",
+        "notFound": "No Sub Tarefa Ordem Servicos found"
+      },
+      "created": "A new Sub Tarefa Ordem Servico is created with identifier {{ param }}",
+      "updated": "A Sub Tarefa Ordem Servico is updated with identifier {{ param }}",
+      "deleted": "A Sub Tarefa Ordem Servico is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sub Tarefa Ordem Servico {{ id }}?"
+      },
+      "detail": {
+        "title": "Sub Tarefa Ordem Servico"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "ordem": "Ordem",
+      "concluida": "Concluida",
+      "tarefaOrdemServicoExecucao": "Tarefa Ordem Servico Execucao"
+    }
+  }
+}

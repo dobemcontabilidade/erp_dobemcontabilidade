@@ -1,0 +1,41 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "funcionario": {
+      "home": {
+        "title": "Funcionarios",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Funcionario",
+        "createOrEditLabel": "Criar ou editar Funcionario",
+        "notFound": "Nenhum Funcionario encontrado"
+      },
+      "created": "Um novo Funcionario foi criado com o identificador {{ param }}",
+      "updated": "Um Funcionario foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Funcionario foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Funcionario {{ id }}?"
+      },
+      "detail": {
+        "title": "Funcionario"
+      },
+      "id": "ID",
+      "numeroPisNisPasep": "Numero Pis Nis Pasep",
+      "reintegrado": "Reintegrado",
+      "primeiroEmprego": "Primeiro Emprego",
+      "multiploVinculos": "Multiplo Vinculos",
+      "dataOpcaoFgts": "Data Opcao Fgts",
+      "filiacaoSindical": "Filiacao Sindical",
+      "cnpjSindicato": "Cnpj Sindicato",
+      "tipoFuncionarioEnum": "Tipo Funcionario Enum",
+      "usuarioEmpresa": "Usuario Empresa",
+      "estrangeiro": "Estrangeiro",
+      "contratoFuncionario": "Contrato Funcionario",
+      "demissaoFuncionario": "Demissao Funcionario",
+      "dependentesFuncionario": "Dependentes Funcionario",
+      "empresaVinculada": "Empresa Vinculada",
+      "departamentoFuncionario": "Departamento Funcionario",
+      "pessoa": "Pessoa",
+      "empresa": "Empresa",
+      "profissao": "Profissao"
+    }
+  }
+}

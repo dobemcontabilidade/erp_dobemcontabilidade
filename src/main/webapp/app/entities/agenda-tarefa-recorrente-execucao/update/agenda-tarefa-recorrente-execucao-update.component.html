@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-agenda-tarefa-recorrente-execucao-heading"
+        data-cy="AgendaTarefaRecorrenteExecucaoCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.home.createOrEditLabel"
+      >
+        Criar ou editar Agenda Tarefa Recorrente Execucao
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ativo" jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.ativo"
+            >Ativo</label
+          >
+          <input type="checkbox" class="form-check" name="ativo" id="field_ativo" data-cy="ativo" formControlName="ativo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_horaInicio" jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.horaInicio"
+            >Hora Inicio</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_horaInicio"
+              data-cy="horaInicio"
+              type="datetime-local"
+              class="form-control"
+              name="horaInicio"
+              formControlName="horaInicio"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_horaFim" jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.horaFim"
+            >Hora Fim</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_horaFim"
+              data-cy="horaFim"
+              type="datetime-local"
+              class="form-control"
+              name="horaFim"
+              formControlName="horaFim"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diaInteiro" jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.diaInteiro"
+            >Dia Inteiro</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="diaInteiro"
+            id="field_diaInteiro"
+            data-cy="diaInteiro"
+            formControlName="diaInteiro"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_comentario" jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.comentario"
+            >Comentario</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="comentario"
+            id="field_comentario"
+            data-cy="comentario"
+            formControlName="comentario"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tarefaRecorrenteExecucao"
+            jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaRecorrenteExecucao.tarefaRecorrenteExecucao"
+            >Tarefa Recorrente Execucao</label
+          >
+          <select
+            class="form-control"
+            id="field_tarefaRecorrenteExecucao"
+            data-cy="tarefaRecorrenteExecucao"
+            name="tarefaRecorrenteExecucao"
+            formControlName="tarefaRecorrenteExecucao"
+            [compareWith]="compareTarefaRecorrenteExecucao"
+          >
+            @if (editForm.get(['tarefaRecorrenteExecucao'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (tarefaRecorrenteExecucaoOption of tarefaRecorrenteExecucaosSharedCollection; track $index) {
+              <option [ngValue]="tarefaRecorrenteExecucaoOption">{{ tarefaRecorrenteExecucaoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['tarefaRecorrenteExecucao'])!.invalid &&
+          (editForm.get(['tarefaRecorrenteExecucao'])!.dirty || editForm.get(['tarefaRecorrenteExecucao'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['tarefaRecorrenteExecucao'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "escolaridadePessoa": {
+      "home": {
+        "title": "Escolaridade Pessoas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Escolaridade Pessoa",
+        "createOrEditLabel": "Criar ou editar Escolaridade Pessoa",
+        "notFound": "Nenhum Escolaridade Pessoa encontrado"
+      },
+      "created": "Um novo Escolaridade Pessoa foi criado com o identificador {{ param }}",
+      "updated": "Um Escolaridade Pessoa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Escolaridade Pessoa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Escolaridade Pessoa {{ id }}?"
+      },
+      "detail": {
+        "title": "Escolaridade Pessoa"
+      },
+      "id": "ID",
+      "nomeInstituicao": "Nome Instituicao",
+      "anoConclusao": "Ano Conclusao",
+      "urlComprovanteEscolaridade": "Url Comprovante Escolaridade",
+      "pessoa": "Pessoa",
+      "escolaridade": "Escolaridade"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (anexoTarefaRecorrenteExecucao()) {
+      <div>
+        <h2 data-cy="anexoTarefaRecorrenteExecucaoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.detail.title">Anexo Tarefa Recorrente Execucao</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ anexoTarefaRecorrenteExecucao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.url">Url</span></dt>
+          <dd>
+            <span>{{ anexoTarefaRecorrenteExecucao()!.url }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ anexoTarefaRecorrenteExecucao()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.dataHoraUpload">Data Hora Upload</span></dt>
+          <dd>
+            <span>{{ anexoTarefaRecorrenteExecucao()!.dataHoraUpload | formatMediumDatetime }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.tarefaRecorrenteExecucao"
+              >Tarefa Recorrente Execucao</span
+            >
+          </dt>
+          <dd>
+            @if (anexoTarefaRecorrenteExecucao()!.tarefaRecorrenteExecucao) {
+              <div>
+                <a [routerLink]="['/tarefa-recorrente-execucao', anexoTarefaRecorrenteExecucao()!.tarefaRecorrenteExecucao?.id, 'view']">{{
+                  anexoTarefaRecorrenteExecucao()!.tarefaRecorrenteExecucao?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/anexo-tarefa-recorrente-execucao', anexoTarefaRecorrenteExecucao()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

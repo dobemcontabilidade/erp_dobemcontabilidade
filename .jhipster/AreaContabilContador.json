@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051556"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "percentualExperiencia",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "descricaoExperiencia",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "AreaContabilContador",
+  "relationships": [
+    {
+      "otherEntityField": "crc",
+      "otherEntityName": "contador",
+      "relationshipName": "contador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "areaContabil",
+      "relationshipName": "areaContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

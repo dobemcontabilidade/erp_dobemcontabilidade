@@ -1,0 +1,12 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "StatusDaOSEnum": {
+      "null": "",
+      "ABERTA": "ABERTA",
+      "EMATENDIMENTO": "EMATENDIMENTO",
+      "COMPENDENCIA": "COMPENDENCIA",
+      "CONCLUIDA": "CONCLUIDA",
+      "CANCELADA": "CANCELADA"
+    }
+  }
+}

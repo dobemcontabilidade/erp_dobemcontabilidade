@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (anexoRequeridoTarefaRecorrente()) {
+      <div>
+        <h2 data-cy="anexoRequeridoTarefaRecorrenteDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.detail.title">Anexo Requerido Tarefa Recorrente</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ anexoRequeridoTarefaRecorrente()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.obrigatorio">Obrigatorio</span></dt>
+          <dd>
+            <span>{{ anexoRequeridoTarefaRecorrente()!.obrigatorio }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.anexoRequerido">Anexo Requerido</span></dt>
+          <dd>
+            @if (anexoRequeridoTarefaRecorrente()!.anexoRequerido) {
+              <div>
+                <a [routerLink]="['/anexo-requerido', anexoRequeridoTarefaRecorrente()!.anexoRequerido?.id, 'view']">{{
+                  anexoRequeridoTarefaRecorrente()!.anexoRequerido?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.tarefaRecorrente">Tarefa Recorrente</span></dt>
+          <dd>
+            @if (anexoRequeridoTarefaRecorrente()!.tarefaRecorrente) {
+              <div>
+                <a [routerLink]="['/tarefa-recorrente', anexoRequeridoTarefaRecorrente()!.tarefaRecorrente?.id, 'view']">{{
+                  anexoRequeridoTarefaRecorrente()!.tarefaRecorrente?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/anexo-requerido-tarefa-recorrente', anexoRequeridoTarefaRecorrente()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

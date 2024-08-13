@@ -1,0 +1,43 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051658"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    }
+  ],
+  "name": "FluxoModelo",
+  "relationships": [
+    {
+      "otherEntityName": "ordemServico",
+      "otherEntityRelationshipName": "fluxoModelo",
+      "relationshipName": "ordemServico",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "etapaFluxoModelo",
+      "otherEntityRelationshipName": "fluxoModelo",
+      "relationshipName": "etapaFluxoModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "cidade",
+      "relationshipName": "cidade",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

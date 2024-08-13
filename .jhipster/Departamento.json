@@ -1,0 +1,52 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051634"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Departamento",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "departamentoEmpresa",
+      "otherEntityRelationshipName": "departamento",
+      "relationshipName": "departamentoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "perfilContadorDepartamento",
+      "otherEntityRelationshipName": "departamento",
+      "relationshipName": "perfilContadorDepartamento",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "departamentoContador",
+      "otherEntityRelationshipName": "departamento",
+      "relationshipName": "departamentoContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "departamentoFuncionario",
+      "otherEntityRelationshipName": "departamento",
+      "relationshipName": "departamentoFuncionario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

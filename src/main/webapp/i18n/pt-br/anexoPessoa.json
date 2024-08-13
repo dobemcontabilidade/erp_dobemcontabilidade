@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoPessoa": {
+      "home": {
+        "title": "Anexo Pessoas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Anexo Pessoa",
+        "createOrEditLabel": "Criar ou editar Anexo Pessoa",
+        "notFound": "Nenhum Anexo Pessoa encontrado"
+      },
+      "created": "Um novo Anexo Pessoa foi criado com o identificador {{ param }}",
+      "updated": "Um Anexo Pessoa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Anexo Pessoa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Anexo Pessoa {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Pessoa"
+      },
+      "id": "ID",
+      "urlArquivo": "Url Arquivo",
+      "descricao": "Descricao",
+      "anexoRequeridoPessoa": "Anexo Requerido Pessoa",
+      "pessoa": "Pessoa"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (imposto()) {
+      <div>
+        <h2 data-cy="impostoDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.imposto.detail.title">Imposto</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ imposto()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.imposto.nome">Nome</span></dt>
+          <dd>
+            <span>{{ imposto()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.imposto.sigla">Sigla</span></dt>
+          <dd>
+            <span>{{ imposto()!.sigla }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.imposto.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ imposto()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.imposto.esfera">Esfera</span></dt>
+          <dd>
+            @if (imposto()!.esfera) {
+              <div>
+                <a [routerLink]="['/esfera', imposto()!.esfera?.id, 'view']">{{ imposto()!.esfera?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/imposto', imposto()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

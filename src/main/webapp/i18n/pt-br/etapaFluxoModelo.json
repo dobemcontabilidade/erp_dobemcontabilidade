@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "etapaFluxoModelo": {
+      "home": {
+        "title": "Etapa Fluxo Modelos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Etapa Fluxo Modelo",
+        "createOrEditLabel": "Criar ou editar Etapa Fluxo Modelo",
+        "notFound": "Nenhum Etapa Fluxo Modelo encontrado"
+      },
+      "created": "Um novo Etapa Fluxo Modelo foi criado com o identificador {{ param }}",
+      "updated": "Um Etapa Fluxo Modelo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Etapa Fluxo Modelo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Etapa Fluxo Modelo {{ id }}?"
+      },
+      "detail": {
+        "title": "Etapa Fluxo Modelo"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "ordem": "Ordem",
+      "servicoContabilEtapaFluxoModelo": "Servico Contabil Etapa Fluxo Modelo",
+      "fluxoModelo": "Fluxo Modelo"
+    }
+  }
+}

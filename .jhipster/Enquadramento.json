@@ -1,0 +1,59 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051650"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "limiteInicial",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "limiteFinal",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Enquadramento",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "anexoRequeridoEmpresa",
+      "otherEntityRelationshipName": "enquadramento",
+      "relationshipName": "anexoRequeridoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "empresaModelo",
+      "otherEntityRelationshipName": "enquadramento",
+      "relationshipName": "empresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalEnquadramento",
+      "otherEntityRelationshipName": "enquadramento",
+      "relationshipName": "adicionalEnquadramento",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

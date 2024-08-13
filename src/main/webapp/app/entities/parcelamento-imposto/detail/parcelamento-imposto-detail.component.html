@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (parcelamentoImposto()) {
+      <div>
+        <h2 data-cy="parcelamentoImpostoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.detail.title">Parcelamento Imposto</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ parcelamentoImposto()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.diaVencimento">Dia Vencimento</span></dt>
+          <dd>
+            <span>{{ parcelamentoImposto()!.diaVencimento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.numeroParcelas">Numero Parcelas</span></dt>
+          <dd>
+            <span>{{ parcelamentoImposto()!.numeroParcelas }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.urlArquivoNegociacao">Url Arquivo Negociacao</span></dt>
+          <dd>
+            <span>{{ parcelamentoImposto()!.urlArquivoNegociacao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.numeroParcelasPagas">Numero Parcelas Pagas</span></dt>
+          <dd>
+            <span>{{ parcelamentoImposto()!.numeroParcelasPagas }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.numeroParcelasRegatantes">Numero Parcelas Regatantes</span>
+          </dt>
+          <dd>
+            <span>{{ parcelamentoImposto()!.numeroParcelasRegatantes }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.situacaoSolicitacaoParcelamentoEnum"
+              >Situacao Solicitacao Parcelamento Enum</span
+            >
+          </dt>
+          <dd>
+            <span
+              [jhiTranslate]="
+                'erpDobemcontabilidadeApp.SituacaoSolicitacaoParcelamentoEnum.' +
+                (parcelamentoImposto()!.situacaoSolicitacaoParcelamentoEnum ?? 'null')
+              "
+              >{{
+                { null: '', ABERTA: 'ABERTA', PROCESSADA: 'PROCESSADA', CANCELADA: 'CANCELADA', FINALIZADA: 'FINALIZADA' }[
+                  parcelamentoImposto()!.situacaoSolicitacaoParcelamentoEnum ?? 'null'
+                ]
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.imposto">Imposto</span></dt>
+          <dd>
+            @if (parcelamentoImposto()!.imposto) {
+              <div>
+                <a [routerLink]="['/imposto', parcelamentoImposto()!.imposto?.id, 'view']">{{ parcelamentoImposto()!.imposto?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.empresa">Empresa</span></dt>
+          <dd>
+            @if (parcelamentoImposto()!.empresa) {
+              <div>
+                <a [routerLink]="['/empresa', parcelamentoImposto()!.empresa?.id, 'view']">{{
+                  parcelamentoImposto()!.empresa?.razaoSocial
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/parcelamento-imposto', parcelamentoImposto()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

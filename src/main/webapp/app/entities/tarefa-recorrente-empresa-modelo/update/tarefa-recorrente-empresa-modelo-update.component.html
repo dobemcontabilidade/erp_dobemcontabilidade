@@ -1,0 +1,112 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-tarefa-recorrente-empresa-modelo-heading"
+        data-cy="TarefaRecorrenteEmpresaModeloCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.home.createOrEditLabel"
+      >
+        Criar ou editar Tarefa Recorrente Empresa Modelo
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diaAdmin" jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.diaAdmin"
+            >Dia Admin</label
+          >
+          <input type="number" class="form-control" name="diaAdmin" id="field_diaAdmin" data-cy="diaAdmin" formControlName="diaAdmin" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mesLegal" jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.mesLegal"
+            >Mes Legal</label
+          >
+          <select class="form-control" name="mesLegal" formControlName="mesLegal" id="field_mesLegal" data-cy="mesLegal">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.MesCompetenciaEnum.null' | translate }}</option>
+            @for (mesCompetenciaEnum of mesCompetenciaEnumValues; track $index) {
+              <option [value]="mesCompetenciaEnum">
+                {{ 'erpDobemcontabilidadeApp.MesCompetenciaEnum.' + mesCompetenciaEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_recorrencia"
+            jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.recorrencia"
+            >Recorrencia</label
+          >
+          <select class="form-control" name="recorrencia" formControlName="recorrencia" id="field_recorrencia" data-cy="recorrencia">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoRecorrenciaEnum.null' | translate }}</option>
+            @for (tipoRecorrenciaEnum of tipoRecorrenciaEnumValues; track $index) {
+              <option [value]="tipoRecorrenciaEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoRecorrenciaEnum.' + tipoRecorrenciaEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_servicoContabilEmpresaModelo"
+            jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.servicoContabilEmpresaModelo"
+            >Servico Contabil Empresa Modelo</label
+          >
+          <select
+            class="form-control"
+            id="field_servicoContabilEmpresaModelo"
+            data-cy="servicoContabilEmpresaModelo"
+            name="servicoContabilEmpresaModelo"
+            formControlName="servicoContabilEmpresaModelo"
+            [compareWith]="compareServicoContabilEmpresaModelo"
+          >
+            @if (editForm.get(['servicoContabilEmpresaModelo'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (servicoContabilEmpresaModeloOption of servicoContabilEmpresaModelosSharedCollection; track $index) {
+              <option [ngValue]="servicoContabilEmpresaModeloOption">{{ servicoContabilEmpresaModeloOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['servicoContabilEmpresaModelo'])!.invalid &&
+          (editForm.get(['servicoContabilEmpresaModelo'])!.dirty || editForm.get(['servicoContabilEmpresaModelo'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['servicoContabilEmpresaModelo'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

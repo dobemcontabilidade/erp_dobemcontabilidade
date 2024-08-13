@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051800"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "diasAtraso",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "ImpostoParcelado",
+  "relationships": [
+    {
+      "otherEntityName": "parcelamentoImposto",
+      "relationshipName": "parcelamentoImposto",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "impostoAPagarEmpresa",
+      "relationshipName": "impostoAPagarEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

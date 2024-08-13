@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity ServicoContabilEtapaFluxoExecucao.
+    -->
+    <changeSet id="20240813051813-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="servico_contabil_id"
+                                 baseTableName="serv_cont_etapa_fluxo_execucao"
+                                 constraintName="fk_serv_cont_etapa_fluxo_execucao__servico_contabil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="servico_contabil"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="etapa_fluxo_execucao_id"
+                                 baseTableName="serv_cont_etapa_fluxo_execucao"
+                                 constraintName="fk_serv_cont_etapa_fluxo_execucao__etapa_fluxo_execucao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="etapa_fluxo_execucao"
+                                 />
+    </changeSet>
+</databaseChangeLog>

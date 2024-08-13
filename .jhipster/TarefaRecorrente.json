@@ -1,0 +1,63 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051805"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notificarCliente",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "notificarContador",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "anoReferencia",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dataAdmin",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "recorencia",
+      "fieldType": "TipoRecorrenciaEnum",
+      "fieldValues": "DIARIO,SEMANAL,MENSAL,BIMESTRAL,TRIMESTRAL,SEMESTRAL,ANUAL"
+    }
+  ],
+  "name": "TarefaRecorrente",
+  "relationships": [
+    {
+      "otherEntityName": "tarefaRecorrenteExecucao",
+      "otherEntityRelationshipName": "tarefaRecorrente",
+      "relationshipName": "tarefaRecorrenteExecucao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoRequeridoTarefaRecorrente",
+      "otherEntityRelationshipName": "tarefaRecorrente",
+      "relationshipName": "anexoRequeridoTarefaRecorrente",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "servicoContabilAssinaturaEmpresa",
+      "relationshipName": "servicoContabilAssinaturaEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

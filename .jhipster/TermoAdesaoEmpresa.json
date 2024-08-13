@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051742"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "dataAdesao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "checked",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "urlDoc",
+      "fieldType": "String"
+    }
+  ],
+  "name": "TermoAdesaoEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "planoContabil",
+      "relationshipName": "planoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

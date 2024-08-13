@@ -1,0 +1,124 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051703"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "numeroPisNisPasep",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "reintegrado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "primeiroEmprego",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "multiploVinculos",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dataOpcaoFgts",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "filiacaoSindical",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "cnpjSindicato",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "tipoFuncionarioEnum",
+      "fieldType": "TipoFuncionarioEnum",
+      "fieldValues": "NORMAL,ESTAGIARIO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Funcionario",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "email",
+      "otherEntityName": "usuarioEmpresa",
+      "relationshipName": "usuarioEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "estrangeiro",
+      "otherEntityRelationshipName": "funcionario",
+      "relationshipName": "estrangeiro",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "contratoFuncionario",
+      "otherEntityRelationshipName": "funcionario",
+      "relationshipName": "contratoFuncionario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "demissaoFuncionario",
+      "otherEntityRelationshipName": "funcionario",
+      "relationshipName": "demissaoFuncionario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dependentesFuncionario",
+      "otherEntityRelationshipName": "funcionario",
+      "relationshipName": "dependentesFuncionario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "empresaVinculada",
+      "otherEntityRelationshipName": "funcionario",
+      "relationshipName": "empresaVinculada",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "departamentoFuncionario",
+      "otherEntityRelationshipName": "funcionario",
+      "relationshipName": "departamentoFuncionario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoa",
+      "relationshipName": "pessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "profissao",
+      "relationshipName": "profissao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

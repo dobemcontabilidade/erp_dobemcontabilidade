@@ -1,0 +1,9 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoContratoEnum": {
+      "null": "",
+      "ABERTURAEMPRESA": "ABERTURAEMPRESA",
+      "CONTRATACAOPLANO": "CONTRATACAOPLANO"
+    }
+  }
+}

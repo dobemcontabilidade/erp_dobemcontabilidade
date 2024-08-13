@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (impostoAPagarEmpresa()) {
+      <div>
+        <h2 data-cy="impostoAPagarEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.detail.title">Imposto A Pagar Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ impostoAPagarEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.dataVencimento">Data Vencimento</span></dt>
+          <dd>
+            <span>{{ impostoAPagarEmpresa()!.dataVencimento | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.dataPagamento">Data Pagamento</span></dt>
+          <dd>
+            <span>{{ impostoAPagarEmpresa()!.dataPagamento | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.valor">Valor</span></dt>
+          <dd>
+            <span>{{ impostoAPagarEmpresa()!.valor }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.valorMulta">Valor Multa</span></dt>
+          <dd>
+            <span>{{ impostoAPagarEmpresa()!.valorMulta }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.urlArquivoPagamento">Url Arquivo Pagamento</span></dt>
+          <dd>
+            <span>{{ impostoAPagarEmpresa()!.urlArquivoPagamento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.urlArquivoComprovante">Url Arquivo Comprovante</span></dt>
+          <dd>
+            <span>{{ impostoAPagarEmpresa()!.urlArquivoComprovante }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.situacaoPagamentoImpostoEnum"
+              >Situacao Pagamento Imposto Enum</span
+            >
+          </dt>
+          <dd>
+            <span
+              [jhiTranslate]="
+                'erpDobemcontabilidadeApp.SituacaoPagamentoImpostoEnum.' + (impostoAPagarEmpresa()!.situacaoPagamentoImpostoEnum ?? 'null')
+              "
+              >{{
+                {
+                  null: '',
+                  ABERTO: 'ABERTO',
+                  VENCIDO: 'VENCIDO',
+                  ATRASADO: 'ATRASADO',
+                  PENDENTE: 'PENDENTE',
+                  RECALCULADO: 'RECALCULADO',
+                  PAGO: 'PAGO',
+                  PRORROGADO: 'PRORROGADO',
+                }[impostoAPagarEmpresa()!.situacaoPagamentoImpostoEnum ?? 'null']
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.imposto">Imposto</span></dt>
+          <dd>
+            @if (impostoAPagarEmpresa()!.imposto) {
+              <div>
+                <a [routerLink]="['/imposto-empresa', impostoAPagarEmpresa()!.imposto?.id, 'view']">{{
+                  impostoAPagarEmpresa()!.imposto?.diaVencimento
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/imposto-a-pagar-empresa', impostoAPagarEmpresa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (estrangeiro()) {
+      <div>
+        <h2 data-cy="estrangeiroDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.estrangeiro.detail.title">Estrangeiro</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ estrangeiro()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.estrangeiro.dataChegada">Data Chegada</span></dt>
+          <dd>
+            <span>{{ estrangeiro()!.dataChegada }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.estrangeiro.dataNaturalizacao">Data Naturalizacao</span></dt>
+          <dd>
+            <span>{{ estrangeiro()!.dataNaturalizacao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.estrangeiro.casadoComBrasileiro">Casado Com Brasileiro</span></dt>
+          <dd>
+            <span>{{ estrangeiro()!.casadoComBrasileiro }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.estrangeiro.filhosComBrasileiro">Filhos Com Brasileiro</span></dt>
+          <dd>
+            <span>{{ estrangeiro()!.filhosComBrasileiro }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.estrangeiro.checked">Checked</span></dt>
+          <dd>
+            <span>{{ estrangeiro()!.checked }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.estrangeiro.funcionario">Funcionario</span></dt>
+          <dd>
+            @if (estrangeiro()!.funcionario) {
+              <div>
+                <a [routerLink]="['/funcionario', estrangeiro()!.funcionario?.id, 'view']">{{ estrangeiro()!.funcionario?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/estrangeiro', estrangeiro()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

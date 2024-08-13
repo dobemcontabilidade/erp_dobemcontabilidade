@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051632"
+  },
+  "applications": "*",
+  "entityTableName": "cont_respo_tare_recorrente",
+  "fields": [
+    {
+      "fieldName": "dataAtribuicao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataRevogacao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "concluida",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "ContadorResponsavelTarefaRecorrente",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tarefaRecorrenteExecucao",
+      "relationshipName": "tarefaRecorrenteExecucao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "crc",
+      "otherEntityName": "contador",
+      "relationshipName": "contador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

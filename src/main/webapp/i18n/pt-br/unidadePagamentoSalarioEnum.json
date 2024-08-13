@@ -1,0 +1,12 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "UnidadePagamentoSalarioEnum": {
+      "null": "",
+      "HORA": "HORA",
+      "DIA": "DIA",
+      "SEMANA": "SEMANA",
+      "MES": "MES",
+      "TAREFA": "TAREFA"
+    }
+  }
+}

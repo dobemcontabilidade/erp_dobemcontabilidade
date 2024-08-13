@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity OrdemServico.
+    -->
+    <changeSet id="20240813051754-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="empresa_id"
+                                 baseTableName="ordem_servico"
+                                 constraintName="fk_ordem_servico__empresa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="empresa"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="contador_id"
+                                 baseTableName="ordem_servico"
+                                 constraintName="fk_ordem_servico__contador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contador"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="fluxo_modelo_id"
+                                 baseTableName="ordem_servico"
+                                 constraintName="fk_ordem_servico__fluxo_modelo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fluxo_modelo"
+                                 />
+    </changeSet>
+</databaseChangeLog>

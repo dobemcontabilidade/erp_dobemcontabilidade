@@ -1,0 +1,48 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051614"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "percentual",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "AreaContabil",
+  "relationships": [
+    {
+      "otherEntityName": "areaContabilAssinaturaEmpresa",
+      "otherEntityRelationshipName": "areaContabil",
+      "relationshipName": "areaContabilAssinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "servicoContabil",
+      "otherEntityRelationshipName": "areaContabil",
+      "relationshipName": "servicoContabil",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "areaContabilContador",
+      "otherEntityRelationshipName": "areaContabil",
+      "relationshipName": "areaContabilContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

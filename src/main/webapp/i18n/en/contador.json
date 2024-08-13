@@ -1,0 +1,42 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "contador": {
+      "home": {
+        "title": "Contadors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Contador",
+        "createOrEditLabel": "Create or edit a Contador",
+        "notFound": "No Contadors found"
+      },
+      "created": "A new Contador is created with identifier {{ param }}",
+      "updated": "A Contador is updated with identifier {{ param }}",
+      "deleted": "A Contador is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contador {{ id }}?"
+      },
+      "detail": {
+        "title": "Contador"
+      },
+      "id": "ID",
+      "crc": "Crc",
+      "limiteEmpresas": "Limite Empresas",
+      "limiteDepartamentos": "Limite Departamentos",
+      "limiteFaturamento": "Limite Faturamento",
+      "situacaoContador": "Situacao Contador",
+      "pessoa": "Pessoa",
+      "usuarioContador": "Usuario Contador",
+      "areaContabilAssinaturaEmpresa": "Area Contabil Assinatura Empresa",
+      "feedBackContadorParaUsuario": "Feed Back Contador Para Usuario",
+      "ordemServico": "Ordem Servico",
+      "areaContabilContador": "Area Contabil Contador",
+      "contadorResponsavelOrdemServico": "Contador Responsavel Ordem Servico",
+      "contadorResponsavelTarefaRecorrente": "Contador Responsavel Tarefa Recorrente",
+      "departamentoEmpresa": "Departamento Empresa",
+      "departamentoContador": "Departamento Contador",
+      "termoAdesaoContador": "Termo Adesao Contador",
+      "avaliacaoContador": "Avaliacao Contador",
+      "tarefaEmpresa": "Tarefa Empresa",
+      "perfilContador": "Perfil Contador"
+    }
+  }
+}

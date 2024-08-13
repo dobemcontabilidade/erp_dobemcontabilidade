@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "grupoAcessoEmpresa": {
+      "home": {
+        "title": "Grupo Acesso Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Grupo Acesso Empresa",
+        "createOrEditLabel": "Create or edit a Grupo Acesso Empresa",
+        "notFound": "No Grupo Acesso Empresas found"
+      },
+      "created": "A new Grupo Acesso Empresa is created with identifier {{ param }}",
+      "updated": "A Grupo Acesso Empresa is updated with identifier {{ param }}",
+      "deleted": "A Grupo Acesso Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Grupo Acesso Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupo Acesso Empresa"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "funcionalidadeGrupoAcessoEmpresa": "Funcionalidade Grupo Acesso Empresa",
+      "grupoAcessoUsuarioEmpresa": "Grupo Acesso Usuario Empresa",
+      "grupoAcessoEmpresaUsuarioContador": "Grupo Acesso Empresa Usuario Contador",
+      "assinaturaEmpresa": "Assinatura Empresa"
+    }
+  }
+}

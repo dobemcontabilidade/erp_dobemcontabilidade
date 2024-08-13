@@ -1,0 +1,166 @@
+<div>
+  <h2 id="page-heading" data-cy="FuncionalidadeGrupoAcessoPadraoHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.home.title">Funcionalidade Grupo Acesso Padraos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-funcionalidade-grupo-acesso-padrao"
+        [routerLink]="['/funcionalidade-grupo-acesso-padrao/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.home.createLabel"
+          >Criar novo Funcionalidade Grupo Acesso Padrao</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (funcionalidadeGrupoAcessoPadraos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.home.notFound"
+        >Nenhum Funcionalidade Grupo Acesso Padrao encontrado</span
+      >
+    </div>
+  }
+
+  @if (funcionalidadeGrupoAcessoPadraos && funcionalidadeGrupoAcessoPadraos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="autorizado">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.autorizado">Autorizado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataExpiracao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.dataExpiracao">Data Expiracao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataAtribuicao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.dataAtribuicao">Data Atribuicao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="funcionalidade.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.funcionalidade">Funcionalidade</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="grupoAcessoPadrao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.grupoAcessoPadrao">Grupo Acesso Padrao</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="permisao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.permisao">Permisao</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (funcionalidadeGrupoAcessoPadrao of funcionalidadeGrupoAcessoPadraos; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/funcionalidade-grupo-acesso-padrao', funcionalidadeGrupoAcessoPadrao.id, 'view']">{{
+                  funcionalidadeGrupoAcessoPadrao.id
+                }}</a>
+              </td>
+              <td>{{ funcionalidadeGrupoAcessoPadrao.autorizado }}</td>
+              <td>{{ funcionalidadeGrupoAcessoPadrao.dataExpiracao | formatMediumDatetime }}</td>
+              <td>{{ funcionalidadeGrupoAcessoPadrao.dataAtribuicao | formatMediumDatetime }}</td>
+              <td>
+                @if (funcionalidadeGrupoAcessoPadrao.funcionalidade) {
+                  <div>
+                    <a [routerLink]="['/funcionalidade', funcionalidadeGrupoAcessoPadrao.funcionalidade.id, 'view']">{{
+                      funcionalidadeGrupoAcessoPadrao.funcionalidade.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (funcionalidadeGrupoAcessoPadrao.grupoAcessoPadrao) {
+                  <div>
+                    <a [routerLink]="['/grupo-acesso-padrao', funcionalidadeGrupoAcessoPadrao.grupoAcessoPadrao.id, 'view']">{{
+                      funcionalidadeGrupoAcessoPadrao.grupoAcessoPadrao.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (funcionalidadeGrupoAcessoPadrao.permisao) {
+                  <div>
+                    <a [routerLink]="['/permisao', funcionalidadeGrupoAcessoPadrao.permisao.id, 'view']">{{
+                      funcionalidadeGrupoAcessoPadrao.permisao.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/funcionalidade-grupo-acesso-padrao', funcionalidadeGrupoAcessoPadrao.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/funcionalidade-grupo-acesso-padrao', funcionalidadeGrupoAcessoPadrao.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(funcionalidadeGrupoAcessoPadrao)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

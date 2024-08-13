@@ -1,0 +1,37 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "tarefaOrdemServicoExecucao": {
+      "home": {
+        "title": "Tarefa Ordem Servico Execucaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Tarefa Ordem Servico Execucao",
+        "createOrEditLabel": "Criar ou editar Tarefa Ordem Servico Execucao",
+        "notFound": "Nenhum Tarefa Ordem Servico Execucao encontrado"
+      },
+      "created": "Um novo Tarefa Ordem Servico Execucao foi criado com o identificador {{ param }}",
+      "updated": "Um Tarefa Ordem Servico Execucao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tarefa Ordem Servico Execucao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tarefa Ordem Servico Execucao {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarefa Ordem Servico Execucao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "ordem": "Ordem",
+      "dataEntrega": "Data Entrega",
+      "dataAgendada": "Data Agendada",
+      "concluida": "Concluida",
+      "notificarCliente": "Notificar Cliente",
+      "mes": "Mes",
+      "situacaoTarefa": "Situacao Tarefa",
+      "agendaTarefaOrdemServicoExecucao": "Agenda Tarefa Ordem Servico Execucao",
+      "anexoOrdemServicoExecucao": "Anexo Ordem Servico Execucao",
+      "subTarefaOrdemServico": "Sub Tarefa Ordem Servico",
+      "contadorResponsavelOrdemServico": "Contador Responsavel Ordem Servico",
+      "tarefaOrdemServico": "Tarefa Ordem Servico"
+    }
+  }
+}

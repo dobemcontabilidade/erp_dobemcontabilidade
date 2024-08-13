@@ -1,0 +1,83 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051806"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataEntrega",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataAgendada",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "ordem",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "concluida",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "mes",
+      "fieldType": "MesCompetenciaEnum",
+      "fieldValues": "JANEIRO,FEVEREIRO,MARCO,ABRIL,MAIO,JUNHO,JULHO,AGOSTO,SETEMBRO,OUTUBRO,NOVEMBRO,DEZEMBRO"
+    },
+    {
+      "fieldName": "situacaoTarefa",
+      "fieldType": "SituacaoTarefaEnum",
+      "fieldValues": "AGENDADA,CANCELADA,EMEXECUCAO,CONCLUIDA,PENDENTE,DELETADA"
+    }
+  ],
+  "name": "TarefaRecorrenteExecucao",
+  "relationships": [
+    {
+      "otherEntityName": "agendaTarefaRecorrenteExecucao",
+      "otherEntityRelationshipName": "tarefaRecorrenteExecucao",
+      "relationshipName": "agendaTarefaRecorrenteExecucao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoTarefaRecorrenteExecucao",
+      "otherEntityRelationshipName": "tarefaRecorrenteExecucao",
+      "relationshipName": "anexoTarefaRecorrenteExecucao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "subTarefaRecorrente",
+      "otherEntityRelationshipName": "tarefaRecorrenteExecucao",
+      "relationshipName": "subTarefaRecorrente",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "contadorResponsavelTarefaRecorrente",
+      "otherEntityRelationshipName": "tarefaRecorrenteExecucao",
+      "relationshipName": "contadorResponsavelTarefaRecorrente",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tarefaRecorrente",
+      "relationshipName": "tarefaRecorrente",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

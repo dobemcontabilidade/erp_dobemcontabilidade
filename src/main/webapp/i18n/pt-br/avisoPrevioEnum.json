@@ -1,0 +1,10 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "AvisoPrevioEnum": {
+      "null": "",
+      "NAOPOSSUI": "NAOPOSSUI",
+      "VINTEDIAS": "VINTEDIAS",
+      "TRINTADIAS": "TRINTADIAS"
+    }
+  }
+}

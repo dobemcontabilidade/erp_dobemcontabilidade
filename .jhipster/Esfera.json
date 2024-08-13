@@ -1,0 +1,47 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051651"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Esfera",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "servicoContabil",
+      "otherEntityRelationshipName": "esfera",
+      "relationshipName": "servicoContabil",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "imposto",
+      "otherEntityRelationshipName": "esfera",
+      "relationshipName": "imposto",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tarefa",
+      "otherEntityRelationshipName": "esfera",
+      "relationshipName": "tarefa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

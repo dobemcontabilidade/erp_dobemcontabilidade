@@ -1,0 +1,35 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "empresaModelo": {
+      "home": {
+        "title": "Empresa Modelos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Empresa Modelo",
+        "createOrEditLabel": "Create or edit a Empresa Modelo",
+        "notFound": "No Empresa Modelos found"
+      },
+      "created": "A new Empresa Modelo is created with identifier {{ param }}",
+      "updated": "A Empresa Modelo is updated with identifier {{ param }}",
+      "deleted": "A Empresa Modelo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Empresa Modelo {{ id }}?"
+      },
+      "detail": {
+        "title": "Empresa Modelo"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "observacao": "Observacao",
+      "servicoContabilEmpresaModelo": "Servico Contabil Empresa Modelo",
+      "impostoEmpresaModelo": "Imposto Empresa Modelo",
+      "anexoRequeridoEmpresa": "Anexo Requerido Empresa",
+      "tarefaEmpresaModelo": "Tarefa Empresa Modelo",
+      "empresa": "Empresa",
+      "segmentoCnae": "Segmento Cnae",
+      "ramo": "Ramo",
+      "enquadramento": "Enquadramento",
+      "tributacao": "Tributacao",
+      "cidade": "Cidade"
+    }
+  }
+}

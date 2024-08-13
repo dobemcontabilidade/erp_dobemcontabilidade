@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity SegmentoCnae.
+    -->
+    <changeSet id="20240813051735-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="segmento_cnae_id"
+                                 baseTableName="rel_segmento_cnae__subclasse_cnae"
+                                 constraintName="fk_rel_segmento_cnae__subclasse_cnae__segmento_cnae_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="segmento_cnae"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="subclasse_cnae_id"
+                                 baseTableName="rel_segmento_cnae__subclasse_cnae"
+                                 constraintName="fk_rel_segmento_cnae__subclasse_cnae__subclasse_cnae_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="subclasse_cnae"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="ramo_id"
+                                 baseTableName="segmento_cnae"
+                                 constraintName="fk_segmento_cnae__ramo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ramo"
+                                 />
+    </changeSet>
+</databaseChangeLog>

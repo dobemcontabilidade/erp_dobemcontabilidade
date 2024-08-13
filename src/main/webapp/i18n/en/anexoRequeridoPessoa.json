@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoRequeridoPessoa": {
+      "home": {
+        "title": "Anexo Requerido Pessoas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Anexo Requerido Pessoa",
+        "createOrEditLabel": "Create or edit a Anexo Requerido Pessoa",
+        "notFound": "No Anexo Requerido Pessoas found"
+      },
+      "created": "A new Anexo Requerido Pessoa is created with identifier {{ param }}",
+      "updated": "A Anexo Requerido Pessoa is updated with identifier {{ param }}",
+      "deleted": "A Anexo Requerido Pessoa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Anexo Requerido Pessoa {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Requerido Pessoa"
+      },
+      "id": "ID",
+      "obrigatorio": "Obrigatorio",
+      "tipo": "Tipo",
+      "anexoPessoa": "Anexo Pessoa",
+      "anexoRequerido": "Anexo Requerido"
+    }
+  }
+}

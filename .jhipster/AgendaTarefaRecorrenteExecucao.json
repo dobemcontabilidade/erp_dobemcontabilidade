@@ -1,0 +1,49 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051606"
+  },
+  "applications": "*",
+  "entityTableName": "agen_tafe_reco_exec",
+  "fields": [
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "horaInicio",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "horaFim",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "diaInteiro",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "comentario",
+      "fieldType": "String"
+    }
+  ],
+  "name": "AgendaTarefaRecorrenteExecucao",
+  "relationships": [
+    {
+      "otherEntityName": "agendaContadorConfig",
+      "otherEntityRelationshipName": "agendaTarefaRecorrenteExecucao",
+      "relationshipName": "agendaContadorConfig",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tarefaRecorrenteExecucao",
+      "relationshipName": "tarefaRecorrenteExecucao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,11 @@
+id;nome;descricao;data_entrega;data_agendada;ordem;concluida;mes;situacao_tarefa;tarefa_recorrente_id
+1;duh regarding;whoa gosh;2024-08-12T12:39:32;2024-08-12T10:34:39;23033;true;ABRIL;DELETADA;1
+2;deliberate aside;before papa;2024-08-12T07:40:05;2024-08-13T04:08:16;4225;false;OUTUBRO;DELETADA;2
+3;kneel though amidst;calmly with afore;2024-08-13T02:35:46;2024-08-12T08:34:23;13160;false;JANEIRO;DELETADA;3
+4;huff;mortally egg patiently;2024-08-12T10:58:32;2024-08-13T04:26:58;6844;true;AGOSTO;AGENDADA;4
+5;dugout;selfish;2024-08-12T08:05:32;2024-08-13T02:25:45;228;false;SETEMBRO;CONCLUIDA;5
+6;stylish mysterious possible;beside yowza comfort;2024-08-12T14:45:47;2024-08-13T01:45:29;14749;true;OUTUBRO;DELETADA;6
+7;ferociously attend;blindly last;2024-08-12T07:35:10;2024-08-12T09:04:09;30528;true;OUTUBRO;CANCELADA;7
+8;tone onto;enjoy important how;2024-08-12T22:59:44;2024-08-12T23:32:25;942;true;MAIO;CONCLUIDA;8
+9;potentially;blah hmph;2024-08-12T10:17:34;2024-08-13T03:59:48;7714;true;ABRIL;CONCLUIDA;9
+10;uh-huh pish;milestone meh;2024-08-12T09:54:36;2024-08-12T07:58:43;25119;true;FEVEREIRO;CANCELADA;10

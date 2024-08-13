@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "dependentesFuncionario": {
+      "home": {
+        "title": "Dependentes Funcionarios",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Dependentes Funcionario",
+        "createOrEditLabel": "Create or edit a Dependentes Funcionario",
+        "notFound": "No Dependentes Funcionarios found"
+      },
+      "created": "A new Dependentes Funcionario is created with identifier {{ param }}",
+      "updated": "A Dependentes Funcionario is updated with identifier {{ param }}",
+      "deleted": "A Dependentes Funcionario is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Dependentes Funcionario {{ id }}?"
+      },
+      "detail": {
+        "title": "Dependentes Funcionario"
+      },
+      "id": "ID",
+      "urlCertidaoDependente": "Url Certidao Dependente",
+      "urlRgDependente": "Url Rg Dependente",
+      "dependenteIRRF": "Dependente IRRF",
+      "dependenteSalarioFamilia": "Dependente Salario Familia",
+      "tipoDependenteFuncionarioEnum": "Tipo Dependente Funcionario Enum",
+      "pessoa": "Pessoa",
+      "funcionario": "Funcionario"
+    }
+  }
+}

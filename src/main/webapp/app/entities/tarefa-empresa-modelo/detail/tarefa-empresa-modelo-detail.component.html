@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (tarefaEmpresaModelo()) {
+      <div>
+        <h2 data-cy="tarefaEmpresaModeloDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.detail.title">Tarefa Empresa Modelo</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ tarefaEmpresaModelo()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.dataAdmin">Data Admin</span></dt>
+          <dd>
+            <span>{{ tarefaEmpresaModelo()!.dataAdmin | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.dataLegal">Data Legal</span></dt>
+          <dd>
+            <span>{{ tarefaEmpresaModelo()!.dataLegal | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.empresaModelo">Empresa Modelo</span></dt>
+          <dd>
+            @if (tarefaEmpresaModelo()!.empresaModelo) {
+              <div>
+                <a [routerLink]="['/empresa-modelo', tarefaEmpresaModelo()!.empresaModelo?.id, 'view']">{{
+                  tarefaEmpresaModelo()!.empresaModelo?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.servicoContabil">Servico Contabil</span></dt>
+          <dd>
+            @if (tarefaEmpresaModelo()!.servicoContabil) {
+              <div>
+                <a [routerLink]="['/servico-contabil', tarefaEmpresaModelo()!.servicoContabil?.id, 'view']">{{
+                  tarefaEmpresaModelo()!.servicoContabil?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/tarefa-empresa-modelo', tarefaEmpresaModelo()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

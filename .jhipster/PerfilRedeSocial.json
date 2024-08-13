@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051726"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "rede",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "urlPerfil",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tipoRede",
+      "fieldType": "TipoRedeEnum",
+      "fieldValues": "FACEBOOK,TWITTER,INSTAGRAN,YOUTUBE,LINKEDIN,OUTROS"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PerfilRedeSocial",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

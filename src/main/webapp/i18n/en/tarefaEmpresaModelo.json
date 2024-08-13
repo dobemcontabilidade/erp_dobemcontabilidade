@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "tarefaEmpresaModelo": {
+      "home": {
+        "title": "Tarefa Empresa Modelos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Tarefa Empresa Modelo",
+        "createOrEditLabel": "Create or edit a Tarefa Empresa Modelo",
+        "notFound": "No Tarefa Empresa Modelos found"
+      },
+      "created": "A new Tarefa Empresa Modelo is created with identifier {{ param }}",
+      "updated": "A Tarefa Empresa Modelo is updated with identifier {{ param }}",
+      "deleted": "A Tarefa Empresa Modelo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tarefa Empresa Modelo {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarefa Empresa Modelo"
+      },
+      "id": "ID",
+      "dataAdmin": "Data Admin",
+      "dataLegal": "Data Legal",
+      "empresaModelo": "Empresa Modelo",
+      "servicoContabil": "Servico Contabil"
+    }
+  }
+}

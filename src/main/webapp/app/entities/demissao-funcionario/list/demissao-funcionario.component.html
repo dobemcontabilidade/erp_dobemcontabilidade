@@ -1,0 +1,347 @@
+<div>
+  <h2 id="page-heading" data-cy="DemissaoFuncionarioHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.home.title">Demissao Funcionarios</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-demissao-funcionario"
+        [routerLink]="['/demissao-funcionario/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.home.createLabel">Criar novo Demissao Funcionario</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (demissaoFuncionarios?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.home.notFound">Nenhum Demissao Funcionario encontrado</span>
+    </div>
+  }
+
+  @if (demissaoFuncionarios && demissaoFuncionarios.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroCertidaoObito">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.numeroCertidaoObito">Numero Certidao Obito</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cnpjEmpresaSucessora">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.cnpjEmpresaSucessora">Cnpj Empresa Sucessora</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="saldoFGTS">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.saldoFGTS">Saldo FGTS</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorPensao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.valorPensao">Valor Pensao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorPensaoFgts">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.valorPensaoFgts">Valor Pensao Fgts</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="percentualPensao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.percentualPensao">Percentual Pensao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="percentualFgts">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.percentualFgts">Percentual Fgts</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diasAvisoPrevio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.diasAvisoPrevio">Dias Aviso Previo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataAvisoPrevio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dataAvisoPrevio">Data Aviso Previo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataPagamento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dataPagamento">Data Pagamento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataAfastamento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dataAfastamento">Data Afastamento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlDemissional">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.urlDemissional">Url Demissional</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="calcularRecisao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.calcularRecisao">Calcular Recisao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pagar13Recisao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.pagar13Recisao">Pagar 13 Recisao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="jornadaTrabalhoCumpridaSemana">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.jornadaTrabalhoCumpridaSemana"
+                  >Jornada Trabalho Cumprida Semana</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sabadoCompesado">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.sabadoCompesado">Sabado Compesado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="novoVinculoComprovado">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.novoVinculoComprovado">Novo Vinculo Comprovado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dispensaAvisoPrevio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dispensaAvisoPrevio">Dispensa Aviso Previo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fgtsArrecadadoGuia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.fgtsArrecadadoGuia">Fgts Arrecadado Guia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="avisoPrevioTrabalhadoRecebido">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.avisoPrevioTrabalhadoRecebido"
+                  >Aviso Previo Trabalhado Recebido</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="recolherFgtsMesAnterior">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.recolherFgtsMesAnterior">Recolher Fgts Mes Anterior</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="avisoPrevioIndenizado">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.avisoPrevioIndenizado">Aviso Previo Indenizado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cumprimentoAvisoPrevio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.cumprimentoAvisoPrevio">Cumprimento Aviso Previo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="avisoPrevio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.avisoPrevio">Aviso Previo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="situacaoDemissao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.situacaoDemissao">Situacao Demissao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoDemissao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.tipoDemissao">Tipo Demissao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="funcionario.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.funcionario">Funcionario</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (demissaoFuncionario of demissaoFuncionarios; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/demissao-funcionario', demissaoFuncionario.id, 'view']">{{ demissaoFuncionario.id }}</a>
+              </td>
+              <td>{{ demissaoFuncionario.numeroCertidaoObito }}</td>
+              <td>{{ demissaoFuncionario.cnpjEmpresaSucessora }}</td>
+              <td>{{ demissaoFuncionario.saldoFGTS }}</td>
+              <td>{{ demissaoFuncionario.valorPensao }}</td>
+              <td>{{ demissaoFuncionario.valorPensaoFgts }}</td>
+              <td>{{ demissaoFuncionario.percentualPensao }}</td>
+              <td>{{ demissaoFuncionario.percentualFgts }}</td>
+              <td>{{ demissaoFuncionario.diasAvisoPrevio }}</td>
+              <td>{{ demissaoFuncionario.dataAvisoPrevio }}</td>
+              <td>{{ demissaoFuncionario.dataPagamento }}</td>
+              <td>{{ demissaoFuncionario.dataAfastamento }}</td>
+              <td>{{ demissaoFuncionario.urlDemissional }}</td>
+              <td>{{ demissaoFuncionario.calcularRecisao }}</td>
+              <td>{{ demissaoFuncionario.pagar13Recisao }}</td>
+              <td>{{ demissaoFuncionario.jornadaTrabalhoCumpridaSemana }}</td>
+              <td>{{ demissaoFuncionario.sabadoCompesado }}</td>
+              <td>{{ demissaoFuncionario.novoVinculoComprovado }}</td>
+              <td>{{ demissaoFuncionario.dispensaAvisoPrevio }}</td>
+              <td>{{ demissaoFuncionario.fgtsArrecadadoGuia }}</td>
+              <td>{{ demissaoFuncionario.avisoPrevioTrabalhadoRecebido }}</td>
+              <td>{{ demissaoFuncionario.recolherFgtsMesAnterior }}</td>
+              <td>{{ demissaoFuncionario.avisoPrevioIndenizado }}</td>
+              <td>{{ demissaoFuncionario.cumprimentoAvisoPrevio }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.AvisoPrevioEnum.' + (demissaoFuncionario.avisoPrevio ?? 'null')">
+                {{
+                  { null: '', NAOPOSSUI: 'NAOPOSSUI', VINTEDIAS: 'VINTEDIAS', TRINTADIAS: 'TRINTADIAS' }[
+                    demissaoFuncionario.avisoPrevio ?? 'null'
+                  ]
+                }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoDemissaoEnum.' + (demissaoFuncionario.situacaoDemissao ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    SOLICITADO: 'SOLICITADO',
+                    GERADO: 'GERADO',
+                    DEMISSAOEMANDAMENTO: 'DEMISSAOEMANDAMENTO',
+                    EMANDAMENTO: 'EMANDAMENTO',
+                    CANCELADO: 'CANCELADO',
+                    REMOVIDO: 'REMOVIDO',
+                    FINALIZADO: 'FINALIZADO',
+                    ABERTO: 'ABERTO',
+                    PAGO: 'PAGO',
+                  }[demissaoFuncionario.situacaoDemissao ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.TipoDemissaoEnum.' + (demissaoFuncionario.tipoDemissao ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    JUSTACAUSA: 'JUSTACAUSA',
+                    DESPEDIDASEMJUSTACAUSA: 'DESPEDIDASEMJUSTACAUSA',
+                    RECISAOANTECIPADA: 'RECISAOANTECIPADA',
+                    FALECIMENTOEMPREGADO: 'FALECIMENTOEMPREGADO',
+                    PEDIDO: 'PEDIDO',
+                    CONSENSUAL: 'CONSENSUAL',
+                    ACORDO: 'ACORDO',
+                  }[demissaoFuncionario.tipoDemissao ?? 'null']
+                }}
+              </td>
+              <td>
+                @if (demissaoFuncionario.funcionario) {
+                  <div>
+                    <a [routerLink]="['/funcionario', demissaoFuncionario.funcionario.id, 'view']">{{
+                      demissaoFuncionario.funcionario.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/demissao-funcionario', demissaoFuncionario.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/demissao-funcionario', demissaoFuncionario.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(demissaoFuncionario)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

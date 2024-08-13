@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (empresaModelo()) {
+      <div>
+        <h2 data-cy="empresaModeloDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.empresaModelo.detail.title">Empresa Modelo</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ empresaModelo()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresaModelo.nome">Nome</span></dt>
+          <dd>
+            <span>{{ empresaModelo()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresaModelo.observacao">Observacao</span></dt>
+          <dd>
+            <span>{{ empresaModelo()!.observacao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresaModelo.segmentoCnae">Segmento Cnae</span></dt>
+          <dd>
+            @for (segmentoCnae of empresaModelo()!.segmentoCnaes; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/segmento-cnae', segmentoCnae.id, 'view']">{{ segmentoCnae?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresaModelo.ramo">Ramo</span></dt>
+          <dd>
+            @if (empresaModelo()!.ramo) {
+              <div>
+                <a [routerLink]="['/ramo', empresaModelo()!.ramo?.id, 'view']">{{ empresaModelo()!.ramo?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresaModelo.enquadramento">Enquadramento</span></dt>
+          <dd>
+            @if (empresaModelo()!.enquadramento) {
+              <div>
+                <a [routerLink]="['/enquadramento', empresaModelo()!.enquadramento?.id, 'view']">{{
+                  empresaModelo()!.enquadramento?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresaModelo.tributacao">Tributacao</span></dt>
+          <dd>
+            @if (empresaModelo()!.tributacao) {
+              <div>
+                <a [routerLink]="['/tributacao', empresaModelo()!.tributacao?.id, 'view']">{{ empresaModelo()!.tributacao?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresaModelo.cidade">Cidade</span></dt>
+          <dd>
+            @if (empresaModelo()!.cidade) {
+              <div>
+                <a [routerLink]="['/cidade', empresaModelo()!.cidade?.id, 'view']">{{ empresaModelo()!.cidade?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/empresa-modelo', empresaModelo()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

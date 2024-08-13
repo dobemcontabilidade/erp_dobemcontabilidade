@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (agenteIntegracaoEstagio()) {
+      <div>
+        <h2 data-cy="agenteIntegracaoEstagioDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.detail.title">Agente Integracao Estagio</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.cnpj">Cnpj</span></dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.cnpj }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.razaoSocial">Razao Social</span></dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.razaoSocial }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.coordenador">Coordenador</span></dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.coordenador }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.cpfCoordenadorEstagio">Cpf Coordenador Estagio</span>
+          </dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.cpfCoordenadorEstagio }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.logradouro">Logradouro</span></dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.logradouro }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.numero">Numero</span></dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.numero }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.complemento">Complemento</span></dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.complemento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.bairro">Bairro</span></dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.bairro }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.cep">Cep</span></dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.cep }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.principal">Principal</span></dt>
+          <dd>
+            <span>{{ agenteIntegracaoEstagio()!.principal }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agenteIntegracaoEstagio.cidade">Cidade</span></dt>
+          <dd>
+            @if (agenteIntegracaoEstagio()!.cidade) {
+              <div>
+                <a [routerLink]="['/cidade', agenteIntegracaoEstagio()!.cidade?.id, 'view']">{{
+                  agenteIntegracaoEstagio()!.cidade?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/agente-integracao-estagio', agenteIntegracaoEstagio()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

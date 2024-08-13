@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="CriterioAvaliacaoAtorHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.home.title">Criterio Avaliacao Ators</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-criterio-avaliacao-ator"
+        [routerLink]="['/criterio-avaliacao-ator/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.home.createLabel">Criar novo Criterio Avaliacao Ator</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (criterioAvaliacaoAtors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.home.notFound">Nenhum Criterio Avaliacao Ator encontrado</span>
+    </div>
+  }
+
+  @if (criterioAvaliacaoAtors && criterioAvaliacaoAtors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.descricao">Descricao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ativo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.ativo">Ativo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="criterioAvaliacao.descricao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.criterioAvaliacao">Criterio Avaliacao</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="atorAvaliado.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.atorAvaliado">Ator Avaliado</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (criterioAvaliacaoAtor of criterioAvaliacaoAtors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/criterio-avaliacao-ator', criterioAvaliacaoAtor.id, 'view']">{{ criterioAvaliacaoAtor.id }}</a>
+              </td>
+              <td>{{ criterioAvaliacaoAtor.descricao }}</td>
+              <td>{{ criterioAvaliacaoAtor.ativo }}</td>
+              <td>
+                @if (criterioAvaliacaoAtor.criterioAvaliacao) {
+                  <div>
+                    <a [routerLink]="['/criterio-avaliacao', criterioAvaliacaoAtor.criterioAvaliacao.id, 'view']">{{
+                      criterioAvaliacaoAtor.criterioAvaliacao.descricao
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (criterioAvaliacaoAtor.atorAvaliado) {
+                  <div>
+                    <a [routerLink]="['/ator-avaliado', criterioAvaliacaoAtor.atorAvaliado.id, 'view']">{{
+                      criterioAvaliacaoAtor.atorAvaliado.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/criterio-avaliacao-ator', criterioAvaliacaoAtor.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/criterio-avaliacao-ator', criterioAvaliacaoAtor.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(criterioAvaliacaoAtor)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

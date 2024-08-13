@@ -1,0 +1,95 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051654"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observacao",
+      "fieldType": "String"
+    }
+  ],
+  "name": "EmpresaModelo",
+  "relationships": [
+    {
+      "otherEntityName": "servicoContabilEmpresaModelo",
+      "otherEntityRelationshipName": "empresaModelo",
+      "relationshipName": "servicoContabilEmpresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "impostoEmpresaModelo",
+      "otherEntityRelationshipName": "empresaModelo",
+      "relationshipName": "impostoEmpresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoRequeridoEmpresa",
+      "otherEntityRelationshipName": "empresaModelo",
+      "relationshipName": "anexoRequeridoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tarefaEmpresaModelo",
+      "otherEntityRelationshipName": "empresaModelo",
+      "relationshipName": "tarefaEmpresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "empresa",
+      "otherEntityRelationshipName": "empresaModelo",
+      "relationshipName": "empresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "segmentoCnae",
+      "otherEntityRelationshipName": "empresaModelo",
+      "relationshipName": "segmentoCnae",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "ramo",
+      "relationshipName": "ramo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "enquadramento",
+      "relationshipName": "enquadramento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tributacao",
+      "relationshipName": "tributacao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "cidade",
+      "relationshipName": "cidade",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

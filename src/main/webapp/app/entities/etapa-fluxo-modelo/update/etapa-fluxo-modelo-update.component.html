@@ -1,0 +1,85 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-etapa-fluxo-modelo-heading"
+        data-cy="EtapaFluxoModeloCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.home.createOrEditLabel"
+      >
+        Criar ou editar Etapa Fluxo Modelo
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nome" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_descricao" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.descricao"
+            >Descricao</label
+          >
+          <input type="text" class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ordem" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.ordem">Ordem</label>
+          <input type="number" class="form-control" name="ordem" id="field_ordem" data-cy="ordem" formControlName="ordem" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fluxoModelo" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.fluxoModelo"
+            >Fluxo Modelo</label
+          >
+          <select
+            class="form-control"
+            id="field_fluxoModelo"
+            data-cy="fluxoModelo"
+            name="fluxoModelo"
+            formControlName="fluxoModelo"
+            [compareWith]="compareFluxoModelo"
+          >
+            @if (editForm.get(['fluxoModelo'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (fluxoModeloOption of fluxoModelosSharedCollection; track $index) {
+              <option [ngValue]="fluxoModeloOption">{{ fluxoModeloOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['fluxoModelo'])!.invalid && (editForm.get(['fluxoModelo'])!.dirty || editForm.get(['fluxoModelo'])!.touched)) {
+          <div>
+            @if (editForm.get(['fluxoModelo'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

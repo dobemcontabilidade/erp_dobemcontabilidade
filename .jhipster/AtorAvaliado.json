@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051611"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "AtorAvaliado",
+  "relationships": [
+    {
+      "otherEntityName": "criterioAvaliacaoAtor",
+      "otherEntityRelationshipName": "atorAvaliado",
+      "relationshipName": "criterioAvaliacaoAtor",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (grupoAcessoEmpresaUsuarioContador()) {
+      <div>
+        <h2 data-cy="grupoAcessoEmpresaUsuarioContadorDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoEmpresaUsuarioContador.detail.title"
+            >Grupo Acesso Empresa Usuario Contador</span
+          >
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ grupoAcessoEmpresaUsuarioContador()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoEmpresaUsuarioContador.nome">Nome</span></dt>
+          <dd>
+            <span>{{ grupoAcessoEmpresaUsuarioContador()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoEmpresaUsuarioContador.dataExpiracao">Data Expiracao</span></dt>
+          <dd>
+            <span>{{ grupoAcessoEmpresaUsuarioContador()!.dataExpiracao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoEmpresaUsuarioContador.ilimitado">Ilimitado</span></dt>
+          <dd>
+            <span>{{ grupoAcessoEmpresaUsuarioContador()!.ilimitado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoEmpresaUsuarioContador.desabilitar">Desabilitar</span></dt>
+          <dd>
+            <span>{{ grupoAcessoEmpresaUsuarioContador()!.desabilitar }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoEmpresaUsuarioContador.usuarioContador">Usuario Contador</span></dt>
+          <dd>
+            @if (grupoAcessoEmpresaUsuarioContador()!.usuarioContador) {
+              <div>
+                <a [routerLink]="['/usuario-contador', grupoAcessoEmpresaUsuarioContador()!.usuarioContador?.id, 'view']">{{
+                  grupoAcessoEmpresaUsuarioContador()!.usuarioContador?.email
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoEmpresaUsuarioContador.permisao">Permisao</span></dt>
+          <dd>
+            @if (grupoAcessoEmpresaUsuarioContador()!.permisao) {
+              <div>
+                <a [routerLink]="['/permisao', grupoAcessoEmpresaUsuarioContador()!.permisao?.id, 'view']">{{
+                  grupoAcessoEmpresaUsuarioContador()!.permisao?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoEmpresaUsuarioContador.grupoAcessoEmpresa">Grupo Acesso Empresa</span>
+          </dt>
+          <dd>
+            @if (grupoAcessoEmpresaUsuarioContador()!.grupoAcessoEmpresa) {
+              <div>
+                <a [routerLink]="['/grupo-acesso-empresa', grupoAcessoEmpresaUsuarioContador()!.grupoAcessoEmpresa?.id, 'view']">{{
+                  grupoAcessoEmpresaUsuarioContador()!.grupoAcessoEmpresa?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/grupo-acesso-empresa-usuario-contador', grupoAcessoEmpresaUsuarioContador()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

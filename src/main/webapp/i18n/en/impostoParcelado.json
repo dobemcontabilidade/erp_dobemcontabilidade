@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "impostoParcelado": {
+      "home": {
+        "title": "Imposto Parcelados",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Imposto Parcelado",
+        "createOrEditLabel": "Create or edit a Imposto Parcelado",
+        "notFound": "No Imposto Parcelados found"
+      },
+      "created": "A new Imposto Parcelado is created with identifier {{ param }}",
+      "updated": "A Imposto Parcelado is updated with identifier {{ param }}",
+      "deleted": "A Imposto Parcelado is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Imposto Parcelado {{ id }}?"
+      },
+      "detail": {
+        "title": "Imposto Parcelado"
+      },
+      "id": "ID",
+      "diasAtraso": "Dias Atraso",
+      "parcelamentoImposto": "Parcelamento Imposto",
+      "impostoAPagarEmpresa": "Imposto A Pagar Empresa"
+    }
+  }
+}

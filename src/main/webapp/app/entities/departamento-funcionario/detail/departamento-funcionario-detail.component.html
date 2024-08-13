@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (departamentoFuncionario()) {
+      <div>
+        <h2 data-cy="departamentoFuncionarioDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.departamentoFuncionario.detail.title">Departamento Funcionario</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ departamentoFuncionario()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.departamentoFuncionario.cargo">Cargo</span></dt>
+          <dd>
+            <span>{{ departamentoFuncionario()!.cargo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.departamentoFuncionario.funcionario">Funcionario</span></dt>
+          <dd>
+            @if (departamentoFuncionario()!.funcionario) {
+              <div>
+                <a [routerLink]="['/funcionario', departamentoFuncionario()!.funcionario?.id, 'view']">{{
+                  departamentoFuncionario()!.funcionario?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.departamentoFuncionario.departamento">Departamento</span></dt>
+          <dd>
+            @if (departamentoFuncionario()!.departamento) {
+              <div>
+                <a [routerLink]="['/departamento', departamentoFuncionario()!.departamento?.id, 'view']">{{
+                  departamentoFuncionario()!.departamento?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/departamento-funcionario', departamentoFuncionario()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,11 @@
+id;prolabore;percentual_sociedade;adminstrador;distribuicao_lucro;responsavel_receita;percentual_distribuicao_lucro;funcao_socio;pessoa_id;usuario_empresa_id;empresa_id
+1;false;1328.3;true;true;false;11485.64;SOCIOADMINISTRADOR;1;1;1
+2;true;8883.34;true;false;false;27949.79;SOCIOADMINISTRADOR;2;2;2
+3;true;3837.67;false;true;false;31641.83;SOCIOADMINISTRADOR;3;3;3
+4;true;30063.49;false;false;false;7115.84;SOCIOGERENTE;4;4;4
+5;true;534.38;false;false;true;13423.7;SOCIO;5;5;5
+6;true;21878.23;false;false;false;31728.18;SOCIOGERENTE;6;6;6
+7;true;25651.37;true;false;true;8485.21;SOCIO;7;7;7
+8;false;19611.49;false;true;false;30.5;SOCIOGERENTE;8;8;8
+9;false;16886.47;false;false;false;24717.11;SOCIOADMINISTRADOR;9;9;9
+10;true;31617.09;false;true;true;29619.94;SOCIOGERENTE;10;10;10

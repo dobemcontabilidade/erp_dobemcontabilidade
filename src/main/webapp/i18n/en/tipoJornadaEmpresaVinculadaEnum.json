@@ -1,0 +1,9 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoJornadaEmpresaVinculadaEnum": {
+      "null": "",
+      "FIXA": "FIXA",
+      "VARIAVEL": "VARIAVEL"
+    }
+  }
+}

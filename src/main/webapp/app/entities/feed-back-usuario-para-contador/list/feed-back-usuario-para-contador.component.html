@@ -1,0 +1,175 @@
+<div>
+  <h2 id="page-heading" data-cy="FeedBackUsuarioParaContadorHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.home.title">Feed Back Usuario Para Contadors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-feed-back-usuario-para-contador"
+        [routerLink]="['/feed-back-usuario-para-contador/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.home.createLabel"
+          >Criar novo Feed Back Usuario Para Contador</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (feedBackUsuarioParaContadors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.home.notFound"
+        >Nenhum Feed Back Usuario Para Contador encontrado</span
+      >
+    </div>
+  }
+
+  @if (feedBackUsuarioParaContadors && feedBackUsuarioParaContadors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="comentario">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.comentario">Comentario</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pontuacao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.pontuacao">Pontuacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="usuarioEmpresa.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.usuarioEmpresa">Usuario Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="usuarioContador.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.usuarioContador">Usuario Contador</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="criterioAvaliacaoAtor.descricao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.criterioAvaliacaoAtor"
+                  >Criterio Avaliacao Ator</span
+                >
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ordemServico.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.feedBackUsuarioParaContador.ordemServico">Ordem Servico</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (feedBackUsuarioParaContador of feedBackUsuarioParaContadors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/feed-back-usuario-para-contador', feedBackUsuarioParaContador.id, 'view']">{{
+                  feedBackUsuarioParaContador.id
+                }}</a>
+              </td>
+              <td>{{ feedBackUsuarioParaContador.comentario }}</td>
+              <td>{{ feedBackUsuarioParaContador.pontuacao }}</td>
+              <td>
+                @if (feedBackUsuarioParaContador.usuarioEmpresa) {
+                  <div>
+                    <a [routerLink]="['/usuario-empresa', feedBackUsuarioParaContador.usuarioEmpresa.id, 'view']">{{
+                      feedBackUsuarioParaContador.usuarioEmpresa.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (feedBackUsuarioParaContador.usuarioContador) {
+                  <div>
+                    <a [routerLink]="['/usuario-contador', feedBackUsuarioParaContador.usuarioContador.id, 'view']">{{
+                      feedBackUsuarioParaContador.usuarioContador.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (feedBackUsuarioParaContador.criterioAvaliacaoAtor) {
+                  <div>
+                    <a [routerLink]="['/criterio-avaliacao-ator', feedBackUsuarioParaContador.criterioAvaliacaoAtor.id, 'view']">{{
+                      feedBackUsuarioParaContador.criterioAvaliacaoAtor.descricao
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (feedBackUsuarioParaContador.ordemServico) {
+                  <div>
+                    <a [routerLink]="['/ordem-servico', feedBackUsuarioParaContador.ordemServico.id, 'view']">{{
+                      feedBackUsuarioParaContador.ordemServico.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/feed-back-usuario-para-contador', feedBackUsuarioParaContador.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/feed-back-usuario-para-contador', feedBackUsuarioParaContador.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(feedBackUsuarioParaContador)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

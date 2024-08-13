@@ -1,0 +1,263 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (contratoFuncionario()) {
+      <div>
+        <h2 data-cy="contratoFuncionarioDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.detail.title">Contrato Funcionario</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.salarioFixo">Salario Fixo</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.salarioFixo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.salarioVariavel">Salario Variavel</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.salarioVariavel }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.estagio">Estagio</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.estagio }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.naturezaEstagioEnum">Natureza Estagio Enum</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="'erpDobemcontabilidadeApp.NaturezaEstagioEnum.' + (contratoFuncionario()!.naturezaEstagioEnum ?? 'null')"
+              >{{
+                { null: '', OBRIGATORIO: 'OBRIGATORIO', NAOOBRIGATORIO: 'NAOOBRIGATORIO' }[
+                  contratoFuncionario()!.naturezaEstagioEnum ?? 'null'
+                ]
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.ctps">Ctps</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.ctps }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.serieCtps">Serie Ctps</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.serieCtps }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.orgaoEmissorDocumento">Orgao Emissor Documento</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.orgaoEmissorDocumento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.dataValidadeDocumento">Data Validade Documento</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.dataValidadeDocumento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.dataAdmissao">Data Admissao</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.dataAdmissao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.cargo">Cargo</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.cargo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.descricaoAtividades">Descricao Atividades</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.descricaoAtividades }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.situacao">Situacao</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoFuncionarioEnum.' + (contratoFuncionario()!.situacao ?? 'null')">{{
+              {
+                null: '',
+                CADASTROEMANDAMENTO: 'CADASTROEMANDAMENTO',
+                CADASTRADO: 'CADASTRADO',
+                ADMISSAOEMANDAMENTO: 'ADMISSAOEMANDAMENTO',
+                ADMISSAOSOLICITADA: 'ADMISSAOSOLICITADA',
+                ADMITIDO: 'ADMITIDO',
+                DEMISSAOEMANDAMENTO: 'DEMISSAOEMANDAMENTO',
+                DEMISSAOCANCELADO: 'DEMISSAOCANCELADO',
+                DEMITIDO: 'DEMITIDO',
+                AFASTADO: 'AFASTADO',
+                CANCELAMENTOSOLICTAIDO: 'CANCELAMENTOSOLICTAIDO',
+                CANCELADO: 'CANCELADO',
+                EXPERIENCIA: 'EXPERIENCIA',
+                BAIXASOLICITADA: 'BAIXASOLICITADA',
+                DEMITIDOJUSTACAUSA: 'DEMITIDOJUSTACAUSA',
+              }[contratoFuncionario()!.situacao ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.valorSalarioFixo">Valor Salario Fixo</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.valorSalarioFixo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.valorSalarioVariavel">Valor Salario Variavel</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.valorSalarioVariavel }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.dataTerminoContrato">Data Termino Contrato</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.dataTerminoContrato }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.datainicioContrato">Datainicio Contrato</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.datainicioContrato }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.horasATrabalhadar">Horas A Trabalhadar</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.horasATrabalhadar }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.codigoCargo">Codigo Cargo</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.codigoCargo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.categoriaTrabalhador">Categoria Trabalhador</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="
+                'erpDobemcontabilidadeApp.CategoriaTrabalhadorEnum.' + (contratoFuncionario()!.categoriaTrabalhador ?? 'null')
+              "
+              >{{
+                { null: '', EMPREGADO: 'EMPREGADO', ESTAGIARIO: 'ESTAGIARIO' }[contratoFuncionario()!.categoriaTrabalhador ?? 'null']
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.tipoVinculoTrabalho">Tipo Vinculo Trabalho</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="'erpDobemcontabilidadeApp.TipoVinculoTrabalhoEnum.' + (contratoFuncionario()!.tipoVinculoTrabalho ?? 'null')"
+              >{{ { null: '', URBANO: 'URBANO', RURAL: 'RURAL' }[contratoFuncionario()!.tipoVinculoTrabalho ?? 'null'] }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.fgtsOpcao">Fgts Opcao</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.FgtsOpcaoEnum.' + (contratoFuncionario()!.fgtsOpcao ?? 'null')">{{
+              { null: '', OPTANTE: 'OPTANTE', NAOOPTANTE: 'NAOOPTANTE' }[contratoFuncionario()!.fgtsOpcao ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.tIpoDocumentoEnum">T Ipo Documento Enum</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoDocumentoEnum.' + (contratoFuncionario()!.tIpoDocumentoEnum ?? 'null')">{{
+              { null: '', RG: 'RG', CNH: 'CNH', RNE: 'RNE', RIC: 'RIC', OC: 'OC' }[contratoFuncionario()!.tIpoDocumentoEnum ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.periodoExperiencia">Periodo Experiencia</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="'erpDobemcontabilidadeApp.PeriodoExperienciaEnum.' + (contratoFuncionario()!.periodoExperiencia ?? 'null')"
+              >{{
+                { null: '', QUINZE: 'QUINZE', TRINTA: 'TRINTA', NOVENTA: 'NOVENTA', SESENTA: 'SESENTA' }[
+                  contratoFuncionario()!.periodoExperiencia ?? 'null'
+                ]
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.tipoAdmisaoEnum">Tipo Admisao Enum</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoAdmisaoEnum.' + (contratoFuncionario()!.tipoAdmisaoEnum ?? 'null')">{{
+              {
+                null: '',
+                ADMISSAO: 'ADMISSAO',
+                TRANSFERENCIA: 'TRANSFERENCIA',
+                SUCESSAO: 'SUCESSAO',
+                INCORPORACAO: 'INCORPORACAO',
+                FUSAO: 'FUSAO',
+                CEDIDO: 'CEDIDO',
+              }[contratoFuncionario()!.tipoAdmisaoEnum ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.periodoIntermitente">Periodo Intermitente</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="'erpDobemcontabilidadeApp.PeriodoIntermitenteEnum.' + (contratoFuncionario()!.periodoIntermitente ?? 'null')"
+              >{{
+                {
+                  null: '',
+                  QUATROMESES: 'QUATROMESES',
+                  CINCOMESES: 'CINCOMESES',
+                  SEISMESES: 'SEISMESES',
+                  SETEMESES: 'SETEMESES',
+                  OITOMESES: 'OITOMESES',
+                  NOVEMESES: 'NOVEMESES',
+                  DEZMESES: 'DEZMESES',
+                  ONZEMESES: 'ONZEMESES',
+                  DOZEMESES: 'DOZEMESES',
+                  UMANOUMMESES: 'UMANOUMMESES',
+                  UMANODOISMESES: 'UMANODOISMESES',
+                  UMANOANOTRESMESES: 'UMANOANOTRESMESES',
+                  UMANOANOQUATROMESES: 'UMANOANOQUATROMESES',
+                  UMANOANOCINCOMESES: 'UMANOANOCINCOMESES',
+                  UMANOSEISMESES: 'UMANOSEISMESES',
+                  UMANOSETEMESES: 'UMANOSETEMESES',
+                  UMANOOITOMESES: 'UMANOOITOMESES',
+                  UMANONOVEMESES: 'UMANONOVEMESES',
+                  UMANODEZMESES: 'UMANODEZMESES',
+                  UMANOONZEMESES: 'UMANOONZEMESES',
+                  UMANODOZEMESES: 'UMANODOZEMESES',
+                }[contratoFuncionario()!.periodoIntermitente ?? 'null']
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.indicativoAdmissao">Indicativo Admissao</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="'erpDobemcontabilidadeApp.IndicativoAdmissaoEnum.' + (contratoFuncionario()!.indicativoAdmissao ?? 'null')"
+              >{{
+                { null: '', NORMAL: 'NORMAL', ACAOFISCAL: 'ACAOFISCAL', DECISAOJUDICIAL: 'DECISAOJUDICIAL' }[
+                  contratoFuncionario()!.indicativoAdmissao ?? 'null'
+                ]
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.numeroPisNisPasep">Numero Pis Nis Pasep</span></dt>
+          <dd>
+            <span>{{ contratoFuncionario()!.numeroPisNisPasep }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.funcionario">Funcionario</span></dt>
+          <dd>
+            @if (contratoFuncionario()!.funcionario) {
+              <div>
+                <a [routerLink]="['/funcionario', contratoFuncionario()!.funcionario?.id, 'view']">{{
+                  contratoFuncionario()!.funcionario?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.agenteIntegracaoEstagio">Agente Integracao Estagio</span>
+          </dt>
+          <dd>
+            @if (contratoFuncionario()!.agenteIntegracaoEstagio) {
+              <div>
+                <a [routerLink]="['/agente-integracao-estagio', contratoFuncionario()!.agenteIntegracaoEstagio?.id, 'view']">{{
+                  contratoFuncionario()!.agenteIntegracaoEstagio?.razaoSocial
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.instituicaoEnsino">Instituicao Ensino</span></dt>
+          <dd>
+            @if (contratoFuncionario()!.instituicaoEnsino) {
+              <div>
+                <a [routerLink]="['/instituicao-ensino', contratoFuncionario()!.instituicaoEnsino?.id, 'view']">{{
+                  contratoFuncionario()!.instituicaoEnsino?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/contrato-funcionario', contratoFuncionario()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

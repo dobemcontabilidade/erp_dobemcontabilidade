@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "grupoAcessoPadrao": {
+      "home": {
+        "title": "Grupo Acesso Padraos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Grupo Acesso Padrao",
+        "createOrEditLabel": "Create or edit a Grupo Acesso Padrao",
+        "notFound": "No Grupo Acesso Padraos found"
+      },
+      "created": "A new Grupo Acesso Padrao is created with identifier {{ param }}",
+      "updated": "A Grupo Acesso Padrao is updated with identifier {{ param }}",
+      "deleted": "A Grupo Acesso Padrao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Grupo Acesso Padrao {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupo Acesso Padrao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "funcionalidadeGrupoAcessoPadrao": "Funcionalidade Grupo Acesso Padrao",
+      "grupoAcessoUsuarioContador": "Grupo Acesso Usuario Contador"
+    }
+  }
+}

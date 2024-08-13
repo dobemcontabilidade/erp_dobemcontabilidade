@@ -1,0 +1,88 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051808"
+  },
+  "applications": "*",
+  "entityTableName": "taf_ordem_serv_exec",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ordem",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dataEntrega",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataAgendada",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "concluida",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "notificarCliente",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "mes",
+      "fieldType": "MesCompetenciaEnum",
+      "fieldValues": "JANEIRO,FEVEREIRO,MARCO,ABRIL,MAIO,JUNHO,JULHO,AGOSTO,SETEMBRO,OUTUBRO,NOVEMBRO,DEZEMBRO"
+    },
+    {
+      "fieldName": "situacaoTarefa",
+      "fieldType": "SituacaoTarefaEnum",
+      "fieldValues": "AGENDADA,CANCELADA,EMEXECUCAO,CONCLUIDA,PENDENTE,DELETADA"
+    }
+  ],
+  "name": "TarefaOrdemServicoExecucao",
+  "relationships": [
+    {
+      "otherEntityName": "agendaTarefaOrdemServicoExecucao",
+      "otherEntityRelationshipName": "tarefaOrdemServicoExecucao",
+      "relationshipName": "agendaTarefaOrdemServicoExecucao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoOrdemServicoExecucao",
+      "otherEntityRelationshipName": "tarefaOrdemServicoExecucao",
+      "relationshipName": "anexoOrdemServicoExecucao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "subTarefaOrdemServico",
+      "otherEntityRelationshipName": "tarefaOrdemServicoExecucao",
+      "relationshipName": "subTarefaOrdemServico",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "contadorResponsavelOrdemServico",
+      "otherEntityRelationshipName": "tarefaOrdemServicoExecucao",
+      "relationshipName": "contadorResponsavelOrdemServico",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tarefaOrdemServico",
+      "relationshipName": "tarefaOrdemServico",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

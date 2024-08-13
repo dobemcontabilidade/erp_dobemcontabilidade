@@ -1,0 +1,148 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051728"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "cpf",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "15"
+    },
+    {
+      "fieldName": "tituloEleitor",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rg",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "rgOrgaoExpeditor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rgUfExpedicao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomeMae",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "nomePai",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "localNascimento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "racaECor",
+      "fieldType": "RacaECorEnum",
+      "fieldValues": "AMARELA,BRANCO,INDIGENA,PARDO,NEGRO,NAOINFORMADO"
+    },
+    {
+      "fieldName": "pessoaComDeficiencia",
+      "fieldType": "PessoaComDeficienciaEnum",
+      "fieldValues": "DEFICIENCIAMOTORA,DEFICIENCIAVISUAL,DEFICIENCIAAUDITIVA,REABILITADO,NAOPOSSUI"
+    },
+    {
+      "fieldName": "estadoCivil",
+      "fieldType": "EstadoCivilEnum",
+      "fieldValues": "SOLTEIRO,CASADO,DIVORCIADO,VIUVO,UNIAOESTAVEL"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "SexoEnum",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MASCULINO,FEMININO"
+    },
+    {
+      "fieldName": "urlFotoPerfil",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Pessoa",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "funcionario",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "funcionario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoPessoa",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "anexoPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "escolaridadePessoa",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "escolaridadePessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "bancoPessoa",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "bancoPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dependentesFuncionario",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "dependentesFuncionario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "enderecoPessoa",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "enderecoPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "email",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "email",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "telefone",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "telefone",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

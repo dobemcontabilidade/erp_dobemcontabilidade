@@ -1,0 +1,116 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051812"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "diasExecucao",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "geraMulta",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "periodoExecucao",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "diaLegal",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "mesLegal",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "valorRefMulta",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "ServicoContabil",
+  "relationships": [
+    {
+      "otherEntityName": "servicoContabilEmpresaModelo",
+      "otherEntityRelationshipName": "servicoContabil",
+      "relationshipName": "servicoContabilEmpresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "servicoContabilEtapaFluxoModelo",
+      "otherEntityRelationshipName": "servicoContabil",
+      "relationshipName": "servicoContabilEtapaFluxoModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "servicoContabilEtapaFluxoExecucao",
+      "otherEntityRelationshipName": "servicoContabil",
+      "relationshipName": "servicoContabilEtapaFluxoExecucao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoRequeridoServicoContabil",
+      "otherEntityRelationshipName": "servicoContabil",
+      "relationshipName": "anexoRequeridoServicoContabil",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "servicoContabilOrdemServico",
+      "otherEntityRelationshipName": "servicoContabil",
+      "relationshipName": "servicoContabilOrdemServico",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "servicoContabilAssinaturaEmpresa",
+      "otherEntityRelationshipName": "servicoContabil",
+      "relationshipName": "servicoContabilAssinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tarefaEmpresaModelo",
+      "otherEntityRelationshipName": "servicoContabil",
+      "relationshipName": "tarefaEmpresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "areaContabil",
+      "relationshipName": "areaContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "esfera",
+      "relationshipName": "esfera",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

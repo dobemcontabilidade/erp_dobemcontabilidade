@@ -1,0 +1,30 @@
+@if (grupoAcessoUsuarioContador) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(grupoAcessoUsuarioContador.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="grupoAcessoUsuarioContadorDeleteDialogHeading" jhiTranslate="entity.delete.title">
+        Confirme a exclusão
+      </h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error></jhi-alert-error>
+      <p
+        id="jhi-delete-grupoAcessoUsuarioContador-heading"
+        jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.delete.question"
+        [translateValues]="{ id: grupoAcessoUsuarioContador.id }"
+      >
+        Tem certeza de que deseja excluir Grupo Acesso Usuario Contador {{ grupoAcessoUsuarioContador.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+      </button>
+
+      <button id="jhi-confirm-delete-grupoAcessoUsuarioContador" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Excluir</span>
+      </button>
+    </div>
+  </form>
+}

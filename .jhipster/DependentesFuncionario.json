@@ -1,0 +1,49 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051640"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "urlCertidaoDependente",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "urlRgDependente",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dependenteIRRF",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dependenteSalarioFamilia",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "tipoDependenteFuncionarioEnum",
+      "fieldType": "TipoDependenteFuncionarioEnum",
+      "fieldValues": "CONJUGE,FILHO,IRMAONETOBISNETO,PAISAVOS,MENORCOMGUARDAR"
+    }
+  ],
+  "name": "DependentesFuncionario",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoa",
+      "relationshipName": "pessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "funcionario",
+      "relationshipName": "funcionario",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

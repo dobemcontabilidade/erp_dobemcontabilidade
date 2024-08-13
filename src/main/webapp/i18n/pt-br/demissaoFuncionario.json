@@ -1,0 +1,50 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "demissaoFuncionario": {
+      "home": {
+        "title": "Demissao Funcionarios",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Demissao Funcionario",
+        "createOrEditLabel": "Criar ou editar Demissao Funcionario",
+        "notFound": "Nenhum Demissao Funcionario encontrado"
+      },
+      "created": "Um novo Demissao Funcionario foi criado com o identificador {{ param }}",
+      "updated": "Um Demissao Funcionario foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Demissao Funcionario foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Demissao Funcionario {{ id }}?"
+      },
+      "detail": {
+        "title": "Demissao Funcionario"
+      },
+      "id": "ID",
+      "numeroCertidaoObito": "Numero Certidao Obito",
+      "cnpjEmpresaSucessora": "Cnpj Empresa Sucessora",
+      "saldoFGTS": "Saldo FGTS",
+      "valorPensao": "Valor Pensao",
+      "valorPensaoFgts": "Valor Pensao Fgts",
+      "percentualPensao": "Percentual Pensao",
+      "percentualFgts": "Percentual Fgts",
+      "diasAvisoPrevio": "Dias Aviso Previo",
+      "dataAvisoPrevio": "Data Aviso Previo",
+      "dataPagamento": "Data Pagamento",
+      "dataAfastamento": "Data Afastamento",
+      "urlDemissional": "Url Demissional",
+      "calcularRecisao": "Calcular Recisao",
+      "pagar13Recisao": "Pagar 13 Recisao",
+      "jornadaTrabalhoCumpridaSemana": "Jornada Trabalho Cumprida Semana",
+      "sabadoCompesado": "Sabado Compesado",
+      "novoVinculoComprovado": "Novo Vinculo Comprovado",
+      "dispensaAvisoPrevio": "Dispensa Aviso Previo",
+      "fgtsArrecadadoGuia": "Fgts Arrecadado Guia",
+      "avisoPrevioTrabalhadoRecebido": "Aviso Previo Trabalhado Recebido",
+      "recolherFgtsMesAnterior": "Recolher Fgts Mes Anterior",
+      "avisoPrevioIndenizado": "Aviso Previo Indenizado",
+      "cumprimentoAvisoPrevio": "Cumprimento Aviso Previo",
+      "avisoPrevio": "Aviso Previo",
+      "situacaoDemissao": "Situacao Demissao",
+      "tipoDemissao": "Tipo Demissao",
+      "funcionario": "Funcionario"
+    }
+  }
+}

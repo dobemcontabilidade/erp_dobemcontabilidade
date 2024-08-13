@@ -1,0 +1,157 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-contador-responsavel-tarefa-recorrente-heading"
+        data-cy="ContadorResponsavelTarefaRecorrenteCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.home.createOrEditLabel"
+      >
+        Criar ou editar Contador Responsavel Tarefa Recorrente
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.id"
+              >ID</label
+            >
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataAtribuicao"
+            jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.dataAtribuicao"
+            >Data Atribuicao</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataAtribuicao"
+              data-cy="dataAtribuicao"
+              type="datetime-local"
+              class="form-control"
+              name="dataAtribuicao"
+              formControlName="dataAtribuicao"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataRevogacao"
+            jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.dataRevogacao"
+            >Data Revogacao</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataRevogacao"
+              data-cy="dataRevogacao"
+              type="datetime-local"
+              class="form-control"
+              name="dataRevogacao"
+              formControlName="dataRevogacao"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_concluida"
+            jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.concluida"
+            >Concluida</label
+          >
+          <input type="checkbox" class="form-check" name="concluida" id="field_concluida" data-cy="concluida" formControlName="concluida" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tarefaRecorrenteExecucao"
+            jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.tarefaRecorrenteExecucao"
+            >Tarefa Recorrente Execucao</label
+          >
+          <select
+            class="form-control"
+            id="field_tarefaRecorrenteExecucao"
+            data-cy="tarefaRecorrenteExecucao"
+            name="tarefaRecorrenteExecucao"
+            formControlName="tarefaRecorrenteExecucao"
+            [compareWith]="compareTarefaRecorrenteExecucao"
+          >
+            @if (editForm.get(['tarefaRecorrenteExecucao'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (tarefaRecorrenteExecucaoOption of tarefaRecorrenteExecucaosSharedCollection; track $index) {
+              <option [ngValue]="tarefaRecorrenteExecucaoOption">{{ tarefaRecorrenteExecucaoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['tarefaRecorrenteExecucao'])!.invalid &&
+          (editForm.get(['tarefaRecorrenteExecucao'])!.dirty || editForm.get(['tarefaRecorrenteExecucao'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['tarefaRecorrenteExecucao'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_contador"
+            jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.contador"
+            >Contador</label
+          >
+          <select
+            class="form-control"
+            id="field_contador"
+            data-cy="contador"
+            name="contador"
+            formControlName="contador"
+            [compareWith]="compareContador"
+          >
+            @if (editForm.get(['contador'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (contadorOption of contadorsSharedCollection; track $index) {
+              <option [ngValue]="contadorOption">{{ contadorOption.crc }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['contador'])!.invalid && (editForm.get(['contador'])!.dirty || editForm.get(['contador'])!.touched)) {
+          <div>
+            @if (editForm.get(['contador'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

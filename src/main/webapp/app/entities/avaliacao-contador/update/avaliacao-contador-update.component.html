@@ -1,0 +1,101 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-avaliacao-contador-heading"
+        data-cy="AvaliacaoContadorCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.home.createOrEditLabel"
+      >
+        Criar ou editar Avaliacao Contador
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pontuacao" jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.pontuacao"
+            >Pontuacao</label
+          >
+          <input type="number" class="form-control" name="pontuacao" id="field_pontuacao" data-cy="pontuacao" formControlName="pontuacao" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contador" jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.contador">Contador</label>
+          <select
+            class="form-control"
+            id="field_contador"
+            data-cy="contador"
+            name="contador"
+            formControlName="contador"
+            [compareWith]="compareContador"
+          >
+            @if (editForm.get(['contador'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (contadorOption of contadorsSharedCollection; track $index) {
+              <option [ngValue]="contadorOption">{{ contadorOption.crc }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['contador'])!.invalid && (editForm.get(['contador'])!.dirty || editForm.get(['contador'])!.touched)) {
+          <div>
+            @if (editForm.get(['contador'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_avaliacao" jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.avaliacao"
+            >Avaliacao</label
+          >
+          <select
+            class="form-control"
+            id="field_avaliacao"
+            data-cy="avaliacao"
+            name="avaliacao"
+            formControlName="avaliacao"
+            [compareWith]="compareAvaliacao"
+          >
+            @if (editForm.get(['avaliacao'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (avaliacaoOption of avaliacaosSharedCollection; track $index) {
+              <option [ngValue]="avaliacaoOption">{{ avaliacaoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['avaliacao'])!.invalid && (editForm.get(['avaliacao'])!.dirty || editForm.get(['avaliacao'])!.touched)) {
+          <div>
+            @if (editForm.get(['avaliacao'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

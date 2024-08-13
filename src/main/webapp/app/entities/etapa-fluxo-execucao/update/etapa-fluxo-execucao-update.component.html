@@ -1,0 +1,99 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-etapa-fluxo-execucao-heading"
+        data-cy="EtapaFluxoExecucaoCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.home.createOrEditLabel"
+      >
+        Criar ou editar Etapa Fluxo Execucao
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nome" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_descricao" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.descricao"
+            >Descricao</label
+          >
+          <input type="text" class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_feito" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.feito">Feito</label>
+          <input type="checkbox" class="form-check" name="feito" id="field_feito" data-cy="feito" formControlName="feito" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ordem" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.ordem">Ordem</label>
+          <input type="number" class="form-control" name="ordem" id="field_ordem" data-cy="ordem" formControlName="ordem" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agendada" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.agendada"
+            >Agendada</label
+          >
+          <input type="checkbox" class="form-check" name="agendada" id="field_agendada" data-cy="agendada" formControlName="agendada" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ordemServico" jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.ordemServico"
+            >Ordem Servico</label
+          >
+          <select
+            class="form-control"
+            id="field_ordemServico"
+            data-cy="ordemServico"
+            name="ordemServico"
+            formControlName="ordemServico"
+            [compareWith]="compareOrdemServico"
+          >
+            @if (editForm.get(['ordemServico'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (ordemServicoOption of ordemServicosSharedCollection; track $index) {
+              <option [ngValue]="ordemServicoOption">{{ ordemServicoOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['ordemServico'])!.invalid && (editForm.get(['ordemServico'])!.dirty || editForm.get(['ordemServico'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['ordemServico'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

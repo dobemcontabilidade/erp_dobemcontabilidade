@@ -1,0 +1,133 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-anexo-servico-contabil-empresa-heading"
+        data-cy="AnexoServicoContabilEmpresaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.home.createOrEditLabel"
+      >
+        Criar ou editar Anexo Servico Contabil Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_link" jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.link">Link</label>
+          <input type="text" class="form-control" name="link" id="field_link" data-cy="link" formControlName="link" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataHoraUpload"
+            jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.dataHoraUpload"
+            >Data Hora Upload</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataHoraUpload"
+              data-cy="dataHoraUpload"
+              type="datetime-local"
+              class="form-control"
+              name="dataHoraUpload"
+              formControlName="dataHoraUpload"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_anexoRequerido"
+            jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.anexoRequerido"
+            >Anexo Requerido</label
+          >
+          <select
+            class="form-control"
+            id="field_anexoRequerido"
+            data-cy="anexoRequerido"
+            name="anexoRequerido"
+            formControlName="anexoRequerido"
+            [compareWith]="compareAnexoRequerido"
+          >
+            @if (editForm.get(['anexoRequerido'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (anexoRequeridoOption of anexoRequeridosSharedCollection; track $index) {
+              <option [ngValue]="anexoRequeridoOption">{{ anexoRequeridoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['anexoRequerido'])!.invalid &&
+          (editForm.get(['anexoRequerido'])!.dirty || editForm.get(['anexoRequerido'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['anexoRequerido'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_servicoContabilAssinaturaEmpresa"
+            jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.servicoContabilAssinaturaEmpresa"
+            >Servico Contabil Assinatura Empresa</label
+          >
+          <select
+            class="form-control"
+            id="field_servicoContabilAssinaturaEmpresa"
+            data-cy="servicoContabilAssinaturaEmpresa"
+            name="servicoContabilAssinaturaEmpresa"
+            formControlName="servicoContabilAssinaturaEmpresa"
+            [compareWith]="compareServicoContabilAssinaturaEmpresa"
+          >
+            @if (editForm.get(['servicoContabilAssinaturaEmpresa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (servicoContabilAssinaturaEmpresaOption of servicoContabilAssinaturaEmpresasSharedCollection; track $index) {
+              <option [ngValue]="servicoContabilAssinaturaEmpresaOption">{{ servicoContabilAssinaturaEmpresaOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['servicoContabilAssinaturaEmpresa'])!.invalid &&
+          (editForm.get(['servicoContabilAssinaturaEmpresa'])!.dirty || editForm.get(['servicoContabilAssinaturaEmpresa'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['servicoContabilAssinaturaEmpresa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

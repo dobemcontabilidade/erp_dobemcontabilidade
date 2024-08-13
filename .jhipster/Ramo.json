@@ -1,0 +1,68 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051733"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Ramo",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "anexoRequeridoEmpresa",
+      "otherEntityRelationshipName": "ramo",
+      "relationshipName": "anexoRequeridoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "empresaModelo",
+      "otherEntityRelationshipName": "ramo",
+      "relationshipName": "empresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "calculoPlanoAssinatura",
+      "otherEntityRelationshipName": "ramo",
+      "relationshipName": "calculoPlanoAssinatura",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalRamo",
+      "otherEntityRelationshipName": "ramo",
+      "relationshipName": "adicionalRamo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "valorBaseRamo",
+      "otherEntityRelationshipName": "ramo",
+      "relationshipName": "valorBaseRamo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "segmentoCnae",
+      "otherEntityRelationshipName": "ramo",
+      "relationshipName": "segmentoCnae",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

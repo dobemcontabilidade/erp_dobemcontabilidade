@@ -1,0 +1,160 @@
+<div>
+  <h2 id="page-heading" data-cy="ContadorResponsavelTarefaRecorrenteHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.home.title"
+      >Contador Responsavel Tarefa Recorrentes</span
+    >
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contador-responsavel-tarefa-recorrente"
+        [routerLink]="['/contador-responsavel-tarefa-recorrente/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.home.createLabel"
+          >Criar novo Contador Responsavel Tarefa Recorrente</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (contadorResponsavelTarefaRecorrentes?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.home.notFound"
+        >Nenhum Contador Responsavel Tarefa Recorrente encontrado</span
+      >
+    </div>
+  }
+
+  @if (contadorResponsavelTarefaRecorrentes && contadorResponsavelTarefaRecorrentes.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataAtribuicao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.dataAtribuicao">Data Atribuicao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataRevogacao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.dataRevogacao">Data Revogacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="concluida">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.concluida">Concluida</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tarefaRecorrenteExecucao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.tarefaRecorrenteExecucao"
+                  >Tarefa Recorrente Execucao</span
+                >
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contador.crc">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contadorResponsavelTarefaRecorrente.contador">Contador</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (contadorResponsavelTarefaRecorrente of contadorResponsavelTarefaRecorrentes; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/contador-responsavel-tarefa-recorrente', contadorResponsavelTarefaRecorrente.id, 'view']">{{
+                  contadorResponsavelTarefaRecorrente.id
+                }}</a>
+              </td>
+              <td>{{ contadorResponsavelTarefaRecorrente.dataAtribuicao | formatMediumDatetime }}</td>
+              <td>{{ contadorResponsavelTarefaRecorrente.dataRevogacao | formatMediumDatetime }}</td>
+              <td>{{ contadorResponsavelTarefaRecorrente.concluida }}</td>
+              <td>
+                @if (contadorResponsavelTarefaRecorrente.tarefaRecorrenteExecucao) {
+                  <div>
+                    <a
+                      [routerLink]="[
+                        '/tarefa-recorrente-execucao',
+                        contadorResponsavelTarefaRecorrente.tarefaRecorrenteExecucao.id,
+                        'view',
+                      ]"
+                      >{{ contadorResponsavelTarefaRecorrente.tarefaRecorrenteExecucao.nome }}</a
+                    >
+                  </div>
+                }
+              </td>
+              <td>
+                @if (contadorResponsavelTarefaRecorrente.contador) {
+                  <div>
+                    <a [routerLink]="['/contador', contadorResponsavelTarefaRecorrente.contador.id, 'view']">{{
+                      contadorResponsavelTarefaRecorrente.contador.crc
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/contador-responsavel-tarefa-recorrente', contadorResponsavelTarefaRecorrente.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/contador-responsavel-tarefa-recorrente', contadorResponsavelTarefaRecorrente.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(contadorResponsavelTarefaRecorrente)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

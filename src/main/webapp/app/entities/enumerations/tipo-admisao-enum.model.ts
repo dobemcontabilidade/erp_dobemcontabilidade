@@ -1,0 +1,13 @@
+export enum TipoAdmisaoEnum {
+  ADMISSAO = 'ADMISSAO',
+
+  TRANSFERENCIA = 'TRANSFERENCIA',
+
+  SUCESSAO = 'SUCESSAO',
+
+  INCORPORACAO = 'INCORPORACAO',
+
+  FUSAO = 'FUSAO',
+
+  CEDIDO = 'CEDIDO',
+}

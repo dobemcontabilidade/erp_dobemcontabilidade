@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="AvaliacaoContadorHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.home.title">Avaliacao Contadors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-avaliacao-contador"
+        [routerLink]="['/avaliacao-contador/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.home.createLabel">Criar novo Avaliacao Contador</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (avaliacaoContadors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.home.notFound">Nenhum Avaliacao Contador encontrado</span>
+    </div>
+  }
+
+  @if (avaliacaoContadors && avaliacaoContadors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pontuacao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.pontuacao">Pontuacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contador.crc">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.contador">Contador</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="avaliacao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.avaliacaoContador.avaliacao">Avaliacao</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (avaliacaoContador of avaliacaoContadors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/avaliacao-contador', avaliacaoContador.id, 'view']">{{ avaliacaoContador.id }}</a>
+              </td>
+              <td>{{ avaliacaoContador.pontuacao }}</td>
+              <td>
+                @if (avaliacaoContador.contador) {
+                  <div>
+                    <a [routerLink]="['/contador', avaliacaoContador.contador.id, 'view']">{{ avaliacaoContador.contador.crc }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (avaliacaoContador.avaliacao) {
+                  <div>
+                    <a [routerLink]="['/avaliacao', avaliacaoContador.avaliacao.id, 'view']">{{ avaliacaoContador.avaliacao.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/avaliacao-contador', avaliacaoContador.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/avaliacao-contador', avaliacaoContador.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(avaliacaoContador)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

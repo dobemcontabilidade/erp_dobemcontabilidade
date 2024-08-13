@@ -1,0 +1,77 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051736"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "prolabore",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "percentualSociedade",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "adminstrador",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "distribuicaoLucro",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "responsavelReceita",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "percentualDistribuicaoLucro",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "funcaoSocio",
+      "fieldType": "FuncaoSocioEnum",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SOCIO,SOCIOADMINISTRADOR,SOCIOGERENTE"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Socio",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoa",
+      "relationshipName": "pessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "email",
+      "otherEntityName": "usuarioEmpresa",
+      "relationshipName": "usuarioEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "profissao",
+      "relationshipName": "profissao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

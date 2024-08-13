@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (anexoRequeridoServicoContabil()) {
+      <div>
+        <h2 data-cy="anexoRequeridoServicoContabilDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoServicoContabil.detail.title">Anexo Requerido Servico Contabil</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ anexoRequeridoServicoContabil()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoServicoContabil.obrigatorio">Obrigatorio</span></dt>
+          <dd>
+            <span>{{ anexoRequeridoServicoContabil()!.obrigatorio }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoServicoContabil.servicoContabil">Servico Contabil</span></dt>
+          <dd>
+            @if (anexoRequeridoServicoContabil()!.servicoContabil) {
+              <div>
+                <a [routerLink]="['/servico-contabil', anexoRequeridoServicoContabil()!.servicoContabil?.id, 'view']">{{
+                  anexoRequeridoServicoContabil()!.servicoContabil?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoServicoContabil.anexoRequerido">Anexo Requerido</span></dt>
+          <dd>
+            @if (anexoRequeridoServicoContabil()!.anexoRequerido) {
+              <div>
+                <a [routerLink]="['/anexo-requerido', anexoRequeridoServicoContabil()!.anexoRequerido?.id, 'view']">{{
+                  anexoRequeridoServicoContabil()!.anexoRequerido?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/anexo-requerido-servico-contabil', anexoRequeridoServicoContabil()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

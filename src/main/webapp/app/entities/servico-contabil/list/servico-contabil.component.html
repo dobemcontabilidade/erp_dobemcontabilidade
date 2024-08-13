@@ -1,0 +1,186 @@
+<div>
+  <h2 id="page-heading" data-cy="ServicoContabilHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.home.title">Servico Contabils</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-servico-contabil"
+        [routerLink]="['/servico-contabil/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.home.createLabel">Criar novo Servico Contabil</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (servicoContabils?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.home.notFound">Nenhum Servico Contabil encontrado</span>
+    </div>
+  }
+
+  @if (servicoContabils && servicoContabils.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valor">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.valor">Valor</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.descricao">Descricao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diasExecucao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.diasExecucao">Dias Execucao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="geraMulta">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.geraMulta">Gera Multa</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="periodoExecucao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.periodoExecucao">Periodo Execucao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diaLegal">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.diaLegal">Dia Legal</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mesLegal">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.mesLegal">Mes Legal</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorRefMulta">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.valorRefMulta">Valor Ref Multa</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="areaContabil.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.areaContabil">Area Contabil</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="esfera.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabil.esfera">Esfera</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (servicoContabil of servicoContabils; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/servico-contabil', servicoContabil.id, 'view']">{{ servicoContabil.id }}</a>
+              </td>
+              <td>{{ servicoContabil.nome }}</td>
+              <td>{{ servicoContabil.valor }}</td>
+              <td>{{ servicoContabil.descricao }}</td>
+              <td>{{ servicoContabil.diasExecucao }}</td>
+              <td>{{ servicoContabil.geraMulta }}</td>
+              <td>{{ servicoContabil.periodoExecucao }}</td>
+              <td>{{ servicoContabil.diaLegal }}</td>
+              <td>{{ servicoContabil.mesLegal }}</td>
+              <td>{{ servicoContabil.valorRefMulta }}</td>
+              <td>
+                @if (servicoContabil.areaContabil) {
+                  <div>
+                    <a [routerLink]="['/area-contabil', servicoContabil.areaContabil.id, 'view']">{{
+                      servicoContabil.areaContabil.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (servicoContabil.esfera) {
+                  <div>
+                    <a [routerLink]="['/esfera', servicoContabil.esfera.id, 'view']">{{ servicoContabil.esfera.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/servico-contabil', servicoContabil.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/servico-contabil', servicoContabil.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(servicoContabil)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

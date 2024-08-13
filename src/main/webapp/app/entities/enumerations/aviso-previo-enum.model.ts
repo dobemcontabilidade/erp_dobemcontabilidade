@@ -1,0 +1,7 @@
+export enum AvisoPrevioEnum {
+  NAOPOSSUI = 'NAOPOSSUI',
+
+  VINTEDIAS = 'VINTEDIAS',
+
+  TRINTADIAS = 'TRINTADIAS',
+}

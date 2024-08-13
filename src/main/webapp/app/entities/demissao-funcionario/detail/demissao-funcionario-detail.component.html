@@ -1,0 +1,184 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (demissaoFuncionario()) {
+      <div>
+        <h2 data-cy="demissaoFuncionarioDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.detail.title">Demissao Funcionario</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.numeroCertidaoObito">Numero Certidao Obito</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.numeroCertidaoObito }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.cnpjEmpresaSucessora">Cnpj Empresa Sucessora</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.cnpjEmpresaSucessora }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.saldoFGTS">Saldo FGTS</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.saldoFGTS }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.valorPensao">Valor Pensao</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.valorPensao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.valorPensaoFgts">Valor Pensao Fgts</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.valorPensaoFgts }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.percentualPensao">Percentual Pensao</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.percentualPensao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.percentualFgts">Percentual Fgts</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.percentualFgts }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.diasAvisoPrevio">Dias Aviso Previo</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.diasAvisoPrevio }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dataAvisoPrevio">Data Aviso Previo</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.dataAvisoPrevio }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dataPagamento">Data Pagamento</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.dataPagamento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dataAfastamento">Data Afastamento</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.dataAfastamento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.urlDemissional">Url Demissional</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.urlDemissional }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.calcularRecisao">Calcular Recisao</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.calcularRecisao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.pagar13Recisao">Pagar 13 Recisao</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.pagar13Recisao }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.jornadaTrabalhoCumpridaSemana"
+              >Jornada Trabalho Cumprida Semana</span
+            >
+          </dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.jornadaTrabalhoCumpridaSemana }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.sabadoCompesado">Sabado Compesado</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.sabadoCompesado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.novoVinculoComprovado">Novo Vinculo Comprovado</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.novoVinculoComprovado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dispensaAvisoPrevio">Dispensa Aviso Previo</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.dispensaAvisoPrevio }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.fgtsArrecadadoGuia">Fgts Arrecadado Guia</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.fgtsArrecadadoGuia }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.avisoPrevioTrabalhadoRecebido"
+              >Aviso Previo Trabalhado Recebido</span
+            >
+          </dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.avisoPrevioTrabalhadoRecebido }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.recolherFgtsMesAnterior">Recolher Fgts Mes Anterior</span>
+          </dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.recolherFgtsMesAnterior }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.avisoPrevioIndenizado">Aviso Previo Indenizado</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.avisoPrevioIndenizado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.cumprimentoAvisoPrevio">Cumprimento Aviso Previo</span></dt>
+          <dd>
+            <span>{{ demissaoFuncionario()!.cumprimentoAvisoPrevio }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.avisoPrevio">Aviso Previo</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.AvisoPrevioEnum.' + (demissaoFuncionario()!.avisoPrevio ?? 'null')">{{
+              { null: '', NAOPOSSUI: 'NAOPOSSUI', VINTEDIAS: 'VINTEDIAS', TRINTADIAS: 'TRINTADIAS' }[
+                demissaoFuncionario()!.avisoPrevio ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.situacaoDemissao">Situacao Demissao</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoDemissaoEnum.' + (demissaoFuncionario()!.situacaoDemissao ?? 'null')">{{
+              {
+                null: '',
+                SOLICITADO: 'SOLICITADO',
+                GERADO: 'GERADO',
+                DEMISSAOEMANDAMENTO: 'DEMISSAOEMANDAMENTO',
+                EMANDAMENTO: 'EMANDAMENTO',
+                CANCELADO: 'CANCELADO',
+                REMOVIDO: 'REMOVIDO',
+                FINALIZADO: 'FINALIZADO',
+                ABERTO: 'ABERTO',
+                PAGO: 'PAGO',
+              }[demissaoFuncionario()!.situacaoDemissao ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.tipoDemissao">Tipo Demissao</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoDemissaoEnum.' + (demissaoFuncionario()!.tipoDemissao ?? 'null')">{{
+              {
+                null: '',
+                JUSTACAUSA: 'JUSTACAUSA',
+                DESPEDIDASEMJUSTACAUSA: 'DESPEDIDASEMJUSTACAUSA',
+                RECISAOANTECIPADA: 'RECISAOANTECIPADA',
+                FALECIMENTOEMPREGADO: 'FALECIMENTOEMPREGADO',
+                PEDIDO: 'PEDIDO',
+                CONSENSUAL: 'CONSENSUAL',
+                ACORDO: 'ACORDO',
+              }[demissaoFuncionario()!.tipoDemissao ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.funcionario">Funcionario</span></dt>
+          <dd>
+            @if (demissaoFuncionario()!.funcionario) {
+              <div>
+                <a [routerLink]="['/funcionario', demissaoFuncionario()!.funcionario?.id, 'view']">{{
+                  demissaoFuncionario()!.funcionario?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/demissao-funcionario', demissaoFuncionario()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

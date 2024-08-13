@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "perfilContadorDepartamento": {
+      "home": {
+        "title": "Perfil Contador Departamentos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Perfil Contador Departamento",
+        "createOrEditLabel": "Create or edit a Perfil Contador Departamento",
+        "notFound": "No Perfil Contador Departamentos found"
+      },
+      "created": "A new Perfil Contador Departamento is created with identifier {{ param }}",
+      "updated": "A Perfil Contador Departamento is updated with identifier {{ param }}",
+      "deleted": "A Perfil Contador Departamento is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Perfil Contador Departamento {{ id }}?"
+      },
+      "detail": {
+        "title": "Perfil Contador Departamento"
+      },
+      "id": "ID",
+      "quantidadeEmpresas": "Quantidade Empresas",
+      "percentualExperiencia": "Percentual Experiencia",
+      "departamento": "Departamento",
+      "perfilContador": "Perfil Contador"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "ordemServico": {
+      "home": {
+        "title": "Ordem Servicos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Ordem Servico",
+        "createOrEditLabel": "Criar ou editar Ordem Servico",
+        "notFound": "Nenhum Ordem Servico encontrado"
+      },
+      "created": "Um novo Ordem Servico foi criado com o identificador {{ param }}",
+      "updated": "Um Ordem Servico foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Ordem Servico foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Ordem Servico {{ id }}?"
+      },
+      "detail": {
+        "title": "Ordem Servico"
+      },
+      "id": "ID",
+      "valor": "Valor",
+      "prazo": "Prazo",
+      "dataCriacao": "Data Criacao",
+      "dataHoraCancelamento": "Data Hora Cancelamento",
+      "statusDaOS": "Status Da OS",
+      "descricao": "Descricao",
+      "feedBackUsuarioParaContador": "Feed Back Usuario Para Contador",
+      "feedBackContadorParaUsuario": "Feed Back Contador Para Usuario",
+      "etapaFluxoExecucao": "Etapa Fluxo Execucao",
+      "servicoContabilOrdemServico": "Servico Contabil Ordem Servico",
+      "empresa": "Empresa",
+      "contador": "Contador",
+      "fluxoModelo": "Fluxo Modelo"
+    }
+  }
+}

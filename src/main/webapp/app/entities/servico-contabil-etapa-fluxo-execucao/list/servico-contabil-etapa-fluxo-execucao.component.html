@@ -1,0 +1,153 @@
+<div>
+  <h2 id="page-heading" data-cy="ServicoContabilEtapaFluxoExecucaoHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.home.title">Servico Contabil Etapa Fluxo Execucaos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-servico-contabil-etapa-fluxo-execucao"
+        [routerLink]="['/servico-contabil-etapa-fluxo-execucao/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.home.createLabel"
+          >Criar novo Servico Contabil Etapa Fluxo Execucao</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (servicoContabilEtapaFluxoExecucaos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.home.notFound"
+        >Nenhum Servico Contabil Etapa Fluxo Execucao encontrado</span
+      >
+    </div>
+  }
+
+  @if (servicoContabilEtapaFluxoExecucaos && servicoContabilEtapaFluxoExecucaos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ordem">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.ordem">Ordem</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="feito">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.feito">Feito</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prazo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.prazo">Prazo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="servicoContabil.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.servicoContabil">Servico Contabil</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etapaFluxoExecucao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.etapaFluxoExecucao"
+                  >Etapa Fluxo Execucao</span
+                >
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (servicoContabilEtapaFluxoExecucao of servicoContabilEtapaFluxoExecucaos; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/servico-contabil-etapa-fluxo-execucao', servicoContabilEtapaFluxoExecucao.id, 'view']">{{
+                  servicoContabilEtapaFluxoExecucao.id
+                }}</a>
+              </td>
+              <td>{{ servicoContabilEtapaFluxoExecucao.ordem }}</td>
+              <td>{{ servicoContabilEtapaFluxoExecucao.feito }}</td>
+              <td>{{ servicoContabilEtapaFluxoExecucao.prazo }}</td>
+              <td>
+                @if (servicoContabilEtapaFluxoExecucao.servicoContabil) {
+                  <div>
+                    <a [routerLink]="['/servico-contabil', servicoContabilEtapaFluxoExecucao.servicoContabil.id, 'view']">{{
+                      servicoContabilEtapaFluxoExecucao.servicoContabil.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (servicoContabilEtapaFluxoExecucao.etapaFluxoExecucao) {
+                  <div>
+                    <a [routerLink]="['/etapa-fluxo-execucao', servicoContabilEtapaFluxoExecucao.etapaFluxoExecucao.id, 'view']">{{
+                      servicoContabilEtapaFluxoExecucao.etapaFluxoExecucao.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/servico-contabil-etapa-fluxo-execucao', servicoContabilEtapaFluxoExecucao.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/servico-contabil-etapa-fluxo-execucao', servicoContabilEtapaFluxoExecucao.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(servicoContabilEtapaFluxoExecucao)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

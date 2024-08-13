@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity AnexoRequeridoTarefaOrdemServico.
+    -->
+    <changeSet id="20240813051603-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="anexo_requerido_id"
+                                 baseTableName="anexo_req_tare_ordem_serv"
+                                 constraintName="fk_anexo_req_tare_ordem_serv__anexo_requerido_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="anexo_requerido"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="tarefa_ordem_servico_id"
+                                 baseTableName="anexo_req_tare_ordem_serv"
+                                 constraintName="fk_anexo_req_tare_ordem_serv__tarefa_ordem_servico_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tarefa_ordem_servico"
+                                 />
+    </changeSet>
+</databaseChangeLog>

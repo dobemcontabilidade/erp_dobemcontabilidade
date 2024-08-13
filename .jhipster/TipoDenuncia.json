@@ -1,0 +1,23 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051745"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "tipo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "TipoDenuncia",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

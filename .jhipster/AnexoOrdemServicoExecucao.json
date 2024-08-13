@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051604"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataHoraUpload",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "AnexoOrdemServicoExecucao",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tarefaOrdemServicoExecucao",
+      "relationshipName": "tarefaOrdemServicoExecucao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

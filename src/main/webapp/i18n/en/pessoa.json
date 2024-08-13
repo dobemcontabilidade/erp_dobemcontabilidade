@@ -1,0 +1,49 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "pessoa": {
+      "home": {
+        "title": "Pessoas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Pessoa",
+        "createOrEditLabel": "Create or edit a Pessoa",
+        "notFound": "No Pessoas found"
+      },
+      "created": "A new Pessoa is created with identifier {{ param }}",
+      "updated": "A Pessoa is updated with identifier {{ param }}",
+      "deleted": "A Pessoa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Pessoa {{ id }}?"
+      },
+      "detail": {
+        "title": "Pessoa"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "cpf": "Cpf",
+      "dataNascimento": "Data Nascimento",
+      "tituloEleitor": "Titulo Eleitor",
+      "rg": "Rg",
+      "rgOrgaoExpeditor": "Rg Orgao Expeditor",
+      "rgUfExpedicao": "Rg Uf Expedicao",
+      "nomeMae": "Nome Mae",
+      "nomePai": "Nome Pai",
+      "localNascimento": "Local Nascimento",
+      "racaECor": "Raca E Cor",
+      "pessoaComDeficiencia": "Pessoa Com Deficiencia",
+      "estadoCivil": "Estado Civil",
+      "sexo": "Sexo",
+      "urlFotoPerfil": "Url Foto Perfil",
+      "funcionario": "Funcionario",
+      "anexoPessoa": "Anexo Pessoa",
+      "escolaridadePessoa": "Escolaridade Pessoa",
+      "bancoPessoa": "Banco Pessoa",
+      "dependentesFuncionario": "Dependentes Funcionario",
+      "enderecoPessoa": "Endereco Pessoa",
+      "email": "Email",
+      "telefone": "Telefone",
+      "administrador": "Administrador",
+      "contador": "Contador",
+      "socio": "Socio"
+    }
+  }
+}

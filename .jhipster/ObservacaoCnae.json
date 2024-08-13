@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051715"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ObservacaoCnae",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "descricao",
+      "otherEntityName": "subclasseCnae",
+      "relationshipName": "subclasse",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

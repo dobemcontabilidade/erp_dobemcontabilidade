@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051620"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "20"
+    }
+  ],
+  "name": "Banco",
+  "relationships": [
+    {
+      "otherEntityName": "bancoPessoa",
+      "otherEntityRelationshipName": "banco",
+      "relationshipName": "bancoPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

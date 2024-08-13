@@ -1,0 +1,13 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoAdmisaoEnum": {
+      "null": "",
+      "ADMISSAO": "ADMISSAO",
+      "TRANSFERENCIA": "TRANSFERENCIA",
+      "SUCESSAO": "SUCESSAO",
+      "INCORPORACAO": "INCORPORACAO",
+      "FUSAO": "FUSAO",
+      "CEDIDO": "CEDIDO"
+    }
+  }
+}

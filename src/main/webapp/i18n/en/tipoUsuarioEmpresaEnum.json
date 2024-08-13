@@ -1,0 +1,9 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoUsuarioEmpresaEnum": {
+      "null": "",
+      "SOCIO": "SOCIO",
+      "FUNCIONARIO": "FUNCIONARIO"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051600"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "link",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataHoraUpload",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "AnexoServicoContabilEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "anexoRequerido",
+      "relationshipName": "anexoRequerido",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "servicoContabilAssinaturaEmpresa",
+      "relationshipName": "servicoContabilAssinaturaEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

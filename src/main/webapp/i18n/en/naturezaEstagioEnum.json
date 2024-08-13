@@ -1,0 +1,9 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "NaturezaEstagioEnum": {
+      "null": "",
+      "OBRIGATORIO": "OBRIGATORIO",
+      "NAOOBRIGATORIO": "NAOOBRIGATORIO"
+    }
+  }
+}

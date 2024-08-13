@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "permisao": {
+      "home": {
+        "title": "Permisaos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Permisao",
+        "createOrEditLabel": "Create or edit a Permisao",
+        "notFound": "No Permisaos found"
+      },
+      "created": "A new Permisao is created with identifier {{ param }}",
+      "updated": "A Permisao is updated with identifier {{ param }}",
+      "deleted": "A Permisao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Permisao {{ id }}?"
+      },
+      "detail": {
+        "title": "Permisao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "label": "Label",
+      "funcionalidadeGrupoAcessoPadrao": "Funcionalidade Grupo Acesso Padrao",
+      "funcionalidadeGrupoAcessoEmpresa": "Funcionalidade Grupo Acesso Empresa",
+      "grupoAcessoEmpresaUsuarioContador": "Grupo Acesso Empresa Usuario Contador"
+    }
+  }
+}

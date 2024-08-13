@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (criterioAvaliacaoAtor()) {
+      <div>
+        <h2 data-cy="criterioAvaliacaoAtorDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.detail.title">Criterio Avaliacao Ator</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ criterioAvaliacaoAtor()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ criterioAvaliacaoAtor()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.ativo">Ativo</span></dt>
+          <dd>
+            <span>{{ criterioAvaliacaoAtor()!.ativo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.criterioAvaliacao">Criterio Avaliacao</span></dt>
+          <dd>
+            @if (criterioAvaliacaoAtor()!.criterioAvaliacao) {
+              <div>
+                <a [routerLink]="['/criterio-avaliacao', criterioAvaliacaoAtor()!.criterioAvaliacao?.id, 'view']">{{
+                  criterioAvaliacaoAtor()!.criterioAvaliacao?.descricao
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.atorAvaliado">Ator Avaliado</span></dt>
+          <dd>
+            @if (criterioAvaliacaoAtor()!.atorAvaliado) {
+              <div>
+                <a [routerLink]="['/ator-avaliado', criterioAvaliacaoAtor()!.atorAvaliado?.id, 'view']">{{
+                  criterioAvaliacaoAtor()!.atorAvaliado?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/criterio-avaliacao-ator', criterioAvaliacaoAtor()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

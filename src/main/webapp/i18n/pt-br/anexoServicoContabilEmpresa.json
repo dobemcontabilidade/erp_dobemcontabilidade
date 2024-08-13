@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoServicoContabilEmpresa": {
+      "home": {
+        "title": "Anexo Servico Contabil Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Anexo Servico Contabil Empresa",
+        "createOrEditLabel": "Criar ou editar Anexo Servico Contabil Empresa",
+        "notFound": "Nenhum Anexo Servico Contabil Empresa encontrado"
+      },
+      "created": "Um novo Anexo Servico Contabil Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Anexo Servico Contabil Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Anexo Servico Contabil Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Anexo Servico Contabil Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Servico Contabil Empresa"
+      },
+      "id": "ID",
+      "link": "Link",
+      "dataHoraUpload": "Data Hora Upload",
+      "anexoRequerido": "Anexo Requerido",
+      "servicoContabilAssinaturaEmpresa": "Servico Contabil Assinatura Empresa"
+    }
+  }
+}

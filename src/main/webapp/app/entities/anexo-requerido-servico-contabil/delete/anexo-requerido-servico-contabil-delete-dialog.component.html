@@ -1,0 +1,35 @@
+@if (anexoRequeridoServicoContabil) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(anexoRequeridoServicoContabil.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="anexoRequeridoServicoContabilDeleteDialogHeading" jhiTranslate="entity.delete.title">
+        Confirme a exclusão
+      </h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error></jhi-alert-error>
+      <p
+        id="jhi-delete-anexoRequeridoServicoContabil-heading"
+        jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoServicoContabil.delete.question"
+        [translateValues]="{ id: anexoRequeridoServicoContabil.id }"
+      >
+        Tem certeza de que deseja excluir Anexo Requerido Servico Contabil {{ anexoRequeridoServicoContabil.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+      </button>
+
+      <button
+        id="jhi-confirm-delete-anexoRequeridoServicoContabil"
+        data-cy="entityConfirmDeleteButton"
+        type="submit"
+        class="btn btn-danger"
+      >
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Excluir</span>
+      </button>
+    </div>
+  </form>
+}

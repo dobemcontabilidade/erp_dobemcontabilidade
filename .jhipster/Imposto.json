@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051752"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Imposto",
+  "relationships": [
+    {
+      "otherEntityName": "impostoEmpresa",
+      "otherEntityRelationshipName": "imposto",
+      "relationshipName": "impostoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "parcelamentoImposto",
+      "otherEntityRelationshipName": "imposto",
+      "relationshipName": "parcelamentoImposto",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "impostoEmpresaModelo",
+      "otherEntityRelationshipName": "imposto",
+      "relationshipName": "impostoEmpresaModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "esfera",
+      "relationshipName": "esfera",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

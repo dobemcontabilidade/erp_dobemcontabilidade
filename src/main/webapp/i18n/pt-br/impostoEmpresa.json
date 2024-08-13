@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "impostoEmpresa": {
+      "home": {
+        "title": "Imposto Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Imposto Empresa",
+        "createOrEditLabel": "Criar ou editar Imposto Empresa",
+        "notFound": "Nenhum Imposto Empresa encontrado"
+      },
+      "created": "Um novo Imposto Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Imposto Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Imposto Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Imposto Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Imposto Empresa"
+      },
+      "id": "ID",
+      "diaVencimento": "Dia Vencimento",
+      "impostoAPagarEmpresa": "Imposto A Pagar Empresa",
+      "empresa": "Empresa",
+      "imposto": "Imposto"
+    }
+  }
+}

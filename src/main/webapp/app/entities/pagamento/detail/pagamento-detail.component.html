@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (pagamento()) {
+      <div>
+        <h2 data-cy="pagamentoDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.detail.title">Pagamento</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ pagamento()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.dataCobranca">Data Cobranca</span></dt>
+          <dd>
+            <span>{{ pagamento()!.dataCobranca | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.dataVencimento">Data Vencimento</span></dt>
+          <dd>
+            <span>{{ pagamento()!.dataVencimento | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.dataPagamento">Data Pagamento</span></dt>
+          <dd>
+            <span>{{ pagamento()!.dataPagamento | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.valorPago">Valor Pago</span></dt>
+          <dd>
+            <span>{{ pagamento()!.valorPago }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.valorCobrado">Valor Cobrado</span></dt>
+          <dd>
+            <span>{{ pagamento()!.valorCobrado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.acrescimo">Acrescimo</span></dt>
+          <dd>
+            <span>{{ pagamento()!.acrescimo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.multa">Multa</span></dt>
+          <dd>
+            <span>{{ pagamento()!.multa }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.juros">Juros</span></dt>
+          <dd>
+            <span>{{ pagamento()!.juros }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.situacao">Situacao</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoPagamentoEnum.' + (pagamento()!.situacao ?? 'null')">{{
+              { null: '', APAGAR: 'APAGAR', PAGO: 'PAGO', EMATRASO: 'EMATRASO' }[pagamento()!.situacao ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pagamento.assinaturaEmpresa">Assinatura Empresa</span></dt>
+          <dd>
+            @if (pagamento()!.assinaturaEmpresa) {
+              <div>
+                <a [routerLink]="['/assinatura-empresa', pagamento()!.assinaturaEmpresa?.id, 'view']">{{
+                  pagamento()!.assinaturaEmpresa?.codigoAssinatura
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/pagamento', pagamento()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051705"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "name": "GrupoAcessoEmpresa",
+  "relationships": [
+    {
+      "otherEntityName": "funcionalidadeGrupoAcessoEmpresa",
+      "otherEntityRelationshipName": "grupoAcessoEmpresa",
+      "relationshipName": "funcionalidadeGrupoAcessoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "grupoAcessoUsuarioEmpresa",
+      "otherEntityRelationshipName": "grupoAcessoEmpresa",
+      "relationshipName": "grupoAcessoUsuarioEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "grupoAcessoEmpresaUsuarioContador",
+      "otherEntityRelationshipName": "grupoAcessoEmpresa",
+      "relationshipName": "grupoAcessoEmpresaUsuarioContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "codigoAssinatura",
+      "otherEntityName": "assinaturaEmpresa",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="TarefaEmpresaModeloHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.home.title">Tarefa Empresa Modelos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-tarefa-empresa-modelo"
+        [routerLink]="['/tarefa-empresa-modelo/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.home.createLabel">Criar novo Tarefa Empresa Modelo</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (tarefaEmpresaModelos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.home.notFound">Nenhum Tarefa Empresa Modelo encontrado</span>
+    </div>
+  }
+
+  @if (tarefaEmpresaModelos && tarefaEmpresaModelos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataAdmin">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.dataAdmin">Data Admin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataLegal">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.dataLegal">Data Legal</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empresaModelo.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.empresaModelo">Empresa Modelo</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="servicoContabil.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaEmpresaModelo.servicoContabil">Servico Contabil</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tarefaEmpresaModelo of tarefaEmpresaModelos; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/tarefa-empresa-modelo', tarefaEmpresaModelo.id, 'view']">{{ tarefaEmpresaModelo.id }}</a>
+              </td>
+              <td>{{ tarefaEmpresaModelo.dataAdmin | formatMediumDatetime }}</td>
+              <td>{{ tarefaEmpresaModelo.dataLegal | formatMediumDatetime }}</td>
+              <td>
+                @if (tarefaEmpresaModelo.empresaModelo) {
+                  <div>
+                    <a [routerLink]="['/empresa-modelo', tarefaEmpresaModelo.empresaModelo.id, 'view']">{{
+                      tarefaEmpresaModelo.empresaModelo.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (tarefaEmpresaModelo.servicoContabil) {
+                  <div>
+                    <a [routerLink]="['/servico-contabil', tarefaEmpresaModelo.servicoContabil.id, 'view']">{{
+                      tarefaEmpresaModelo.servicoContabil.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/tarefa-empresa-modelo', tarefaEmpresaModelo.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/tarefa-empresa-modelo', tarefaEmpresaModelo.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(tarefaEmpresaModelo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

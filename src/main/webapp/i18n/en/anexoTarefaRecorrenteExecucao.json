@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoTarefaRecorrenteExecucao": {
+      "home": {
+        "title": "Anexo Tarefa Recorrente Execucaos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Anexo Tarefa Recorrente Execucao",
+        "createOrEditLabel": "Create or edit a Anexo Tarefa Recorrente Execucao",
+        "notFound": "No Anexo Tarefa Recorrente Execucaos found"
+      },
+      "created": "A new Anexo Tarefa Recorrente Execucao is created with identifier {{ param }}",
+      "updated": "A Anexo Tarefa Recorrente Execucao is updated with identifier {{ param }}",
+      "deleted": "A Anexo Tarefa Recorrente Execucao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Anexo Tarefa Recorrente Execucao {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Tarefa Recorrente Execucao"
+      },
+      "id": "ID",
+      "url": "Url",
+      "descricao": "Descricao",
+      "dataHoraUpload": "Data Hora Upload",
+      "tarefaRecorrenteExecucao": "Tarefa Recorrente Execucao"
+    }
+  }
+}

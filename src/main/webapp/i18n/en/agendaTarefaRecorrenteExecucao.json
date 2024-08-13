@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "agendaTarefaRecorrenteExecucao": {
+      "home": {
+        "title": "Agenda Tarefa Recorrente Execucaos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Agenda Tarefa Recorrente Execucao",
+        "createOrEditLabel": "Create or edit a Agenda Tarefa Recorrente Execucao",
+        "notFound": "No Agenda Tarefa Recorrente Execucaos found"
+      },
+      "created": "A new Agenda Tarefa Recorrente Execucao is created with identifier {{ param }}",
+      "updated": "A Agenda Tarefa Recorrente Execucao is updated with identifier {{ param }}",
+      "deleted": "A Agenda Tarefa Recorrente Execucao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Agenda Tarefa Recorrente Execucao {{ id }}?"
+      },
+      "detail": {
+        "title": "Agenda Tarefa Recorrente Execucao"
+      },
+      "id": "ID",
+      "ativo": "Ativo",
+      "horaInicio": "Hora Inicio",
+      "horaFim": "Hora Fim",
+      "diaInteiro": "Dia Inteiro",
+      "comentario": "Comentario",
+      "agendaContadorConfig": "Agenda Contador Config",
+      "tarefaRecorrenteExecucao": "Tarefa Recorrente Execucao"
+    }
+  }
+}

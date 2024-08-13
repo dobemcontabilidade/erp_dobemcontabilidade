@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "servicoContabilAssinaturaEmpresa": {
+      "home": {
+        "title": "Servico Contabil Assinatura Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Servico Contabil Assinatura Empresa",
+        "createOrEditLabel": "Create or edit a Servico Contabil Assinatura Empresa",
+        "notFound": "No Servico Contabil Assinatura Empresas found"
+      },
+      "created": "A new Servico Contabil Assinatura Empresa is created with identifier {{ param }}",
+      "updated": "A Servico Contabil Assinatura Empresa is updated with identifier {{ param }}",
+      "deleted": "A Servico Contabil Assinatura Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Servico Contabil Assinatura Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Servico Contabil Assinatura Empresa"
+      },
+      "id": "ID",
+      "dataLegal": "Data Legal",
+      "dataAdmin": "Data Admin",
+      "anexoServicoContabilEmpresa": "Anexo Servico Contabil Empresa",
+      "tarefaRecorrente": "Tarefa Recorrente",
+      "servicoContabil": "Servico Contabil",
+      "assinaturaEmpresa": "Assinatura Empresa"
+    }
+  }
+}

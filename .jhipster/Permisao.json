@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051719"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Permisao",
+  "relationships": [
+    {
+      "otherEntityName": "funcionalidadeGrupoAcessoPadrao",
+      "otherEntityRelationshipName": "permisao",
+      "relationshipName": "funcionalidadeGrupoAcessoPadrao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "funcionalidadeGrupoAcessoEmpresa",
+      "otherEntityRelationshipName": "permisao",
+      "relationshipName": "funcionalidadeGrupoAcessoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "grupoAcessoEmpresaUsuarioContador",
+      "otherEntityRelationshipName": "permisao",
+      "relationshipName": "grupoAcessoEmpresaUsuarioContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

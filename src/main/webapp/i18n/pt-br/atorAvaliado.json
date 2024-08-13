@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "atorAvaliado": {
+      "home": {
+        "title": "Ator Avaliados",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Ator Avaliado",
+        "createOrEditLabel": "Criar ou editar Ator Avaliado",
+        "notFound": "Nenhum Ator Avaliado encontrado"
+      },
+      "created": "Um novo Ator Avaliado foi criado com o identificador {{ param }}",
+      "updated": "Um Ator Avaliado foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Ator Avaliado foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Ator Avaliado {{ id }}?"
+      },
+      "detail": {
+        "title": "Ator Avaliado"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "ativo": "Ativo",
+      "criterioAvaliacaoAtor": "Criterio Avaliacao Ator"
+    }
+  }
+}

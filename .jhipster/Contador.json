@@ -1,0 +1,137 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051628"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "crc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "limiteEmpresas",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "limiteDepartamentos",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "limiteFaturamento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "situacaoContador",
+      "fieldType": "SituacaoContadorEnum",
+      "fieldValues": "BANIDO,BLOQUEADO,HABILITADO,INAPTO,INATIVO,PENDENTE,SUSPENSO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Contador",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoa",
+      "relationshipName": "pessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "email",
+      "otherEntityName": "usuarioContador",
+      "relationshipName": "usuarioContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "areaContabilAssinaturaEmpresa",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "areaContabilAssinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "feedBackContadorParaUsuario",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "feedBackContadorParaUsuario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "ordemServico",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "ordemServico",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "areaContabilContador",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "areaContabilContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "contadorResponsavelOrdemServico",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "contadorResponsavelOrdemServico",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "contadorResponsavelTarefaRecorrente",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "contadorResponsavelTarefaRecorrente",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "departamentoEmpresa",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "departamentoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "departamentoContador",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "departamentoContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "termoAdesaoContador",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "termoAdesaoContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "avaliacaoContador",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "avaliacaoContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tarefaEmpresa",
+      "otherEntityRelationshipName": "contador",
+      "relationshipName": "tarefaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "perfil",
+      "otherEntityName": "perfilContador",
+      "relationshipName": "perfilContador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

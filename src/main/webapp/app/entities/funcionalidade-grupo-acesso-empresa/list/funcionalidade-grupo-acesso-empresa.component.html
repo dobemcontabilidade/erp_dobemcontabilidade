@@ -1,0 +1,176 @@
+<div>
+  <h2 id="page-heading" data-cy="FuncionalidadeGrupoAcessoEmpresaHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.home.title">Funcionalidade Grupo Acesso Empresas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-funcionalidade-grupo-acesso-empresa"
+        [routerLink]="['/funcionalidade-grupo-acesso-empresa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.home.createLabel"
+          >Criar novo Funcionalidade Grupo Acesso Empresa</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (funcionalidadeGrupoAcessoEmpresas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.home.notFound"
+        >Nenhum Funcionalidade Grupo Acesso Empresa encontrado</span
+      >
+    </div>
+  }
+
+  @if (funcionalidadeGrupoAcessoEmpresas && funcionalidadeGrupoAcessoEmpresas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ativa">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.ativa">Ativa</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataExpiracao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.dataExpiracao">Data Expiracao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ilimitado">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.ilimitado">Ilimitado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="desabilitar">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.desabilitar">Desabilitar</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="funcionalidade.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.funcionalidade">Funcionalidade</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="grupoAcessoEmpresa.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.grupoAcessoEmpresa"
+                  >Grupo Acesso Empresa</span
+                >
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="permisao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoEmpresa.permisao">Permisao</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (funcionalidadeGrupoAcessoEmpresa of funcionalidadeGrupoAcessoEmpresas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/funcionalidade-grupo-acesso-empresa', funcionalidadeGrupoAcessoEmpresa.id, 'view']">{{
+                  funcionalidadeGrupoAcessoEmpresa.id
+                }}</a>
+              </td>
+              <td>{{ funcionalidadeGrupoAcessoEmpresa.ativa }}</td>
+              <td>{{ funcionalidadeGrupoAcessoEmpresa.dataExpiracao | formatMediumDatetime }}</td>
+              <td>{{ funcionalidadeGrupoAcessoEmpresa.ilimitado }}</td>
+              <td>{{ funcionalidadeGrupoAcessoEmpresa.desabilitar }}</td>
+              <td>
+                @if (funcionalidadeGrupoAcessoEmpresa.funcionalidade) {
+                  <div>
+                    <a [routerLink]="['/funcionalidade', funcionalidadeGrupoAcessoEmpresa.funcionalidade.id, 'view']">{{
+                      funcionalidadeGrupoAcessoEmpresa.funcionalidade.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (funcionalidadeGrupoAcessoEmpresa.grupoAcessoEmpresa) {
+                  <div>
+                    <a [routerLink]="['/grupo-acesso-empresa', funcionalidadeGrupoAcessoEmpresa.grupoAcessoEmpresa.id, 'view']">{{
+                      funcionalidadeGrupoAcessoEmpresa.grupoAcessoEmpresa.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (funcionalidadeGrupoAcessoEmpresa.permisao) {
+                  <div>
+                    <a [routerLink]="['/permisao', funcionalidadeGrupoAcessoEmpresa.permisao.id, 'view']">{{
+                      funcionalidadeGrupoAcessoEmpresa.permisao.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/funcionalidade-grupo-acesso-empresa', funcionalidadeGrupoAcessoEmpresa.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/funcionalidade-grupo-acesso-empresa', funcionalidadeGrupoAcessoEmpresa.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(funcionalidadeGrupoAcessoEmpresa)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

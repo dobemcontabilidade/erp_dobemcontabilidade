@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "agendaContadorConfig": {
+      "home": {
+        "title": "Agenda Contador Configs",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Agenda Contador Config",
+        "createOrEditLabel": "Criar ou editar Agenda Contador Config",
+        "notFound": "Nenhum Agenda Contador Config encontrado"
+      },
+      "created": "Um novo Agenda Contador Config foi criado com o identificador {{ param }}",
+      "updated": "Um Agenda Contador Config foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Agenda Contador Config foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Agenda Contador Config {{ id }}?"
+      },
+      "detail": {
+        "title": "Agenda Contador Config"
+      },
+      "id": "ID",
+      "ativo": "Ativo",
+      "tipoVisualizacaoAgendaEnum": "Tipo Visualizacao Agenda Enum",
+      "agendaTarefaRecorrenteExecucao": "Agenda Tarefa Recorrente Execucao",
+      "agendaTarefaOrdemServicoExecucao": "Agenda Tarefa Ordem Servico Execucao"
+    }
+  }
+}

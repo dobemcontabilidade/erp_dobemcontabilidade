@@ -1,0 +1,251 @@
+<div>
+  <h2 id="page-heading" data-cy="ContadorHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.contador.home.title">Contadors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.contador.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contador"
+        [routerLink]="['/contador/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.contador.home.createLabel">Criar novo Contador</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (contadors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.contador.home.notFound">Nenhum Contador encontrado</span>
+    </div>
+  }
+
+  @if (contadors && contadors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="crc">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contador.crc">Crc</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="limiteEmpresas">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contador.limiteEmpresas">Limite Empresas</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="limiteDepartamentos">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contador.limiteDepartamentos">Limite Departamentos</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="limiteFaturamento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contador.limiteFaturamento">Limite Faturamento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="situacaoContador">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contador.situacaoContador">Situacao Contador</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pessoa.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contador.pessoa">Pessoa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="usuarioContador.email">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contador.usuarioContador">Usuario Contador</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="perfilContador.perfil">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contador.perfilContador">Perfil Contador</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (contador of contadors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/contador', contador.id, 'view']">{{ contador.id }}</a>
+              </td>
+              <td>{{ contador.crc }}</td>
+              <td>{{ contador.limiteEmpresas }}</td>
+              <td>{{ contador.limiteDepartamentos }}</td>
+              <td>{{ contador.limiteFaturamento }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoContadorEnum.' + (contador.situacaoContador ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    BANIDO: 'BANIDO',
+                    BLOQUEADO: 'BLOQUEADO',
+                    HABILITADO: 'HABILITADO',
+                    INAPTO: 'INAPTO',
+                    INATIVO: 'INATIVO',
+                    PENDENTE: 'PENDENTE',
+                    SUSPENSO: 'SUSPENSO',
+                  }[contador.situacaoContador ?? 'null']
+                }}
+              </td>
+              <td>
+                @if (contador.pessoa) {
+                  <div>
+                    <a [routerLink]="['/pessoa', contador.pessoa.id, 'view']">{{ contador.pessoa.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (contador.usuarioContador) {
+                  <div>
+                    <a [routerLink]="['/usuario-contador', contador.usuarioContador.id, 'view']">{{ contador.usuarioContador.email }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (contador.perfilContador) {
+                  <div>
+                    <a [routerLink]="['/perfil-contador', contador.perfilContador.id, 'view']">{{ contador.perfilContador.perfil }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <button
+                    type="submit"
+                    [routerLink]="['/departamento-empresa']"
+                    [queryParams]="{ 'filter[contadorId.in]': contador.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('erpDobemcontabilidadeApp.contador.departamentoEmpresa' | translate) }"
+                      >Mostrar Departamento Empresa</span
+                    >
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/departamento-contador']"
+                    [queryParams]="{ 'filter[contadorId.in]': contador.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('erpDobemcontabilidadeApp.contador.departamentoContador' | translate) }"
+                      >Mostrar Departamento Contador</span
+                    >
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/termo-adesao-contador']"
+                    [queryParams]="{ 'filter[contadorId.in]': contador.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('erpDobemcontabilidadeApp.contador.termoAdesaoContador' | translate) }"
+                      >Mostrar Termo Adesao Contador</span
+                    >
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/tarefa-empresa']"
+                    [queryParams]="{ 'filter[contadorId.in]': contador.id }"
+                    class="btn btn-info btn-sm"
+                    data-cy="filterOtherEntityButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span
+                      class="d-none d-md-inline"
+                      jhiTranslate="entity.action.show"
+                      [translateValues]="{ otherEntity: ('erpDobemcontabilidadeApp.contador.tarefaEmpresa' | translate) }"
+                      >Mostrar Tarefa Empresa</span
+                    >
+                  </button>
+                  <a [routerLink]="['/contador', contador.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/contador', contador.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(contador)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (contadors && contadors.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

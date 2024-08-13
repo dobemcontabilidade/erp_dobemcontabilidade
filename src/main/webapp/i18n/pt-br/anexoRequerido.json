@@ -1,0 +1,32 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoRequerido": {
+      "home": {
+        "title": "Anexo Requeridos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Anexo Requerido",
+        "createOrEditLabel": "Criar ou editar Anexo Requerido",
+        "notFound": "Nenhum Anexo Requerido encontrado"
+      },
+      "created": "Um novo Anexo Requerido foi criado com o identificador {{ param }}",
+      "updated": "Um Anexo Requerido foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Anexo Requerido foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Anexo Requerido {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Requerido"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "tipo": "Tipo",
+      "descricao": "Descricao",
+      "anexoRequeridoPessoa": "Anexo Requerido Pessoa",
+      "anexoRequeridoEmpresa": "Anexo Requerido Empresa",
+      "anexoRequeridoServicoContabil": "Anexo Requerido Servico Contabil",
+      "anexoServicoContabilEmpresa": "Anexo Servico Contabil Empresa",
+      "anexoRequeridoTarefaOrdemServico": "Anexo Requerido Tarefa Ordem Servico",
+      "anexoRequeridoTarefaRecorrente": "Anexo Requerido Tarefa Recorrente"
+    }
+  }
+}

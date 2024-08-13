@@ -1,0 +1,71 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051616"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tipo",
+      "fieldType": "TipoAnexoRequeridoEnum",
+      "fieldValues": "PJ,PF"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "AnexoRequerido",
+  "relationships": [
+    {
+      "otherEntityName": "anexoRequeridoPessoa",
+      "otherEntityRelationshipName": "anexoRequerido",
+      "relationshipName": "anexoRequeridoPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoRequeridoEmpresa",
+      "otherEntityRelationshipName": "anexoRequerido",
+      "relationshipName": "anexoRequeridoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoRequeridoServicoContabil",
+      "otherEntityRelationshipName": "anexoRequerido",
+      "relationshipName": "anexoRequeridoServicoContabil",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoServicoContabilEmpresa",
+      "otherEntityRelationshipName": "anexoRequerido",
+      "relationshipName": "anexoServicoContabilEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoRequeridoTarefaOrdemServico",
+      "otherEntityRelationshipName": "anexoRequerido",
+      "relationshipName": "anexoRequeridoTarefaOrdemServico",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "anexoRequeridoTarefaRecorrente",
+      "otherEntityRelationshipName": "anexoRequerido",
+      "relationshipName": "anexoRequeridoTarefaRecorrente",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

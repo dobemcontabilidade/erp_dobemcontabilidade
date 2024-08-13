@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "imposto": {
+      "home": {
+        "title": "Impostos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Imposto",
+        "createOrEditLabel": "Criar ou editar Imposto",
+        "notFound": "Nenhum Imposto encontrado"
+      },
+      "created": "Um novo Imposto foi criado com o identificador {{ param }}",
+      "updated": "Um Imposto foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Imposto foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Imposto {{ id }}?"
+      },
+      "detail": {
+        "title": "Imposto"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "sigla": "Sigla",
+      "descricao": "Descricao",
+      "impostoEmpresa": "Imposto Empresa",
+      "parcelamentoImposto": "Parcelamento Imposto",
+      "impostoEmpresaModelo": "Imposto Empresa Modelo",
+      "esfera": "Esfera"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (tarefaOrdemServicoExecucao()) {
+      <div>
+        <h2 data-cy="tarefaOrdemServicoExecucaoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.detail.title">Tarefa Ordem Servico Execucao</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServicoExecucao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.nome">Nome</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServicoExecucao()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServicoExecucao()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.ordem">Ordem</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServicoExecucao()!.ordem }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.dataEntrega">Data Entrega</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServicoExecucao()!.dataEntrega | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.dataAgendada">Data Agendada</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServicoExecucao()!.dataAgendada | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.concluida">Concluida</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServicoExecucao()!.concluida }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.notificarCliente">Notificar Cliente</span></dt>
+          <dd>
+            <span>{{ tarefaOrdemServicoExecucao()!.notificarCliente }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.mes">Mes</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.MesCompetenciaEnum.' + (tarefaOrdemServicoExecucao()!.mes ?? 'null')">{{
+              {
+                null: '',
+                JANEIRO: 'JANEIRO',
+                FEVEREIRO: 'FEVEREIRO',
+                MARCO: 'MARCO',
+                ABRIL: 'ABRIL',
+                MAIO: 'MAIO',
+                JUNHO: 'JUNHO',
+                JULHO: 'JULHO',
+                AGOSTO: 'AGOSTO',
+                SETEMBRO: 'SETEMBRO',
+                OUTUBRO: 'OUTUBRO',
+                NOVEMBRO: 'NOVEMBRO',
+                DEZEMBRO: 'DEZEMBRO',
+              }[tarefaOrdemServicoExecucao()!.mes ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.situacaoTarefa">Situacao Tarefa</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoTarefaEnum.' + (tarefaOrdemServicoExecucao()!.situacaoTarefa ?? 'null')"
+              >{{
+                {
+                  null: '',
+                  AGENDADA: 'AGENDADA',
+                  CANCELADA: 'CANCELADA',
+                  EMEXECUCAO: 'EMEXECUCAO',
+                  CONCLUIDA: 'CONCLUIDA',
+                  PENDENTE: 'PENDENTE',
+                  DELETADA: 'DELETADA',
+                }[tarefaOrdemServicoExecucao()!.situacaoTarefa ?? 'null']
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServicoExecucao.tarefaOrdemServico">Tarefa Ordem Servico</span></dt>
+          <dd>
+            @if (tarefaOrdemServicoExecucao()!.tarefaOrdemServico) {
+              <div>
+                <a [routerLink]="['/tarefa-ordem-servico', tarefaOrdemServicoExecucao()!.tarefaOrdemServico?.id, 'view']">{{
+                  tarefaOrdemServicoExecucao()!.tarefaOrdemServico?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/tarefa-ordem-servico-execucao', tarefaOrdemServicoExecucao()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

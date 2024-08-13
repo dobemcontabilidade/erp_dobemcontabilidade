@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051710"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    }
+  ],
+  "name": "GatewayPagamento",
+  "relationships": [
+    {
+      "otherEntityName": "gatewayAssinaturaEmpresa",
+      "otherEntityRelationshipName": "gatewayPagamento",
+      "relationshipName": "gatewayAssinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

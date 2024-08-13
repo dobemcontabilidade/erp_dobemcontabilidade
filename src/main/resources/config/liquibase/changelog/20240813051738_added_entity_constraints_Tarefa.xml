@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity Tarefa.
+    -->
+    <changeSet id="20240813051738-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="esfera_id"
+                                 baseTableName="tarefa"
+                                 constraintName="fk_tarefa__esfera_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="esfera"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="frequencia_id"
+                                 baseTableName="tarefa"
+                                 constraintName="fk_tarefa__frequencia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="frequencia"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="competencia_id"
+                                 baseTableName="tarefa"
+                                 constraintName="fk_tarefa__competencia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="competencia"
+                                 />
+    </changeSet>
+</databaseChangeLog>

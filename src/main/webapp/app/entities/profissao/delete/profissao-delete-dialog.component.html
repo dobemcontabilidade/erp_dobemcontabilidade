@@ -1,0 +1,28 @@
+@if (profissao) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(profissao.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="profissaoDeleteDialogHeading" jhiTranslate="entity.delete.title">Confirme a exclusão</h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error></jhi-alert-error>
+      <p
+        id="jhi-delete-profissao-heading"
+        jhiTranslate="erpDobemcontabilidadeApp.profissao.delete.question"
+        [translateValues]="{ id: profissao.id }"
+      >
+        Tem certeza de que deseja excluir Profissao {{ profissao.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+      </button>
+
+      <button id="jhi-confirm-delete-profissao" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Excluir</span>
+      </button>
+    </div>
+  </form>
+}

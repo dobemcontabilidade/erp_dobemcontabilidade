@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (observacaoCnae()) {
+      <div>
+        <h2 data-cy="observacaoCnaeDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.observacaoCnae.detail.title">Observacao Cnae</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ observacaoCnae()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.observacaoCnae.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ observacaoCnae()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.observacaoCnae.subclasse">Subclasse</span></dt>
+          <dd>
+            @if (observacaoCnae()!.subclasse) {
+              <div>
+                <a [routerLink]="['/subclasse-cnae', observacaoCnae()!.subclasse?.id, 'view']">{{
+                  observacaoCnae()!.subclasse?.descricao
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/observacao-cnae', observacaoCnae()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

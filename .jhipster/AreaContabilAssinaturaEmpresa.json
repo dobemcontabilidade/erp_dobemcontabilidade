@@ -1,0 +1,50 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051557"
+  },
+  "applications": "*",
+  "entityTableName": "area_cont_assin_empresa",
+  "fields": [
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dataAtribuicao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataRevogacao",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "AreaContabilAssinaturaEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "areaContabil",
+      "relationshipName": "areaContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "codigoAssinatura",
+      "otherEntityName": "assinaturaEmpresa",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "crc",
+      "otherEntityName": "contador",
+      "relationshipName": "contador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,51 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051622"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "CriterioAvaliacaoAtor",
+  "relationships": [
+    {
+      "otherEntityName": "feedBackUsuarioParaContador",
+      "otherEntityRelationshipName": "criterioAvaliacaoAtor",
+      "relationshipName": "feedBackUsuarioParaContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "feedBackContadorParaUsuario",
+      "otherEntityRelationshipName": "criterioAvaliacaoAtor",
+      "relationshipName": "feedBackContadorParaUsuario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "descricao",
+      "otherEntityName": "criterioAvaliacao",
+      "relationshipName": "criterioAvaliacao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "atorAvaliado",
+      "relationshipName": "atorAvaliado",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

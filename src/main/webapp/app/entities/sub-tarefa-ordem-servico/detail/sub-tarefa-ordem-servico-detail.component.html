@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (subTarefaOrdemServico()) {
+      <div>
+        <h2 data-cy="subTarefaOrdemServicoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaOrdemServico.detail.title">Sub Tarefa Ordem Servico</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ subTarefaOrdemServico()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.subTarefaOrdemServico.nome">Nome</span></dt>
+          <dd>
+            <span>{{ subTarefaOrdemServico()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.subTarefaOrdemServico.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ subTarefaOrdemServico()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.subTarefaOrdemServico.ordem">Ordem</span></dt>
+          <dd>
+            <span>{{ subTarefaOrdemServico()!.ordem }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.subTarefaOrdemServico.concluida">Concluida</span></dt>
+          <dd>
+            <span>{{ subTarefaOrdemServico()!.concluida }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaOrdemServico.tarefaOrdemServicoExecucao"
+              >Tarefa Ordem Servico Execucao</span
+            >
+          </dt>
+          <dd>
+            @if (subTarefaOrdemServico()!.tarefaOrdemServicoExecucao) {
+              <div>
+                <a [routerLink]="['/tarefa-ordem-servico-execucao', subTarefaOrdemServico()!.tarefaOrdemServicoExecucao?.id, 'view']">{{
+                  subTarefaOrdemServico()!.tarefaOrdemServicoExecucao?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/sub-tarefa-ordem-servico', subTarefaOrdemServico()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

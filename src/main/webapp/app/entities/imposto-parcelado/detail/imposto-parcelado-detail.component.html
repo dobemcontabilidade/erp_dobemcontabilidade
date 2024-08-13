@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (impostoParcelado()) {
+      <div>
+        <h2 data-cy="impostoParceladoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.detail.title">Imposto Parcelado</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ impostoParcelado()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.diasAtraso">Dias Atraso</span></dt>
+          <dd>
+            <span>{{ impostoParcelado()!.diasAtraso }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.parcelamentoImposto">Parcelamento Imposto</span></dt>
+          <dd>
+            @if (impostoParcelado()!.parcelamentoImposto) {
+              <div>
+                <a [routerLink]="['/parcelamento-imposto', impostoParcelado()!.parcelamentoImposto?.id, 'view']">{{
+                  impostoParcelado()!.parcelamentoImposto?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.impostoAPagarEmpresa">Imposto A Pagar Empresa</span></dt>
+          <dd>
+            @if (impostoParcelado()!.impostoAPagarEmpresa) {
+              <div>
+                <a [routerLink]="['/imposto-a-pagar-empresa', impostoParcelado()!.impostoAPagarEmpresa?.id, 'view']">{{
+                  impostoParcelado()!.impostoAPagarEmpresa?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/imposto-parcelado', impostoParcelado()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="BancoPessoaHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.home.title">Banco Pessoas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-banco-pessoa"
+        [routerLink]="['/banco-pessoa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.home.createLabel">Criar novo Banco Pessoa</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (bancoPessoas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.home.notFound">Nenhum Banco Pessoa encontrado</span>
+    </div>
+  }
+
+  @if (bancoPessoas && bancoPessoas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="agencia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.agencia">Agencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="conta">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.conta">Conta</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoConta">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.tipoConta">Tipo Conta</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="principal">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.principal">Principal</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pessoa.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.pessoa">Pessoa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="banco.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.bancoPessoa.banco">Banco</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (bancoPessoa of bancoPessoas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/banco-pessoa', bancoPessoa.id, 'view']">{{ bancoPessoa.id }}</a>
+              </td>
+              <td>{{ bancoPessoa.agencia }}</td>
+              <td>{{ bancoPessoa.conta }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.TipoContaBancoEnum.' + (bancoPessoa.tipoConta ?? 'null')">
+                {{
+                  { null: '', CONTACORRENTE: 'CONTACORRENTE', CONTAPOUPANCA: 'CONTAPOUPANCA', CONTASALARIO: 'CONTASALARIO' }[
+                    bancoPessoa.tipoConta ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ bancoPessoa.principal }}</td>
+              <td>
+                @if (bancoPessoa.pessoa) {
+                  <div>
+                    <a [routerLink]="['/pessoa', bancoPessoa.pessoa.id, 'view']">{{ bancoPessoa.pessoa.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (bancoPessoa.banco) {
+                  <div>
+                    <a [routerLink]="['/banco', bancoPessoa.banco.id, 'view']">{{ bancoPessoa.banco.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/banco-pessoa', bancoPessoa.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/banco-pessoa', bancoPessoa.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(bancoPessoa)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

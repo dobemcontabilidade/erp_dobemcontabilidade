@@ -1,0 +1,36 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "tarefaRecorrenteExecucao": {
+      "home": {
+        "title": "Tarefa Recorrente Execucaos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Tarefa Recorrente Execucao",
+        "createOrEditLabel": "Create or edit a Tarefa Recorrente Execucao",
+        "notFound": "No Tarefa Recorrente Execucaos found"
+      },
+      "created": "A new Tarefa Recorrente Execucao is created with identifier {{ param }}",
+      "updated": "A Tarefa Recorrente Execucao is updated with identifier {{ param }}",
+      "deleted": "A Tarefa Recorrente Execucao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tarefa Recorrente Execucao {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarefa Recorrente Execucao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "dataEntrega": "Data Entrega",
+      "dataAgendada": "Data Agendada",
+      "ordem": "Ordem",
+      "concluida": "Concluida",
+      "mes": "Mes",
+      "situacaoTarefa": "Situacao Tarefa",
+      "agendaTarefaRecorrenteExecucao": "Agenda Tarefa Recorrente Execucao",
+      "anexoTarefaRecorrenteExecucao": "Anexo Tarefa Recorrente Execucao",
+      "subTarefaRecorrente": "Sub Tarefa Recorrente",
+      "contadorResponsavelTarefaRecorrente": "Contador Responsavel Tarefa Recorrente",
+      "tarefaRecorrente": "Tarefa Recorrente"
+    }
+  }
+}

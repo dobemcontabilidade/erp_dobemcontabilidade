@@ -1,0 +1,463 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-demissao-funcionario-heading"
+        data-cy="DemissaoFuncionarioCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.home.createOrEditLabel"
+      >
+        Criar ou editar Demissao Funcionario
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_numeroCertidaoObito"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.numeroCertidaoObito"
+            >Numero Certidao Obito</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="numeroCertidaoObito"
+            id="field_numeroCertidaoObito"
+            data-cy="numeroCertidaoObito"
+            formControlName="numeroCertidaoObito"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_cnpjEmpresaSucessora"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.cnpjEmpresaSucessora"
+            >Cnpj Empresa Sucessora</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="cnpjEmpresaSucessora"
+            id="field_cnpjEmpresaSucessora"
+            data-cy="cnpjEmpresaSucessora"
+            formControlName="cnpjEmpresaSucessora"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_saldoFGTS" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.saldoFGTS"
+            >Saldo FGTS</label
+          >
+          <input type="text" class="form-control" name="saldoFGTS" id="field_saldoFGTS" data-cy="saldoFGTS" formControlName="saldoFGTS" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorPensao" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.valorPensao"
+            >Valor Pensao</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="valorPensao"
+            id="field_valorPensao"
+            data-cy="valorPensao"
+            formControlName="valorPensao"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorPensaoFgts" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.valorPensaoFgts"
+            >Valor Pensao Fgts</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="valorPensaoFgts"
+            id="field_valorPensaoFgts"
+            data-cy="valorPensaoFgts"
+            formControlName="valorPensaoFgts"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_percentualPensao"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.percentualPensao"
+            >Percentual Pensao</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="percentualPensao"
+            id="field_percentualPensao"
+            data-cy="percentualPensao"
+            formControlName="percentualPensao"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_percentualFgts" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.percentualFgts"
+            >Percentual Fgts</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="percentualFgts"
+            id="field_percentualFgts"
+            data-cy="percentualFgts"
+            formControlName="percentualFgts"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diasAvisoPrevio" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.diasAvisoPrevio"
+            >Dias Aviso Previo</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="diasAvisoPrevio"
+            id="field_diasAvisoPrevio"
+            data-cy="diasAvisoPrevio"
+            formControlName="diasAvisoPrevio"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataAvisoPrevio" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dataAvisoPrevio"
+            >Data Aviso Previo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dataAvisoPrevio"
+            id="field_dataAvisoPrevio"
+            data-cy="dataAvisoPrevio"
+            formControlName="dataAvisoPrevio"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataPagamento" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dataPagamento"
+            >Data Pagamento</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dataPagamento"
+            id="field_dataPagamento"
+            data-cy="dataPagamento"
+            formControlName="dataPagamento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataAfastamento" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dataAfastamento"
+            >Data Afastamento</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dataAfastamento"
+            id="field_dataAfastamento"
+            data-cy="dataAfastamento"
+            formControlName="dataAfastamento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_urlDemissional" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.urlDemissional"
+            >Url Demissional</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="urlDemissional"
+            id="field_urlDemissional"
+            data-cy="urlDemissional"
+            formControlName="urlDemissional"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_calcularRecisao" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.calcularRecisao"
+            >Calcular Recisao</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="calcularRecisao"
+            id="field_calcularRecisao"
+            data-cy="calcularRecisao"
+            formControlName="calcularRecisao"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pagar13Recisao" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.pagar13Recisao"
+            >Pagar 13 Recisao</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="pagar13Recisao"
+            id="field_pagar13Recisao"
+            data-cy="pagar13Recisao"
+            formControlName="pagar13Recisao"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_jornadaTrabalhoCumpridaSemana"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.jornadaTrabalhoCumpridaSemana"
+            >Jornada Trabalho Cumprida Semana</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="jornadaTrabalhoCumpridaSemana"
+            id="field_jornadaTrabalhoCumpridaSemana"
+            data-cy="jornadaTrabalhoCumpridaSemana"
+            formControlName="jornadaTrabalhoCumpridaSemana"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sabadoCompesado" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.sabadoCompesado"
+            >Sabado Compesado</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="sabadoCompesado"
+            id="field_sabadoCompesado"
+            data-cy="sabadoCompesado"
+            formControlName="sabadoCompesado"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_novoVinculoComprovado"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.novoVinculoComprovado"
+            >Novo Vinculo Comprovado</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="novoVinculoComprovado"
+            id="field_novoVinculoComprovado"
+            data-cy="novoVinculoComprovado"
+            formControlName="novoVinculoComprovado"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dispensaAvisoPrevio"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.dispensaAvisoPrevio"
+            >Dispensa Aviso Previo</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="dispensaAvisoPrevio"
+            id="field_dispensaAvisoPrevio"
+            data-cy="dispensaAvisoPrevio"
+            formControlName="dispensaAvisoPrevio"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_fgtsArrecadadoGuia"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.fgtsArrecadadoGuia"
+            >Fgts Arrecadado Guia</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="fgtsArrecadadoGuia"
+            id="field_fgtsArrecadadoGuia"
+            data-cy="fgtsArrecadadoGuia"
+            formControlName="fgtsArrecadadoGuia"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_avisoPrevioTrabalhadoRecebido"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.avisoPrevioTrabalhadoRecebido"
+            >Aviso Previo Trabalhado Recebido</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="avisoPrevioTrabalhadoRecebido"
+            id="field_avisoPrevioTrabalhadoRecebido"
+            data-cy="avisoPrevioTrabalhadoRecebido"
+            formControlName="avisoPrevioTrabalhadoRecebido"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_recolherFgtsMesAnterior"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.recolherFgtsMesAnterior"
+            >Recolher Fgts Mes Anterior</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="recolherFgtsMesAnterior"
+            id="field_recolherFgtsMesAnterior"
+            data-cy="recolherFgtsMesAnterior"
+            formControlName="recolherFgtsMesAnterior"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_avisoPrevioIndenizado"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.avisoPrevioIndenizado"
+            >Aviso Previo Indenizado</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="avisoPrevioIndenizado"
+            id="field_avisoPrevioIndenizado"
+            data-cy="avisoPrevioIndenizado"
+            formControlName="avisoPrevioIndenizado"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_cumprimentoAvisoPrevio"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.cumprimentoAvisoPrevio"
+            >Cumprimento Aviso Previo</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="cumprimentoAvisoPrevio"
+            id="field_cumprimentoAvisoPrevio"
+            data-cy="cumprimentoAvisoPrevio"
+            formControlName="cumprimentoAvisoPrevio"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_avisoPrevio" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.avisoPrevio"
+            >Aviso Previo</label
+          >
+          <select class="form-control" name="avisoPrevio" formControlName="avisoPrevio" id="field_avisoPrevio" data-cy="avisoPrevio">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.AvisoPrevioEnum.null' | translate }}</option>
+            @for (avisoPrevioEnum of avisoPrevioEnumValues; track $index) {
+              <option [value]="avisoPrevioEnum">{{ 'erpDobemcontabilidadeApp.AvisoPrevioEnum.' + avisoPrevioEnum | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_situacaoDemissao"
+            jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.situacaoDemissao"
+            >Situacao Demissao</label
+          >
+          <select
+            class="form-control"
+            name="situacaoDemissao"
+            formControlName="situacaoDemissao"
+            id="field_situacaoDemissao"
+            data-cy="situacaoDemissao"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.SituacaoDemissaoEnum.null' | translate }}</option>
+            @for (situacaoDemissaoEnum of situacaoDemissaoEnumValues; track $index) {
+              <option [value]="situacaoDemissaoEnum">
+                {{ 'erpDobemcontabilidadeApp.SituacaoDemissaoEnum.' + situacaoDemissaoEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tipoDemissao" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.tipoDemissao"
+            >Tipo Demissao</label
+          >
+          <select class="form-control" name="tipoDemissao" formControlName="tipoDemissao" id="field_tipoDemissao" data-cy="tipoDemissao">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoDemissaoEnum.null' | translate }}</option>
+            @for (tipoDemissaoEnum of tipoDemissaoEnumValues; track $index) {
+              <option [value]="tipoDemissaoEnum">{{ 'erpDobemcontabilidadeApp.TipoDemissaoEnum.' + tipoDemissaoEnum | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_funcionario" jhiTranslate="erpDobemcontabilidadeApp.demissaoFuncionario.funcionario"
+            >Funcionario</label
+          >
+          <select
+            class="form-control"
+            id="field_funcionario"
+            data-cy="funcionario"
+            name="funcionario"
+            formControlName="funcionario"
+            [compareWith]="compareFuncionario"
+          >
+            @if (editForm.get(['funcionario'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (funcionarioOption of funcionariosSharedCollection; track $index) {
+              <option [ngValue]="funcionarioOption">{{ funcionarioOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['funcionario'])!.invalid && (editForm.get(['funcionario'])!.dirty || editForm.get(['funcionario'])!.touched)) {
+          <div>
+            @if (editForm.get(['funcionario'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

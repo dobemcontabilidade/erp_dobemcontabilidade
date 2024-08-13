@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "servicoContabilEmpresaModelo": {
+      "home": {
+        "title": "Servico Contabil Empresa Modelos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Servico Contabil Empresa Modelo",
+        "createOrEditLabel": "Criar ou editar Servico Contabil Empresa Modelo",
+        "notFound": "Nenhum Servico Contabil Empresa Modelo encontrado"
+      },
+      "created": "Um novo Servico Contabil Empresa Modelo foi criado com o identificador {{ param }}",
+      "updated": "Um Servico Contabil Empresa Modelo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Servico Contabil Empresa Modelo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Servico Contabil Empresa Modelo {{ id }}?"
+      },
+      "detail": {
+        "title": "Servico Contabil Empresa Modelo"
+      },
+      "id": "ID",
+      "obrigatorio": "Obrigatorio",
+      "tarefaRecorrenteEmpresaModelo": "Tarefa Recorrente Empresa Modelo",
+      "empresaModelo": "Empresa Modelo",
+      "servicoContabil": "Servico Contabil"
+    }
+  }
+}

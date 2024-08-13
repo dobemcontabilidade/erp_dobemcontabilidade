@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (funcionalidadeGrupoAcessoPadrao()) {
+      <div>
+        <h2 data-cy="funcionalidadeGrupoAcessoPadraoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.detail.title"
+            >Funcionalidade Grupo Acesso Padrao</span
+          >
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ funcionalidadeGrupoAcessoPadrao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.autorizado">Autorizado</span></dt>
+          <dd>
+            <span>{{ funcionalidadeGrupoAcessoPadrao()!.autorizado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.dataExpiracao">Data Expiracao</span></dt>
+          <dd>
+            <span>{{ funcionalidadeGrupoAcessoPadrao()!.dataExpiracao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.dataAtribuicao">Data Atribuicao</span></dt>
+          <dd>
+            <span>{{ funcionalidadeGrupoAcessoPadrao()!.dataAtribuicao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.funcionalidade">Funcionalidade</span></dt>
+          <dd>
+            @if (funcionalidadeGrupoAcessoPadrao()!.funcionalidade) {
+              <div>
+                <a [routerLink]="['/funcionalidade', funcionalidadeGrupoAcessoPadrao()!.funcionalidade?.id, 'view']">{{
+                  funcionalidadeGrupoAcessoPadrao()!.funcionalidade?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.grupoAcessoPadrao">Grupo Acesso Padrao</span>
+          </dt>
+          <dd>
+            @if (funcionalidadeGrupoAcessoPadrao()!.grupoAcessoPadrao) {
+              <div>
+                <a [routerLink]="['/grupo-acesso-padrao', funcionalidadeGrupoAcessoPadrao()!.grupoAcessoPadrao?.id, 'view']">{{
+                  funcionalidadeGrupoAcessoPadrao()!.grupoAcessoPadrao?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.permisao">Permisao</span></dt>
+          <dd>
+            @if (funcionalidadeGrupoAcessoPadrao()!.permisao) {
+              <div>
+                <a [routerLink]="['/permisao', funcionalidadeGrupoAcessoPadrao()!.permisao?.id, 'view']">{{
+                  funcionalidadeGrupoAcessoPadrao()!.permisao?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/funcionalidade-grupo-acesso-padrao', funcionalidadeGrupoAcessoPadrao()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

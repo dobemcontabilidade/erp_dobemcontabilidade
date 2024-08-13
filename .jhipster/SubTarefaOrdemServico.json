@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051804"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ordem",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "concluida",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "SubTarefaOrdemServico",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tarefaOrdemServicoExecucao",
+      "relationshipName": "tarefaOrdemServicoExecucao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

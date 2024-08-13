@@ -1,0 +1,34 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "usuarioContador": {
+      "home": {
+        "title": "Usuario Contadors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Usuario Contador",
+        "createOrEditLabel": "Create or edit a Usuario Contador",
+        "notFound": "No Usuario Contadors found"
+      },
+      "created": "A new Usuario Contador is created with identifier {{ param }}",
+      "updated": "A Usuario Contador is updated with identifier {{ param }}",
+      "deleted": "A Usuario Contador is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Usuario Contador {{ id }}?"
+      },
+      "detail": {
+        "title": "Usuario Contador"
+      },
+      "id": "ID",
+      "email": "Email",
+      "senha": "Senha",
+      "token": "Token",
+      "ativo": "Ativo",
+      "dataHoraAtivacao": "Data Hora Ativacao",
+      "dataLimiteAcesso": "Data Limite Acesso",
+      "situacao": "Situacao",
+      "grupoAcessoEmpresaUsuarioContador": "Grupo Acesso Empresa Usuario Contador",
+      "grupoAcessoUsuarioContador": "Grupo Acesso Usuario Contador",
+      "feedBackUsuarioParaContador": "Feed Back Usuario Para Contador",
+      "contador": "Contador"
+    }
+  }
+}

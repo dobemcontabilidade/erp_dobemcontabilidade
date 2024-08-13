@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (servicoContabilEtapaFluxoExecucao()) {
+      <div>
+        <h2 data-cy="servicoContabilEtapaFluxoExecucaoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.detail.title"
+            >Servico Contabil Etapa Fluxo Execucao</span
+          >
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ servicoContabilEtapaFluxoExecucao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.ordem">Ordem</span></dt>
+          <dd>
+            <span>{{ servicoContabilEtapaFluxoExecucao()!.ordem }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.feito">Feito</span></dt>
+          <dd>
+            <span>{{ servicoContabilEtapaFluxoExecucao()!.feito }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.prazo">Prazo</span></dt>
+          <dd>
+            <span>{{ servicoContabilEtapaFluxoExecucao()!.prazo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.servicoContabil">Servico Contabil</span></dt>
+          <dd>
+            @if (servicoContabilEtapaFluxoExecucao()!.servicoContabil) {
+              <div>
+                <a [routerLink]="['/servico-contabil', servicoContabilEtapaFluxoExecucao()!.servicoContabil?.id, 'view']">{{
+                  servicoContabilEtapaFluxoExecucao()!.servicoContabil?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoExecucao.etapaFluxoExecucao">Etapa Fluxo Execucao</span>
+          </dt>
+          <dd>
+            @if (servicoContabilEtapaFluxoExecucao()!.etapaFluxoExecucao) {
+              <div>
+                <a [routerLink]="['/etapa-fluxo-execucao', servicoContabilEtapaFluxoExecucao()!.etapaFluxoExecucao?.id, 'view']">{{
+                  servicoContabilEtapaFluxoExecucao()!.etapaFluxoExecucao?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/servico-contabil-etapa-fluxo-execucao', servicoContabilEtapaFluxoExecucao()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

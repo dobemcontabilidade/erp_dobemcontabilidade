@@ -1,0 +1,193 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-funcionalidade-grupo-acesso-padrao-heading"
+        data-cy="FuncionalidadeGrupoAcessoPadraoCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.home.createOrEditLabel"
+      >
+        Criar ou editar Funcionalidade Grupo Acesso Padrao
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_autorizado"
+            jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.autorizado"
+            >Autorizado</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="autorizado"
+            id="field_autorizado"
+            data-cy="autorizado"
+            formControlName="autorizado"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataExpiracao"
+            jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.dataExpiracao"
+            >Data Expiracao</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataExpiracao"
+              data-cy="dataExpiracao"
+              type="datetime-local"
+              class="form-control"
+              name="dataExpiracao"
+              formControlName="dataExpiracao"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataAtribuicao"
+            jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.dataAtribuicao"
+            >Data Atribuicao</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataAtribuicao"
+              data-cy="dataAtribuicao"
+              type="datetime-local"
+              class="form-control"
+              name="dataAtribuicao"
+              formControlName="dataAtribuicao"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_funcionalidade"
+            jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.funcionalidade"
+            >Funcionalidade</label
+          >
+          <select
+            class="form-control"
+            id="field_funcionalidade"
+            data-cy="funcionalidade"
+            name="funcionalidade"
+            formControlName="funcionalidade"
+            [compareWith]="compareFuncionalidade"
+          >
+            @if (editForm.get(['funcionalidade'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (funcionalidadeOption of funcionalidadesSharedCollection; track $index) {
+              <option [ngValue]="funcionalidadeOption">{{ funcionalidadeOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['funcionalidade'])!.invalid &&
+          (editForm.get(['funcionalidade'])!.dirty || editForm.get(['funcionalidade'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['funcionalidade'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_grupoAcessoPadrao"
+            jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.grupoAcessoPadrao"
+            >Grupo Acesso Padrao</label
+          >
+          <select
+            class="form-control"
+            id="field_grupoAcessoPadrao"
+            data-cy="grupoAcessoPadrao"
+            name="grupoAcessoPadrao"
+            formControlName="grupoAcessoPadrao"
+            [compareWith]="compareGrupoAcessoPadrao"
+          >
+            @if (editForm.get(['grupoAcessoPadrao'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (grupoAcessoPadraoOption of grupoAcessoPadraosSharedCollection; track $index) {
+              <option [ngValue]="grupoAcessoPadraoOption">{{ grupoAcessoPadraoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['grupoAcessoPadrao'])!.invalid &&
+          (editForm.get(['grupoAcessoPadrao'])!.dirty || editForm.get(['grupoAcessoPadrao'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['grupoAcessoPadrao'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_permisao" jhiTranslate="erpDobemcontabilidadeApp.funcionalidadeGrupoAcessoPadrao.permisao"
+            >Permisao</label
+          >
+          <select
+            class="form-control"
+            id="field_permisao"
+            data-cy="permisao"
+            name="permisao"
+            formControlName="permisao"
+            [compareWith]="comparePermisao"
+          >
+            @if (editForm.get(['permisao'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (permisaoOption of permisaosSharedCollection; track $index) {
+              <option [ngValue]="permisaoOption">{{ permisaoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['permisao'])!.invalid && (editForm.get(['permisao'])!.dirty || editForm.get(['permisao'])!.touched)) {
+          <div>
+            @if (editForm.get(['permisao'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

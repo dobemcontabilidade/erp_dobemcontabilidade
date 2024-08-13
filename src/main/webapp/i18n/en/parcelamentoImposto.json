@@ -1,0 +1,33 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "parcelamentoImposto": {
+      "home": {
+        "title": "Parcelamento Impostos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Parcelamento Imposto",
+        "createOrEditLabel": "Create or edit a Parcelamento Imposto",
+        "notFound": "No Parcelamento Impostos found"
+      },
+      "created": "A new Parcelamento Imposto is created with identifier {{ param }}",
+      "updated": "A Parcelamento Imposto is updated with identifier {{ param }}",
+      "deleted": "A Parcelamento Imposto is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Parcelamento Imposto {{ id }}?"
+      },
+      "detail": {
+        "title": "Parcelamento Imposto"
+      },
+      "id": "ID",
+      "diaVencimento": "Dia Vencimento",
+      "numeroParcelas": "Numero Parcelas",
+      "urlArquivoNegociacao": "Url Arquivo Negociacao",
+      "numeroParcelasPagas": "Numero Parcelas Pagas",
+      "numeroParcelasRegatantes": "Numero Parcelas Regatantes",
+      "situacaoSolicitacaoParcelamentoEnum": "Situacao Solicitacao Parcelamento Enum",
+      "parcelaImpostoAPagar": "Parcela Imposto A Pagar",
+      "impostoParcelado": "Imposto Parcelado",
+      "imposto": "Imposto",
+      "empresa": "Empresa"
+    }
+  }
+}

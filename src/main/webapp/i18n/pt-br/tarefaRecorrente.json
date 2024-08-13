@@ -1,0 +1,33 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "tarefaRecorrente": {
+      "home": {
+        "title": "Tarefa Recorrentes",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Tarefa Recorrente",
+        "createOrEditLabel": "Criar ou editar Tarefa Recorrente",
+        "notFound": "Nenhum Tarefa Recorrente encontrado"
+      },
+      "created": "Um novo Tarefa Recorrente foi criado com o identificador {{ param }}",
+      "updated": "Um Tarefa Recorrente foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tarefa Recorrente foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tarefa Recorrente {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarefa Recorrente"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "notificarCliente": "Notificar Cliente",
+      "notificarContador": "Notificar Contador",
+      "anoReferencia": "Ano Referencia",
+      "dataAdmin": "Data Admin",
+      "recorencia": "Recorencia",
+      "tarefaRecorrenteExecucao": "Tarefa Recorrente Execucao",
+      "anexoRequeridoTarefaRecorrente": "Anexo Requerido Tarefa Recorrente",
+      "servicoContabilAssinaturaEmpresa": "Servico Contabil Assinatura Empresa"
+    }
+  }
+}

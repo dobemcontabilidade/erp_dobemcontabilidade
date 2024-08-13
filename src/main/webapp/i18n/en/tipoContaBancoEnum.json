@@ -1,0 +1,10 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoContaBancoEnum": {
+      "null": "",
+      "CONTACORRENTE": "CONTACORRENTE",
+      "CONTAPOUPANCA": "CONTAPOUPANCA",
+      "CONTASALARIO": "CONTASALARIO"
+    }
+  }
+}

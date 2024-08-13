@@ -1,0 +1,89 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051754"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "valor",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "prazo",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataCriacao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataHoraCancelamento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "statusDaOS",
+      "fieldType": "StatusDaOSEnum",
+      "fieldValues": "ABERTA,EMATENDIMENTO,COMPENDENCIA,CONCLUIDA,CANCELADA"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    }
+  ],
+  "name": "OrdemServico",
+  "relationships": [
+    {
+      "otherEntityName": "feedBackUsuarioParaContador",
+      "otherEntityRelationshipName": "ordemServico",
+      "relationshipName": "feedBackUsuarioParaContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "feedBackContadorParaUsuario",
+      "otherEntityRelationshipName": "ordemServico",
+      "relationshipName": "feedBackContadorParaUsuario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "etapaFluxoExecucao",
+      "otherEntityRelationshipName": "ordemServico",
+      "relationshipName": "etapaFluxoExecucao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "servicoContabilOrdemServico",
+      "otherEntityRelationshipName": "ordemServico",
+      "relationshipName": "servicoContabilOrdemServico",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "crc",
+      "otherEntityName": "contador",
+      "relationshipName": "contador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "fluxoModelo",
+      "relationshipName": "fluxoModelo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

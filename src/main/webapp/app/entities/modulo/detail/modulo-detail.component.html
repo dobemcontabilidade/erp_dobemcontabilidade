@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (modulo()) {
+      <div>
+        <h2 data-cy="moduloDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.modulo.detail.title">Modulo</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ modulo()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.modulo.nome">Nome</span></dt>
+          <dd>
+            <span>{{ modulo()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.modulo.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ modulo()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.modulo.sistema">Sistema</span></dt>
+          <dd>
+            @if (modulo()!.sistema) {
+              <div>
+                <a [routerLink]="['/sistema', modulo()!.sistema?.id, 'view']">{{ modulo()!.sistema?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/modulo', modulo()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

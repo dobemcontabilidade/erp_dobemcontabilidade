@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051617"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "obrigatorio",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "tipo",
+      "fieldType": "TipoAnexoPessoaEnum",
+      "fieldValues": "FUNCIONARIO,DEPENDENTE,CONTADOR,SOCIO"
+    }
+  ],
+  "name": "AnexoRequeridoPessoa",
+  "relationships": [
+    {
+      "otherEntityField": "descricao",
+      "otherEntityName": "anexoPessoa",
+      "relationshipName": "anexoPessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "anexoRequerido",
+      "relationshipName": "anexoRequerido",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

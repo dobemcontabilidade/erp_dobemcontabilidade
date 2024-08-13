@@ -1,0 +1,174 @@
+<div>
+  <h2 id="page-heading" data-cy="DependentesFuncionarioHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.home.title">Dependentes Funcionarios</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-dependentes-funcionario"
+        [routerLink]="['/dependentes-funcionario/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.home.createLabel">Criar novo Dependentes Funcionario</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (dependentesFuncionarios?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.home.notFound">Nenhum Dependentes Funcionario encontrado</span>
+    </div>
+  }
+
+  @if (dependentesFuncionarios && dependentesFuncionarios.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlCertidaoDependente">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.urlCertidaoDependente">Url Certidao Dependente</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlRgDependente">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.urlRgDependente">Url Rg Dependente</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dependenteIRRF">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.dependenteIRRF">Dependente IRRF</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dependenteSalarioFamilia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.dependenteSalarioFamilia"
+                  >Dependente Salario Familia</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoDependenteFuncionarioEnum">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.tipoDependenteFuncionarioEnum"
+                  >Tipo Dependente Funcionario Enum</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pessoa.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.pessoa">Pessoa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="funcionario.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.funcionario">Funcionario</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (dependentesFuncionario of dependentesFuncionarios; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/dependentes-funcionario', dependentesFuncionario.id, 'view']">{{ dependentesFuncionario.id }}</a>
+              </td>
+              <td>{{ dependentesFuncionario.urlCertidaoDependente }}</td>
+              <td>{{ dependentesFuncionario.urlRgDependente }}</td>
+              <td>{{ dependentesFuncionario.dependenteIRRF }}</td>
+              <td>{{ dependentesFuncionario.dependenteSalarioFamilia }}</td>
+              <td
+                [jhiTranslate]="
+                  'erpDobemcontabilidadeApp.TipoDependenteFuncionarioEnum.' +
+                  (dependentesFuncionario.tipoDependenteFuncionarioEnum ?? 'null')
+                "
+              >
+                {{
+                  {
+                    null: '',
+                    CONJUGE: 'CONJUGE',
+                    FILHO: 'FILHO',
+                    IRMAONETOBISNETO: 'IRMAONETOBISNETO',
+                    PAISAVOS: 'PAISAVOS',
+                    MENORCOMGUARDAR: 'MENORCOMGUARDAR',
+                  }[dependentesFuncionario.tipoDependenteFuncionarioEnum ?? 'null']
+                }}
+              </td>
+              <td>
+                @if (dependentesFuncionario.pessoa) {
+                  <div>
+                    <a [routerLink]="['/pessoa', dependentesFuncionario.pessoa.id, 'view']">{{ dependentesFuncionario.pessoa.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (dependentesFuncionario.funcionario) {
+                  <div>
+                    <a [routerLink]="['/funcionario', dependentesFuncionario.funcionario.id, 'view']">{{
+                      dependentesFuncionario.funcionario.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/dependentes-funcionario', dependentesFuncionario.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/dependentes-funcionario', dependentesFuncionario.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(dependentesFuncionario)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

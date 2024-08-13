@@ -1,0 +1,115 @@
+<div>
+  <h2 id="page-heading" data-cy="AdministradorHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.administrador.home.title">Administradors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.administrador.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-administrador"
+        [routerLink]="['/administrador/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.administrador.home.createLabel">Criar novo Administrador</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (administradors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.administrador.home.notFound">Nenhum Administrador encontrado</span>
+    </div>
+  }
+
+  @if (administradors && administradors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.administrador.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sobrenome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.administrador.sobrenome">Sobrenome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="funcao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.administrador.funcao">Funcao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pessoa.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.administrador.pessoa">Pessoa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (administrador of administradors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/administrador', administrador.id, 'view']">{{ administrador.id }}</a>
+              </td>
+              <td>{{ administrador.nome }}</td>
+              <td>{{ administrador.sobrenome }}</td>
+              <td>{{ administrador.funcao }}</td>
+              <td>
+                @if (administrador.pessoa) {
+                  <div>
+                    <a [routerLink]="['/pessoa', administrador.pessoa.id, 'view']">{{ administrador.pessoa.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/administrador', administrador.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/administrador', administrador.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(administrador)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

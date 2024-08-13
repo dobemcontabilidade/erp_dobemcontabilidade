@@ -1,0 +1,65 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051649"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "logradouro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numero",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "5"
+    },
+    {
+      "fieldName": "complemento",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cep",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "9"
+    },
+    {
+      "fieldName": "principal",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "residenciaPropria",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "EnderecoPessoa",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoa",
+      "relationshipName": "pessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "cidade",
+      "relationshipName": "cidade",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

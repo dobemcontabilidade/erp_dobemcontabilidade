@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (tarefaRecorrente()) {
+      <div>
+        <h2 data-cy="tarefaRecorrenteDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.detail.title">Tarefa Recorrente</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrente()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.nome">Nome</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrente()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrente()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.notificarCliente">Notificar Cliente</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrente()!.notificarCliente }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.notificarContador">Notificar Contador</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrente()!.notificarContador }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.anoReferencia">Ano Referencia</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrente()!.anoReferencia }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.dataAdmin">Data Admin</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrente()!.dataAdmin | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.recorencia">Recorencia</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoRecorrenciaEnum.' + (tarefaRecorrente()!.recorencia ?? 'null')">{{
+              {
+                null: '',
+                DIARIO: 'DIARIO',
+                SEMANAL: 'SEMANAL',
+                MENSAL: 'MENSAL',
+                BIMESTRAL: 'BIMESTRAL',
+                TRIMESTRAL: 'TRIMESTRAL',
+                SEMESTRAL: 'SEMESTRAL',
+                ANUAL: 'ANUAL',
+              }[tarefaRecorrente()!.recorencia ?? 'null']
+            }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.servicoContabilAssinaturaEmpresa"
+              >Servico Contabil Assinatura Empresa</span
+            >
+          </dt>
+          <dd>
+            @if (tarefaRecorrente()!.servicoContabilAssinaturaEmpresa) {
+              <div>
+                <a
+                  [routerLink]="['/servico-contabil-assinatura-empresa', tarefaRecorrente()!.servicoContabilAssinaturaEmpresa?.id, 'view']"
+                  >{{ tarefaRecorrente()!.servicoContabilAssinaturaEmpresa?.id }}</a
+                >
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/tarefa-recorrente', tarefaRecorrente()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

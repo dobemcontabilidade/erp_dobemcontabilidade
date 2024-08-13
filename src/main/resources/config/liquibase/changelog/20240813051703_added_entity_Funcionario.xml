@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Funcionario.
+    -->
+    <changeSet id="20240813051703-1" author="jhipster">
+        <createTable tableName="funcionario">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="numero_pis_nis_pasep" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="reintegrado" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="primeiro_emprego" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="multiplo_vinculos" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="data_opcao_fgts" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="filiacao_sindical" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="cnpj_sindicato" type="varchar(20)">
+                <constraints nullable="true" />
+            </column>
+            <column name="tipo_funcionario_enum" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="usuario_empresa_id" type="bigint">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_funcionario__usuario_empresa_id" />
+            </column>
+            <column name="pessoa_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="empresa_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="profissao_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20240813051703-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/funcionario.csv"
+                  separator=";"
+                  tableName="funcionario"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="numero_pis_nis_pasep" type="numeric"/>
+            <column name="reintegrado" type="boolean"/>
+            <column name="primeiro_emprego" type="boolean"/>
+            <column name="multiplo_vinculos" type="boolean"/>
+            <column name="data_opcao_fgts" type="string"/>
+            <column name="filiacao_sindical" type="boolean"/>
+            <column name="cnpj_sindicato" type="string"/>
+            <column name="tipo_funcionario_enum" type="string"/>
+            <column name="usuario_empresa_id" type="numeric"/>
+            <column name="pessoa_id" type="numeric"/>
+            <column name="empresa_id" type="numeric"/>
+            <column name="profissao_id" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

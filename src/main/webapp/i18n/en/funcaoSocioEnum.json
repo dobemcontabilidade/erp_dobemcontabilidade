@@ -1,0 +1,10 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "FuncaoSocioEnum": {
+      "null": "",
+      "SOCIO": "SOCIO",
+      "SOCIOADMINISTRADOR": "SOCIOADMINISTRADOR",
+      "SOCIOGERENTE": "SOCIOGERENTE"
+    }
+  }
+}

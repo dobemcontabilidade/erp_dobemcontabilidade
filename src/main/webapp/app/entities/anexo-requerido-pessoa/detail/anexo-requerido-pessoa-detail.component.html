@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (anexoRequeridoPessoa()) {
+      <div>
+        <h2 data-cy="anexoRequeridoPessoaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoPessoa.detail.title">Anexo Requerido Pessoa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ anexoRequeridoPessoa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoPessoa.obrigatorio">Obrigatorio</span></dt>
+          <dd>
+            <span>{{ anexoRequeridoPessoa()!.obrigatorio }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoPessoa.tipo">Tipo</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoAnexoPessoaEnum.' + (anexoRequeridoPessoa()!.tipo ?? 'null')">{{
+              { null: '', FUNCIONARIO: 'FUNCIONARIO', DEPENDENTE: 'DEPENDENTE', CONTADOR: 'CONTADOR', SOCIO: 'SOCIO' }[
+                anexoRequeridoPessoa()!.tipo ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoPessoa.anexoPessoa">Anexo Pessoa</span></dt>
+          <dd>
+            @if (anexoRequeridoPessoa()!.anexoPessoa) {
+              <div>
+                <a [routerLink]="['/anexo-pessoa', anexoRequeridoPessoa()!.anexoPessoa?.id, 'view']">{{
+                  anexoRequeridoPessoa()!.anexoPessoa?.descricao
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoPessoa.anexoRequerido">Anexo Requerido</span></dt>
+          <dd>
+            @if (anexoRequeridoPessoa()!.anexoRequerido) {
+              <div>
+                <a [routerLink]="['/anexo-requerido', anexoRequeridoPessoa()!.anexoRequerido?.id, 'view']">{{
+                  anexoRequeridoPessoa()!.anexoRequerido?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/anexo-requerido-pessoa', anexoRequeridoPessoa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

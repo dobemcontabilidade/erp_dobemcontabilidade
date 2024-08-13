@@ -1,0 +1,57 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051749"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "senha",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "token",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dataHoraAtivacao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataLimiteAcesso",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "situacaoUsuarioGestao",
+      "fieldType": "SituacaoUsuarioGestaoEnum",
+      "fieldValues": "ATIVO,INATIVO,BLOQUEADO,EXCLUIDO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "UsuarioGestao",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "administrador",
+      "relationshipName": "administrador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

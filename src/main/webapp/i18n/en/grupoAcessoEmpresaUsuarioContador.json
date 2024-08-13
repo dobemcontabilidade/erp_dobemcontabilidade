@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "grupoAcessoEmpresaUsuarioContador": {
+      "home": {
+        "title": "Grupo Acesso Empresa Usuario Contadors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Grupo Acesso Empresa Usuario Contador",
+        "createOrEditLabel": "Create or edit a Grupo Acesso Empresa Usuario Contador",
+        "notFound": "No Grupo Acesso Empresa Usuario Contadors found"
+      },
+      "created": "A new Grupo Acesso Empresa Usuario Contador is created with identifier {{ param }}",
+      "updated": "A Grupo Acesso Empresa Usuario Contador is updated with identifier {{ param }}",
+      "deleted": "A Grupo Acesso Empresa Usuario Contador is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Grupo Acesso Empresa Usuario Contador {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupo Acesso Empresa Usuario Contador"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "dataExpiracao": "Data Expiracao",
+      "ilimitado": "Ilimitado",
+      "desabilitar": "Desabilitar",
+      "usuarioContador": "Usuario Contador",
+      "permisao": "Permisao",
+      "grupoAcessoEmpresa": "Grupo Acesso Empresa"
+    }
+  }
+}

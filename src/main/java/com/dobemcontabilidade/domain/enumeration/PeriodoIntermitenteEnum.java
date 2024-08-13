@@ -1,0 +1,28 @@
+package com.dobemcontabilidade.domain.enumeration;
+
+/**
+ * The PeriodoIntermitenteEnum enumeration.
+ */
+public enum PeriodoIntermitenteEnum {
+    QUATROMESES,
+    CINCOMESES,
+    SEISMESES,
+    SETEMESES,
+    OITOMESES,
+    NOVEMESES,
+    DEZMESES,
+    ONZEMESES,
+    DOZEMESES,
+    UMANOUMMESES,
+    UMANODOISMESES,
+    UMANOANOTRESMESES,
+    UMANOANOQUATROMESES,
+    UMANOANOCINCOMESES,
+    UMANOSEISMESES,
+    UMANOSETEMESES,
+    UMANOOITOMESES,
+    UMANONOVEMESES,
+    UMANODEZMESES,
+    UMANOONZEMESES,
+    UMANODOZEMESES,
+}

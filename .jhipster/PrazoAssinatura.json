@@ -1,0 +1,22 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051732"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "prazo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "meses",
+      "fieldType": "Integer"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PrazoAssinatura",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

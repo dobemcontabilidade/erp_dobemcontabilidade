@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (fluxoModelo()) {
+      <div>
+        <h2 data-cy="fluxoModeloDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.fluxoModelo.detail.title">Fluxo Modelo</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ fluxoModelo()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.fluxoModelo.nome">Nome</span></dt>
+          <dd>
+            <span>{{ fluxoModelo()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.fluxoModelo.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ fluxoModelo()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.fluxoModelo.cidade">Cidade</span></dt>
+          <dd>
+            @if (fluxoModelo()!.cidade) {
+              <div>
+                <a [routerLink]="['/cidade', fluxoModelo()!.cidade?.id, 'view']">{{ fluxoModelo()!.cidade?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fluxo-modelo', fluxoModelo()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051638"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "percentual",
+      "fieldType": "Double"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "DescontoPlanoContaAzul",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "calculoPlanoAssinatura",
+      "otherEntityRelationshipName": "descontoPlanoContaAzul",
+      "relationshipName": "calculoPlanoAssinatura",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "planoContaAzul",
+      "relationshipName": "planoContaAzul",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "periodo",
+      "otherEntityName": "periodoPagamento",
+      "relationshipName": "periodoPagamento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

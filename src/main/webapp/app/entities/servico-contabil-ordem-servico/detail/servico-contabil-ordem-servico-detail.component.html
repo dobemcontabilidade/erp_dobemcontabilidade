@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (servicoContabilOrdemServico()) {
+      <div>
+        <h2 data-cy="servicoContabilOrdemServicoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilOrdemServico.detail.title">Servico Contabil Ordem Servico</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ servicoContabilOrdemServico()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilOrdemServico.dataAdmin">Data Admin</span></dt>
+          <dd>
+            <span>{{ servicoContabilOrdemServico()!.dataAdmin | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilOrdemServico.dataLegal">Data Legal</span></dt>
+          <dd>
+            <span>{{ servicoContabilOrdemServico()!.dataLegal | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilOrdemServico.servicoContabil">Servico Contabil</span></dt>
+          <dd>
+            @if (servicoContabilOrdemServico()!.servicoContabil) {
+              <div>
+                <a [routerLink]="['/servico-contabil', servicoContabilOrdemServico()!.servicoContabil?.id, 'view']">{{
+                  servicoContabilOrdemServico()!.servicoContabil?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilOrdemServico.ordemServico">Ordem Servico</span></dt>
+          <dd>
+            @if (servicoContabilOrdemServico()!.ordemServico) {
+              <div>
+                <a [routerLink]="['/ordem-servico', servicoContabilOrdemServico()!.ordemServico?.id, 'view']">{{
+                  servicoContabilOrdemServico()!.ordemServico?.descricao
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/servico-contabil-ordem-servico', servicoContabilOrdemServico()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

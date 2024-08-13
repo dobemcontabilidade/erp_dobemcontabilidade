@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "contadorResponsavelTarefaRecorrente": {
+      "home": {
+        "title": "Contador Responsavel Tarefa Recorrentes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Contador Responsavel Tarefa Recorrente",
+        "createOrEditLabel": "Create or edit a Contador Responsavel Tarefa Recorrente",
+        "notFound": "No Contador Responsavel Tarefa Recorrentes found"
+      },
+      "created": "A new Contador Responsavel Tarefa Recorrente is created with identifier {{ param }}",
+      "updated": "A Contador Responsavel Tarefa Recorrente is updated with identifier {{ param }}",
+      "deleted": "A Contador Responsavel Tarefa Recorrente is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contador Responsavel Tarefa Recorrente {{ id }}?"
+      },
+      "detail": {
+        "title": "Contador Responsavel Tarefa Recorrente"
+      },
+      "id": "ID",
+      "dataAtribuicao": "Data Atribuicao",
+      "dataRevogacao": "Data Revogacao",
+      "concluida": "Concluida",
+      "tarefaRecorrenteExecucao": "Tarefa Recorrente Execucao",
+      "contador": "Contador"
+    }
+  }
+}

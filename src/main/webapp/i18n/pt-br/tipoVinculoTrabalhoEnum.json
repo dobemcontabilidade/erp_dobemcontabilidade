@@ -1,0 +1,9 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoVinculoTrabalhoEnum": {
+      "null": "",
+      "URBANO": "URBANO",
+      "RURAL": "RURAL"
+    }
+  }
+}

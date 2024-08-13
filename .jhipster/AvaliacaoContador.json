@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051612"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "pontuacao",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "AvaliacaoContador",
+  "relationships": [
+    {
+      "otherEntityField": "crc",
+      "otherEntityName": "contador",
+      "relationshipName": "contador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "avaliacao",
+      "relationshipName": "avaliacao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

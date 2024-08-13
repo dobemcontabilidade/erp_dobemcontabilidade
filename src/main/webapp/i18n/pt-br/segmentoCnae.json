@@ -1,0 +1,33 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "segmentoCnae": {
+      "home": {
+        "title": "Segmento Cnaes",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Segmento Cnae",
+        "createOrEditLabel": "Criar ou editar Segmento Cnae",
+        "notFound": "Nenhum Segmento Cnae encontrado"
+      },
+      "created": "Um novo Segmento Cnae foi criado com o identificador {{ param }}",
+      "updated": "Um Segmento Cnae foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Segmento Cnae foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Segmento Cnae {{ id }}?"
+      },
+      "detail": {
+        "title": "Segmento Cnae"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "icon": "Icon",
+      "imagem": "Imagem",
+      "tags": "Tags",
+      "tipo": "Tipo",
+      "subclasseCnae": "Subclasse Cnae",
+      "ramo": "Ramo",
+      "empresa": "Empresa",
+      "empresaModelo": "Empresa Modelo"
+    }
+  }
+}

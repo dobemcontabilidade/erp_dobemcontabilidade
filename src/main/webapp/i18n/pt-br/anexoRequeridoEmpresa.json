@@ -1,0 +1,32 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoRequeridoEmpresa": {
+      "home": {
+        "title": "Anexo Requerido Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Anexo Requerido Empresa",
+        "createOrEditLabel": "Criar ou editar Anexo Requerido Empresa",
+        "notFound": "Nenhum Anexo Requerido Empresa encontrado"
+      },
+      "created": "Um novo Anexo Requerido Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Anexo Requerido Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Anexo Requerido Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Anexo Requerido Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Requerido Empresa"
+      },
+      "id": "ID",
+      "obrigatorio": "Obrigatorio",
+      "urlArquivo": "Url Arquivo",
+      "anexoEmpresa": "Anexo Empresa",
+      "anexoRequerido": "Anexo Requerido",
+      "enquadramento": "Enquadramento",
+      "tributacao": "Tributacao",
+      "ramo": "Ramo",
+      "empresa": "Empresa",
+      "empresaModelo": "Empresa Modelo"
+    }
+  }
+}

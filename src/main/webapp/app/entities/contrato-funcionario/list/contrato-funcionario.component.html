@@ -1,0 +1,438 @@
+<div>
+  <h2 id="page-heading" data-cy="ContratoFuncionarioHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.home.title">Contrato Funcionarios</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contrato-funcionario"
+        [routerLink]="['/contrato-funcionario/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.home.createLabel">Criar novo Contrato Funcionario</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (contratoFuncionarios?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.home.notFound">Nenhum Contrato Funcionario encontrado</span>
+    </div>
+  }
+
+  @if (contratoFuncionarios && contratoFuncionarios.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="salarioFixo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.salarioFixo">Salario Fixo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="salarioVariavel">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.salarioVariavel">Salario Variavel</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="estagio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.estagio">Estagio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="naturezaEstagioEnum">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.naturezaEstagioEnum">Natureza Estagio Enum</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ctps">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.ctps">Ctps</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="serieCtps">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.serieCtps">Serie Ctps</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="orgaoEmissorDocumento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.orgaoEmissorDocumento">Orgao Emissor Documento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataValidadeDocumento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.dataValidadeDocumento">Data Validade Documento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataAdmissao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.dataAdmissao">Data Admissao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cargo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.cargo">Cargo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricaoAtividades">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.descricaoAtividades">Descricao Atividades</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="situacao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.situacao">Situacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorSalarioFixo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.valorSalarioFixo">Valor Salario Fixo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorSalarioVariavel">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.valorSalarioVariavel">Valor Salario Variavel</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataTerminoContrato">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.dataTerminoContrato">Data Termino Contrato</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="datainicioContrato">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.datainicioContrato">Datainicio Contrato</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="horasATrabalhadar">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.horasATrabalhadar">Horas A Trabalhadar</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codigoCargo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.codigoCargo">Codigo Cargo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="categoriaTrabalhador">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.categoriaTrabalhador">Categoria Trabalhador</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoVinculoTrabalho">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.tipoVinculoTrabalho">Tipo Vinculo Trabalho</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fgtsOpcao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.fgtsOpcao">Fgts Opcao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tIpoDocumentoEnum">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.tIpoDocumentoEnum">T Ipo Documento Enum</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="periodoExperiencia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.periodoExperiencia">Periodo Experiencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoAdmisaoEnum">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.tipoAdmisaoEnum">Tipo Admisao Enum</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="periodoIntermitente">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.periodoIntermitente">Periodo Intermitente</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="indicativoAdmissao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.indicativoAdmissao">Indicativo Admissao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroPisNisPasep">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.numeroPisNisPasep">Numero Pis Nis Pasep</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="funcionario.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.funcionario">Funcionario</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="agenteIntegracaoEstagio.razaoSocial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.agenteIntegracaoEstagio">Agente Integracao Estagio</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="instituicaoEnsino.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.instituicaoEnsino">Instituicao Ensino</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (contratoFuncionario of contratoFuncionarios; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/contrato-funcionario', contratoFuncionario.id, 'view']">{{ contratoFuncionario.id }}</a>
+              </td>
+              <td>{{ contratoFuncionario.salarioFixo }}</td>
+              <td>{{ contratoFuncionario.salarioVariavel }}</td>
+              <td>{{ contratoFuncionario.estagio }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.NaturezaEstagioEnum.' + (contratoFuncionario.naturezaEstagioEnum ?? 'null')">
+                {{
+                  { null: '', OBRIGATORIO: 'OBRIGATORIO', NAOOBRIGATORIO: 'NAOOBRIGATORIO' }[
+                    contratoFuncionario.naturezaEstagioEnum ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ contratoFuncionario.ctps }}</td>
+              <td>{{ contratoFuncionario.serieCtps }}</td>
+              <td>{{ contratoFuncionario.orgaoEmissorDocumento }}</td>
+              <td>{{ contratoFuncionario.dataValidadeDocumento }}</td>
+              <td>{{ contratoFuncionario.dataAdmissao }}</td>
+              <td>{{ contratoFuncionario.cargo }}</td>
+              <td>{{ contratoFuncionario.descricaoAtividades }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoFuncionarioEnum.' + (contratoFuncionario.situacao ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    CADASTROEMANDAMENTO: 'CADASTROEMANDAMENTO',
+                    CADASTRADO: 'CADASTRADO',
+                    ADMISSAOEMANDAMENTO: 'ADMISSAOEMANDAMENTO',
+                    ADMISSAOSOLICITADA: 'ADMISSAOSOLICITADA',
+                    ADMITIDO: 'ADMITIDO',
+                    DEMISSAOEMANDAMENTO: 'DEMISSAOEMANDAMENTO',
+                    DEMISSAOCANCELADO: 'DEMISSAOCANCELADO',
+                    DEMITIDO: 'DEMITIDO',
+                    AFASTADO: 'AFASTADO',
+                    CANCELAMENTOSOLICTAIDO: 'CANCELAMENTOSOLICTAIDO',
+                    CANCELADO: 'CANCELADO',
+                    EXPERIENCIA: 'EXPERIENCIA',
+                    BAIXASOLICITADA: 'BAIXASOLICITADA',
+                    DEMITIDOJUSTACAUSA: 'DEMITIDOJUSTACAUSA',
+                  }[contratoFuncionario.situacao ?? 'null']
+                }}
+              </td>
+              <td>{{ contratoFuncionario.valorSalarioFixo }}</td>
+              <td>{{ contratoFuncionario.valorSalarioVariavel }}</td>
+              <td>{{ contratoFuncionario.dataTerminoContrato }}</td>
+              <td>{{ contratoFuncionario.datainicioContrato }}</td>
+              <td>{{ contratoFuncionario.horasATrabalhadar }}</td>
+              <td>{{ contratoFuncionario.codigoCargo }}</td>
+              <td
+                [jhiTranslate]="'erpDobemcontabilidadeApp.CategoriaTrabalhadorEnum.' + (contratoFuncionario.categoriaTrabalhador ?? 'null')"
+              >
+                {{ { null: '', EMPREGADO: 'EMPREGADO', ESTAGIARIO: 'ESTAGIARIO' }[contratoFuncionario.categoriaTrabalhador ?? 'null'] }}
+              </td>
+              <td
+                [jhiTranslate]="'erpDobemcontabilidadeApp.TipoVinculoTrabalhoEnum.' + (contratoFuncionario.tipoVinculoTrabalho ?? 'null')"
+              >
+                {{ { null: '', URBANO: 'URBANO', RURAL: 'RURAL' }[contratoFuncionario.tipoVinculoTrabalho ?? 'null'] }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.FgtsOpcaoEnum.' + (contratoFuncionario.fgtsOpcao ?? 'null')">
+                {{ { null: '', OPTANTE: 'OPTANTE', NAOOPTANTE: 'NAOOPTANTE' }[contratoFuncionario.fgtsOpcao ?? 'null'] }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.TipoDocumentoEnum.' + (contratoFuncionario.tIpoDocumentoEnum ?? 'null')">
+                {{ { null: '', RG: 'RG', CNH: 'CNH', RNE: 'RNE', RIC: 'RIC', OC: 'OC' }[contratoFuncionario.tIpoDocumentoEnum ?? 'null'] }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.PeriodoExperienciaEnum.' + (contratoFuncionario.periodoExperiencia ?? 'null')">
+                {{
+                  { null: '', QUINZE: 'QUINZE', TRINTA: 'TRINTA', NOVENTA: 'NOVENTA', SESENTA: 'SESENTA' }[
+                    contratoFuncionario.periodoExperiencia ?? 'null'
+                  ]
+                }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.TipoAdmisaoEnum.' + (contratoFuncionario.tipoAdmisaoEnum ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    ADMISSAO: 'ADMISSAO',
+                    TRANSFERENCIA: 'TRANSFERENCIA',
+                    SUCESSAO: 'SUCESSAO',
+                    INCORPORACAO: 'INCORPORACAO',
+                    FUSAO: 'FUSAO',
+                    CEDIDO: 'CEDIDO',
+                  }[contratoFuncionario.tipoAdmisaoEnum ?? 'null']
+                }}
+              </td>
+              <td
+                [jhiTranslate]="'erpDobemcontabilidadeApp.PeriodoIntermitenteEnum.' + (contratoFuncionario.periodoIntermitente ?? 'null')"
+              >
+                {{
+                  {
+                    null: '',
+                    QUATROMESES: 'QUATROMESES',
+                    CINCOMESES: 'CINCOMESES',
+                    SEISMESES: 'SEISMESES',
+                    SETEMESES: 'SETEMESES',
+                    OITOMESES: 'OITOMESES',
+                    NOVEMESES: 'NOVEMESES',
+                    DEZMESES: 'DEZMESES',
+                    ONZEMESES: 'ONZEMESES',
+                    DOZEMESES: 'DOZEMESES',
+                    UMANOUMMESES: 'UMANOUMMESES',
+                    UMANODOISMESES: 'UMANODOISMESES',
+                    UMANOANOTRESMESES: 'UMANOANOTRESMESES',
+                    UMANOANOQUATROMESES: 'UMANOANOQUATROMESES',
+                    UMANOANOCINCOMESES: 'UMANOANOCINCOMESES',
+                    UMANOSEISMESES: 'UMANOSEISMESES',
+                    UMANOSETEMESES: 'UMANOSETEMESES',
+                    UMANOOITOMESES: 'UMANOOITOMESES',
+                    UMANONOVEMESES: 'UMANONOVEMESES',
+                    UMANODEZMESES: 'UMANODEZMESES',
+                    UMANOONZEMESES: 'UMANOONZEMESES',
+                    UMANODOZEMESES: 'UMANODOZEMESES',
+                  }[contratoFuncionario.periodoIntermitente ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.IndicativoAdmissaoEnum.' + (contratoFuncionario.indicativoAdmissao ?? 'null')">
+                {{
+                  { null: '', NORMAL: 'NORMAL', ACAOFISCAL: 'ACAOFISCAL', DECISAOJUDICIAL: 'DECISAOJUDICIAL' }[
+                    contratoFuncionario.indicativoAdmissao ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ contratoFuncionario.numeroPisNisPasep }}</td>
+              <td>
+                @if (contratoFuncionario.funcionario) {
+                  <div>
+                    <a [routerLink]="['/funcionario', contratoFuncionario.funcionario.id, 'view']">{{
+                      contratoFuncionario.funcionario.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (contratoFuncionario.agenteIntegracaoEstagio) {
+                  <div>
+                    <a [routerLink]="['/agente-integracao-estagio', contratoFuncionario.agenteIntegracaoEstagio.id, 'view']">{{
+                      contratoFuncionario.agenteIntegracaoEstagio.razaoSocial
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (contratoFuncionario.instituicaoEnsino) {
+                  <div>
+                    <a [routerLink]="['/instituicao-ensino', contratoFuncionario.instituicaoEnsino.id, 'view']">{{
+                      contratoFuncionario.instituicaoEnsino.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/contrato-funcionario', contratoFuncionario.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/contrato-funcionario', contratoFuncionario.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(contratoFuncionario)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

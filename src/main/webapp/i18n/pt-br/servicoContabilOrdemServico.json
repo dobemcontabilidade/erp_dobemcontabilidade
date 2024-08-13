@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "servicoContabilOrdemServico": {
+      "home": {
+        "title": "Servico Contabil Ordem Servicos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Servico Contabil Ordem Servico",
+        "createOrEditLabel": "Criar ou editar Servico Contabil Ordem Servico",
+        "notFound": "Nenhum Servico Contabil Ordem Servico encontrado"
+      },
+      "created": "Um novo Servico Contabil Ordem Servico foi criado com o identificador {{ param }}",
+      "updated": "Um Servico Contabil Ordem Servico foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Servico Contabil Ordem Servico foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Servico Contabil Ordem Servico {{ id }}?"
+      },
+      "detail": {
+        "title": "Servico Contabil Ordem Servico"
+      },
+      "id": "ID",
+      "dataAdmin": "Data Admin",
+      "dataLegal": "Data Legal",
+      "tarefaOrdemServico": "Tarefa Ordem Servico",
+      "servicoContabil": "Servico Contabil",
+      "ordemServico": "Ordem Servico"
+    }
+  }
+}

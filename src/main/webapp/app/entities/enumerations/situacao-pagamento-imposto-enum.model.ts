@@ -1,0 +1,15 @@
+export enum SituacaoPagamentoImpostoEnum {
+  ABERTO = 'ABERTO',
+
+  VENCIDO = 'VENCIDO',
+
+  ATRASADO = 'ATRASADO',
+
+  PENDENTE = 'PENDENTE',
+
+  RECALCULADO = 'RECALCULADO',
+
+  PAGO = 'PAGO',
+
+  PRORROGADO = 'PRORROGADO',
+}

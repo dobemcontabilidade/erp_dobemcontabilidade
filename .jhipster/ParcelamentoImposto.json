@@ -1,0 +1,68 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051757"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "diaVencimento",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numeroParcelas",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "urlArquivoNegociacao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroParcelasPagas",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numeroParcelasRegatantes",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "situacaoSolicitacaoParcelamentoEnum",
+      "fieldType": "SituacaoSolicitacaoParcelamentoEnum",
+      "fieldValues": "ABERTA,PROCESSADA,CANCELADA,FINALIZADA"
+    }
+  ],
+  "name": "ParcelamentoImposto",
+  "relationships": [
+    {
+      "otherEntityName": "parcelaImpostoAPagar",
+      "otherEntityRelationshipName": "parcelamentoImposto",
+      "relationshipName": "parcelaImpostoAPagar",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "impostoParcelado",
+      "otherEntityRelationshipName": "parcelamentoImposto",
+      "relationshipName": "impostoParcelado",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "imposto",
+      "relationshipName": "imposto",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

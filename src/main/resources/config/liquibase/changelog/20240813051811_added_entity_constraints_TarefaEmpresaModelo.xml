@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity TarefaEmpresaModelo.
+    -->
+    <changeSet id="20240813051811-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="empresa_modelo_id"
+                                 baseTableName="tarefa_empresa_modelo"
+                                 constraintName="fk_tarefa_empresa_modelo__empresa_modelo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="empresa_modelo"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="servico_contabil_id"
+                                 baseTableName="tarefa_empresa_modelo"
+                                 constraintName="fk_tarefa_empresa_modelo__servico_contabil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="servico_contabil"
+                                 />
+    </changeSet>
+</databaseChangeLog>

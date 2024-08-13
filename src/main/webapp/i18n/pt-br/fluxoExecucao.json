@@ -1,0 +1,25 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "fluxoExecucao": {
+      "home": {
+        "title": "Fluxo Execucaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Fluxo Execucao",
+        "createOrEditLabel": "Criar ou editar Fluxo Execucao",
+        "notFound": "Nenhum Fluxo Execucao encontrado"
+      },
+      "created": "Um novo Fluxo Execucao foi criado com o identificador {{ param }}",
+      "updated": "Um Fluxo Execucao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Fluxo Execucao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Fluxo Execucao {{ id }}?"
+      },
+      "detail": {
+        "title": "Fluxo Execucao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao"
+    }
+  }
+}

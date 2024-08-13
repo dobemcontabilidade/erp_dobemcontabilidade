@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (termoAdesaoContador()) {
+      <div>
+        <h2 data-cy="termoAdesaoContadorDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.detail.title">Termo Adesao Contador</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ termoAdesaoContador()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.dataAdesao">Data Adesao</span></dt>
+          <dd>
+            <span>{{ termoAdesaoContador()!.dataAdesao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.checked">Checked</span></dt>
+          <dd>
+            <span>{{ termoAdesaoContador()!.checked }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.urlDoc">Url Doc</span></dt>
+          <dd>
+            <span>{{ termoAdesaoContador()!.urlDoc }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.contador">Contador</span></dt>
+          <dd>
+            @if (termoAdesaoContador()!.contador) {
+              <div>
+                <a [routerLink]="['/contador', termoAdesaoContador()!.contador?.id, 'view']">{{ termoAdesaoContador()!.contador?.crc }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoAdesaoContador.termoDeAdesao">Termo De Adesao</span></dt>
+          <dd>
+            @if (termoAdesaoContador()!.termoDeAdesao) {
+              <div>
+                <a [routerLink]="['/termo-de-adesao', termoAdesaoContador()!.termoDeAdesao?.id, 'view']">{{
+                  termoAdesaoContador()!.termoDeAdesao?.titulo
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/termo-adesao-contador', termoAdesaoContador()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051815"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observacao",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    }
+  ],
+  "name": "ImpostoEmpresaModelo",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "empresaModelo",
+      "relationshipName": "empresaModelo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "imposto",
+      "relationshipName": "imposto",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,213 @@
+<div>
+  <h2 id="page-heading" data-cy="SocioHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.socio.home.title">Socios</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.socio.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-socio"
+        [routerLink]="['/socio/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.socio.home.createLabel">Criar novo Socio</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (socios?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.socio.home.notFound">Nenhum Socio encontrado</span>
+    </div>
+  }
+
+  @if (socios && socios.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prolabore">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.prolabore">Prolabore</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="percentualSociedade">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.percentualSociedade">Percentual Sociedade</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adminstrador">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.adminstrador">Adminstrador</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="distribuicaoLucro">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.distribuicaoLucro">Distribuicao Lucro</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="responsavelReceita">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.responsavelReceita">Responsavel Receita</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="percentualDistribuicaoLucro">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.percentualDistribuicaoLucro">Percentual Distribuicao Lucro</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="funcaoSocio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.funcaoSocio">Funcao Socio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pessoa.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.pessoa">Pessoa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="usuarioEmpresa.email">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.usuarioEmpresa">Usuario Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empresa.razaoSocial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.empresa">Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="profissao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.socio.profissao">Profissao</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (socio of socios; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/socio', socio.id, 'view']">{{ socio.id }}</a>
+              </td>
+              <td>{{ socio.prolabore }}</td>
+              <td>{{ socio.percentualSociedade }}</td>
+              <td>{{ socio.adminstrador }}</td>
+              <td>{{ socio.distribuicaoLucro }}</td>
+              <td>{{ socio.responsavelReceita }}</td>
+              <td>{{ socio.percentualDistribuicaoLucro }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.FuncaoSocioEnum.' + (socio.funcaoSocio ?? 'null')">
+                {{
+                  { null: '', SOCIO: 'SOCIO', SOCIOADMINISTRADOR: 'SOCIOADMINISTRADOR', SOCIOGERENTE: 'SOCIOGERENTE' }[
+                    socio.funcaoSocio ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>
+                @if (socio.pessoa) {
+                  <div>
+                    <a [routerLink]="['/pessoa', socio.pessoa.id, 'view']">{{ socio.pessoa.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (socio.usuarioEmpresa) {
+                  <div>
+                    <a [routerLink]="['/usuario-empresa', socio.usuarioEmpresa.id, 'view']">{{ socio.usuarioEmpresa.email }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (socio.empresa) {
+                  <div>
+                    <a [routerLink]="['/empresa', socio.empresa.id, 'view']">{{ socio.empresa.razaoSocial }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (socio.profissao) {
+                  <div>
+                    <a [routerLink]="['/profissao', socio.profissao.id, 'view']">{{ socio.profissao.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/socio', socio.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/socio', socio.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(socio)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (socios && socios.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

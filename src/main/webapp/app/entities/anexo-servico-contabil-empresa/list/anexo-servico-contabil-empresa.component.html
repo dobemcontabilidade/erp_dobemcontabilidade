@@ -1,0 +1,150 @@
+<div>
+  <h2 id="page-heading" data-cy="AnexoServicoContabilEmpresaHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.home.title">Anexo Servico Contabil Empresas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-anexo-servico-contabil-empresa"
+        [routerLink]="['/anexo-servico-contabil-empresa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.home.createLabel"
+          >Criar novo Anexo Servico Contabil Empresa</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (anexoServicoContabilEmpresas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.home.notFound"
+        >Nenhum Anexo Servico Contabil Empresa encontrado</span
+      >
+    </div>
+  }
+
+  @if (anexoServicoContabilEmpresas && anexoServicoContabilEmpresas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="link">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.link">Link</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataHoraUpload">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.dataHoraUpload">Data Hora Upload</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anexoRequerido.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.anexoRequerido">Anexo Requerido</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="servicoContabilAssinaturaEmpresa.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoServicoContabilEmpresa.servicoContabilAssinaturaEmpresa"
+                  >Servico Contabil Assinatura Empresa</span
+                >
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (anexoServicoContabilEmpresa of anexoServicoContabilEmpresas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/anexo-servico-contabil-empresa', anexoServicoContabilEmpresa.id, 'view']">{{
+                  anexoServicoContabilEmpresa.id
+                }}</a>
+              </td>
+              <td>{{ anexoServicoContabilEmpresa.link }}</td>
+              <td>{{ anexoServicoContabilEmpresa.dataHoraUpload | formatMediumDatetime }}</td>
+              <td>
+                @if (anexoServicoContabilEmpresa.anexoRequerido) {
+                  <div>
+                    <a [routerLink]="['/anexo-requerido', anexoServicoContabilEmpresa.anexoRequerido.id, 'view']">{{
+                      anexoServicoContabilEmpresa.anexoRequerido.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (anexoServicoContabilEmpresa.servicoContabilAssinaturaEmpresa) {
+                  <div>
+                    <a
+                      [routerLink]="[
+                        '/servico-contabil-assinatura-empresa',
+                        anexoServicoContabilEmpresa.servicoContabilAssinaturaEmpresa.id,
+                        'view',
+                      ]"
+                      >{{ anexoServicoContabilEmpresa.servicoContabilAssinaturaEmpresa.id }}</a
+                    >
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/anexo-servico-contabil-empresa', anexoServicoContabilEmpresa.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/anexo-servico-contabil-empresa', anexoServicoContabilEmpresa.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(anexoServicoContabilEmpresa)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

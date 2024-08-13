@@ -1,0 +1,20 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051659"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    }
+  ],
+  "name": "FluxoExecucao",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

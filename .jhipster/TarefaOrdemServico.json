@@ -1,0 +1,58 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051807"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notificarCliente",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "notificarContador",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "anoReferencia",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dataAdmin",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "TarefaOrdemServico",
+  "relationships": [
+    {
+      "otherEntityName": "anexoRequeridoTarefaOrdemServico",
+      "otherEntityRelationshipName": "tarefaOrdemServico",
+      "relationshipName": "anexoRequeridoTarefaOrdemServico",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tarefaOrdemServicoExecucao",
+      "otherEntityRelationshipName": "tarefaOrdemServico",
+      "relationshipName": "tarefaOrdemServicoExecucao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "servicoContabilOrdemServico",
+      "relationshipName": "servicoContabilOrdemServico",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

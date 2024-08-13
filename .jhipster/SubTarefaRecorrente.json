@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051810"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ordem",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "concluida",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "SubTarefaRecorrente",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tarefaRecorrenteExecucao",
+      "relationshipName": "tarefaRecorrenteExecucao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

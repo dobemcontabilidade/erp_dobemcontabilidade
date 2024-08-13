@@ -1,0 +1,14 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoDemissaoEnum": {
+      "null": "",
+      "JUSTACAUSA": "JUSTACAUSA",
+      "DESPEDIDASEMJUSTACAUSA": "DESPEDIDASEMJUSTACAUSA",
+      "RECISAOANTECIPADA": "RECISAOANTECIPADA",
+      "FALECIMENTOEMPREGADO": "FALECIMENTOEMPREGADO",
+      "PEDIDO": "PEDIDO",
+      "CONSENSUAL": "CONSENSUAL",
+      "ACORDO": "ACORDO"
+    }
+  }
+}

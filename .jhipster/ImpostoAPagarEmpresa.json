@@ -1,0 +1,60 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051759"
+  },
+  "applications": "*",
+  "entityTableName": "imposto_a_pagar_empresa",
+  "fields": [
+    {
+      "fieldName": "dataVencimento",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataPagamento",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorMulta",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "urlArquivoPagamento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "urlArquivoComprovante",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "situacaoPagamentoImpostoEnum",
+      "fieldType": "SituacaoPagamentoImpostoEnum",
+      "fieldValues": "ABERTO,VENCIDO,ATRASADO,PENDENTE,RECALCULADO,PAGO,PRORROGADO"
+    }
+  ],
+  "name": "ImpostoAPagarEmpresa",
+  "relationships": [
+    {
+      "otherEntityName": "impostoParcelado",
+      "otherEntityRelationshipName": "impostoAPagarEmpresa",
+      "relationshipName": "impostoParcelado",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "diaVencimento",
+      "otherEntityName": "impostoEmpresa",
+      "relationshipName": "imposto",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

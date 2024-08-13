@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051813"
+  },
+  "applications": "*",
+  "entityTableName": "serv_cont_etapa_fluxo_execucao",
+  "fields": [
+    {
+      "fieldName": "ordem",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "feito",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "prazo",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "ServicoContabilEtapaFluxoExecucao",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "servicoContabil",
+      "relationshipName": "servicoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "etapaFluxoExecucao",
+      "relationshipName": "etapaFluxoExecucao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,11 @@
+id;data_cobranca;valor_pago;url_cobranca;url_arquivo;valor_cobrado;situacao_cobranca;assinatura_empresa_id;forma_de_pagamento_id
+1;2024-08-12T08:19:30;17983.88;bleakly;ew;31534.73;FECHADA;1;1
+2;2024-08-12T13:11:17;5646.8;meanwhile;suburban respect;648.79;ATRASADA;2;2
+3;2024-08-12T12:29:46;7024.28;uh-huh lab;cricket homogenate crochet;31642.52;FECHADA;3;3
+4;2024-08-12T12:08:21;2141.1;irk cheek reassuringly;inherit anguish letterbox;24002.75;FECHADA;4;4
+5;2024-08-13T00:23:40;15028.71;ragged;abbreviation apprehensive elastic;20448.33;PAGA;5;5
+6;2024-08-12T08:56:39;17658.13;geez;amongst less hmph;4095.28;ATRASADA;6;6
+7;2024-08-13T04:54:30;25045.3;healthily;mealy suburban;3076.17;FECHADA;7;7
+8;2024-08-12T16:40:27;20404.55;absent aha;wonderfully;22473.08;ABERTA;8;8
+9;2024-08-12T23:25:13;12442.4;automaton;reassuringly into;13851.47;PAGA;9;9
+10;2024-08-13T03:51:03;18666.67;border;on but visit;17895.39;ABERTA;10;10

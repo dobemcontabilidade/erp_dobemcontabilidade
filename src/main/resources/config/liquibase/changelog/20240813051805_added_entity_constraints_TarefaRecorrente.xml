@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity TarefaRecorrente.
+    -->
+    <changeSet id="20240813051805-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="servico_contabil_assinatura_empresa_id"
+                                 baseTableName="tarefa_recorrente"
+                                 constraintName="fk_tarefa_recorrente__servico_contabil_assinatura_empresa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="serv_cont_assinatura_empresa"
+                                 />
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,89 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (ordemServico()) {
+      <div>
+        <h2 data-cy="ordemServicoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.ordemServico.detail.title">Ordem Servico</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ ordemServico()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.ordemServico.valor">Valor</span></dt>
+          <dd>
+            <span>{{ ordemServico()!.valor }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.ordemServico.prazo">Prazo</span></dt>
+          <dd>
+            <span>{{ ordemServico()!.prazo | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.ordemServico.dataCriacao">Data Criacao</span></dt>
+          <dd>
+            <span>{{ ordemServico()!.dataCriacao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.ordemServico.dataHoraCancelamento">Data Hora Cancelamento</span></dt>
+          <dd>
+            <span>{{ ordemServico()!.dataHoraCancelamento | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.ordemServico.statusDaOS">Status Da OS</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.StatusDaOSEnum.' + (ordemServico()!.statusDaOS ?? 'null')">{{
+              {
+                null: '',
+                ABERTA: 'ABERTA',
+                EMATENDIMENTO: 'EMATENDIMENTO',
+                COMPENDENCIA: 'COMPENDENCIA',
+                CONCLUIDA: 'CONCLUIDA',
+                CANCELADA: 'CANCELADA',
+              }[ordemServico()!.statusDaOS ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.ordemServico.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ ordemServico()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.ordemServico.empresa">Empresa</span></dt>
+          <dd>
+            @if (ordemServico()!.empresa) {
+              <div>
+                <a [routerLink]="['/empresa', ordemServico()!.empresa?.id, 'view']">{{ ordemServico()!.empresa?.razaoSocial }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.ordemServico.contador">Contador</span></dt>
+          <dd>
+            @if (ordemServico()!.contador) {
+              <div>
+                <a [routerLink]="['/contador', ordemServico()!.contador?.id, 'view']">{{ ordemServico()!.contador?.crc }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.ordemServico.fluxoModelo">Fluxo Modelo</span></dt>
+          <dd>
+            @if (ordemServico()!.fluxoModelo) {
+              <div>
+                <a [routerLink]="['/fluxo-modelo', ordemServico()!.fluxoModelo?.id, 'view']">{{ ordemServico()!.fluxoModelo?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/ordem-servico', ordemServico()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

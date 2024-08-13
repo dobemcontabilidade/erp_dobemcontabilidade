@@ -1,0 +1,107 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (tarefaRecorrenteExecucao()) {
+      <div>
+        <h2 data-cy="tarefaRecorrenteExecucaoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteExecucao.detail.title">Tarefa Recorrente Execucao</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrenteExecucao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteExecucao.nome">Nome</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrenteExecucao()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteExecucao.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrenteExecucao()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteExecucao.dataEntrega">Data Entrega</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrenteExecucao()!.dataEntrega | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteExecucao.dataAgendada">Data Agendada</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrenteExecucao()!.dataAgendada | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteExecucao.ordem">Ordem</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrenteExecucao()!.ordem }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteExecucao.concluida">Concluida</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrenteExecucao()!.concluida }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteExecucao.mes">Mes</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.MesCompetenciaEnum.' + (tarefaRecorrenteExecucao()!.mes ?? 'null')">{{
+              {
+                null: '',
+                JANEIRO: 'JANEIRO',
+                FEVEREIRO: 'FEVEREIRO',
+                MARCO: 'MARCO',
+                ABRIL: 'ABRIL',
+                MAIO: 'MAIO',
+                JUNHO: 'JUNHO',
+                JULHO: 'JULHO',
+                AGOSTO: 'AGOSTO',
+                SETEMBRO: 'SETEMBRO',
+                OUTUBRO: 'OUTUBRO',
+                NOVEMBRO: 'NOVEMBRO',
+                DEZEMBRO: 'DEZEMBRO',
+              }[tarefaRecorrenteExecucao()!.mes ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteExecucao.situacaoTarefa">Situacao Tarefa</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoTarefaEnum.' + (tarefaRecorrenteExecucao()!.situacaoTarefa ?? 'null')"
+              >{{
+                {
+                  null: '',
+                  AGENDADA: 'AGENDADA',
+                  CANCELADA: 'CANCELADA',
+                  EMEXECUCAO: 'EMEXECUCAO',
+                  CONCLUIDA: 'CONCLUIDA',
+                  PENDENTE: 'PENDENTE',
+                  DELETADA: 'DELETADA',
+                }[tarefaRecorrenteExecucao()!.situacaoTarefa ?? 'null']
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteExecucao.tarefaRecorrente">Tarefa Recorrente</span></dt>
+          <dd>
+            @if (tarefaRecorrenteExecucao()!.tarefaRecorrente) {
+              <div>
+                <a [routerLink]="['/tarefa-recorrente', tarefaRecorrenteExecucao()!.tarefaRecorrente?.id, 'view']">{{
+                  tarefaRecorrenteExecucao()!.tarefaRecorrente?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/tarefa-recorrente-execucao', tarefaRecorrenteExecucao()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

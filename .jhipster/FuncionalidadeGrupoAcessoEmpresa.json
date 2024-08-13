@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051709"
+  },
+  "applications": "*",
+  "entityTableName": "func_grup_acess_empresa",
+  "fields": [
+    {
+      "fieldName": "ativa",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataExpiracao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "ilimitado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "desabilitar",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "FuncionalidadeGrupoAcessoEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "funcionalidade",
+      "relationshipName": "funcionalidade",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "grupoAcessoEmpresa",
+      "relationshipName": "grupoAcessoEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "permisao",
+      "relationshipName": "permisao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "divisaoCnae": {
+      "home": {
+        "title": "Divisao Cnaes",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Divisao Cnae",
+        "createOrEditLabel": "Criar ou editar Divisao Cnae",
+        "notFound": "Nenhum Divisao Cnae encontrado"
+      },
+      "created": "Um novo Divisao Cnae foi criado com o identificador {{ param }}",
+      "updated": "Um Divisao Cnae foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Divisao Cnae foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Divisao Cnae {{ id }}?"
+      },
+      "detail": {
+        "title": "Divisao Cnae"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "descricao": "Descricao",
+      "grupoCnae": "Grupo Cnae",
+      "secao": "Secao"
+    }
+  }
+}

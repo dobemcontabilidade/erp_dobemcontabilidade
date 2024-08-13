@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoRequeridoTarefaRecorrente": {
+      "home": {
+        "title": "Anexo Requerido Tarefa Recorrentes",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Anexo Requerido Tarefa Recorrente",
+        "createOrEditLabel": "Criar ou editar Anexo Requerido Tarefa Recorrente",
+        "notFound": "Nenhum Anexo Requerido Tarefa Recorrente encontrado"
+      },
+      "created": "Um novo Anexo Requerido Tarefa Recorrente foi criado com o identificador {{ param }}",
+      "updated": "Um Anexo Requerido Tarefa Recorrente foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Anexo Requerido Tarefa Recorrente foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Anexo Requerido Tarefa Recorrente {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Requerido Tarefa Recorrente"
+      },
+      "id": "ID",
+      "obrigatorio": "Obrigatorio",
+      "anexoRequerido": "Anexo Requerido",
+      "tarefaRecorrente": "Tarefa Recorrente"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051730"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cbo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "categoria",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Profissao",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "funcionario",
+      "otherEntityRelationshipName": "profissao",
+      "relationshipName": "funcionario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "socio",
+      "otherEntityRelationshipName": "profissao",
+      "relationshipName": "socio",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

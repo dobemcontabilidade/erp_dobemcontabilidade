@@ -1,0 +1,32 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "enderecoPessoa": {
+      "home": {
+        "title": "Endereco Pessoas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Endereco Pessoa",
+        "createOrEditLabel": "Criar ou editar Endereco Pessoa",
+        "notFound": "Nenhum Endereco Pessoa encontrado"
+      },
+      "created": "Um novo Endereco Pessoa foi criado com o identificador {{ param }}",
+      "updated": "Um Endereco Pessoa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Endereco Pessoa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Endereco Pessoa {{ id }}?"
+      },
+      "detail": {
+        "title": "Endereco Pessoa"
+      },
+      "id": "ID",
+      "logradouro": "Logradouro",
+      "numero": "Numero",
+      "complemento": "Complemento",
+      "bairro": "Bairro",
+      "cep": "Cep",
+      "principal": "Principal",
+      "residenciaPropria": "Residencia Propria",
+      "pessoa": "Pessoa",
+      "cidade": "Cidade"
+    }
+  }
+}

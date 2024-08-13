@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (feedBackContadorParaUsuario()) {
+      <div>
+        <h2 data-cy="feedBackContadorParaUsuarioDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.feedBackContadorParaUsuario.detail.title">Feed Back Contador Para Usuario</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ feedBackContadorParaUsuario()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.feedBackContadorParaUsuario.comentario">Comentario</span></dt>
+          <dd>
+            <span>{{ feedBackContadorParaUsuario()!.comentario }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.feedBackContadorParaUsuario.pontuacao">Pontuacao</span></dt>
+          <dd>
+            <span>{{ feedBackContadorParaUsuario()!.pontuacao }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.feedBackContadorParaUsuario.criterioAvaliacaoAtor">Criterio Avaliacao Ator</span>
+          </dt>
+          <dd>
+            @if (feedBackContadorParaUsuario()!.criterioAvaliacaoAtor) {
+              <div>
+                <a [routerLink]="['/criterio-avaliacao-ator', feedBackContadorParaUsuario()!.criterioAvaliacaoAtor?.id, 'view']">{{
+                  feedBackContadorParaUsuario()!.criterioAvaliacaoAtor?.descricao
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.feedBackContadorParaUsuario.usuarioEmpresa">Usuario Empresa</span></dt>
+          <dd>
+            @if (feedBackContadorParaUsuario()!.usuarioEmpresa) {
+              <div>
+                <a [routerLink]="['/usuario-empresa', feedBackContadorParaUsuario()!.usuarioEmpresa?.id, 'view']">{{
+                  feedBackContadorParaUsuario()!.usuarioEmpresa?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.feedBackContadorParaUsuario.contador">Contador</span></dt>
+          <dd>
+            @if (feedBackContadorParaUsuario()!.contador) {
+              <div>
+                <a [routerLink]="['/contador', feedBackContadorParaUsuario()!.contador?.id, 'view']">{{
+                  feedBackContadorParaUsuario()!.contador?.crc
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.feedBackContadorParaUsuario.ordemServico">Ordem Servico</span></dt>
+          <dd>
+            @if (feedBackContadorParaUsuario()!.ordemServico) {
+              <div>
+                <a [routerLink]="['/ordem-servico', feedBackContadorParaUsuario()!.ordemServico?.id, 'view']">{{
+                  feedBackContadorParaUsuario()!.ordemServico?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/feed-back-contador-para-usuario', feedBackContadorParaUsuario()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

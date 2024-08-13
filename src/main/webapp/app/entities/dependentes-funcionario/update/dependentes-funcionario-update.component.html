@@ -1,0 +1,182 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-dependentes-funcionario-heading"
+        data-cy="DependentesFuncionarioCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.home.createOrEditLabel"
+      >
+        Criar ou editar Dependentes Funcionario
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_urlCertidaoDependente"
+            jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.urlCertidaoDependente"
+            >Url Certidao Dependente</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="urlCertidaoDependente"
+            id="field_urlCertidaoDependente"
+            data-cy="urlCertidaoDependente"
+            formControlName="urlCertidaoDependente"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_urlRgDependente"
+            jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.urlRgDependente"
+            >Url Rg Dependente</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="urlRgDependente"
+            id="field_urlRgDependente"
+            data-cy="urlRgDependente"
+            formControlName="urlRgDependente"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dependenteIRRF" jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.dependenteIRRF"
+            >Dependente IRRF</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="dependenteIRRF"
+            id="field_dependenteIRRF"
+            data-cy="dependenteIRRF"
+            formControlName="dependenteIRRF"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dependenteSalarioFamilia"
+            jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.dependenteSalarioFamilia"
+            >Dependente Salario Familia</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="dependenteSalarioFamilia"
+            id="field_dependenteSalarioFamilia"
+            data-cy="dependenteSalarioFamilia"
+            formControlName="dependenteSalarioFamilia"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tipoDependenteFuncionarioEnum"
+            jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.tipoDependenteFuncionarioEnum"
+            >Tipo Dependente Funcionario Enum</label
+          >
+          <select
+            class="form-control"
+            name="tipoDependenteFuncionarioEnum"
+            formControlName="tipoDependenteFuncionarioEnum"
+            id="field_tipoDependenteFuncionarioEnum"
+            data-cy="tipoDependenteFuncionarioEnum"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoDependenteFuncionarioEnum.null' | translate }}</option>
+            @for (tipoDependenteFuncionarioEnum of tipoDependenteFuncionarioEnumValues; track $index) {
+              <option [value]="tipoDependenteFuncionarioEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoDependenteFuncionarioEnum.' + tipoDependenteFuncionarioEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pessoa" jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.pessoa">Pessoa</label>
+          <select
+            class="form-control"
+            id="field_pessoa"
+            data-cy="pessoa"
+            name="pessoa"
+            formControlName="pessoa"
+            [compareWith]="comparePessoa"
+          >
+            @if (editForm.get(['pessoa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (pessoaOption of pessoasSharedCollection; track $index) {
+              <option [ngValue]="pessoaOption">{{ pessoaOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['pessoa'])!.invalid && (editForm.get(['pessoa'])!.dirty || editForm.get(['pessoa'])!.touched)) {
+          <div>
+            @if (editForm.get(['pessoa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_funcionario" jhiTranslate="erpDobemcontabilidadeApp.dependentesFuncionario.funcionario"
+            >Funcionario</label
+          >
+          <select
+            class="form-control"
+            id="field_funcionario"
+            data-cy="funcionario"
+            name="funcionario"
+            formControlName="funcionario"
+            [compareWith]="compareFuncionario"
+          >
+            @if (editForm.get(['funcionario'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (funcionarioOption of funcionariosSharedCollection; track $index) {
+              <option [ngValue]="funcionarioOption">{{ funcionarioOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['funcionario'])!.invalid && (editForm.get(['funcionario'])!.dirty || editForm.get(['funcionario'])!.touched)) {
+          <div>
+            @if (editForm.get(['funcionario'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

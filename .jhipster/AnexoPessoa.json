@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051615"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "urlArquivo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "name": "AnexoPessoa",
+  "relationships": [
+    {
+      "otherEntityName": "anexoRequeridoPessoa",
+      "otherEntityRelationshipName": "anexoPessoa",
+      "relationshipName": "anexoRequeridoPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoa",
+      "relationshipName": "pessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

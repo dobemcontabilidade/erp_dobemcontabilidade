@@ -1,0 +1,16 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "SituacaoDemissaoEnum": {
+      "null": "",
+      "SOLICITADO": "SOLICITADO",
+      "GERADO": "GERADO",
+      "DEMISSAOEMANDAMENTO": "DEMISSAOEMANDAMENTO",
+      "EMANDAMENTO": "EMANDAMENTO",
+      "CANCELADO": "CANCELADO",
+      "REMOVIDO": "REMOVIDO",
+      "FINALIZADO": "FINALIZADO",
+      "ABERTO": "ABERTO",
+      "PAGO": "PAGO"
+    }
+  }
+}

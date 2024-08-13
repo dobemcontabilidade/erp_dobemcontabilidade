@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "funcionalidadeGrupoAcessoEmpresa": {
+      "home": {
+        "title": "Funcionalidade Grupo Acesso Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Funcionalidade Grupo Acesso Empresa",
+        "createOrEditLabel": "Create or edit a Funcionalidade Grupo Acesso Empresa",
+        "notFound": "No Funcionalidade Grupo Acesso Empresas found"
+      },
+      "created": "A new Funcionalidade Grupo Acesso Empresa is created with identifier {{ param }}",
+      "updated": "A Funcionalidade Grupo Acesso Empresa is updated with identifier {{ param }}",
+      "deleted": "A Funcionalidade Grupo Acesso Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Funcionalidade Grupo Acesso Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Funcionalidade Grupo Acesso Empresa"
+      },
+      "id": "ID",
+      "ativa": "Ativa",
+      "dataExpiracao": "Data Expiracao",
+      "ilimitado": "Ilimitado",
+      "desabilitar": "Desabilitar",
+      "funcionalidade": "Funcionalidade",
+      "grupoAcessoEmpresa": "Grupo Acesso Empresa",
+      "permisao": "Permisao"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "criterioAvaliacao": {
+      "home": {
+        "title": "Criterio Avaliacaos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Criterio Avaliacao",
+        "createOrEditLabel": "Create or edit a Criterio Avaliacao",
+        "notFound": "No Criterio Avaliacaos found"
+      },
+      "created": "A new Criterio Avaliacao is created with identifier {{ param }}",
+      "updated": "A Criterio Avaliacao is updated with identifier {{ param }}",
+      "deleted": "A Criterio Avaliacao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Criterio Avaliacao {{ id }}?"
+      },
+      "detail": {
+        "title": "Criterio Avaliacao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "criterioAvaliacaoAtor": "Criterio Avaliacao Ator"
+    }
+  }
+}

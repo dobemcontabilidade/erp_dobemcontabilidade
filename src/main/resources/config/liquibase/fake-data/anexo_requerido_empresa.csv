@@ -1,0 +1,11 @@
+id;obrigatorio;url_arquivo;anexo_requerido_id;enquadramento_id;tributacao_id;ramo_id;empresa_modelo_id
+1;true;../fake-data/blob/hipster.txt;1;1;1;1;1
+2;true;../fake-data/blob/hipster.txt;2;2;2;2;2
+3;true;../fake-data/blob/hipster.txt;3;3;3;3;3
+4;false;../fake-data/blob/hipster.txt;4;4;4;4;4
+5;true;../fake-data/blob/hipster.txt;5;5;5;5;5
+6;true;../fake-data/blob/hipster.txt;6;6;6;6;6
+7;true;../fake-data/blob/hipster.txt;7;7;7;7;7
+8;false;../fake-data/blob/hipster.txt;8;8;8;8;8
+9;false;../fake-data/blob/hipster.txt;9;9;9;9;9
+10;false;../fake-data/blob/hipster.txt;10;10;10;10;10

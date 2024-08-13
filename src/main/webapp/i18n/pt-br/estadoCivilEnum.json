@@ -1,0 +1,12 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "EstadoCivilEnum": {
+      "null": "",
+      "SOLTEIRO": "SOLTEIRO",
+      "CASADO": "CASADO",
+      "DIVORCIADO": "DIVORCIADO",
+      "VIUVO": "VIUVO",
+      "UNIAOESTAVEL": "UNIAOESTAVEL"
+    }
+  }
+}

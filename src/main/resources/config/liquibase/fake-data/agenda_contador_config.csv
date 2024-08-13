@@ -1,0 +1,11 @@
+id;ativo;tipo_visualizacao_agenda_enum;agenda_tarefa_recorrente_execucao_id;agenda_tarefa_ordem_servico_execucao_id
+1;true;DIA;1;1
+2;false;MES;2;2
+3;true;DIA;3;3
+4;true;SEMANAL;4;4
+5;false;SEMANAL;5;5
+6;false;ORDEMSERVICO;6;6
+7;true;DIA;7;7
+8;true;EMPRESA;8;8
+9;true;MES;9;9
+10;true;EMPRESA;10;10

@@ -1,0 +1,31 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "ramo": {
+      "home": {
+        "title": "Ramos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Ramo",
+        "createOrEditLabel": "Criar ou editar Ramo",
+        "notFound": "Nenhum Ramo encontrado"
+      },
+      "created": "Um novo Ramo foi criado com o identificador {{ param }}",
+      "updated": "Um Ramo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Ramo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Ramo {{ id }}?"
+      },
+      "detail": {
+        "title": "Ramo"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "anexoRequeridoEmpresa": "Anexo Requerido Empresa",
+      "empresaModelo": "Empresa Modelo",
+      "calculoPlanoAssinatura": "Calculo Plano Assinatura",
+      "adicionalRamo": "Adicional Ramo",
+      "valorBaseRamo": "Valor Base Ramo",
+      "segmentoCnae": "Segmento Cnae"
+    }
+  }
+}

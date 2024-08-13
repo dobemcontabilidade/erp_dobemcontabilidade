@@ -1,0 +1,61 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051720"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "dataCobranca",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataVencimento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataPagamento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "valorPago",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorCobrado",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "acrescimo",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "multa",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "juros",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoPagamentoEnum",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "APAGAR,PAGO,EMATRASO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Pagamento",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "codigoAssinatura",
+      "otherEntityName": "assinaturaEmpresa",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

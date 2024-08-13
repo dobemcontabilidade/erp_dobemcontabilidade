@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "funcionalidadeGrupoAcessoPadrao": {
+      "home": {
+        "title": "Funcionalidade Grupo Acesso Padraos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Funcionalidade Grupo Acesso Padrao",
+        "createOrEditLabel": "Create or edit a Funcionalidade Grupo Acesso Padrao",
+        "notFound": "No Funcionalidade Grupo Acesso Padraos found"
+      },
+      "created": "A new Funcionalidade Grupo Acesso Padrao is created with identifier {{ param }}",
+      "updated": "A Funcionalidade Grupo Acesso Padrao is updated with identifier {{ param }}",
+      "deleted": "A Funcionalidade Grupo Acesso Padrao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Funcionalidade Grupo Acesso Padrao {{ id }}?"
+      },
+      "detail": {
+        "title": "Funcionalidade Grupo Acesso Padrao"
+      },
+      "id": "ID",
+      "autorizado": "Autorizado",
+      "dataExpiracao": "Data Expiracao",
+      "dataAtribuicao": "Data Atribuicao",
+      "funcionalidade": "Funcionalidade",
+      "grupoAcessoPadrao": "Grupo Acesso Padrao",
+      "permisao": "Permisao"
+    }
+  }
+}

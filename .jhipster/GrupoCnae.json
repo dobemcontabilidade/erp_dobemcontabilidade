@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051713"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "15"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "GrupoCnae",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "classeCnae",
+      "otherEntityRelationshipName": "grupo",
+      "relationshipName": "classeCnae",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "descricao",
+      "otherEntityName": "divisaoCnae",
+      "relationshipName": "divisao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

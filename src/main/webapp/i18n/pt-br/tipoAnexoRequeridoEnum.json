@@ -1,0 +1,9 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoAnexoRequeridoEnum": {
+      "null": "",
+      "PJ": "PJ",
+      "PF": "PF"
+    }
+  }
+}

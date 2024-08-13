@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "gatewayPagamento": {
+      "home": {
+        "title": "Gateway Pagamentos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Gateway Pagamento",
+        "createOrEditLabel": "Criar ou editar Gateway Pagamento",
+        "notFound": "Nenhum Gateway Pagamento encontrado"
+      },
+      "created": "Um novo Gateway Pagamento foi criado com o identificador {{ param }}",
+      "updated": "Um Gateway Pagamento foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Gateway Pagamento foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Gateway Pagamento {{ id }}?"
+      },
+      "detail": {
+        "title": "Gateway Pagamento"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "gatewayAssinaturaEmpresa": "Gateway Assinatura Empresa"
+    }
+  }
+}

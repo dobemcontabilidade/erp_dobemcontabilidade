@@ -1,0 +1,32 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "impostoAPagarEmpresa": {
+      "home": {
+        "title": "Imposto A Pagar Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Imposto A Pagar Empresa",
+        "createOrEditLabel": "Create or edit a Imposto A Pagar Empresa",
+        "notFound": "No Imposto A Pagar Empresas found"
+      },
+      "created": "A new Imposto A Pagar Empresa is created with identifier {{ param }}",
+      "updated": "A Imposto A Pagar Empresa is updated with identifier {{ param }}",
+      "deleted": "A Imposto A Pagar Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Imposto A Pagar Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Imposto A Pagar Empresa"
+      },
+      "id": "ID",
+      "dataVencimento": "Data Vencimento",
+      "dataPagamento": "Data Pagamento",
+      "valor": "Valor",
+      "valorMulta": "Valor Multa",
+      "urlArquivoPagamento": "Url Arquivo Pagamento",
+      "urlArquivoComprovante": "Url Arquivo Comprovante",
+      "situacaoPagamentoImpostoEnum": "Situacao Pagamento Imposto Enum",
+      "impostoParcelado": "Imposto Parcelado",
+      "imposto": "Imposto"
+    }
+  }
+}

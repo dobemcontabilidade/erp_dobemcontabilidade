@@ -1,0 +1,11 @@
+id;data_vencimento;data_pagamento;valor;valor_multa;url_arquivo_pagamento;url_arquivo_comprovante;situacao_pagamento_imposto_enum;imposto_id
+1;2024-08-12T10:02:15;2024-08-13T01:06:15;13699.53;29798;next;where;ABERTO;1
+2;2024-08-13T03:43:53;2024-08-12T18:20:55;11656.61;15616;alien absent;past;ABERTO;2
+3;2024-08-12T06:52:10;2024-08-12T19:55:23;19733.97;7005;thirsty memorialise;woot reckless;PAGO;3
+4;2024-08-12T21:53:22;2024-08-12T23:50:27;29980.9;19890;whenever abnormally;lest peer incompatible;RECALCULADO;4
+5;2024-08-12T13:36:39;2024-08-12T15:58:14;13548.86;32298;furthermore darling without;nervously boom;ABERTO;5
+6;2024-08-12T21:40:09;2024-08-12T23:25:16;27418.39;31338;phew screenwriting;hog diminish;PRORROGADO;6
+7;2024-08-13T02:41:43;2024-08-12T12:34:36;26615.09;27476;per brr well-off;overjoyed;ATRASADO;7
+8;2024-08-12T06:45:19;2024-08-13T02:47:58;18972.02;4240;likewise modulo;lovely;ATRASADO;8
+9;2024-08-12T22:18:40;2024-08-12T12:18:34;11287.41;24056;inspire;via instead seeder;VENCIDO;9
+10;2024-08-13T01:39:11;2024-08-13T04:34:39;22836.61;30421;underneath unwelcome instead;excitedly;ABERTO;10

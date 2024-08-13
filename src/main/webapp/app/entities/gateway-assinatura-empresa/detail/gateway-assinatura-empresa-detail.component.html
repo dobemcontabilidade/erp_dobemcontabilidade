@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (gatewayAssinaturaEmpresa()) {
+      <div>
+        <h2 data-cy="gatewayAssinaturaEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.detail.title">Gateway Assinatura Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ gatewayAssinaturaEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.ativo">Ativo</span></dt>
+          <dd>
+            <span>{{ gatewayAssinaturaEmpresa()!.ativo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.codigoAssinatura">Codigo Assinatura</span></dt>
+          <dd>
+            <span>{{ gatewayAssinaturaEmpresa()!.codigoAssinatura }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.assinaturaEmpresa">Assinatura Empresa</span></dt>
+          <dd>
+            @if (gatewayAssinaturaEmpresa()!.assinaturaEmpresa) {
+              <div>
+                <a [routerLink]="['/assinatura-empresa', gatewayAssinaturaEmpresa()!.assinaturaEmpresa?.id, 'view']">{{
+                  gatewayAssinaturaEmpresa()!.assinaturaEmpresa?.codigoAssinatura
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.gatewayAssinaturaEmpresa.gatewayPagamento">Gateway Pagamento</span></dt>
+          <dd>
+            @if (gatewayAssinaturaEmpresa()!.gatewayPagamento) {
+              <div>
+                <a [routerLink]="['/gateway-pagamento', gatewayAssinaturaEmpresa()!.gatewayPagamento?.id, 'view']">{{
+                  gatewayAssinaturaEmpresa()!.gatewayPagamento?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/gateway-assinatura-empresa', gatewayAssinaturaEmpresa()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

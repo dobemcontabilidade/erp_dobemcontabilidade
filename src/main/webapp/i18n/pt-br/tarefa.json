@@ -1,0 +1,38 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "tarefa": {
+      "home": {
+        "title": "Tarefas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Tarefa",
+        "createOrEditLabel": "Criar ou editar Tarefa",
+        "notFound": "Nenhum Tarefa encontrado"
+      },
+      "created": "Um novo Tarefa foi criado com o identificador {{ param }}",
+      "updated": "Um Tarefa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tarefa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tarefa {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarefa"
+      },
+      "id": "ID",
+      "titulo": "Titulo",
+      "numeroDias": "Numero Dias",
+      "diaUtil": "Dia Util",
+      "valor": "Valor",
+      "notificarCliente": "Notificar Cliente",
+      "geraMulta": "Gera Multa",
+      "exibirEmpresa": "Exibir Empresa",
+      "dataLegal": "Data Legal",
+      "pontos": "Pontos",
+      "tipoTarefa": "Tipo Tarefa",
+      "tarefaEmpresa": "Tarefa Empresa",
+      "subtarefa": "Subtarefa",
+      "esfera": "Esfera",
+      "frequencia": "Frequencia",
+      "competencia": "Competencia"
+    }
+  }
+}

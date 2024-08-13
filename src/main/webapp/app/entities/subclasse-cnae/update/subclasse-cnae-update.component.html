@@ -1,0 +1,160 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-subclasse-cnae-heading"
+        data-cy="SubclasseCnaeCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.home.createOrEditLabel"
+      >
+        Criar ou editar Subclasse Cnae
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codigo" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.codigo">Codigo</label>
+          <input type="text" class="form-control" name="codigo" id="field_codigo" data-cy="codigo" formControlName="codigo" />
+          @if (editForm.get('codigo')!.invalid && (editForm.get('codigo')!.dirty || editForm.get('codigo')!.touched)) {
+            <div>
+              @if (editForm.get('codigo')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              @if (editForm.get('codigo')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '15' }"
+                  >Este campo não pode ter mais de 15 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_descricao" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.descricao">Descricao</label>
+          <textarea class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao"></textarea>
+          @if (editForm.get('descricao')!.invalid && (editForm.get('descricao')!.dirty || editForm.get('descricao')!.touched)) {
+            <div>
+              @if (editForm.get('descricao')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anexo" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.anexo">Anexo</label>
+          <input type="number" class="form-control" name="anexo" id="field_anexo" data-cy="anexo" formControlName="anexo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_atendidoFreemium" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.atendidoFreemium"
+            >Atendido Freemium</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="atendidoFreemium"
+            id="field_atendidoFreemium"
+            data-cy="atendidoFreemium"
+            formControlName="atendidoFreemium"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_atendido" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.atendido">Atendido</label>
+          <input type="checkbox" class="form-check" name="atendido" id="field_atendido" data-cy="atendido" formControlName="atendido" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_optanteSimples" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.optanteSimples"
+            >Optante Simples</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="optanteSimples"
+            id="field_optanteSimples"
+            data-cy="optanteSimples"
+            formControlName="optanteSimples"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_aceitaMEI" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.aceitaMEI">Aceita MEI</label>
+          <input type="checkbox" class="form-check" name="aceitaMEI" id="field_aceitaMEI" data-cy="aceitaMEI" formControlName="aceitaMEI" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_categoria" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.categoria">Categoria</label>
+          <input type="text" class="form-control" name="categoria" id="field_categoria" data-cy="categoria" formControlName="categoria" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_classe" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.classe">Classe</label>
+          <select
+            class="form-control"
+            id="field_classe"
+            data-cy="classe"
+            name="classe"
+            formControlName="classe"
+            [compareWith]="compareClasseCnae"
+          >
+            @if (editForm.get(['classe'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (classeCnaeOption of classeCnaesSharedCollection; track $index) {
+              <option [ngValue]="classeCnaeOption">{{ classeCnaeOption.descricao }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['classe'])!.invalid && (editForm.get(['classe'])!.dirty || editForm.get(['classe'])!.touched)) {
+          <div>
+            @if (editForm.get(['classe'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label for="field_segmentoCnaes" jhiTranslate="erpDobemcontabilidadeApp.subclasseCnae.segmentoCnae">Segmento Cnae</label>
+          <select
+            class="form-control"
+            id="field_segmentoCnaes"
+            data-cy="segmentoCnae"
+            multiple
+            name="segmentoCnaes"
+            formControlName="segmentoCnaes"
+            [compareWith]="compareSegmentoCnae"
+          >
+            @for (segmentoCnaeOption of segmentoCnaesSharedCollection; track $index) {
+              <option [ngValue]="segmentoCnaeOption">{{ segmentoCnaeOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

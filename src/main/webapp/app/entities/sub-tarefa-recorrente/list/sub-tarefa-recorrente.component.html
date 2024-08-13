@@ -1,0 +1,133 @@
+<div>
+  <h2 id="page-heading" data-cy="SubTarefaRecorrenteHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaRecorrente.home.title">Sub Tarefa Recorrentes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaRecorrente.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-sub-tarefa-recorrente"
+        [routerLink]="['/sub-tarefa-recorrente/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaRecorrente.home.createLabel">Criar novo Sub Tarefa Recorrente</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (subTarefaRecorrentes?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaRecorrente.home.notFound">Nenhum Sub Tarefa Recorrente encontrado</span>
+    </div>
+  }
+
+  @if (subTarefaRecorrentes && subTarefaRecorrentes.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaRecorrente.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaRecorrente.descricao">Descricao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ordem">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaRecorrente.ordem">Ordem</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="concluida">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaRecorrente.concluida">Concluida</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tarefaRecorrenteExecucao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.subTarefaRecorrente.tarefaRecorrenteExecucao">Tarefa Recorrente Execucao</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (subTarefaRecorrente of subTarefaRecorrentes; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/sub-tarefa-recorrente', subTarefaRecorrente.id, 'view']">{{ subTarefaRecorrente.id }}</a>
+              </td>
+              <td>{{ subTarefaRecorrente.nome }}</td>
+              <td>{{ subTarefaRecorrente.descricao }}</td>
+              <td>{{ subTarefaRecorrente.ordem }}</td>
+              <td>{{ subTarefaRecorrente.concluida }}</td>
+              <td>
+                @if (subTarefaRecorrente.tarefaRecorrenteExecucao) {
+                  <div>
+                    <a [routerLink]="['/tarefa-recorrente-execucao', subTarefaRecorrente.tarefaRecorrenteExecucao.id, 'view']">{{
+                      subTarefaRecorrente.tarefaRecorrenteExecucao.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/sub-tarefa-recorrente', subTarefaRecorrente.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/sub-tarefa-recorrente', subTarefaRecorrente.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(subTarefaRecorrente)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

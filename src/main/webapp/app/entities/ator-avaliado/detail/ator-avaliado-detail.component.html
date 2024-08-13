@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (atorAvaliado()) {
+      <div>
+        <h2 data-cy="atorAvaliadoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.atorAvaliado.detail.title">Ator Avaliado</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ atorAvaliado()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.atorAvaliado.nome">Nome</span></dt>
+          <dd>
+            <span>{{ atorAvaliado()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.atorAvaliado.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ atorAvaliado()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.atorAvaliado.ativo">Ativo</span></dt>
+          <dd>
+            <span>{{ atorAvaliado()!.ativo }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/ator-avaliado', atorAvaliado()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

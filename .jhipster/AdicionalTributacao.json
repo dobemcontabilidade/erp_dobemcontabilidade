@@ -1,0 +1,36 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051554"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "valor",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "AdicionalTributacao",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tributacao",
+      "relationshipName": "tributacao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "planoContabil",
+      "relationshipName": "planoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

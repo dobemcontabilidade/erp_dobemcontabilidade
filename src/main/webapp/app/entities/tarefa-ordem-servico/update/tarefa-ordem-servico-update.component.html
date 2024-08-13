@@ -1,0 +1,148 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-tarefa-ordem-servico-heading"
+        data-cy="TarefaOrdemServicoCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.home.createOrEditLabel"
+      >
+        Criar ou editar Tarefa Ordem Servico
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nome" jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_descricao" jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.descricao"
+            >Descricao</label
+          >
+          <input type="text" class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_notificarCliente" jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.notificarCliente"
+            >Notificar Cliente</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="notificarCliente"
+            id="field_notificarCliente"
+            data-cy="notificarCliente"
+            formControlName="notificarCliente"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_notificarContador"
+            jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.notificarContador"
+            >Notificar Contador</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="notificarContador"
+            id="field_notificarContador"
+            data-cy="notificarContador"
+            formControlName="notificarContador"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anoReferencia" jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.anoReferencia"
+            >Ano Referencia</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="anoReferencia"
+            id="field_anoReferencia"
+            data-cy="anoReferencia"
+            formControlName="anoReferencia"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataAdmin" jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.dataAdmin"
+            >Data Admin</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataAdmin"
+              data-cy="dataAdmin"
+              type="datetime-local"
+              class="form-control"
+              name="dataAdmin"
+              formControlName="dataAdmin"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_servicoContabilOrdemServico"
+            jhiTranslate="erpDobemcontabilidadeApp.tarefaOrdemServico.servicoContabilOrdemServico"
+            >Servico Contabil Ordem Servico</label
+          >
+          <select
+            class="form-control"
+            id="field_servicoContabilOrdemServico"
+            data-cy="servicoContabilOrdemServico"
+            name="servicoContabilOrdemServico"
+            formControlName="servicoContabilOrdemServico"
+            [compareWith]="compareServicoContabilOrdemServico"
+          >
+            @if (editForm.get(['servicoContabilOrdemServico'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (servicoContabilOrdemServicoOption of servicoContabilOrdemServicosSharedCollection; track $index) {
+              <option [ngValue]="servicoContabilOrdemServicoOption">{{ servicoContabilOrdemServicoOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['servicoContabilOrdemServico'])!.invalid &&
+          (editForm.get(['servicoContabilOrdemServico'])!.dirty || editForm.get(['servicoContabilOrdemServico'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['servicoContabilOrdemServico'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

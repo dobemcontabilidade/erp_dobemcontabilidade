@@ -1,0 +1,36 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051607"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "tipoVisualizacaoAgendaEnum",
+      "fieldType": "TipoVisualizacaoAgendaEnum",
+      "fieldValues": "RECORRENTE,ORDEMSERVICO,SEMANAL,DIA,MES,EMPRESA"
+    }
+  ],
+  "name": "AgendaContadorConfig",
+  "relationships": [
+    {
+      "otherEntityName": "agendaTarefaRecorrenteExecucao",
+      "relationshipName": "agendaTarefaRecorrenteExecucao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "agendaTarefaOrdemServicoExecucao",
+      "relationshipName": "agendaTarefaOrdemServicoExecucao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

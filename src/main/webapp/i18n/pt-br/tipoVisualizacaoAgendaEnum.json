@@ -1,0 +1,13 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoVisualizacaoAgendaEnum": {
+      "null": "",
+      "RECORRENTE": "RECORRENTE",
+      "ORDEMSERVICO": "ORDEMSERVICO",
+      "SEMANAL": "SEMANAL",
+      "DIA": "DIA",
+      "MES": "MES",
+      "EMPRESA": "EMPRESA"
+    }
+  }
+}

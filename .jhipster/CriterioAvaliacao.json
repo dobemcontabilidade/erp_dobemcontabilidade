@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051621"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    }
+  ],
+  "name": "CriterioAvaliacao",
+  "relationships": [
+    {
+      "otherEntityName": "criterioAvaliacaoAtor",
+      "otherEntityRelationshipName": "criterioAvaliacao",
+      "relationshipName": "criterioAvaliacaoAtor",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

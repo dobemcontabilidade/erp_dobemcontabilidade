@@ -1,0 +1,344 @@
+<div>
+  <h2 id="page-heading" data-cy="EmpresaVinculadaHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.home.title">Empresa Vinculadas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-empresa-vinculada"
+        [routerLink]="['/empresa-vinculada/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.home.createLabel">Criar novo Empresa Vinculada</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (empresaVinculadas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.home.notFound">Nenhum Empresa Vinculada encontrado</span>
+    </div>
+  }
+
+  @if (empresaVinculadas && empresaVinculadas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nomeEmpresa">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.nomeEmpresa">Nome Empresa</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cnpj">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.cnpj">Cnpj</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="remuneracaoEmpresa">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.remuneracaoEmpresa">Remuneracao Empresa</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observacoes">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.observacoes">Observacoes</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="salarioFixo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.salarioFixo">Salario Fixo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="salarioVariavel">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.salarioVariavel">Salario Variavel</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorSalarioFixo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.valorSalarioFixo">Valor Salario Fixo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataTerminoContrato">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.dataTerminoContrato">Data Termino Contrato</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroInscricao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.numeroInscricao">Numero Inscricao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codigoLotacao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.codigoLotacao">Codigo Lotacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricaoComplementar">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.descricaoComplementar">Descricao Complementar</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricaoCargo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.descricaoCargo">Descricao Cargo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observacaoJornadaTrabalho">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.observacaoJornadaTrabalho">Observacao Jornada Trabalho</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mediaHorasTrabalhadasSemana">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.mediaHorasTrabalhadasSemana"
+                  >Media Horas Trabalhadas Semana</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="regimePrevidenciario">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.regimePrevidenciario">Regime Previdenciario</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="unidadePagamentoSalario">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.unidadePagamentoSalario">Unidade Pagamento Salario</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="jornadaEspecial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.jornadaEspecial">Jornada Especial</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoInscricaoEmpresaVinculada">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.tipoInscricaoEmpresaVinculada"
+                  >Tipo Inscricao Empresa Vinculada</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoContratoTrabalho">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.tipoContratoTrabalho">Tipo Contrato Trabalho</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoRegimeTrabalho">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.tipoRegimeTrabalho">Tipo Regime Trabalho</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diasDaSemana">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.diasDaSemana">Dias Da Semana</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoJornadaEmpresaVinculada">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.tipoJornadaEmpresaVinculada"
+                  >Tipo Jornada Empresa Vinculada</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="funcionario.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.funcionario">Funcionario</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (empresaVinculada of empresaVinculadas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/empresa-vinculada', empresaVinculada.id, 'view']">{{ empresaVinculada.id }}</a>
+              </td>
+              <td>{{ empresaVinculada.nomeEmpresa }}</td>
+              <td>{{ empresaVinculada.cnpj }}</td>
+              <td>{{ empresaVinculada.remuneracaoEmpresa }}</td>
+              <td>{{ empresaVinculada.observacoes }}</td>
+              <td>{{ empresaVinculada.salarioFixo }}</td>
+              <td>{{ empresaVinculada.salarioVariavel }}</td>
+              <td>{{ empresaVinculada.valorSalarioFixo }}</td>
+              <td>{{ empresaVinculada.dataTerminoContrato }}</td>
+              <td>{{ empresaVinculada.numeroInscricao }}</td>
+              <td>{{ empresaVinculada.codigoLotacao }}</td>
+              <td>{{ empresaVinculada.descricaoComplementar }}</td>
+              <td>{{ empresaVinculada.descricaoCargo }}</td>
+              <td>{{ empresaVinculada.observacaoJornadaTrabalho }}</td>
+              <td>{{ empresaVinculada.mediaHorasTrabalhadasSemana }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.RegimePrevidenciarioEnum.' + (empresaVinculada.regimePrevidenciario ?? 'null')">
+                {{ { null: '', RGPS: 'RGPS', RPPS: 'RPPS', RPPE: 'RPPE' }[empresaVinculada.regimePrevidenciario ?? 'null'] }}
+              </td>
+              <td
+                [jhiTranslate]="
+                  'erpDobemcontabilidadeApp.UnidadePagamentoSalarioEnum.' + (empresaVinculada.unidadePagamentoSalario ?? 'null')
+                "
+              >
+                {{
+                  { null: '', HORA: 'HORA', DIA: 'DIA', SEMANA: 'SEMANA', MES: 'MES', TAREFA: 'TAREFA' }[
+                    empresaVinculada.unidadePagamentoSalario ?? 'null'
+                  ]
+                }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.JornadaEspecialEnum.' + (empresaVinculada.jornadaEspecial ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    DOZEPORTRINTASEIS: 'DOZEPORTRINTASEIS',
+                    VINTEQUATROPORSETENTADOIS: 'VINTEQUATROPORSETENTADOIS',
+                    OUTROS: 'OUTROS',
+                    NAOAPLICA: 'NAOAPLICA',
+                  }[empresaVinculada.jornadaEspecial ?? 'null']
+                }}
+              </td>
+              <td
+                [jhiTranslate]="
+                  'erpDobemcontabilidadeApp.TipoInscricaoEmpresaVinculadaEnum.' + (empresaVinculada.tipoInscricaoEmpresaVinculada ?? 'null')
+                "
+              >
+                {{
+                  { null: '', CNPJ: 'CNPJ', CPF: 'CPF', CAEPF: 'CAEPF', CNO: 'CNO' }[
+                    empresaVinculada.tipoInscricaoEmpresaVinculada ?? 'null'
+                  ]
+                }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.TipoContratoTrabalhoEnum.' + (empresaVinculada.tipoContratoTrabalho ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    INDETERMINADO: 'INDETERMINADO',
+                    DETERMINADO: 'DETERMINADO',
+                    DETERMINADOEXPERIENCIA: 'DETERMINADOEXPERIENCIA',
+                    INTERMITENTE: 'INTERMITENTE',
+                  }[empresaVinculada.tipoContratoTrabalho ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.TipoRegimeTrabalhoEnum.' + (empresaVinculada.tipoRegimeTrabalho ?? 'null')">
+                {{ { null: '', CLT: 'CLT', RJU: 'RJU', RJP: 'RJP' }[empresaVinculada.tipoRegimeTrabalho ?? 'null'] }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.DiasDaSemanaEnum.' + (empresaVinculada.diasDaSemana ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    SEGUNDAFEIRA: 'SEGUNDAFEIRA',
+                    TERCAFEIRA: 'TERCAFEIRA',
+                    QUARTAFEIRA: 'QUARTAFEIRA',
+                    QUINTAFEIRA: 'QUINTAFEIRA',
+                    SEXTAFEIRA: 'SEXTAFEIRA',
+                    SABADO: 'SABADO',
+                    DOMINGO: 'DOMINGO',
+                  }[empresaVinculada.diasDaSemana ?? 'null']
+                }}
+              </td>
+              <td
+                [jhiTranslate]="
+                  'erpDobemcontabilidadeApp.TipoJornadaEmpresaVinculadaEnum.' + (empresaVinculada.tipoJornadaEmpresaVinculada ?? 'null')
+                "
+              >
+                {{ { null: '', FIXA: 'FIXA', VARIAVEL: 'VARIAVEL' }[empresaVinculada.tipoJornadaEmpresaVinculada ?? 'null'] }}
+              </td>
+              <td>
+                @if (empresaVinculada.funcionario) {
+                  <div>
+                    <a [routerLink]="['/funcionario', empresaVinculada.funcionario.id, 'view']">{{ empresaVinculada.funcionario.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/empresa-vinculada', empresaVinculada.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/empresa-vinculada', empresaVinculada.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(empresaVinculada)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

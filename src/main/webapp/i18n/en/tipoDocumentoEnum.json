@@ -1,0 +1,12 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoDocumentoEnum": {
+      "null": "",
+      "RG": "RG",
+      "CNH": "CNH",
+      "RNE": "RNE",
+      "RIC": "RIC",
+      "OC": "OC"
+    }
+  }
+}

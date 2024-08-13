@@ -1,0 +1,124 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051644"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nomeEmpresa",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "cnpj",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "14"
+    },
+    {
+      "fieldName": "remuneracaoEmpresa",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observacoes",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "salarioFixo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "salarioVariavel",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "valorSalarioFixo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataTerminoContrato",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroInscricao",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "codigoLotacao",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "descricaoComplementar",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricaoCargo",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "observacaoJornadaTrabalho",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mediaHorasTrabalhadasSemana",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "regimePrevidenciario",
+      "fieldType": "RegimePrevidenciarioEnum",
+      "fieldValues": "RGPS,RPPS,RPPE"
+    },
+    {
+      "fieldName": "unidadePagamentoSalario",
+      "fieldType": "UnidadePagamentoSalarioEnum",
+      "fieldValues": "HORA,DIA,SEMANA,MES,TAREFA"
+    },
+    {
+      "fieldName": "jornadaEspecial",
+      "fieldType": "JornadaEspecialEnum",
+      "fieldValues": "DOZEPORTRINTASEIS,VINTEQUATROPORSETENTADOIS,OUTROS,NAOAPLICA"
+    },
+    {
+      "fieldName": "tipoInscricaoEmpresaVinculada",
+      "fieldType": "TipoInscricaoEmpresaVinculadaEnum",
+      "fieldValues": "CNPJ,CPF,CAEPF,CNO"
+    },
+    {
+      "fieldName": "tipoContratoTrabalho",
+      "fieldType": "TipoContratoTrabalhoEnum",
+      "fieldValues": "INDETERMINADO,DETERMINADO,DETERMINADOEXPERIENCIA,INTERMITENTE"
+    },
+    {
+      "fieldName": "tipoRegimeTrabalho",
+      "fieldType": "TipoRegimeTrabalhoEnum",
+      "fieldValues": "CLT,RJU,RJP"
+    },
+    {
+      "fieldName": "diasDaSemana",
+      "fieldType": "DiasDaSemanaEnum",
+      "fieldValues": "SEGUNDAFEIRA,TERCAFEIRA,QUARTAFEIRA,QUINTAFEIRA,SEXTAFEIRA,SABADO,DOMINGO"
+    },
+    {
+      "fieldName": "tipoJornadaEmpresaVinculada",
+      "fieldType": "TipoJornadaEmpresaVinculadaEnum",
+      "fieldValues": "FIXA,VARIAVEL"
+    }
+  ],
+  "name": "EmpresaVinculada",
+  "relationships": [
+    {
+      "otherEntityName": "funcionario",
+      "relationshipName": "funcionario",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

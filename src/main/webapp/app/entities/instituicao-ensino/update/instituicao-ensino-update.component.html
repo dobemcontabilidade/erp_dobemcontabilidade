@@ -1,0 +1,165 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-instituicao-ensino-heading"
+        data-cy="InstituicaoEnsinoCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.home.createOrEditLabel"
+      >
+        Criar ou editar Instituicao Ensino
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nome" jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+          @if (editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)) {
+            <div>
+              @if (editForm.get('nome')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              @if (editForm.get('nome')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '200' }"
+                  >Este campo não pode ter mais de 200 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cnpj" jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.cnpj">Cnpj</label>
+          <input type="text" class="form-control" name="cnpj" id="field_cnpj" data-cy="cnpj" formControlName="cnpj" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_logradouro" jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.logradouro"
+            >Logradouro</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="logradouro"
+            id="field_logradouro"
+            data-cy="logradouro"
+            formControlName="logradouro"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_numero" jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.numero">Numero</label>
+          <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+          @if (editForm.get('numero')!.invalid && (editForm.get('numero')!.dirty || editForm.get('numero')!.touched)) {
+            <div>
+              @if (editForm.get('numero')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '5' }"
+                  >Este campo não pode ter mais de 5 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_complemento" jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.complemento"
+            >Complemento</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="complemento"
+            id="field_complemento"
+            data-cy="complemento"
+            formControlName="complemento"
+          />
+          @if (editForm.get('complemento')!.invalid && (editForm.get('complemento')!.dirty || editForm.get('complemento')!.touched)) {
+            <div>
+              @if (editForm.get('complemento')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '100' }"
+                  >Este campo não pode ter mais de 100 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_bairro" jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.bairro">Bairro</label>
+          <input type="text" class="form-control" name="bairro" id="field_bairro" data-cy="bairro" formControlName="bairro" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cep" jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.cep">Cep</label>
+          <input type="text" class="form-control" name="cep" id="field_cep" data-cy="cep" formControlName="cep" />
+          @if (editForm.get('cep')!.invalid && (editForm.get('cep')!.dirty || editForm.get('cep')!.touched)) {
+            <div>
+              @if (editForm.get('cep')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '9' }"
+                  >Este campo não pode ter mais de 9 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_principal" jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.principal"
+            >Principal</label
+          >
+          <input type="checkbox" class="form-check" name="principal" id="field_principal" data-cy="principal" formControlName="principal" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cidade" jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.cidade">Cidade</label>
+          <select
+            class="form-control"
+            id="field_cidade"
+            data-cy="cidade"
+            name="cidade"
+            formControlName="cidade"
+            [compareWith]="compareCidade"
+          >
+            @if (editForm.get(['cidade'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (cidadeOption of cidadesSharedCollection; track $index) {
+              <option [ngValue]="cidadeOption">{{ cidadeOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['cidade'])!.invalid && (editForm.get(['cidade'])!.dirty || editForm.get(['cidade'])!.touched)) {
+          <div>
+            @if (editForm.get(['cidade'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

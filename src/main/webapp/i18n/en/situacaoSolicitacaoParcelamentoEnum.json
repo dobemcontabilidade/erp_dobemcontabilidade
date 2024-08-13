@@ -1,0 +1,11 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "SituacaoSolicitacaoParcelamentoEnum": {
+      "null": "",
+      "ABERTA": "ABERTA",
+      "PROCESSADA": "PROCESSADA",
+      "CANCELADA": "CANCELADA",
+      "FINALIZADA": "FINALIZADA"
+    }
+  }
+}

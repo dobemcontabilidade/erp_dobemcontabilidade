@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051647"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "dataChegada",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataNaturalizacao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "casadoComBrasileiro",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "filhosComBrasileiro",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "checked",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "Estrangeiro",
+  "relationships": [
+    {
+      "otherEntityName": "funcionario",
+      "relationshipName": "funcionario",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

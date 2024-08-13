@@ -1,0 +1,9 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "FgtsOpcaoEnum": {
+      "null": "",
+      "OPTANTE": "OPTANTE",
+      "NAOOPTANTE": "NAOOPTANTE"
+    }
+  }
+}

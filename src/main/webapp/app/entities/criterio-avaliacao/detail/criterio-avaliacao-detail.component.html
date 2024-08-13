@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (criterioAvaliacao()) {
+      <div>
+        <h2 data-cy="criterioAvaliacaoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacao.detail.title">Criterio Avaliacao</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ criterioAvaliacao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacao.nome">Nome</span></dt>
+          <dd>
+            <span>{{ criterioAvaliacao()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacao.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ criterioAvaliacao()!.descricao }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/criterio-avaliacao', criterioAvaliacao()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

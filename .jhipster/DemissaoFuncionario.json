@@ -1,0 +1,127 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051751"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "numeroCertidaoObito",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cnpjEmpresaSucessora",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "saldoFGTS",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valorPensao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valorPensaoFgts",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "percentualPensao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "percentualFgts",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "diasAvisoPrevio",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dataAvisoPrevio",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataPagamento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataAfastamento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "urlDemissional",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "calcularRecisao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "pagar13Recisao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "jornadaTrabalhoCumpridaSemana",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "sabadoCompesado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "novoVinculoComprovado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dispensaAvisoPrevio",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "fgtsArrecadadoGuia",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "avisoPrevioTrabalhadoRecebido",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "recolherFgtsMesAnterior",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "avisoPrevioIndenizado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "cumprimentoAvisoPrevio",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "avisoPrevio",
+      "fieldType": "AvisoPrevioEnum",
+      "fieldValues": "NAOPOSSUI,VINTEDIAS,TRINTADIAS"
+    },
+    {
+      "fieldName": "situacaoDemissao",
+      "fieldType": "SituacaoDemissaoEnum",
+      "fieldValues": "SOLICITADO,GERADO,DEMISSAOEMANDAMENTO,EMANDAMENTO,CANCELADO,REMOVIDO,FINALIZADO,ABERTO,PAGO"
+    },
+    {
+      "fieldName": "tipoDemissao",
+      "fieldType": "TipoDemissaoEnum",
+      "fieldValues": "JUSTACAUSA,DESPEDIDASEMJUSTACAUSA,RECISAOANTECIPADA,FALECIMENTOEMPREGADO,PEDIDO,CONSENSUAL,ACORDO"
+    }
+  ],
+  "name": "DemissaoFuncionario",
+  "relationships": [
+    {
+      "otherEntityName": "funcionario",
+      "relationshipName": "funcionario",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

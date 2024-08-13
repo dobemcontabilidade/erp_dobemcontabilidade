@@ -1,0 +1,46 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "empresaVinculada": {
+      "home": {
+        "title": "Empresa Vinculadas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Empresa Vinculada",
+        "createOrEditLabel": "Create or edit a Empresa Vinculada",
+        "notFound": "No Empresa Vinculadas found"
+      },
+      "created": "A new Empresa Vinculada is created with identifier {{ param }}",
+      "updated": "A Empresa Vinculada is updated with identifier {{ param }}",
+      "deleted": "A Empresa Vinculada is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Empresa Vinculada {{ id }}?"
+      },
+      "detail": {
+        "title": "Empresa Vinculada"
+      },
+      "id": "ID",
+      "nomeEmpresa": "Nome Empresa",
+      "cnpj": "Cnpj",
+      "remuneracaoEmpresa": "Remuneracao Empresa",
+      "observacoes": "Observacoes",
+      "salarioFixo": "Salario Fixo",
+      "salarioVariavel": "Salario Variavel",
+      "valorSalarioFixo": "Valor Salario Fixo",
+      "dataTerminoContrato": "Data Termino Contrato",
+      "numeroInscricao": "Numero Inscricao",
+      "codigoLotacao": "Codigo Lotacao",
+      "descricaoComplementar": "Descricao Complementar",
+      "descricaoCargo": "Descricao Cargo",
+      "observacaoJornadaTrabalho": "Observacao Jornada Trabalho",
+      "mediaHorasTrabalhadasSemana": "Media Horas Trabalhadas Semana",
+      "regimePrevidenciario": "Regime Previdenciario",
+      "unidadePagamentoSalario": "Unidade Pagamento Salario",
+      "jornadaEspecial": "Jornada Especial",
+      "tipoInscricaoEmpresaVinculada": "Tipo Inscricao Empresa Vinculada",
+      "tipoContratoTrabalho": "Tipo Contrato Trabalho",
+      "tipoRegimeTrabalho": "Tipo Regime Trabalho",
+      "diasDaSemana": "Dias Da Semana",
+      "tipoJornadaEmpresaVinculada": "Tipo Jornada Empresa Vinculada",
+      "funcionario": "Funcionario"
+    }
+  }
+}

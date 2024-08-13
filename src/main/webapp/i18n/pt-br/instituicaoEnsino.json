@@ -1,0 +1,33 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "instituicaoEnsino": {
+      "home": {
+        "title": "Instituicao Ensinos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Instituicao Ensino",
+        "createOrEditLabel": "Criar ou editar Instituicao Ensino",
+        "notFound": "Nenhum Instituicao Ensino encontrado"
+      },
+      "created": "Um novo Instituicao Ensino foi criado com o identificador {{ param }}",
+      "updated": "Um Instituicao Ensino foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Instituicao Ensino foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Instituicao Ensino {{ id }}?"
+      },
+      "detail": {
+        "title": "Instituicao Ensino"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "cnpj": "Cnpj",
+      "logradouro": "Logradouro",
+      "numero": "Numero",
+      "complemento": "Complemento",
+      "bairro": "Bairro",
+      "cep": "Cep",
+      "principal": "Principal",
+      "contratoFuncionario": "Contrato Funcionario",
+      "cidade": "Cidade"
+    }
+  }
+}

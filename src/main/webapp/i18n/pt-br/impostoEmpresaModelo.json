@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "impostoEmpresaModelo": {
+      "home": {
+        "title": "Imposto Empresa Modelos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Imposto Empresa Modelo",
+        "createOrEditLabel": "Criar ou editar Imposto Empresa Modelo",
+        "notFound": "Nenhum Imposto Empresa Modelo encontrado"
+      },
+      "created": "Um novo Imposto Empresa Modelo foi criado com o identificador {{ param }}",
+      "updated": "Um Imposto Empresa Modelo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Imposto Empresa Modelo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Imposto Empresa Modelo {{ id }}?"
+      },
+      "detail": {
+        "title": "Imposto Empresa Modelo"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "observacao": "Observacao",
+      "empresaModelo": "Empresa Modelo",
+      "imposto": "Imposto"
+    }
+  }
+}

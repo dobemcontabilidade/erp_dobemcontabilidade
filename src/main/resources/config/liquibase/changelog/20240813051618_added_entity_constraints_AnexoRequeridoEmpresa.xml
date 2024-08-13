@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity AnexoRequeridoEmpresa.
+    -->
+    <changeSet id="20240813051618-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="anexo_requerido_id"
+                                 baseTableName="anexo_requerido_empresa"
+                                 constraintName="fk_anexo_requerido_empresa__anexo_requerido_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="anexo_requerido"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="enquadramento_id"
+                                 baseTableName="anexo_requerido_empresa"
+                                 constraintName="fk_anexo_requerido_empresa__enquadramento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="enquadramento"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="tributacao_id"
+                                 baseTableName="anexo_requerido_empresa"
+                                 constraintName="fk_anexo_requerido_empresa__tributacao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tributacao"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="ramo_id"
+                                 baseTableName="anexo_requerido_empresa"
+                                 constraintName="fk_anexo_requerido_empresa__ramo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ramo"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="empresa_id"
+                                 baseTableName="anexo_requerido_empresa"
+                                 constraintName="fk_anexo_requerido_empresa__empresa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="empresa"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="empresa_modelo_id"
+                                 baseTableName="anexo_requerido_empresa"
+                                 constraintName="fk_anexo_requerido_empresa__empresa_modelo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="empresa_modelo"
+                                 />
+    </changeSet>
+</databaseChangeLog>

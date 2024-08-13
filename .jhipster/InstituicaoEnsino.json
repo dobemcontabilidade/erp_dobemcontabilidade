@@ -1,0 +1,68 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051714"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "cnpj",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "logradouro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numero",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "5"
+    },
+    {
+      "fieldName": "complemento",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cep",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "9"
+    },
+    {
+      "fieldName": "principal",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "InstituicaoEnsino",
+  "relationships": [
+    {
+      "otherEntityName": "contratoFuncionario",
+      "otherEntityRelationshipName": "instituicaoEnsino",
+      "relationshipName": "contratoFuncionario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "cidade",
+      "relationshipName": "cidade",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

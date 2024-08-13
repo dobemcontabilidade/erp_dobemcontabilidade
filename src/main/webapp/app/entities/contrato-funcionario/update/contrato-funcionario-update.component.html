@@ -1,0 +1,556 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-contrato-funcionario-heading"
+        data-cy="ContratoFuncionarioCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.home.createOrEditLabel"
+      >
+        Criar ou editar Contrato Funcionario
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_salarioFixo" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.salarioFixo"
+            >Salario Fixo</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="salarioFixo"
+            id="field_salarioFixo"
+            data-cy="salarioFixo"
+            formControlName="salarioFixo"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_salarioVariavel" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.salarioVariavel"
+            >Salario Variavel</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="salarioVariavel"
+            id="field_salarioVariavel"
+            data-cy="salarioVariavel"
+            formControlName="salarioVariavel"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_estagio" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.estagio">Estagio</label>
+          <input type="checkbox" class="form-check" name="estagio" id="field_estagio" data-cy="estagio" formControlName="estagio" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_naturezaEstagioEnum"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.naturezaEstagioEnum"
+            >Natureza Estagio Enum</label
+          >
+          <select
+            class="form-control"
+            name="naturezaEstagioEnum"
+            formControlName="naturezaEstagioEnum"
+            id="field_naturezaEstagioEnum"
+            data-cy="naturezaEstagioEnum"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.NaturezaEstagioEnum.null' | translate }}</option>
+            @for (naturezaEstagioEnum of naturezaEstagioEnumValues; track $index) {
+              <option [value]="naturezaEstagioEnum">
+                {{ 'erpDobemcontabilidadeApp.NaturezaEstagioEnum.' + naturezaEstagioEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ctps" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.ctps">Ctps</label>
+          <input type="text" class="form-control" name="ctps" id="field_ctps" data-cy="ctps" formControlName="ctps" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_serieCtps" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.serieCtps"
+            >Serie Ctps</label
+          >
+          <input type="number" class="form-control" name="serieCtps" id="field_serieCtps" data-cy="serieCtps" formControlName="serieCtps" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_orgaoEmissorDocumento"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.orgaoEmissorDocumento"
+            >Orgao Emissor Documento</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="orgaoEmissorDocumento"
+            id="field_orgaoEmissorDocumento"
+            data-cy="orgaoEmissorDocumento"
+            formControlName="orgaoEmissorDocumento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataValidadeDocumento"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.dataValidadeDocumento"
+            >Data Validade Documento</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dataValidadeDocumento"
+            id="field_dataValidadeDocumento"
+            data-cy="dataValidadeDocumento"
+            formControlName="dataValidadeDocumento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataAdmissao" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.dataAdmissao"
+            >Data Admissao</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dataAdmissao"
+            id="field_dataAdmissao"
+            data-cy="dataAdmissao"
+            formControlName="dataAdmissao"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cargo" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.cargo">Cargo</label>
+          <input type="text" class="form-control" name="cargo" id="field_cargo" data-cy="cargo" formControlName="cargo" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_descricaoAtividades"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.descricaoAtividades"
+            >Descricao Atividades</label
+          >
+          <textarea
+            class="form-control"
+            name="descricaoAtividades"
+            id="field_descricaoAtividades"
+            data-cy="descricaoAtividades"
+            formControlName="descricaoAtividades"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_situacao" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.situacao"
+            >Situacao</label
+          >
+          <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao" data-cy="situacao">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.SituacaoFuncionarioEnum.null' | translate }}</option>
+            @for (situacaoFuncionarioEnum of situacaoFuncionarioEnumValues; track $index) {
+              <option [value]="situacaoFuncionarioEnum">
+                {{ 'erpDobemcontabilidadeApp.SituacaoFuncionarioEnum.' + situacaoFuncionarioEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_valorSalarioFixo"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.valorSalarioFixo"
+            >Valor Salario Fixo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="valorSalarioFixo"
+            id="field_valorSalarioFixo"
+            data-cy="valorSalarioFixo"
+            formControlName="valorSalarioFixo"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_valorSalarioVariavel"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.valorSalarioVariavel"
+            >Valor Salario Variavel</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="valorSalarioVariavel"
+            id="field_valorSalarioVariavel"
+            data-cy="valorSalarioVariavel"
+            formControlName="valorSalarioVariavel"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataTerminoContrato"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.dataTerminoContrato"
+            >Data Termino Contrato</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dataTerminoContrato"
+            id="field_dataTerminoContrato"
+            data-cy="dataTerminoContrato"
+            formControlName="dataTerminoContrato"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_datainicioContrato"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.datainicioContrato"
+            >Datainicio Contrato</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="datainicioContrato"
+            id="field_datainicioContrato"
+            data-cy="datainicioContrato"
+            formControlName="datainicioContrato"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_horasATrabalhadar"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.horasATrabalhadar"
+            >Horas A Trabalhadar</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="horasATrabalhadar"
+            id="field_horasATrabalhadar"
+            data-cy="horasATrabalhadar"
+            formControlName="horasATrabalhadar"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codigoCargo" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.codigoCargo"
+            >Codigo Cargo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codigoCargo"
+            id="field_codigoCargo"
+            data-cy="codigoCargo"
+            formControlName="codigoCargo"
+          />
+          @if (editForm.get('codigoCargo')!.invalid && (editForm.get('codigoCargo')!.dirty || editForm.get('codigoCargo')!.touched)) {
+            <div>
+              @if (editForm.get('codigoCargo')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '10' }"
+                  >Este campo não pode ter mais de 10 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_categoriaTrabalhador"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.categoriaTrabalhador"
+            >Categoria Trabalhador</label
+          >
+          <select
+            class="form-control"
+            name="categoriaTrabalhador"
+            formControlName="categoriaTrabalhador"
+            id="field_categoriaTrabalhador"
+            data-cy="categoriaTrabalhador"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.CategoriaTrabalhadorEnum.null' | translate }}</option>
+            @for (categoriaTrabalhadorEnum of categoriaTrabalhadorEnumValues; track $index) {
+              <option [value]="categoriaTrabalhadorEnum">
+                {{ 'erpDobemcontabilidadeApp.CategoriaTrabalhadorEnum.' + categoriaTrabalhadorEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tipoVinculoTrabalho"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.tipoVinculoTrabalho"
+            >Tipo Vinculo Trabalho</label
+          >
+          <select
+            class="form-control"
+            name="tipoVinculoTrabalho"
+            formControlName="tipoVinculoTrabalho"
+            id="field_tipoVinculoTrabalho"
+            data-cy="tipoVinculoTrabalho"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoVinculoTrabalhoEnum.null' | translate }}</option>
+            @for (tipoVinculoTrabalhoEnum of tipoVinculoTrabalhoEnumValues; track $index) {
+              <option [value]="tipoVinculoTrabalhoEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoVinculoTrabalhoEnum.' + tipoVinculoTrabalhoEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fgtsOpcao" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.fgtsOpcao"
+            >Fgts Opcao</label
+          >
+          <select class="form-control" name="fgtsOpcao" formControlName="fgtsOpcao" id="field_fgtsOpcao" data-cy="fgtsOpcao">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.FgtsOpcaoEnum.null' | translate }}</option>
+            @for (fgtsOpcaoEnum of fgtsOpcaoEnumValues; track $index) {
+              <option [value]="fgtsOpcaoEnum">{{ 'erpDobemcontabilidadeApp.FgtsOpcaoEnum.' + fgtsOpcaoEnum | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tIpoDocumentoEnum"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.tIpoDocumentoEnum"
+            >T Ipo Documento Enum</label
+          >
+          <select
+            class="form-control"
+            name="tIpoDocumentoEnum"
+            formControlName="tIpoDocumentoEnum"
+            id="field_tIpoDocumentoEnum"
+            data-cy="tIpoDocumentoEnum"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoDocumentoEnum.null' | translate }}</option>
+            @for (tipoDocumentoEnum of tipoDocumentoEnumValues; track $index) {
+              <option [value]="tipoDocumentoEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoDocumentoEnum.' + tipoDocumentoEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_periodoExperiencia"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.periodoExperiencia"
+            >Periodo Experiencia</label
+          >
+          <select
+            class="form-control"
+            name="periodoExperiencia"
+            formControlName="periodoExperiencia"
+            id="field_periodoExperiencia"
+            data-cy="periodoExperiencia"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.PeriodoExperienciaEnum.null' | translate }}</option>
+            @for (periodoExperienciaEnum of periodoExperienciaEnumValues; track $index) {
+              <option [value]="periodoExperienciaEnum">
+                {{ 'erpDobemcontabilidadeApp.PeriodoExperienciaEnum.' + periodoExperienciaEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tipoAdmisaoEnum" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.tipoAdmisaoEnum"
+            >Tipo Admisao Enum</label
+          >
+          <select
+            class="form-control"
+            name="tipoAdmisaoEnum"
+            formControlName="tipoAdmisaoEnum"
+            id="field_tipoAdmisaoEnum"
+            data-cy="tipoAdmisaoEnum"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoAdmisaoEnum.null' | translate }}</option>
+            @for (tipoAdmisaoEnum of tipoAdmisaoEnumValues; track $index) {
+              <option [value]="tipoAdmisaoEnum">{{ 'erpDobemcontabilidadeApp.TipoAdmisaoEnum.' + tipoAdmisaoEnum | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_periodoIntermitente"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.periodoIntermitente"
+            >Periodo Intermitente</label
+          >
+          <select
+            class="form-control"
+            name="periodoIntermitente"
+            formControlName="periodoIntermitente"
+            id="field_periodoIntermitente"
+            data-cy="periodoIntermitente"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.PeriodoIntermitenteEnum.null' | translate }}</option>
+            @for (periodoIntermitenteEnum of periodoIntermitenteEnumValues; track $index) {
+              <option [value]="periodoIntermitenteEnum">
+                {{ 'erpDobemcontabilidadeApp.PeriodoIntermitenteEnum.' + periodoIntermitenteEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_indicativoAdmissao"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.indicativoAdmissao"
+            >Indicativo Admissao</label
+          >
+          <select
+            class="form-control"
+            name="indicativoAdmissao"
+            formControlName="indicativoAdmissao"
+            id="field_indicativoAdmissao"
+            data-cy="indicativoAdmissao"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.IndicativoAdmissaoEnum.null' | translate }}</option>
+            @for (indicativoAdmissaoEnum of indicativoAdmissaoEnumValues; track $index) {
+              <option [value]="indicativoAdmissaoEnum">
+                {{ 'erpDobemcontabilidadeApp.IndicativoAdmissaoEnum.' + indicativoAdmissaoEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_numeroPisNisPasep"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.numeroPisNisPasep"
+            >Numero Pis Nis Pasep</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numeroPisNisPasep"
+            id="field_numeroPisNisPasep"
+            data-cy="numeroPisNisPasep"
+            formControlName="numeroPisNisPasep"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_funcionario" jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.funcionario"
+            >Funcionario</label
+          >
+          <select
+            class="form-control"
+            id="field_funcionario"
+            data-cy="funcionario"
+            name="funcionario"
+            formControlName="funcionario"
+            [compareWith]="compareFuncionario"
+          >
+            @if (editForm.get(['funcionario'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (funcionarioOption of funcionariosSharedCollection; track $index) {
+              <option [ngValue]="funcionarioOption">{{ funcionarioOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['funcionario'])!.invalid && (editForm.get(['funcionario'])!.dirty || editForm.get(['funcionario'])!.touched)) {
+          <div>
+            @if (editForm.get(['funcionario'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_agenteIntegracaoEstagio"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.agenteIntegracaoEstagio"
+            >Agente Integracao Estagio</label
+          >
+          <select
+            class="form-control"
+            id="field_agenteIntegracaoEstagio"
+            data-cy="agenteIntegracaoEstagio"
+            name="agenteIntegracaoEstagio"
+            formControlName="agenteIntegracaoEstagio"
+            [compareWith]="compareAgenteIntegracaoEstagio"
+          >
+            <option [ngValue]="null"></option>
+            @for (agenteIntegracaoEstagioOption of agenteIntegracaoEstagiosSharedCollection; track $index) {
+              <option [ngValue]="agenteIntegracaoEstagioOption">{{ agenteIntegracaoEstagioOption.razaoSocial }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_instituicaoEnsino"
+            jhiTranslate="erpDobemcontabilidadeApp.contratoFuncionario.instituicaoEnsino"
+            >Instituicao Ensino</label
+          >
+          <select
+            class="form-control"
+            id="field_instituicaoEnsino"
+            data-cy="instituicaoEnsino"
+            name="instituicaoEnsino"
+            formControlName="instituicaoEnsino"
+            [compareWith]="compareInstituicaoEnsino"
+          >
+            <option [ngValue]="null"></option>
+            @for (instituicaoEnsinoOption of instituicaoEnsinosSharedCollection; track $index) {
+              <option [ngValue]="instituicaoEnsinoOption">{{ instituicaoEnsinoOption.nome }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

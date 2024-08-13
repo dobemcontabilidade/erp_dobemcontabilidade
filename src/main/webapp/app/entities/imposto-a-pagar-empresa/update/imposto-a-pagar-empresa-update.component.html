@@ -1,0 +1,204 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-imposto-a-pagar-empresa-heading"
+        data-cy="ImpostoAPagarEmpresaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.home.createOrEditLabel"
+      >
+        Criar ou editar Imposto A Pagar Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataVencimento" jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.dataVencimento"
+            >Data Vencimento</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataVencimento"
+              data-cy="dataVencimento"
+              type="datetime-local"
+              class="form-control"
+              name="dataVencimento"
+              formControlName="dataVencimento"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (
+            editForm.get('dataVencimento')!.invalid && (editForm.get('dataVencimento')!.dirty || editForm.get('dataVencimento')!.touched)
+          ) {
+            <div>
+              @if (editForm.get('dataVencimento')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('dataVencimento')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >Este campo é do tipo data/hora.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataPagamento" jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.dataPagamento"
+            >Data Pagamento</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataPagamento"
+              data-cy="dataPagamento"
+              type="datetime-local"
+              class="form-control"
+              name="dataPagamento"
+              formControlName="dataPagamento"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (editForm.get('dataPagamento')!.invalid && (editForm.get('dataPagamento')!.dirty || editForm.get('dataPagamento')!.touched)) {
+            <div>
+              @if (editForm.get('dataPagamento')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('dataPagamento')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >Este campo é do tipo data/hora.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valor" jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.valor">Valor</label>
+          <input type="number" class="form-control" name="valor" id="field_valor" data-cy="valor" formControlName="valor" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorMulta" jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.valorMulta"
+            >Valor Multa</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorMulta"
+            id="field_valorMulta"
+            data-cy="valorMulta"
+            formControlName="valorMulta"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_urlArquivoPagamento"
+            jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.urlArquivoPagamento"
+            >Url Arquivo Pagamento</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="urlArquivoPagamento"
+            id="field_urlArquivoPagamento"
+            data-cy="urlArquivoPagamento"
+            formControlName="urlArquivoPagamento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_urlArquivoComprovante"
+            jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.urlArquivoComprovante"
+            >Url Arquivo Comprovante</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="urlArquivoComprovante"
+            id="field_urlArquivoComprovante"
+            data-cy="urlArquivoComprovante"
+            formControlName="urlArquivoComprovante"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_situacaoPagamentoImpostoEnum"
+            jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.situacaoPagamentoImpostoEnum"
+            >Situacao Pagamento Imposto Enum</label
+          >
+          <select
+            class="form-control"
+            name="situacaoPagamentoImpostoEnum"
+            formControlName="situacaoPagamentoImpostoEnum"
+            id="field_situacaoPagamentoImpostoEnum"
+            data-cy="situacaoPagamentoImpostoEnum"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.SituacaoPagamentoImpostoEnum.null' | translate }}</option>
+            @for (situacaoPagamentoImpostoEnum of situacaoPagamentoImpostoEnumValues; track $index) {
+              <option [value]="situacaoPagamentoImpostoEnum">
+                {{ 'erpDobemcontabilidadeApp.SituacaoPagamentoImpostoEnum.' + situacaoPagamentoImpostoEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_imposto" jhiTranslate="erpDobemcontabilidadeApp.impostoAPagarEmpresa.imposto">Imposto</label>
+          <select
+            class="form-control"
+            id="field_imposto"
+            data-cy="imposto"
+            name="imposto"
+            formControlName="imposto"
+            [compareWith]="compareImpostoEmpresa"
+          >
+            @if (editForm.get(['imposto'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (impostoEmpresaOption of impostoEmpresasSharedCollection; track $index) {
+              <option [ngValue]="impostoEmpresaOption">{{ impostoEmpresaOption.diaVencimento }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['imposto'])!.invalid && (editForm.get(['imposto'])!.dirty || editForm.get(['imposto'])!.touched)) {
+          <div>
+            @if (editForm.get(['imposto'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

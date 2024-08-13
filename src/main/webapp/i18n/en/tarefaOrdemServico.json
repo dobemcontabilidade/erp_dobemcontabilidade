@@ -1,0 +1,32 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "tarefaOrdemServico": {
+      "home": {
+        "title": "Tarefa Ordem Servicos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Tarefa Ordem Servico",
+        "createOrEditLabel": "Create or edit a Tarefa Ordem Servico",
+        "notFound": "No Tarefa Ordem Servicos found"
+      },
+      "created": "A new Tarefa Ordem Servico is created with identifier {{ param }}",
+      "updated": "A Tarefa Ordem Servico is updated with identifier {{ param }}",
+      "deleted": "A Tarefa Ordem Servico is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tarefa Ordem Servico {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarefa Ordem Servico"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "notificarCliente": "Notificar Cliente",
+      "notificarContador": "Notificar Contador",
+      "anoReferencia": "Ano Referencia",
+      "dataAdmin": "Data Admin",
+      "anexoRequeridoTarefaOrdemServico": "Anexo Requerido Tarefa Ordem Servico",
+      "tarefaOrdemServicoExecucao": "Tarefa Ordem Servico Execucao",
+      "servicoContabilOrdemServico": "Servico Contabil Ordem Servico"
+    }
+  }
+}

@@ -1,0 +1,183 @@
+<div>
+  <h2 id="page-heading" data-cy="ParcelaImpostoAPagarHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.home.title">Parcela Imposto A Pagars</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-parcela-imposto-a-pagar"
+        [routerLink]="['/parcela-imposto-a-pagar/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.home.createLabel">Criar novo Parcela Imposto A Pagar</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (parcelaImpostoAPagars?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.home.notFound">Nenhum Parcela Imposto A Pagar encontrado</span>
+    </div>
+  }
+
+  @if (parcelaImpostoAPagars && parcelaImpostoAPagars.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroParcela">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.numeroParcela">Numero Parcela</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataVencimento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.dataVencimento">Data Vencimento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataPagamento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.dataPagamento">Data Pagamento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valor">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.valor">Valor</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorMulta">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.valorMulta">Valor Multa</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlArquivoPagamento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.urlArquivoPagamento">Url Arquivo Pagamento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlArquivoComprovante">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.urlArquivoComprovante">Url Arquivo Comprovante</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mesCompetencia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.mesCompetencia">Mes Competencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="parcelamentoImposto.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.parcelamentoImposto">Parcelamento Imposto</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (parcelaImpostoAPagar of parcelaImpostoAPagars; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/parcela-imposto-a-pagar', parcelaImpostoAPagar.id, 'view']">{{ parcelaImpostoAPagar.id }}</a>
+              </td>
+              <td>{{ parcelaImpostoAPagar.numeroParcela }}</td>
+              <td>{{ parcelaImpostoAPagar.dataVencimento | formatMediumDatetime }}</td>
+              <td>{{ parcelaImpostoAPagar.dataPagamento | formatMediumDatetime }}</td>
+              <td>{{ parcelaImpostoAPagar.valor }}</td>
+              <td>{{ parcelaImpostoAPagar.valorMulta }}</td>
+              <td>{{ parcelaImpostoAPagar.urlArquivoPagamento }}</td>
+              <td>{{ parcelaImpostoAPagar.urlArquivoComprovante }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.MesCompetenciaEnum.' + (parcelaImpostoAPagar.mesCompetencia ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    JANEIRO: 'JANEIRO',
+                    FEVEREIRO: 'FEVEREIRO',
+                    MARCO: 'MARCO',
+                    ABRIL: 'ABRIL',
+                    MAIO: 'MAIO',
+                    JUNHO: 'JUNHO',
+                    JULHO: 'JULHO',
+                    AGOSTO: 'AGOSTO',
+                    SETEMBRO: 'SETEMBRO',
+                    OUTUBRO: 'OUTUBRO',
+                    NOVEMBRO: 'NOVEMBRO',
+                    DEZEMBRO: 'DEZEMBRO',
+                  }[parcelaImpostoAPagar.mesCompetencia ?? 'null']
+                }}
+              </td>
+              <td>
+                @if (parcelaImpostoAPagar.parcelamentoImposto) {
+                  <div>
+                    <a [routerLink]="['/parcelamento-imposto', parcelaImpostoAPagar.parcelamentoImposto.id, 'view']">{{
+                      parcelaImpostoAPagar.parcelamentoImposto.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/parcela-imposto-a-pagar', parcelaImpostoAPagar.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/parcela-imposto-a-pagar', parcelaImpostoAPagar.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(parcelaImpostoAPagar)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

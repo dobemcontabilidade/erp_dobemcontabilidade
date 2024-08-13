@@ -1,0 +1,163 @@
+<div>
+  <h2 id="page-heading" data-cy="InstituicaoEnsinoHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.home.title">Instituicao Ensinos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-instituicao-ensino"
+        [routerLink]="['/instituicao-ensino/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.home.createLabel">Criar novo Instituicao Ensino</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (instituicaoEnsinos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.home.notFound">Nenhum Instituicao Ensino encontrado</span>
+    </div>
+  }
+
+  @if (instituicaoEnsinos && instituicaoEnsinos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cnpj">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.cnpj">Cnpj</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="logradouro">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.logradouro">Logradouro</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numero">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.numero">Numero</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="complemento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.complemento">Complemento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bairro">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.bairro">Bairro</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cep">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.cep">Cep</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="principal">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.principal">Principal</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cidade.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.instituicaoEnsino.cidade">Cidade</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (instituicaoEnsino of instituicaoEnsinos; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/instituicao-ensino', instituicaoEnsino.id, 'view']">{{ instituicaoEnsino.id }}</a>
+              </td>
+              <td>{{ instituicaoEnsino.nome }}</td>
+              <td>{{ instituicaoEnsino.cnpj }}</td>
+              <td>{{ instituicaoEnsino.logradouro }}</td>
+              <td>{{ instituicaoEnsino.numero }}</td>
+              <td>{{ instituicaoEnsino.complemento }}</td>
+              <td>{{ instituicaoEnsino.bairro }}</td>
+              <td>{{ instituicaoEnsino.cep }}</td>
+              <td>{{ instituicaoEnsino.principal }}</td>
+              <td>
+                @if (instituicaoEnsino.cidade) {
+                  <div>
+                    <a [routerLink]="['/cidade', instituicaoEnsino.cidade.id, 'view']">{{ instituicaoEnsino.cidade.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/instituicao-ensino', instituicaoEnsino.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/instituicao-ensino', instituicaoEnsino.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(instituicaoEnsino)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

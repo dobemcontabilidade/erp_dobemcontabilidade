@@ -1,0 +1,11 @@
+id;obrigatorio;tipo;anexo_pessoa_id;anexo_requerido_id
+1;false;DEPENDENTE;1;1
+2;false;FUNCIONARIO;2;2
+3;false;DEPENDENTE;3;3
+4;false;FUNCIONARIO;4;4
+5;false;SOCIO;5;5
+6;false;SOCIO;6;6
+7;false;CONTADOR;7;7
+8;false;DEPENDENTE;8;8
+9;false;CONTADOR;9;9
+10;false;DEPENDENTE;10;10

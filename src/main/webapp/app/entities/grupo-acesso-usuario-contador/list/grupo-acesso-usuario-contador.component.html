@@ -1,0 +1,151 @@
+<div>
+  <h2 id="page-heading" data-cy="GrupoAcessoUsuarioContadorHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.home.title">Grupo Acesso Usuario Contadors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-grupo-acesso-usuario-contador"
+        [routerLink]="['/grupo-acesso-usuario-contador/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.home.createLabel"
+          >Criar novo Grupo Acesso Usuario Contador</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (grupoAcessoUsuarioContadors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.home.notFound"
+        >Nenhum Grupo Acesso Usuario Contador encontrado</span
+      >
+    </div>
+  }
+
+  @if (grupoAcessoUsuarioContadors && grupoAcessoUsuarioContadors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataExpiracao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.dataExpiracao">Data Expiracao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ilimitado">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.ilimitado">Ilimitado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="desabilitar">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.desabilitar">Desabilitar</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="usuarioContador.email">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.usuarioContador">Usuario Contador</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="grupoAcessoPadrao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.grupoAcessoUsuarioContador.grupoAcessoPadrao">Grupo Acesso Padrao</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (grupoAcessoUsuarioContador of grupoAcessoUsuarioContadors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/grupo-acesso-usuario-contador', grupoAcessoUsuarioContador.id, 'view']">{{
+                  grupoAcessoUsuarioContador.id
+                }}</a>
+              </td>
+              <td>{{ grupoAcessoUsuarioContador.dataExpiracao | formatMediumDatetime }}</td>
+              <td>{{ grupoAcessoUsuarioContador.ilimitado }}</td>
+              <td>{{ grupoAcessoUsuarioContador.desabilitar }}</td>
+              <td>
+                @if (grupoAcessoUsuarioContador.usuarioContador) {
+                  <div>
+                    <a [routerLink]="['/usuario-contador', grupoAcessoUsuarioContador.usuarioContador.id, 'view']">{{
+                      grupoAcessoUsuarioContador.usuarioContador.email
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (grupoAcessoUsuarioContador.grupoAcessoPadrao) {
+                  <div>
+                    <a [routerLink]="['/grupo-acesso-padrao', grupoAcessoUsuarioContador.grupoAcessoPadrao.id, 'view']">{{
+                      grupoAcessoUsuarioContador.grupoAcessoPadrao.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/grupo-acesso-usuario-contador', grupoAcessoUsuarioContador.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/grupo-acesso-usuario-contador', grupoAcessoUsuarioContador.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(grupoAcessoUsuarioContador)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

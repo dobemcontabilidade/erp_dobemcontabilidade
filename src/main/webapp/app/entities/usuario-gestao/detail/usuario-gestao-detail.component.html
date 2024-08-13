@@ -1,0 +1,77 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (usuarioGestao()) {
+      <div>
+        <h2 data-cy="usuarioGestaoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.usuarioGestao.detail.title">Usuario Gestao</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ usuarioGestao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioGestao.email">Email</span></dt>
+          <dd>
+            <span>{{ usuarioGestao()!.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioGestao.senha">Senha</span></dt>
+          <dd>
+            <span>{{ usuarioGestao()!.senha }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioGestao.token">Token</span></dt>
+          <dd>
+            <span>{{ usuarioGestao()!.token }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioGestao.ativo">Ativo</span></dt>
+          <dd>
+            <span>{{ usuarioGestao()!.ativo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioGestao.dataHoraAtivacao">Data Hora Ativacao</span></dt>
+          <dd>
+            <span>{{ usuarioGestao()!.dataHoraAtivacao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioGestao.dataLimiteAcesso">Data Limite Acesso</span></dt>
+          <dd>
+            <span>{{ usuarioGestao()!.dataLimiteAcesso | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioGestao.situacaoUsuarioGestao">Situacao Usuario Gestao</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoUsuarioGestaoEnum.' + (usuarioGestao()!.situacaoUsuarioGestao ?? 'null')"
+              >{{
+                { null: '', ATIVO: 'ATIVO', INATIVO: 'INATIVO', BLOQUEADO: 'BLOQUEADO', EXCLUIDO: 'EXCLUIDO' }[
+                  usuarioGestao()!.situacaoUsuarioGestao ?? 'null'
+                ]
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.usuarioGestao.administrador">Administrador</span></dt>
+          <dd>
+            @if (usuarioGestao()!.administrador) {
+              <div>
+                <a [routerLink]="['/administrador', usuarioGestao()!.administrador?.id, 'view']">{{
+                  usuarioGestao()!.administrador?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/usuario-gestao', usuarioGestao()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

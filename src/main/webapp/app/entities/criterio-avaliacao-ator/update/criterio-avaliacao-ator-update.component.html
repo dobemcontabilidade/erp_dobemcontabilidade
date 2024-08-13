@@ -1,0 +1,116 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-criterio-avaliacao-ator-heading"
+        data-cy="CriterioAvaliacaoAtorCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.home.createOrEditLabel"
+      >
+        Criar ou editar Criterio Avaliacao Ator
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_descricao" jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.descricao"
+            >Descricao</label
+          >
+          <input type="text" class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ativo" jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.ativo">Ativo</label>
+          <input type="checkbox" class="form-check" name="ativo" id="field_ativo" data-cy="ativo" formControlName="ativo" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_criterioAvaliacao"
+            jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.criterioAvaliacao"
+            >Criterio Avaliacao</label
+          >
+          <select
+            class="form-control"
+            id="field_criterioAvaliacao"
+            data-cy="criterioAvaliacao"
+            name="criterioAvaliacao"
+            formControlName="criterioAvaliacao"
+            [compareWith]="compareCriterioAvaliacao"
+          >
+            @if (editForm.get(['criterioAvaliacao'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (criterioAvaliacaoOption of criterioAvaliacaosSharedCollection; track $index) {
+              <option [ngValue]="criterioAvaliacaoOption">{{ criterioAvaliacaoOption.descricao }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['criterioAvaliacao'])!.invalid &&
+          (editForm.get(['criterioAvaliacao'])!.dirty || editForm.get(['criterioAvaliacao'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['criterioAvaliacao'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_atorAvaliado" jhiTranslate="erpDobemcontabilidadeApp.criterioAvaliacaoAtor.atorAvaliado"
+            >Ator Avaliado</label
+          >
+          <select
+            class="form-control"
+            id="field_atorAvaliado"
+            data-cy="atorAvaliado"
+            name="atorAvaliado"
+            formControlName="atorAvaliado"
+            [compareWith]="compareAtorAvaliado"
+          >
+            @if (editForm.get(['atorAvaliado'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (atorAvaliadoOption of atorAvaliadosSharedCollection; track $index) {
+              <option [ngValue]="atorAvaliadoOption">{{ atorAvaliadoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['atorAvaliado'])!.invalid && (editForm.get(['atorAvaliado'])!.dirty || editForm.get(['atorAvaliado'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['atorAvaliado'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

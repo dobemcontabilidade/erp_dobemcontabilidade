@@ -1,0 +1,276 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-funcionario-heading"
+        data-cy="FuncionarioCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.funcionario.home.createOrEditLabel"
+      >
+        Criar ou editar Funcionario
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.funcionario.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_numeroPisNisPasep" jhiTranslate="erpDobemcontabilidadeApp.funcionario.numeroPisNisPasep"
+            >Numero Pis Nis Pasep</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numeroPisNisPasep"
+            id="field_numeroPisNisPasep"
+            data-cy="numeroPisNisPasep"
+            formControlName="numeroPisNisPasep"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reintegrado" jhiTranslate="erpDobemcontabilidadeApp.funcionario.reintegrado"
+            >Reintegrado</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="reintegrado"
+            id="field_reintegrado"
+            data-cy="reintegrado"
+            formControlName="reintegrado"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_primeiroEmprego" jhiTranslate="erpDobemcontabilidadeApp.funcionario.primeiroEmprego"
+            >Primeiro Emprego</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="primeiroEmprego"
+            id="field_primeiroEmprego"
+            data-cy="primeiroEmprego"
+            formControlName="primeiroEmprego"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_multiploVinculos" jhiTranslate="erpDobemcontabilidadeApp.funcionario.multiploVinculos"
+            >Multiplo Vinculos</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="multiploVinculos"
+            id="field_multiploVinculos"
+            data-cy="multiploVinculos"
+            formControlName="multiploVinculos"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataOpcaoFgts" jhiTranslate="erpDobemcontabilidadeApp.funcionario.dataOpcaoFgts"
+            >Data Opcao Fgts</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dataOpcaoFgts"
+            id="field_dataOpcaoFgts"
+            data-cy="dataOpcaoFgts"
+            formControlName="dataOpcaoFgts"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_filiacaoSindical" jhiTranslate="erpDobemcontabilidadeApp.funcionario.filiacaoSindical"
+            >Filiacao Sindical</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="filiacaoSindical"
+            id="field_filiacaoSindical"
+            data-cy="filiacaoSindical"
+            formControlName="filiacaoSindical"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cnpjSindicato" jhiTranslate="erpDobemcontabilidadeApp.funcionario.cnpjSindicato"
+            >Cnpj Sindicato</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="cnpjSindicato"
+            id="field_cnpjSindicato"
+            data-cy="cnpjSindicato"
+            formControlName="cnpjSindicato"
+          />
+          @if (editForm.get('cnpjSindicato')!.invalid && (editForm.get('cnpjSindicato')!.dirty || editForm.get('cnpjSindicato')!.touched)) {
+            <div>
+              @if (editForm.get('cnpjSindicato')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '20' }"
+                  >Este campo não pode ter mais de 20 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tipoFuncionarioEnum" jhiTranslate="erpDobemcontabilidadeApp.funcionario.tipoFuncionarioEnum"
+            >Tipo Funcionario Enum</label
+          >
+          <select
+            class="form-control"
+            name="tipoFuncionarioEnum"
+            formControlName="tipoFuncionarioEnum"
+            id="field_tipoFuncionarioEnum"
+            data-cy="tipoFuncionarioEnum"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoFuncionarioEnum.null' | translate }}</option>
+            @for (tipoFuncionarioEnum of tipoFuncionarioEnumValues; track $index) {
+              <option [value]="tipoFuncionarioEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoFuncionarioEnum.' + tipoFuncionarioEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_usuarioEmpresa" jhiTranslate="erpDobemcontabilidadeApp.funcionario.usuarioEmpresa"
+            >Usuario Empresa</label
+          >
+          <select
+            class="form-control"
+            id="field_usuarioEmpresa"
+            data-cy="usuarioEmpresa"
+            name="usuarioEmpresa"
+            formControlName="usuarioEmpresa"
+            [compareWith]="compareUsuarioEmpresa"
+          >
+            @if (editForm.get(['usuarioEmpresa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (usuarioEmpresaOption of usuarioEmpresasCollection; track $index) {
+              <option [ngValue]="usuarioEmpresaOption">{{ usuarioEmpresaOption.email }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['usuarioEmpresa'])!.invalid &&
+          (editForm.get(['usuarioEmpresa'])!.dirty || editForm.get(['usuarioEmpresa'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['usuarioEmpresa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pessoa" jhiTranslate="erpDobemcontabilidadeApp.funcionario.pessoa">Pessoa</label>
+          <select
+            class="form-control"
+            id="field_pessoa"
+            data-cy="pessoa"
+            name="pessoa"
+            formControlName="pessoa"
+            [compareWith]="comparePessoa"
+          >
+            @if (editForm.get(['pessoa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (pessoaOption of pessoasSharedCollection; track $index) {
+              <option [ngValue]="pessoaOption">{{ pessoaOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['pessoa'])!.invalid && (editForm.get(['pessoa'])!.dirty || editForm.get(['pessoa'])!.touched)) {
+          <div>
+            @if (editForm.get(['pessoa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_empresa" jhiTranslate="erpDobemcontabilidadeApp.funcionario.empresa">Empresa</label>
+          <select
+            class="form-control"
+            id="field_empresa"
+            data-cy="empresa"
+            name="empresa"
+            formControlName="empresa"
+            [compareWith]="compareEmpresa"
+          >
+            @if (editForm.get(['empresa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (empresaOption of empresasSharedCollection; track $index) {
+              <option [ngValue]="empresaOption">{{ empresaOption.razaoSocial }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['empresa'])!.invalid && (editForm.get(['empresa'])!.dirty || editForm.get(['empresa'])!.touched)) {
+          <div>
+            @if (editForm.get(['empresa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_profissao" jhiTranslate="erpDobemcontabilidadeApp.funcionario.profissao">Profissao</label>
+          <select
+            class="form-control"
+            id="field_profissao"
+            data-cy="profissao"
+            name="profissao"
+            formControlName="profissao"
+            [compareWith]="compareProfissao"
+          >
+            @if (editForm.get(['profissao'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (profissaoOption of profissaosSharedCollection; track $index) {
+              <option [ngValue]="profissaoOption">{{ profissaoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['profissao'])!.invalid && (editForm.get(['profissao'])!.dirty || editForm.get(['profissao'])!.touched)) {
+          <div>
+            @if (editForm.get(['profissao'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

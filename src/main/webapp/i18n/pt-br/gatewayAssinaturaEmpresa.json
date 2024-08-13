@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "gatewayAssinaturaEmpresa": {
+      "home": {
+        "title": "Gateway Assinatura Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Gateway Assinatura Empresa",
+        "createOrEditLabel": "Criar ou editar Gateway Assinatura Empresa",
+        "notFound": "Nenhum Gateway Assinatura Empresa encontrado"
+      },
+      "created": "Um novo Gateway Assinatura Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Gateway Assinatura Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Gateway Assinatura Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Gateway Assinatura Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Gateway Assinatura Empresa"
+      },
+      "id": "ID",
+      "ativo": "Ativo",
+      "codigoAssinatura": "Codigo Assinatura",
+      "assinaturaEmpresa": "Assinatura Empresa",
+      "gatewayPagamento": "Gateway Pagamento"
+    }
+  }
+}

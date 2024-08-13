@@ -1,0 +1,175 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-pagamento-heading"
+        data-cy="PagamentoCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.pagamento.home.createOrEditLabel"
+      >
+        Criar ou editar Pagamento
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.pagamento.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataCobranca" jhiTranslate="erpDobemcontabilidadeApp.pagamento.dataCobranca"
+            >Data Cobranca</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataCobranca"
+              data-cy="dataCobranca"
+              type="datetime-local"
+              class="form-control"
+              name="dataCobranca"
+              formControlName="dataCobranca"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataVencimento" jhiTranslate="erpDobemcontabilidadeApp.pagamento.dataVencimento"
+            >Data Vencimento</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataVencimento"
+              data-cy="dataVencimento"
+              type="datetime-local"
+              class="form-control"
+              name="dataVencimento"
+              formControlName="dataVencimento"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataPagamento" jhiTranslate="erpDobemcontabilidadeApp.pagamento.dataPagamento"
+            >Data Pagamento</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataPagamento"
+              data-cy="dataPagamento"
+              type="datetime-local"
+              class="form-control"
+              name="dataPagamento"
+              formControlName="dataPagamento"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorPago" jhiTranslate="erpDobemcontabilidadeApp.pagamento.valorPago">Valor Pago</label>
+          <input type="number" class="form-control" name="valorPago" id="field_valorPago" data-cy="valorPago" formControlName="valorPago" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorCobrado" jhiTranslate="erpDobemcontabilidadeApp.pagamento.valorCobrado"
+            >Valor Cobrado</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorCobrado"
+            id="field_valorCobrado"
+            data-cy="valorCobrado"
+            formControlName="valorCobrado"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_acrescimo" jhiTranslate="erpDobemcontabilidadeApp.pagamento.acrescimo">Acrescimo</label>
+          <input type="number" class="form-control" name="acrescimo" id="field_acrescimo" data-cy="acrescimo" formControlName="acrescimo" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_multa" jhiTranslate="erpDobemcontabilidadeApp.pagamento.multa">Multa</label>
+          <input type="number" class="form-control" name="multa" id="field_multa" data-cy="multa" formControlName="multa" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_juros" jhiTranslate="erpDobemcontabilidadeApp.pagamento.juros">Juros</label>
+          <input type="number" class="form-control" name="juros" id="field_juros" data-cy="juros" formControlName="juros" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_situacao" jhiTranslate="erpDobemcontabilidadeApp.pagamento.situacao">Situacao</label>
+          <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao" data-cy="situacao">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.SituacaoPagamentoEnum.null' | translate }}</option>
+            @for (situacaoPagamentoEnum of situacaoPagamentoEnumValues; track $index) {
+              <option [value]="situacaoPagamentoEnum">
+                {{ 'erpDobemcontabilidadeApp.SituacaoPagamentoEnum.' + situacaoPagamentoEnum | translate }}
+              </option>
+            }
+          </select>
+          @if (editForm.get('situacao')!.invalid && (editForm.get('situacao')!.dirty || editForm.get('situacao')!.touched)) {
+            <div>
+              @if (editForm.get('situacao')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_assinaturaEmpresa" jhiTranslate="erpDobemcontabilidadeApp.pagamento.assinaturaEmpresa"
+            >Assinatura Empresa</label
+          >
+          <select
+            class="form-control"
+            id="field_assinaturaEmpresa"
+            data-cy="assinaturaEmpresa"
+            name="assinaturaEmpresa"
+            formControlName="assinaturaEmpresa"
+            [compareWith]="compareAssinaturaEmpresa"
+          >
+            @if (editForm.get(['assinaturaEmpresa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (assinaturaEmpresaOption of assinaturaEmpresasSharedCollection; track $index) {
+              <option [ngValue]="assinaturaEmpresaOption">{{ assinaturaEmpresaOption.codigoAssinatura }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['assinaturaEmpresa'])!.invalid &&
+          (editForm.get(['assinaturaEmpresa'])!.dirty || editForm.get(['assinaturaEmpresa'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['assinaturaEmpresa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

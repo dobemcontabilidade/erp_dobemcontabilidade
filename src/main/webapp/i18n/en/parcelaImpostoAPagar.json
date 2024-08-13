@@ -1,0 +1,32 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "parcelaImpostoAPagar": {
+      "home": {
+        "title": "Parcela Imposto A Pagars",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Parcela Imposto A Pagar",
+        "createOrEditLabel": "Create or edit a Parcela Imposto A Pagar",
+        "notFound": "No Parcela Imposto A Pagars found"
+      },
+      "created": "A new Parcela Imposto A Pagar is created with identifier {{ param }}",
+      "updated": "A Parcela Imposto A Pagar is updated with identifier {{ param }}",
+      "deleted": "A Parcela Imposto A Pagar is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Parcela Imposto A Pagar {{ id }}?"
+      },
+      "detail": {
+        "title": "Parcela Imposto A Pagar"
+      },
+      "id": "ID",
+      "numeroParcela": "Numero Parcela",
+      "dataVencimento": "Data Vencimento",
+      "dataPagamento": "Data Pagamento",
+      "valor": "Valor",
+      "valorMulta": "Valor Multa",
+      "urlArquivoPagamento": "Url Arquivo Pagamento",
+      "urlArquivoComprovante": "Url Arquivo Comprovante",
+      "mesCompetencia": "Mes Competencia",
+      "parcelamentoImposto": "Parcelamento Imposto"
+    }
+  }
+}

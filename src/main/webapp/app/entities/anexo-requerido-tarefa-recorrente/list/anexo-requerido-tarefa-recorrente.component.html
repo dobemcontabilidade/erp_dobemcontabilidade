@@ -1,0 +1,135 @@
+<div>
+  <h2 id="page-heading" data-cy="AnexoRequeridoTarefaRecorrenteHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.home.title">Anexo Requerido Tarefa Recorrentes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-anexo-requerido-tarefa-recorrente"
+        [routerLink]="['/anexo-requerido-tarefa-recorrente/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.home.createLabel"
+          >Criar novo Anexo Requerido Tarefa Recorrente</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (anexoRequeridoTarefaRecorrentes?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.home.notFound"
+        >Nenhum Anexo Requerido Tarefa Recorrente encontrado</span
+      >
+    </div>
+  }
+
+  @if (anexoRequeridoTarefaRecorrentes && anexoRequeridoTarefaRecorrentes.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="obrigatorio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.obrigatorio">Obrigatorio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anexoRequerido.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.anexoRequerido">Anexo Requerido</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tarefaRecorrente.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaRecorrente.tarefaRecorrente">Tarefa Recorrente</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (anexoRequeridoTarefaRecorrente of anexoRequeridoTarefaRecorrentes; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/anexo-requerido-tarefa-recorrente', anexoRequeridoTarefaRecorrente.id, 'view']">{{
+                  anexoRequeridoTarefaRecorrente.id
+                }}</a>
+              </td>
+              <td>{{ anexoRequeridoTarefaRecorrente.obrigatorio }}</td>
+              <td>
+                @if (anexoRequeridoTarefaRecorrente.anexoRequerido) {
+                  <div>
+                    <a [routerLink]="['/anexo-requerido', anexoRequeridoTarefaRecorrente.anexoRequerido.id, 'view']">{{
+                      anexoRequeridoTarefaRecorrente.anexoRequerido.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (anexoRequeridoTarefaRecorrente.tarefaRecorrente) {
+                  <div>
+                    <a [routerLink]="['/tarefa-recorrente', anexoRequeridoTarefaRecorrente.tarefaRecorrente.id, 'view']">{{
+                      anexoRequeridoTarefaRecorrente.tarefaRecorrente.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/anexo-requerido-tarefa-recorrente', anexoRequeridoTarefaRecorrente.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/anexo-requerido-tarefa-recorrente', anexoRequeridoTarefaRecorrente.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(anexoRequeridoTarefaRecorrente)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

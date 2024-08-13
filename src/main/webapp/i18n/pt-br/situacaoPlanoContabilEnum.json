@@ -1,0 +1,10 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "SituacaoPlanoContabilEnum": {
+      "null": "",
+      "ATIVO": "ATIVO",
+      "INATIVO": "INATIVO",
+      "EXCLUIDO": "EXCLUIDO"
+    }
+  }
+}

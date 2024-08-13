@@ -1,0 +1,124 @@
+<div>
+  <h2 id="page-heading" data-cy="ImpostoParceladoHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.home.title">Imposto Parcelados</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-imposto-parcelado"
+        [routerLink]="['/imposto-parcelado/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.home.createLabel">Criar novo Imposto Parcelado</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (impostoParcelados?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.home.notFound">Nenhum Imposto Parcelado encontrado</span>
+    </div>
+  }
+
+  @if (impostoParcelados && impostoParcelados.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diasAtraso">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.diasAtraso">Dias Atraso</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="parcelamentoImposto.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.parcelamentoImposto">Parcelamento Imposto</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="impostoAPagarEmpresa.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.impostoParcelado.impostoAPagarEmpresa">Imposto A Pagar Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (impostoParcelado of impostoParcelados; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/imposto-parcelado', impostoParcelado.id, 'view']">{{ impostoParcelado.id }}</a>
+              </td>
+              <td>{{ impostoParcelado.diasAtraso }}</td>
+              <td>
+                @if (impostoParcelado.parcelamentoImposto) {
+                  <div>
+                    <a [routerLink]="['/parcelamento-imposto', impostoParcelado.parcelamentoImposto.id, 'view']">{{
+                      impostoParcelado.parcelamentoImposto.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (impostoParcelado.impostoAPagarEmpresa) {
+                  <div>
+                    <a [routerLink]="['/imposto-a-pagar-empresa', impostoParcelado.impostoAPagarEmpresa.id, 'view']">{{
+                      impostoParcelado.impostoAPagarEmpresa.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/imposto-parcelado', impostoParcelado.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/imposto-parcelado', impostoParcelado.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(impostoParcelado)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

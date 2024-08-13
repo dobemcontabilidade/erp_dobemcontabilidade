@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051624"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "dataCobranca",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "valorPago",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "urlCobranca",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "urlArquivo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valorCobrado",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "situacaoCobranca",
+      "fieldType": "SituacaoCobrancaEnum",
+      "fieldValues": "ABERTA,FECHADA,ATRASADA,PAGA"
+    }
+  ],
+  "name": "CobrancaEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "codigoAssinatura",
+      "otherEntityName": "assinaturaEmpresa",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "forma",
+      "otherEntityName": "formaDePagamento",
+      "relationshipName": "formaDePagamento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

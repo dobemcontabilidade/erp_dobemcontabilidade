@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051704"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "name": "GrupoAcessoPadrao",
+  "relationships": [
+    {
+      "otherEntityName": "funcionalidadeGrupoAcessoPadrao",
+      "otherEntityRelationshipName": "grupoAcessoPadrao",
+      "relationshipName": "funcionalidadeGrupoAcessoPadrao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "grupoAcessoUsuarioContador",
+      "otherEntityRelationshipName": "grupoAcessoPadrao",
+      "relationshipName": "grupoAcessoUsuarioContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

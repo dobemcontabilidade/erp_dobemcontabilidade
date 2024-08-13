@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (funcionario()) {
+      <div>
+        <h2 data-cy="funcionarioDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.funcionario.detail.title">Funcionario</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ funcionario()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.numeroPisNisPasep">Numero Pis Nis Pasep</span></dt>
+          <dd>
+            <span>{{ funcionario()!.numeroPisNisPasep }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.reintegrado">Reintegrado</span></dt>
+          <dd>
+            <span>{{ funcionario()!.reintegrado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.primeiroEmprego">Primeiro Emprego</span></dt>
+          <dd>
+            <span>{{ funcionario()!.primeiroEmprego }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.multiploVinculos">Multiplo Vinculos</span></dt>
+          <dd>
+            <span>{{ funcionario()!.multiploVinculos }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.dataOpcaoFgts">Data Opcao Fgts</span></dt>
+          <dd>
+            <span>{{ funcionario()!.dataOpcaoFgts }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.filiacaoSindical">Filiacao Sindical</span></dt>
+          <dd>
+            <span>{{ funcionario()!.filiacaoSindical }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.cnpjSindicato">Cnpj Sindicato</span></dt>
+          <dd>
+            <span>{{ funcionario()!.cnpjSindicato }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.tipoFuncionarioEnum">Tipo Funcionario Enum</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoFuncionarioEnum.' + (funcionario()!.tipoFuncionarioEnum ?? 'null')">{{
+              { null: '', NORMAL: 'NORMAL', ESTAGIARIO: 'ESTAGIARIO' }[funcionario()!.tipoFuncionarioEnum ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.usuarioEmpresa">Usuario Empresa</span></dt>
+          <dd>
+            @if (funcionario()!.usuarioEmpresa) {
+              <div>
+                <a [routerLink]="['/usuario-empresa', funcionario()!.usuarioEmpresa?.id, 'view']">{{
+                  funcionario()!.usuarioEmpresa?.email
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.pessoa">Pessoa</span></dt>
+          <dd>
+            @if (funcionario()!.pessoa) {
+              <div>
+                <a [routerLink]="['/pessoa', funcionario()!.pessoa?.id, 'view']">{{ funcionario()!.pessoa?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.empresa">Empresa</span></dt>
+          <dd>
+            @if (funcionario()!.empresa) {
+              <div>
+                <a [routerLink]="['/empresa', funcionario()!.empresa?.id, 'view']">{{ funcionario()!.empresa?.razaoSocial }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.funcionario.profissao">Profissao</span></dt>
+          <dd>
+            @if (funcionario()!.profissao) {
+              <div>
+                <a [routerLink]="['/profissao', funcionario()!.profissao?.id, 'view']">{{ funcionario()!.profissao?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/funcionario', funcionario()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "tarefaRecorrenteEmpresaModelo": {
+      "home": {
+        "title": "Tarefa Recorrente Empresa Modelos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Tarefa Recorrente Empresa Modelo",
+        "createOrEditLabel": "Create or edit a Tarefa Recorrente Empresa Modelo",
+        "notFound": "No Tarefa Recorrente Empresa Modelos found"
+      },
+      "created": "A new Tarefa Recorrente Empresa Modelo is created with identifier {{ param }}",
+      "updated": "A Tarefa Recorrente Empresa Modelo is updated with identifier {{ param }}",
+      "deleted": "A Tarefa Recorrente Empresa Modelo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tarefa Recorrente Empresa Modelo {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarefa Recorrente Empresa Modelo"
+      },
+      "id": "ID",
+      "diaAdmin": "Dia Admin",
+      "mesLegal": "Mes Legal",
+      "recorrencia": "Recorrencia",
+      "servicoContabilEmpresaModelo": "Servico Contabil Empresa Modelo"
+    }
+  }
+}

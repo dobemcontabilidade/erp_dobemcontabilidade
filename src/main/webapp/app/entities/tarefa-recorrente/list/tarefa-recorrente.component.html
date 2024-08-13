@@ -1,0 +1,173 @@
+<div>
+  <h2 id="page-heading" data-cy="TarefaRecorrenteHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.home.title">Tarefa Recorrentes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-tarefa-recorrente"
+        [routerLink]="['/tarefa-recorrente/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.home.createLabel">Criar novo Tarefa Recorrente</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (tarefaRecorrentes?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.home.notFound">Nenhum Tarefa Recorrente encontrado</span>
+    </div>
+  }
+
+  @if (tarefaRecorrentes && tarefaRecorrentes.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.descricao">Descricao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="notificarCliente">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.notificarCliente">Notificar Cliente</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="notificarContador">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.notificarContador">Notificar Contador</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anoReferencia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.anoReferencia">Ano Referencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataAdmin">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.dataAdmin">Data Admin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="recorencia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.recorencia">Recorencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="servicoContabilAssinaturaEmpresa.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrente.servicoContabilAssinaturaEmpresa"
+                  >Servico Contabil Assinatura Empresa</span
+                >
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tarefaRecorrente of tarefaRecorrentes; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/tarefa-recorrente', tarefaRecorrente.id, 'view']">{{ tarefaRecorrente.id }}</a>
+              </td>
+              <td>{{ tarefaRecorrente.nome }}</td>
+              <td>{{ tarefaRecorrente.descricao }}</td>
+              <td>{{ tarefaRecorrente.notificarCliente }}</td>
+              <td>{{ tarefaRecorrente.notificarContador }}</td>
+              <td>{{ tarefaRecorrente.anoReferencia }}</td>
+              <td>{{ tarefaRecorrente.dataAdmin | formatMediumDatetime }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.TipoRecorrenciaEnum.' + (tarefaRecorrente.recorencia ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    DIARIO: 'DIARIO',
+                    SEMANAL: 'SEMANAL',
+                    MENSAL: 'MENSAL',
+                    BIMESTRAL: 'BIMESTRAL',
+                    TRIMESTRAL: 'TRIMESTRAL',
+                    SEMESTRAL: 'SEMESTRAL',
+                    ANUAL: 'ANUAL',
+                  }[tarefaRecorrente.recorencia ?? 'null']
+                }}
+              </td>
+              <td>
+                @if (tarefaRecorrente.servicoContabilAssinaturaEmpresa) {
+                  <div>
+                    <a
+                      [routerLink]="['/servico-contabil-assinatura-empresa', tarefaRecorrente.servicoContabilAssinaturaEmpresa.id, 'view']"
+                      >{{ tarefaRecorrente.servicoContabilAssinaturaEmpresa.id }}</a
+                    >
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/tarefa-recorrente', tarefaRecorrente.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/tarefa-recorrente', tarefaRecorrente.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(tarefaRecorrente)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

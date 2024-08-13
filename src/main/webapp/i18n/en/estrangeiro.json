@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "estrangeiro": {
+      "home": {
+        "title": "Estrangeiros",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Estrangeiro",
+        "createOrEditLabel": "Create or edit a Estrangeiro",
+        "notFound": "No Estrangeiros found"
+      },
+      "created": "A new Estrangeiro is created with identifier {{ param }}",
+      "updated": "A Estrangeiro is updated with identifier {{ param }}",
+      "deleted": "A Estrangeiro is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Estrangeiro {{ id }}?"
+      },
+      "detail": {
+        "title": "Estrangeiro"
+      },
+      "id": "ID",
+      "dataChegada": "Data Chegada",
+      "dataNaturalizacao": "Data Naturalizacao",
+      "casadoComBrasileiro": "Casado Com Brasileiro",
+      "filhosComBrasileiro": "Filhos Com Brasileiro",
+      "checked": "Checked",
+      "funcionario": "Funcionario"
+    }
+  }
+}

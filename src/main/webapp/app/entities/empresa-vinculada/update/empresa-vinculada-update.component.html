@@ -1,0 +1,478 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-empresa-vinculada-heading"
+        data-cy="EmpresaVinculadaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.home.createOrEditLabel"
+      >
+        Criar ou editar Empresa Vinculada
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomeEmpresa" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.nomeEmpresa"
+            >Nome Empresa</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nomeEmpresa"
+            id="field_nomeEmpresa"
+            data-cy="nomeEmpresa"
+            formControlName="nomeEmpresa"
+          />
+          @if (editForm.get('nomeEmpresa')!.invalid && (editForm.get('nomeEmpresa')!.dirty || editForm.get('nomeEmpresa')!.touched)) {
+            <div>
+              @if (editForm.get('nomeEmpresa')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '200' }"
+                  >Este campo não pode ter mais de 200 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cnpj" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.cnpj">Cnpj</label>
+          <input type="text" class="form-control" name="cnpj" id="field_cnpj" data-cy="cnpj" formControlName="cnpj" />
+          @if (editForm.get('cnpj')!.invalid && (editForm.get('cnpj')!.dirty || editForm.get('cnpj')!.touched)) {
+            <div>
+              @if (editForm.get('cnpj')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '14' }"
+                  >Este campo não pode ter mais de 14 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_remuneracaoEmpresa"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.remuneracaoEmpresa"
+            >Remuneracao Empresa</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="remuneracaoEmpresa"
+            id="field_remuneracaoEmpresa"
+            data-cy="remuneracaoEmpresa"
+            formControlName="remuneracaoEmpresa"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_observacoes" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.observacoes"
+            >Observacoes</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="observacoes"
+            id="field_observacoes"
+            data-cy="observacoes"
+            formControlName="observacoes"
+          />
+          @if (editForm.get('observacoes')!.invalid && (editForm.get('observacoes')!.dirty || editForm.get('observacoes')!.touched)) {
+            <div>
+              @if (editForm.get('observacoes')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '200' }"
+                  >Este campo não pode ter mais de 200 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_salarioFixo" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.salarioFixo"
+            >Salario Fixo</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="salarioFixo"
+            id="field_salarioFixo"
+            data-cy="salarioFixo"
+            formControlName="salarioFixo"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_salarioVariavel" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.salarioVariavel"
+            >Salario Variavel</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="salarioVariavel"
+            id="field_salarioVariavel"
+            data-cy="salarioVariavel"
+            formControlName="salarioVariavel"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorSalarioFixo" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.valorSalarioFixo"
+            >Valor Salario Fixo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="valorSalarioFixo"
+            id="field_valorSalarioFixo"
+            data-cy="valorSalarioFixo"
+            formControlName="valorSalarioFixo"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataTerminoContrato"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.dataTerminoContrato"
+            >Data Termino Contrato</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dataTerminoContrato"
+            id="field_dataTerminoContrato"
+            data-cy="dataTerminoContrato"
+            formControlName="dataTerminoContrato"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_numeroInscricao" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.numeroInscricao"
+            >Numero Inscricao</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numeroInscricao"
+            id="field_numeroInscricao"
+            data-cy="numeroInscricao"
+            formControlName="numeroInscricao"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codigoLotacao" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.codigoLotacao"
+            >Codigo Lotacao</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="codigoLotacao"
+            id="field_codigoLotacao"
+            data-cy="codigoLotacao"
+            formControlName="codigoLotacao"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_descricaoComplementar"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.descricaoComplementar"
+            >Descricao Complementar</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="descricaoComplementar"
+            id="field_descricaoComplementar"
+            data-cy="descricaoComplementar"
+            formControlName="descricaoComplementar"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_descricaoCargo" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.descricaoCargo"
+            >Descricao Cargo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="descricaoCargo"
+            id="field_descricaoCargo"
+            data-cy="descricaoCargo"
+            formControlName="descricaoCargo"
+          />
+          @if (
+            editForm.get('descricaoCargo')!.invalid && (editForm.get('descricaoCargo')!.dirty || editForm.get('descricaoCargo')!.touched)
+          ) {
+            <div>
+              @if (editForm.get('descricaoCargo')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '200' }"
+                  >Este campo não pode ter mais de 200 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_observacaoJornadaTrabalho"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.observacaoJornadaTrabalho"
+            >Observacao Jornada Trabalho</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="observacaoJornadaTrabalho"
+            id="field_observacaoJornadaTrabalho"
+            data-cy="observacaoJornadaTrabalho"
+            formControlName="observacaoJornadaTrabalho"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_mediaHorasTrabalhadasSemana"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.mediaHorasTrabalhadasSemana"
+            >Media Horas Trabalhadas Semana</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="mediaHorasTrabalhadasSemana"
+            id="field_mediaHorasTrabalhadasSemana"
+            data-cy="mediaHorasTrabalhadasSemana"
+            formControlName="mediaHorasTrabalhadasSemana"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_regimePrevidenciario"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.regimePrevidenciario"
+            >Regime Previdenciario</label
+          >
+          <select
+            class="form-control"
+            name="regimePrevidenciario"
+            formControlName="regimePrevidenciario"
+            id="field_regimePrevidenciario"
+            data-cy="regimePrevidenciario"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.RegimePrevidenciarioEnum.null' | translate }}</option>
+            @for (regimePrevidenciarioEnum of regimePrevidenciarioEnumValues; track $index) {
+              <option [value]="regimePrevidenciarioEnum">
+                {{ 'erpDobemcontabilidadeApp.RegimePrevidenciarioEnum.' + regimePrevidenciarioEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_unidadePagamentoSalario"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.unidadePagamentoSalario"
+            >Unidade Pagamento Salario</label
+          >
+          <select
+            class="form-control"
+            name="unidadePagamentoSalario"
+            formControlName="unidadePagamentoSalario"
+            id="field_unidadePagamentoSalario"
+            data-cy="unidadePagamentoSalario"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.UnidadePagamentoSalarioEnum.null' | translate }}</option>
+            @for (unidadePagamentoSalarioEnum of unidadePagamentoSalarioEnumValues; track $index) {
+              <option [value]="unidadePagamentoSalarioEnum">
+                {{ 'erpDobemcontabilidadeApp.UnidadePagamentoSalarioEnum.' + unidadePagamentoSalarioEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_jornadaEspecial" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.jornadaEspecial"
+            >Jornada Especial</label
+          >
+          <select
+            class="form-control"
+            name="jornadaEspecial"
+            formControlName="jornadaEspecial"
+            id="field_jornadaEspecial"
+            data-cy="jornadaEspecial"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.JornadaEspecialEnum.null' | translate }}</option>
+            @for (jornadaEspecialEnum of jornadaEspecialEnumValues; track $index) {
+              <option [value]="jornadaEspecialEnum">
+                {{ 'erpDobemcontabilidadeApp.JornadaEspecialEnum.' + jornadaEspecialEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tipoInscricaoEmpresaVinculada"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.tipoInscricaoEmpresaVinculada"
+            >Tipo Inscricao Empresa Vinculada</label
+          >
+          <select
+            class="form-control"
+            name="tipoInscricaoEmpresaVinculada"
+            formControlName="tipoInscricaoEmpresaVinculada"
+            id="field_tipoInscricaoEmpresaVinculada"
+            data-cy="tipoInscricaoEmpresaVinculada"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoInscricaoEmpresaVinculadaEnum.null' | translate }}</option>
+            @for (tipoInscricaoEmpresaVinculadaEnum of tipoInscricaoEmpresaVinculadaEnumValues; track $index) {
+              <option [value]="tipoInscricaoEmpresaVinculadaEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoInscricaoEmpresaVinculadaEnum.' + tipoInscricaoEmpresaVinculadaEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tipoContratoTrabalho"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.tipoContratoTrabalho"
+            >Tipo Contrato Trabalho</label
+          >
+          <select
+            class="form-control"
+            name="tipoContratoTrabalho"
+            formControlName="tipoContratoTrabalho"
+            id="field_tipoContratoTrabalho"
+            data-cy="tipoContratoTrabalho"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoContratoTrabalhoEnum.null' | translate }}</option>
+            @for (tipoContratoTrabalhoEnum of tipoContratoTrabalhoEnumValues; track $index) {
+              <option [value]="tipoContratoTrabalhoEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoContratoTrabalhoEnum.' + tipoContratoTrabalhoEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tipoRegimeTrabalho"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.tipoRegimeTrabalho"
+            >Tipo Regime Trabalho</label
+          >
+          <select
+            class="form-control"
+            name="tipoRegimeTrabalho"
+            formControlName="tipoRegimeTrabalho"
+            id="field_tipoRegimeTrabalho"
+            data-cy="tipoRegimeTrabalho"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoRegimeTrabalhoEnum.null' | translate }}</option>
+            @for (tipoRegimeTrabalhoEnum of tipoRegimeTrabalhoEnumValues; track $index) {
+              <option [value]="tipoRegimeTrabalhoEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoRegimeTrabalhoEnum.' + tipoRegimeTrabalhoEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diasDaSemana" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.diasDaSemana"
+            >Dias Da Semana</label
+          >
+          <select class="form-control" name="diasDaSemana" formControlName="diasDaSemana" id="field_diasDaSemana" data-cy="diasDaSemana">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.DiasDaSemanaEnum.null' | translate }}</option>
+            @for (diasDaSemanaEnum of diasDaSemanaEnumValues; track $index) {
+              <option [value]="diasDaSemanaEnum">{{ 'erpDobemcontabilidadeApp.DiasDaSemanaEnum.' + diasDaSemanaEnum | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tipoJornadaEmpresaVinculada"
+            jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.tipoJornadaEmpresaVinculada"
+            >Tipo Jornada Empresa Vinculada</label
+          >
+          <select
+            class="form-control"
+            name="tipoJornadaEmpresaVinculada"
+            formControlName="tipoJornadaEmpresaVinculada"
+            id="field_tipoJornadaEmpresaVinculada"
+            data-cy="tipoJornadaEmpresaVinculada"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoJornadaEmpresaVinculadaEnum.null' | translate }}</option>
+            @for (tipoJornadaEmpresaVinculadaEnum of tipoJornadaEmpresaVinculadaEnumValues; track $index) {
+              <option [value]="tipoJornadaEmpresaVinculadaEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoJornadaEmpresaVinculadaEnum.' + tipoJornadaEmpresaVinculadaEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_funcionario" jhiTranslate="erpDobemcontabilidadeApp.empresaVinculada.funcionario"
+            >Funcionario</label
+          >
+          <select
+            class="form-control"
+            id="field_funcionario"
+            data-cy="funcionario"
+            name="funcionario"
+            formControlName="funcionario"
+            [compareWith]="compareFuncionario"
+          >
+            @if (editForm.get(['funcionario'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (funcionarioOption of funcionariosSharedCollection; track $index) {
+              <option [ngValue]="funcionarioOption">{{ funcionarioOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['funcionario'])!.invalid && (editForm.get(['funcionario'])!.dirty || editForm.get(['funcionario'])!.touched)) {
+          <div>
+            @if (editForm.get(['funcionario'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

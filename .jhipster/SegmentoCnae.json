@@ -1,0 +1,75 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051735"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "icon",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "imagem",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tags",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "tipo",
+      "fieldType": "TipoSegmentoEnum",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SERVICO,COMERCIO,SERVICO_COMERCIO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "SegmentoCnae",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "subclasseCnae",
+      "otherEntityRelationshipName": "segmentoCnae",
+      "relationshipName": "subclasseCnae",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "ramo",
+      "relationshipName": "ramo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "empresa",
+      "otherEntityRelationshipName": "segmentoCnae",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "empresaModelo",
+      "otherEntityRelationshipName": "segmentoCnae",
+      "relationshipName": "empresaModelo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

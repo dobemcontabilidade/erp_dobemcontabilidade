@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (departamentoEmpresa()) {
+      <div>
+        <h2 data-cy="departamentoEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.departamentoEmpresa.detail.title">Departamento Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ departamentoEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.departamentoEmpresa.pontuacao">Pontuacao</span></dt>
+          <dd>
+            <span>{{ departamentoEmpresa()!.pontuacao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.departamentoEmpresa.depoimento">Depoimento</span></dt>
+          <dd>
+            <span>{{ departamentoEmpresa()!.depoimento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.departamentoEmpresa.reclamacao">Reclamacao</span></dt>
+          <dd>
+            <span>{{ departamentoEmpresa()!.reclamacao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.departamentoEmpresa.departamento">Departamento</span></dt>
+          <dd>
+            @if (departamentoEmpresa()!.departamento) {
+              <div>
+                <a [routerLink]="['/departamento', departamentoEmpresa()!.departamento?.id, 'view']">{{
+                  departamentoEmpresa()!.departamento?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.departamentoEmpresa.empresa">Empresa</span></dt>
+          <dd>
+            @if (departamentoEmpresa()!.empresa) {
+              <div>
+                <a [routerLink]="['/empresa', departamentoEmpresa()!.empresa?.id, 'view']">{{
+                  departamentoEmpresa()!.empresa?.razaoSocial
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.departamentoEmpresa.contador">Contador</span></dt>
+          <dd>
+            @if (departamentoEmpresa()!.contador) {
+              <div>
+                <a [routerLink]="['/contador', departamentoEmpresa()!.contador?.id, 'view']">{{ departamentoEmpresa()!.contador?.crc }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/departamento-empresa', departamentoEmpresa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "modulo": {
+      "home": {
+        "title": "Modulos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Modulo",
+        "createOrEditLabel": "Create or edit a Modulo",
+        "notFound": "No Modulos found"
+      },
+      "created": "A new Modulo is created with identifier {{ param }}",
+      "updated": "A Modulo is updated with identifier {{ param }}",
+      "deleted": "A Modulo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Modulo {{ id }}?"
+      },
+      "detail": {
+        "title": "Modulo"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "funcionalidade": "Funcionalidade",
+      "sistema": "Sistema"
+    }
+  }
+}

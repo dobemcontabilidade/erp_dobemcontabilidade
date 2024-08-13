@@ -1,0 +1,76 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051609"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "cnpj",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "razaoSocial",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "coordenador",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cpfCoordenadorEstagio",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "logradouro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numero",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "5"
+    },
+    {
+      "fieldName": "complemento",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cep",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "9"
+    },
+    {
+      "fieldName": "principal",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "AgenteIntegracaoEstagio",
+  "relationships": [
+    {
+      "otherEntityName": "contratoFuncionario",
+      "otherEntityRelationshipName": "agenteIntegracaoEstagio",
+      "relationshipName": "contratoFuncionario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "cidade",
+      "relationshipName": "cidade",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

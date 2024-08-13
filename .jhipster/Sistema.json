@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051755"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Sistema",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "modulo",
+      "otherEntityRelationshipName": "sistema",
+      "relationshipName": "modulo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

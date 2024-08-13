@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (etapaFluxoExecucao()) {
+      <div>
+        <h2 data-cy="etapaFluxoExecucaoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.detail.title">Etapa Fluxo Execucao</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ etapaFluxoExecucao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.nome">Nome</span></dt>
+          <dd>
+            <span>{{ etapaFluxoExecucao()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ etapaFluxoExecucao()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.feito">Feito</span></dt>
+          <dd>
+            <span>{{ etapaFluxoExecucao()!.feito }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.ordem">Ordem</span></dt>
+          <dd>
+            <span>{{ etapaFluxoExecucao()!.ordem }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.agendada">Agendada</span></dt>
+          <dd>
+            <span>{{ etapaFluxoExecucao()!.agendada }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoExecucao.ordemServico">Ordem Servico</span></dt>
+          <dd>
+            @if (etapaFluxoExecucao()!.ordemServico) {
+              <div>
+                <a [routerLink]="['/ordem-servico', etapaFluxoExecucao()!.ordemServico?.id, 'view']">{{
+                  etapaFluxoExecucao()!.ordemServico?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/etapa-fluxo-execucao', etapaFluxoExecucao()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

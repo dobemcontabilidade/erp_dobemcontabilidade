@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "modulo": {
+      "home": {
+        "title": "Modulos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Modulo",
+        "createOrEditLabel": "Criar ou editar Modulo",
+        "notFound": "Nenhum Modulo encontrado"
+      },
+      "created": "Um novo Modulo foi criado com o identificador {{ param }}",
+      "updated": "Um Modulo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Modulo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Modulo {{ id }}?"
+      },
+      "detail": {
+        "title": "Modulo"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "funcionalidade": "Funcionalidade",
+      "sistema": "Sistema"
+    }
+  }
+}

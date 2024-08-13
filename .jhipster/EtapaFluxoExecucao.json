@@ -1,0 +1,47 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051653"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "feito",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "ordem",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "agendada",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "EtapaFluxoExecucao",
+  "relationships": [
+    {
+      "otherEntityName": "servicoContabilEtapaFluxoExecucao",
+      "otherEntityRelationshipName": "etapaFluxoExecucao",
+      "relationshipName": "servicoContabilEtapaFluxoExecucao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "ordemServico",
+      "relationshipName": "ordemServico",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

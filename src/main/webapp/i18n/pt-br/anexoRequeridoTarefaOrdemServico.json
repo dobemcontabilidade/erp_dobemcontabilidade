@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoRequeridoTarefaOrdemServico": {
+      "home": {
+        "title": "Anexo Requerido Tarefa Ordem Servicos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Anexo Requerido Tarefa Ordem Servico",
+        "createOrEditLabel": "Criar ou editar Anexo Requerido Tarefa Ordem Servico",
+        "notFound": "Nenhum Anexo Requerido Tarefa Ordem Servico encontrado"
+      },
+      "created": "Um novo Anexo Requerido Tarefa Ordem Servico foi criado com o identificador {{ param }}",
+      "updated": "Um Anexo Requerido Tarefa Ordem Servico foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Anexo Requerido Tarefa Ordem Servico foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Anexo Requerido Tarefa Ordem Servico {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Requerido Tarefa Ordem Servico"
+      },
+      "id": "ID",
+      "obrigatorio": "Obrigatorio",
+      "anexoRequerido": "Anexo Requerido",
+      "tarefaOrdemServico": "Tarefa Ordem Servico"
+    }
+  }
+}

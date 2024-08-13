@@ -1,0 +1,138 @@
+<div>
+  <h2 id="page-heading" data-cy="AnexoTarefaRecorrenteExecucaoHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.home.title">Anexo Tarefa Recorrente Execucaos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-anexo-tarefa-recorrente-execucao"
+        [routerLink]="['/anexo-tarefa-recorrente-execucao/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.home.createLabel"
+          >Criar novo Anexo Tarefa Recorrente Execucao</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (anexoTarefaRecorrenteExecucaos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.home.notFound"
+        >Nenhum Anexo Tarefa Recorrente Execucao encontrado</span
+      >
+    </div>
+  }
+
+  @if (anexoTarefaRecorrenteExecucaos && anexoTarefaRecorrenteExecucaos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="url">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.url">Url</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.descricao">Descricao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataHoraUpload">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.dataHoraUpload">Data Hora Upload</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tarefaRecorrenteExecucao.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.anexoTarefaRecorrenteExecucao.tarefaRecorrenteExecucao"
+                  >Tarefa Recorrente Execucao</span
+                >
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (anexoTarefaRecorrenteExecucao of anexoTarefaRecorrenteExecucaos; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/anexo-tarefa-recorrente-execucao', anexoTarefaRecorrenteExecucao.id, 'view']">{{
+                  anexoTarefaRecorrenteExecucao.id
+                }}</a>
+              </td>
+              <td>{{ anexoTarefaRecorrenteExecucao.url }}</td>
+              <td>{{ anexoTarefaRecorrenteExecucao.descricao }}</td>
+              <td>{{ anexoTarefaRecorrenteExecucao.dataHoraUpload | formatMediumDatetime }}</td>
+              <td>
+                @if (anexoTarefaRecorrenteExecucao.tarefaRecorrenteExecucao) {
+                  <div>
+                    <a [routerLink]="['/tarefa-recorrente-execucao', anexoTarefaRecorrenteExecucao.tarefaRecorrenteExecucao.id, 'view']">{{
+                      anexoTarefaRecorrenteExecucao.tarefaRecorrenteExecucao.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/anexo-tarefa-recorrente-execucao', anexoTarefaRecorrenteExecucao.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/anexo-tarefa-recorrente-execucao', anexoTarefaRecorrenteExecucao.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(anexoTarefaRecorrenteExecucao)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

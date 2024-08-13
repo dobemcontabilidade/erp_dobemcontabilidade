@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (servicoContabilEtapaFluxoModelo()) {
+      <div>
+        <h2 data-cy="servicoContabilEtapaFluxoModeloDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.detail.title"
+            >Servico Contabil Etapa Fluxo Modelo</span
+          >
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ servicoContabilEtapaFluxoModelo()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.ordem">Ordem</span></dt>
+          <dd>
+            <span>{{ servicoContabilEtapaFluxoModelo()!.ordem }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.prazo">Prazo</span></dt>
+          <dd>
+            <span>{{ servicoContabilEtapaFluxoModelo()!.prazo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.etapaFluxoModelo">Etapa Fluxo Modelo</span></dt>
+          <dd>
+            @if (servicoContabilEtapaFluxoModelo()!.etapaFluxoModelo) {
+              <div>
+                <a [routerLink]="['/etapa-fluxo-modelo', servicoContabilEtapaFluxoModelo()!.etapaFluxoModelo?.id, 'view']">{{
+                  servicoContabilEtapaFluxoModelo()!.etapaFluxoModelo?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.servicoContabilEtapaFluxoModelo.servicoContabil">Servico Contabil</span></dt>
+          <dd>
+            @if (servicoContabilEtapaFluxoModelo()!.servicoContabil) {
+              <div>
+                <a [routerLink]="['/servico-contabil', servicoContabilEtapaFluxoModelo()!.servicoContabil?.id, 'view']">{{
+                  servicoContabilEtapaFluxoModelo()!.servicoContabil?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/servico-contabil-etapa-fluxo-modelo', servicoContabilEtapaFluxoModelo()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

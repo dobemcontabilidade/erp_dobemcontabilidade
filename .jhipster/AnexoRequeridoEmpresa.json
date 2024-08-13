@@ -1,0 +1,76 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051618"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "obrigatorio",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "urlArquivo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "name": "AnexoRequeridoEmpresa",
+  "relationships": [
+    {
+      "otherEntityName": "anexoEmpresa",
+      "otherEntityRelationshipName": "anexoRequeridoEmpresa",
+      "relationshipName": "anexoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "anexoRequerido",
+      "relationshipName": "anexoRequerido",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "enquadramento",
+      "relationshipName": "enquadramento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tributacao",
+      "relationshipName": "tributacao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "ramo",
+      "relationshipName": "ramo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "empresaModelo",
+      "relationshipName": "empresaModelo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

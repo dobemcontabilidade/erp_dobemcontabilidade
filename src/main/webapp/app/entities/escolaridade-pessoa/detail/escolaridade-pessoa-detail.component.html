@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (escolaridadePessoa()) {
+      <div>
+        <h2 data-cy="escolaridadePessoaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.detail.title">Escolaridade Pessoa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ escolaridadePessoa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.nomeInstituicao">Nome Instituicao</span></dt>
+          <dd>
+            <span>{{ escolaridadePessoa()!.nomeInstituicao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.anoConclusao">Ano Conclusao</span></dt>
+          <dd>
+            <span>{{ escolaridadePessoa()!.anoConclusao }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.urlComprovanteEscolaridade">Url Comprovante Escolaridade</span>
+          </dt>
+          <dd>
+            <span>{{ escolaridadePessoa()!.urlComprovanteEscolaridade }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.pessoa">Pessoa</span></dt>
+          <dd>
+            @if (escolaridadePessoa()!.pessoa) {
+              <div>
+                <a [routerLink]="['/pessoa', escolaridadePessoa()!.pessoa?.id, 'view']">{{ escolaridadePessoa()!.pessoa?.nome }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.escolaridade">Escolaridade</span></dt>
+          <dd>
+            @if (escolaridadePessoa()!.escolaridade) {
+              <div>
+                <a [routerLink]="['/escolaridade', escolaridadePessoa()!.escolaridade?.id, 'view']">{{
+                  escolaridadePessoa()!.escolaridade?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/escolaridade-pessoa', escolaridadePessoa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

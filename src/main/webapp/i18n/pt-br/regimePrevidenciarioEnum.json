@@ -1,0 +1,10 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "RegimePrevidenciarioEnum": {
+      "null": "",
+      "RGPS": "RGPS",
+      "RPPS": "RPPS",
+      "RPPE": "RPPE"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (classeCnae()) {
+      <div>
+        <h2 data-cy="classeCnaeDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.classeCnae.detail.title">Classe Cnae</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ classeCnae()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.classeCnae.codigo">Codigo</span></dt>
+          <dd>
+            <span>{{ classeCnae()!.codigo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.classeCnae.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ classeCnae()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.classeCnae.grupo">Grupo</span></dt>
+          <dd>
+            @if (classeCnae()!.grupo) {
+              <div>
+                <a [routerLink]="['/grupo-cnae', classeCnae()!.grupo?.id, 'view']">{{ classeCnae()!.grupo?.descricao }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/classe-cnae', classeCnae()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

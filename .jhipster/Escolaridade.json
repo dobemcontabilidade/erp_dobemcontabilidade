@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051645"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "name": "Escolaridade",
+  "relationships": [
+    {
+      "otherEntityName": "escolaridadePessoa",
+      "otherEntityRelationshipName": "escolaridade",
+      "relationshipName": "escolaridadePessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

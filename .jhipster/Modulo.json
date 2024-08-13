@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051753"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Modulo",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "funcionalidade",
+      "otherEntityRelationshipName": "modulo",
+      "relationshipName": "funcionalidade",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "sistema",
+      "relationshipName": "sistema",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,11 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "SituacaoCobrancaEnum": {
+      "null": "",
+      "ABERTA": "ABERTA",
+      "FECHADA": "FECHADA",
+      "ATRASADA": "ATRASADA",
+      "PAGA": "PAGA"
+    }
+  }
+}

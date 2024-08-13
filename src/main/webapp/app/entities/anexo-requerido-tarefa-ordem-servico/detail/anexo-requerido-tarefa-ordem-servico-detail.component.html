@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (anexoRequeridoTarefaOrdemServico()) {
+      <div>
+        <h2 data-cy="anexoRequeridoTarefaOrdemServicoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaOrdemServico.detail.title"
+            >Anexo Requerido Tarefa Ordem Servico</span
+          >
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ anexoRequeridoTarefaOrdemServico()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaOrdemServico.obrigatorio">Obrigatorio</span></dt>
+          <dd>
+            <span>{{ anexoRequeridoTarefaOrdemServico()!.obrigatorio }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaOrdemServico.anexoRequerido">Anexo Requerido</span></dt>
+          <dd>
+            @if (anexoRequeridoTarefaOrdemServico()!.anexoRequerido) {
+              <div>
+                <a [routerLink]="['/anexo-requerido', anexoRequeridoTarefaOrdemServico()!.anexoRequerido?.id, 'view']">{{
+                  anexoRequeridoTarefaOrdemServico()!.anexoRequerido?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.anexoRequeridoTarefaOrdemServico.tarefaOrdemServico">Tarefa Ordem Servico</span>
+          </dt>
+          <dd>
+            @if (anexoRequeridoTarefaOrdemServico()!.tarefaOrdemServico) {
+              <div>
+                <a [routerLink]="['/tarefa-ordem-servico', anexoRequeridoTarefaOrdemServico()!.tarefaOrdemServico?.id, 'view']">{{
+                  anexoRequeridoTarefaOrdemServico()!.tarefaOrdemServico?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/anexo-requerido-tarefa-ordem-servico', anexoRequeridoTarefaOrdemServico()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

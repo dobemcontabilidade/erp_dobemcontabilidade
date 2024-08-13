@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051610"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "principal",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "ordem",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "descricaoAtividade",
+      "fieldType": "String"
+    }
+  ],
+  "name": "AtividadeEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "descricao",
+      "otherEntityName": "subclasseCnae",
+      "relationshipName": "cnae",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

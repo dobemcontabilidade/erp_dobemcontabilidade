@@ -1,0 +1,15 @@
+export enum TipoRecorrenciaEnum {
+  DIARIO = 'DIARIO',
+
+  SEMANAL = 'SEMANAL',
+
+  MENSAL = 'MENSAL',
+
+  BIMESTRAL = 'BIMESTRAL',
+
+  TRIMESTRAL = 'TRIMESTRAL',
+
+  SEMESTRAL = 'SEMESTRAL',
+
+  ANUAL = 'ANUAL',
+}

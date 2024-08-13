@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "anexoOrdemServicoExecucao": {
+      "home": {
+        "title": "Anexo Ordem Servico Execucaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Anexo Ordem Servico Execucao",
+        "createOrEditLabel": "Criar ou editar Anexo Ordem Servico Execucao",
+        "notFound": "Nenhum Anexo Ordem Servico Execucao encontrado"
+      },
+      "created": "Um novo Anexo Ordem Servico Execucao foi criado com o identificador {{ param }}",
+      "updated": "Um Anexo Ordem Servico Execucao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Anexo Ordem Servico Execucao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Anexo Ordem Servico Execucao {{ id }}?"
+      },
+      "detail": {
+        "title": "Anexo Ordem Servico Execucao"
+      },
+      "id": "ID",
+      "url": "Url",
+      "descricao": "Descricao",
+      "dataHoraUpload": "Data Hora Upload",
+      "tarefaOrdemServicoExecucao": "Tarefa Ordem Servico Execucao"
+    }
+  }
+}

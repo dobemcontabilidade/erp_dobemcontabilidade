@@ -1,0 +1,35 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051702"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "numeroDias",
+      "fieldType": "Integer"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Frequencia",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "tarefa",
+      "otherEntityRelationshipName": "frequencia",
+      "relationshipName": "tarefa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

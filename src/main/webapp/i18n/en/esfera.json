@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "esfera": {
+      "home": {
+        "title": "Esferas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Esfera",
+        "createOrEditLabel": "Create or edit a Esfera",
+        "notFound": "No Esferas found"
+      },
+      "created": "A new Esfera is created with identifier {{ param }}",
+      "updated": "A Esfera is updated with identifier {{ param }}",
+      "deleted": "A Esfera is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Esfera {{ id }}?"
+      },
+      "detail": {
+        "title": "Esfera"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "servicoContabil": "Servico Contabil",
+      "imposto": "Imposto",
+      "tarefa": "Tarefa"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "email": {
+      "home": {
+        "title": "Emails",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Email",
+        "createOrEditLabel": "Criar ou editar Email",
+        "notFound": "Nenhum Email encontrado"
+      },
+      "created": "Um novo Email foi criado com o identificador {{ param }}",
+      "updated": "Um Email foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Email foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Email {{ id }}?"
+      },
+      "detail": {
+        "title": "Email"
+      },
+      "id": "ID",
+      "email": "Email",
+      "principal": "Principal",
+      "pessoa": "Pessoa"
+    }
+  }
+}

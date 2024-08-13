@@ -1,0 +1,9 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "CategoriaTrabalhadorEnum": {
+      "null": "",
+      "EMPREGADO": "EMPREGADO",
+      "ESTAGIARIO": "ESTAGIARIO"
+    }
+  }
+}

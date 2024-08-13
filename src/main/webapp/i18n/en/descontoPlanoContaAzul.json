@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "descontoPlanoContaAzul": {
+      "home": {
+        "title": "Desconto Plano Conta Azuls",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Desconto Plano Conta Azul",
+        "createOrEditLabel": "Create or edit a Desconto Plano Conta Azul",
+        "notFound": "No Desconto Plano Conta Azuls found"
+      },
+      "created": "A new Desconto Plano Conta Azul is created with identifier {{ param }}",
+      "updated": "A Desconto Plano Conta Azul is updated with identifier {{ param }}",
+      "deleted": "A Desconto Plano Conta Azul is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Desconto Plano Conta Azul {{ id }}?"
+      },
+      "detail": {
+        "title": "Desconto Plano Conta Azul"
+      },
+      "id": "ID",
+      "percentual": "Percentual",
+      "calculoPlanoAssinatura": "Calculo Plano Assinatura",
+      "planoContaAzul": "Plano Conta Azul",
+      "periodoPagamento": "Periodo Pagamento"
+    }
+  }
+}

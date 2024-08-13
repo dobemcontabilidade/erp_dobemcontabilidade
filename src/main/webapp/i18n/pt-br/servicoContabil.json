@@ -1,0 +1,41 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "servicoContabil": {
+      "home": {
+        "title": "Servico Contabils",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Servico Contabil",
+        "createOrEditLabel": "Criar ou editar Servico Contabil",
+        "notFound": "Nenhum Servico Contabil encontrado"
+      },
+      "created": "Um novo Servico Contabil foi criado com o identificador {{ param }}",
+      "updated": "Um Servico Contabil foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Servico Contabil foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Servico Contabil {{ id }}?"
+      },
+      "detail": {
+        "title": "Servico Contabil"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "valor": "Valor",
+      "descricao": "Descricao",
+      "diasExecucao": "Dias Execucao",
+      "geraMulta": "Gera Multa",
+      "periodoExecucao": "Periodo Execucao",
+      "diaLegal": "Dia Legal",
+      "mesLegal": "Mes Legal",
+      "valorRefMulta": "Valor Ref Multa",
+      "servicoContabilEmpresaModelo": "Servico Contabil Empresa Modelo",
+      "servicoContabilEtapaFluxoModelo": "Servico Contabil Etapa Fluxo Modelo",
+      "servicoContabilEtapaFluxoExecucao": "Servico Contabil Etapa Fluxo Execucao",
+      "anexoRequeridoServicoContabil": "Anexo Requerido Servico Contabil",
+      "servicoContabilOrdemServico": "Servico Contabil Ordem Servico",
+      "servicoContabilAssinaturaEmpresa": "Servico Contabil Assinatura Empresa",
+      "tarefaEmpresaModelo": "Tarefa Empresa Modelo",
+      "areaContabil": "Area Contabil",
+      "esfera": "Esfera"
+    }
+  }
+}

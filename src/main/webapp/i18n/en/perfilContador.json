@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "perfilContador": {
+      "home": {
+        "title": "Perfil Contadors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Perfil Contador",
+        "createOrEditLabel": "Create or edit a Perfil Contador",
+        "notFound": "No Perfil Contadors found"
+      },
+      "created": "A new Perfil Contador is created with identifier {{ param }}",
+      "updated": "A Perfil Contador is updated with identifier {{ param }}",
+      "deleted": "A Perfil Contador is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Perfil Contador {{ id }}?"
+      },
+      "detail": {
+        "title": "Perfil Contador"
+      },
+      "id": "ID",
+      "perfil": "Perfil",
+      "descricao": "Descricao",
+      "limiteEmpresas": "Limite Empresas",
+      "limiteDepartamentos": "Limite Departamentos",
+      "limiteFaturamento": "Limite Faturamento",
+      "contador": "Contador",
+      "perfilContadorDepartamento": "Perfil Contador Departamento"
+    }
+  }
+}

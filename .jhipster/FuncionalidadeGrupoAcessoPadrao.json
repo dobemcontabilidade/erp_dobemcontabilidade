@@ -1,0 +1,50 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051701"
+  },
+  "applications": "*",
+  "entityTableName": "func_grup_acess_padrao",
+  "fields": [
+    {
+      "fieldName": "autorizado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dataExpiracao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataAtribuicao",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "FuncionalidadeGrupoAcessoPadrao",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "funcionalidade",
+      "relationshipName": "funcionalidade",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "grupoAcessoPadrao",
+      "relationshipName": "grupoAcessoPadrao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "permisao",
+      "relationshipName": "permisao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

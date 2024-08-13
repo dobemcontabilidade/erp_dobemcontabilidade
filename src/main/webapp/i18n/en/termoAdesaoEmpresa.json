@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "termoAdesaoEmpresa": {
+      "home": {
+        "title": "Termo Adesao Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Termo Adesao Empresa",
+        "createOrEditLabel": "Create or edit a Termo Adesao Empresa",
+        "notFound": "No Termo Adesao Empresas found"
+      },
+      "created": "A new Termo Adesao Empresa is created with identifier {{ param }}",
+      "updated": "A Termo Adesao Empresa is updated with identifier {{ param }}",
+      "deleted": "A Termo Adesao Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Termo Adesao Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Termo Adesao Empresa"
+      },
+      "id": "ID",
+      "dataAdesao": "Data Adesao",
+      "checked": "Checked",
+      "urlDoc": "Url Doc",
+      "empresa": "Empresa",
+      "planoContabil": "Plano Contabil"
+    }
+  }
+}

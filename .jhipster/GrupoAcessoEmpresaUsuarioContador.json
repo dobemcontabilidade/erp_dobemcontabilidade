@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051707"
+  },
+  "applications": "*",
+  "entityTableName": "grup_acess_empresa_usua_cont",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataExpiracao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "ilimitado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "desabilitar",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "GrupoAcessoEmpresaUsuarioContador",
+  "relationships": [
+    {
+      "otherEntityField": "email",
+      "otherEntityName": "usuarioContador",
+      "relationshipName": "usuarioContador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "permisao",
+      "relationshipName": "permisao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "grupoAcessoEmpresa",
+      "relationshipName": "grupoAcessoEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

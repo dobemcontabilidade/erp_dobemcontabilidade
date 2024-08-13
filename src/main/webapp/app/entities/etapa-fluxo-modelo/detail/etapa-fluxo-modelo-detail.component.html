@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (etapaFluxoModelo()) {
+      <div>
+        <h2 data-cy="etapaFluxoModeloDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.detail.title">Etapa Fluxo Modelo</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ etapaFluxoModelo()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.nome">Nome</span></dt>
+          <dd>
+            <span>{{ etapaFluxoModelo()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ etapaFluxoModelo()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.ordem">Ordem</span></dt>
+          <dd>
+            <span>{{ etapaFluxoModelo()!.ordem }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.etapaFluxoModelo.fluxoModelo">Fluxo Modelo</span></dt>
+          <dd>
+            @if (etapaFluxoModelo()!.fluxoModelo) {
+              <div>
+                <a [routerLink]="['/fluxo-modelo', etapaFluxoModelo()!.fluxoModelo?.id, 'view']">{{
+                  etapaFluxoModelo()!.fluxoModelo?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/etapa-fluxo-modelo', etapaFluxoModelo()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

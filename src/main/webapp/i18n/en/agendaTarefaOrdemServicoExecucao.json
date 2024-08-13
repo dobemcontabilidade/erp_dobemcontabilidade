@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "agendaTarefaOrdemServicoExecucao": {
+      "home": {
+        "title": "Agenda Tarefa Ordem Servico Execucaos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Agenda Tarefa Ordem Servico Execucao",
+        "createOrEditLabel": "Create or edit a Agenda Tarefa Ordem Servico Execucao",
+        "notFound": "No Agenda Tarefa Ordem Servico Execucaos found"
+      },
+      "created": "A new Agenda Tarefa Ordem Servico Execucao is created with identifier {{ param }}",
+      "updated": "A Agenda Tarefa Ordem Servico Execucao is updated with identifier {{ param }}",
+      "deleted": "A Agenda Tarefa Ordem Servico Execucao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Agenda Tarefa Ordem Servico Execucao {{ id }}?"
+      },
+      "detail": {
+        "title": "Agenda Tarefa Ordem Servico Execucao"
+      },
+      "id": "ID",
+      "horaInicio": "Hora Inicio",
+      "horaFim": "Hora Fim",
+      "diaInteiro": "Dia Inteiro",
+      "ativo": "Ativo",
+      "agendaContadorConfig": "Agenda Contador Config",
+      "tarefaOrdemServicoExecucao": "Tarefa Ordem Servico Execucao"
+    }
+  }
+}

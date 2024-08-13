@@ -1,0 +1,13 @@
+export enum SituacaoTarefaEnum {
+  AGENDADA = 'AGENDADA',
+
+  CANCELADA = 'CANCELADA',
+
+  EMEXECUCAO = 'EMEXECUCAO',
+
+  CONCLUIDA = 'CONCLUIDA',
+
+  PENDENTE = 'PENDENTE',
+
+  DELETADA = 'DELETADA',
+}

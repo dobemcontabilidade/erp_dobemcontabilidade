@@ -1,0 +1,83 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051748"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "senha",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "token",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dataHoraAtivacao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataLimiteAcesso",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "situacaoUsuarioEmpresa",
+      "fieldType": "SituacaoUsuarioEmpresaEnum",
+      "fieldValues": "ATIVO,INATIVO,BLOQUEADO,EXCLUIDO"
+    },
+    {
+      "fieldName": "tipoUsuarioEmpresaEnum",
+      "fieldType": "TipoUsuarioEmpresaEnum",
+      "fieldValues": "SOCIO,FUNCIONARIO"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "UsuarioEmpresa",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "grupoAcessoUsuarioEmpresa",
+      "otherEntityRelationshipName": "usuarioEmpresa",
+      "relationshipName": "grupoAcessoUsuarioEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "feedBackUsuarioParaContador",
+      "otherEntityRelationshipName": "usuarioEmpresa",
+      "relationshipName": "feedBackUsuarioParaContador",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "feedBackContadorParaUsuario",
+      "otherEntityRelationshipName": "usuarioEmpresa",
+      "relationshipName": "feedBackContadorParaUsuario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "codigoAssinatura",
+      "otherEntityName": "assinaturaEmpresa",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

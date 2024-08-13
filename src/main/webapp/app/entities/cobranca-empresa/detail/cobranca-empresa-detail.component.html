@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (cobrancaEmpresa()) {
+      <div>
+        <h2 data-cy="cobrancaEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.detail.title">Cobranca Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ cobrancaEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.dataCobranca">Data Cobranca</span></dt>
+          <dd>
+            <span>{{ cobrancaEmpresa()!.dataCobranca | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.valorPago">Valor Pago</span></dt>
+          <dd>
+            <span>{{ cobrancaEmpresa()!.valorPago }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.urlCobranca">Url Cobranca</span></dt>
+          <dd>
+            <span>{{ cobrancaEmpresa()!.urlCobranca }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.urlArquivo">Url Arquivo</span></dt>
+          <dd>
+            <span>{{ cobrancaEmpresa()!.urlArquivo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.valorCobrado">Valor Cobrado</span></dt>
+          <dd>
+            <span>{{ cobrancaEmpresa()!.valorCobrado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.situacaoCobranca">Situacao Cobranca</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoCobrancaEnum.' + (cobrancaEmpresa()!.situacaoCobranca ?? 'null')">{{
+              { null: '', ABERTA: 'ABERTA', FECHADA: 'FECHADA', ATRASADA: 'ATRASADA', PAGA: 'PAGA' }[
+                cobrancaEmpresa()!.situacaoCobranca ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.assinaturaEmpresa">Assinatura Empresa</span></dt>
+          <dd>
+            @if (cobrancaEmpresa()!.assinaturaEmpresa) {
+              <div>
+                <a [routerLink]="['/assinatura-empresa', cobrancaEmpresa()!.assinaturaEmpresa?.id, 'view']">{{
+                  cobrancaEmpresa()!.assinaturaEmpresa?.codigoAssinatura
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.formaDePagamento">Forma De Pagamento</span></dt>
+          <dd>
+            @if (cobrancaEmpresa()!.formaDePagamento) {
+              <div>
+                <a [routerLink]="['/forma-de-pagamento', cobrancaEmpresa()!.formaDePagamento?.id, 'view']">{{
+                  cobrancaEmpresa()!.formaDePagamento?.forma
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/cobranca-empresa', cobrancaEmpresa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

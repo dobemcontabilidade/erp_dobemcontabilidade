@@ -1,0 +1,31 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "cobrancaEmpresa": {
+      "home": {
+        "title": "Cobranca Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cobranca Empresa",
+        "createOrEditLabel": "Create or edit a Cobranca Empresa",
+        "notFound": "No Cobranca Empresas found"
+      },
+      "created": "A new Cobranca Empresa is created with identifier {{ param }}",
+      "updated": "A Cobranca Empresa is updated with identifier {{ param }}",
+      "deleted": "A Cobranca Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cobranca Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Cobranca Empresa"
+      },
+      "id": "ID",
+      "dataCobranca": "Data Cobranca",
+      "valorPago": "Valor Pago",
+      "urlCobranca": "Url Cobranca",
+      "urlArquivo": "Url Arquivo",
+      "valorCobrado": "Valor Cobrado",
+      "situacaoCobranca": "Situacao Cobranca",
+      "assinaturaEmpresa": "Assinatura Empresa",
+      "formaDePagamento": "Forma De Pagamento"
+    }
+  }
+}

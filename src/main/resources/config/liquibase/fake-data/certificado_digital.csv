@@ -1,0 +1,11 @@
+id;url_certificado;data_contratacao;validade;tipo_certificado;empresa_id
+1;../fake-data/blob/hipster.txt;2024-08-12T10:30:22;7347;A4;1
+2;../fake-data/blob/hipster.txt;2024-08-12T11:24:16;32203;A;2
+3;../fake-data/blob/hipster.txt;2024-08-13T01:37:50;5486;A;3
+4;../fake-data/blob/hipster.txt;2024-08-12T07:54:45;9282;OUTROS;4
+5;../fake-data/blob/hipster.txt;2024-08-12T22:40:04;11232;OUTROS;5
+6;../fake-data/blob/hipster.txt;2024-08-12T08:30:22;20212;T;6
+7;../fake-data/blob/hipster.txt;2024-08-12T06:16:10;32444;OUTROS;7
+8;../fake-data/blob/hipster.txt;2024-08-12T08:39:15;14704;S;8
+9;../fake-data/blob/hipster.txt;2024-08-12T07:09:09;29048;A;9
+10;../fake-data/blob/hipster.txt;2024-08-13T05:10:52;24632;S;10

@@ -1,0 +1,174 @@
+<div>
+  <h2 id="page-heading" data-cy="TarefaRecorrenteEmpresaModeloHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.home.title">Tarefa Recorrente Empresa Modelos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-tarefa-recorrente-empresa-modelo"
+        [routerLink]="['/tarefa-recorrente-empresa-modelo/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.home.createLabel"
+          >Criar novo Tarefa Recorrente Empresa Modelo</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (tarefaRecorrenteEmpresaModelos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.home.notFound"
+        >Nenhum Tarefa Recorrente Empresa Modelo encontrado</span
+      >
+    </div>
+  }
+
+  @if (tarefaRecorrenteEmpresaModelos && tarefaRecorrenteEmpresaModelos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diaAdmin">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.diaAdmin">Dia Admin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="mesLegal">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.mesLegal">Mes Legal</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="recorrencia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.recorrencia">Recorrencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="servicoContabilEmpresaModelo.id">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.servicoContabilEmpresaModelo"
+                  >Servico Contabil Empresa Modelo</span
+                >
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tarefaRecorrenteEmpresaModelo of tarefaRecorrenteEmpresaModelos; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/tarefa-recorrente-empresa-modelo', tarefaRecorrenteEmpresaModelo.id, 'view']">{{
+                  tarefaRecorrenteEmpresaModelo.id
+                }}</a>
+              </td>
+              <td>{{ tarefaRecorrenteEmpresaModelo.diaAdmin }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.MesCompetenciaEnum.' + (tarefaRecorrenteEmpresaModelo.mesLegal ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    JANEIRO: 'JANEIRO',
+                    FEVEREIRO: 'FEVEREIRO',
+                    MARCO: 'MARCO',
+                    ABRIL: 'ABRIL',
+                    MAIO: 'MAIO',
+                    JUNHO: 'JUNHO',
+                    JULHO: 'JULHO',
+                    AGOSTO: 'AGOSTO',
+                    SETEMBRO: 'SETEMBRO',
+                    OUTUBRO: 'OUTUBRO',
+                    NOVEMBRO: 'NOVEMBRO',
+                    DEZEMBRO: 'DEZEMBRO',
+                  }[tarefaRecorrenteEmpresaModelo.mesLegal ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.TipoRecorrenciaEnum.' + (tarefaRecorrenteEmpresaModelo.recorrencia ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    DIARIO: 'DIARIO',
+                    SEMANAL: 'SEMANAL',
+                    MENSAL: 'MENSAL',
+                    BIMESTRAL: 'BIMESTRAL',
+                    TRIMESTRAL: 'TRIMESTRAL',
+                    SEMESTRAL: 'SEMESTRAL',
+                    ANUAL: 'ANUAL',
+                  }[tarefaRecorrenteEmpresaModelo.recorrencia ?? 'null']
+                }}
+              </td>
+              <td>
+                @if (tarefaRecorrenteEmpresaModelo.servicoContabilEmpresaModelo) {
+                  <div>
+                    <a
+                      [routerLink]="[
+                        '/servico-contabil-empresa-modelo',
+                        tarefaRecorrenteEmpresaModelo.servicoContabilEmpresaModelo.id,
+                        'view',
+                      ]"
+                      >{{ tarefaRecorrenteEmpresaModelo.servicoContabilEmpresaModelo.id }}</a
+                    >
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/tarefa-recorrente-empresa-modelo', tarefaRecorrenteEmpresaModelo.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/tarefa-recorrente-empresa-modelo', tarefaRecorrenteEmpresaModelo.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(tarefaRecorrenteEmpresaModelo)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

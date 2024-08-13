@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (parcelaImpostoAPagar()) {
+      <div>
+        <h2 data-cy="parcelaImpostoAPagarDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.detail.title">Parcela Imposto A Pagar</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ parcelaImpostoAPagar()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.numeroParcela">Numero Parcela</span></dt>
+          <dd>
+            <span>{{ parcelaImpostoAPagar()!.numeroParcela }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.dataVencimento">Data Vencimento</span></dt>
+          <dd>
+            <span>{{ parcelaImpostoAPagar()!.dataVencimento | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.dataPagamento">Data Pagamento</span></dt>
+          <dd>
+            <span>{{ parcelaImpostoAPagar()!.dataPagamento | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.valor">Valor</span></dt>
+          <dd>
+            <span>{{ parcelaImpostoAPagar()!.valor }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.valorMulta">Valor Multa</span></dt>
+          <dd>
+            <span>{{ parcelaImpostoAPagar()!.valorMulta }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.urlArquivoPagamento">Url Arquivo Pagamento</span></dt>
+          <dd>
+            <span>{{ parcelaImpostoAPagar()!.urlArquivoPagamento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.urlArquivoComprovante">Url Arquivo Comprovante</span></dt>
+          <dd>
+            <span>{{ parcelaImpostoAPagar()!.urlArquivoComprovante }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.mesCompetencia">Mes Competencia</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.MesCompetenciaEnum.' + (parcelaImpostoAPagar()!.mesCompetencia ?? 'null')">{{
+              {
+                null: '',
+                JANEIRO: 'JANEIRO',
+                FEVEREIRO: 'FEVEREIRO',
+                MARCO: 'MARCO',
+                ABRIL: 'ABRIL',
+                MAIO: 'MAIO',
+                JUNHO: 'JUNHO',
+                JULHO: 'JULHO',
+                AGOSTO: 'AGOSTO',
+                SETEMBRO: 'SETEMBRO',
+                OUTUBRO: 'OUTUBRO',
+                NOVEMBRO: 'NOVEMBRO',
+                DEZEMBRO: 'DEZEMBRO',
+              }[parcelaImpostoAPagar()!.mesCompetencia ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.parcelaImpostoAPagar.parcelamentoImposto">Parcelamento Imposto</span></dt>
+          <dd>
+            @if (parcelaImpostoAPagar()!.parcelamentoImposto) {
+              <div>
+                <a [routerLink]="['/parcelamento-imposto', parcelaImpostoAPagar()!.parcelamentoImposto?.id, 'view']">{{
+                  parcelaImpostoAPagar()!.parcelamentoImposto?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/parcela-imposto-a-pagar', parcelaImpostoAPagar()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

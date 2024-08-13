@@ -1,0 +1,48 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "empresa": {
+      "home": {
+        "title": "Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Empresa",
+        "createOrEditLabel": "Criar ou editar Empresa",
+        "notFound": "Nenhum Empresa encontrado"
+      },
+      "created": "Um novo Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Empresa"
+      },
+      "id": "ID",
+      "razaoSocial": "Razao Social",
+      "nomeFantasia": "Nome Fantasia",
+      "descricaoDoNegocio": "Descricao Do Negocio",
+      "cnpj": "Cnpj",
+      "dataAbertura": "Data Abertura",
+      "urlContratoSocial": "Url Contrato Social",
+      "capitalSocial": "Capital Social",
+      "funcionario": "Funcionario",
+      "anexoEmpresa": "Anexo Empresa",
+      "ordemServico": "Ordem Servico",
+      "anexoRequeridoEmpresa": "Anexo Requerido Empresa",
+      "impostoEmpresa": "Imposto Empresa",
+      "parcelamentoImposto": "Parcelamento Imposto",
+      "assinaturaEmpresa": "Assinatura Empresa",
+      "departamentoEmpresa": "Departamento Empresa",
+      "tarefaEmpresa": "Tarefa Empresa",
+      "enderecoEmpresa": "Endereco Empresa",
+      "atividadeEmpresa": "Atividade Empresa",
+      "socio": "Socio",
+      "certificadoDigital": "Certificado Digital",
+      "opcaoRazaoSocialEmpresa": "Opcao Razao Social Empresa",
+      "opcaoNomeFantasiaEmpresa": "Opcao Nome Fantasia Empresa",
+      "termoAdesaoEmpresa": "Termo Adesao Empresa",
+      "segmentoCnae": "Segmento Cnae",
+      "empresaModelo": "Empresa Modelo"
+    }
+  }
+}

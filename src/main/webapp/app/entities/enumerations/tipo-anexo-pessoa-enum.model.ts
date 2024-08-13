@@ -1,0 +1,9 @@
+export enum TipoAnexoPessoaEnum {
+  FUNCIONARIO = 'FUNCIONARIO',
+
+  DEPENDENTE = 'DEPENDENTE',
+
+  CONTADOR = 'CONTADOR',
+
+  SOCIO = 'SOCIO',
+}

@@ -1,0 +1,5 @@
+export enum NaturezaEstagioEnum {
+  OBRIGATORIO = 'OBRIGATORIO',
+
+  NAOOBRIGATORIO = 'NAOOBRIGATORIO',
+}

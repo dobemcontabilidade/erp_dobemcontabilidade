@@ -1,0 +1,97 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (tarefaRecorrenteEmpresaModelo()) {
+      <div>
+        <h2 data-cy="tarefaRecorrenteEmpresaModeloDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.detail.title">Tarefa Recorrente Empresa Modelo</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrenteEmpresaModelo()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.diaAdmin">Dia Admin</span></dt>
+          <dd>
+            <span>{{ tarefaRecorrenteEmpresaModelo()!.diaAdmin }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.mesLegal">Mes Legal</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.MesCompetenciaEnum.' + (tarefaRecorrenteEmpresaModelo()!.mesLegal ?? 'null')">{{
+              {
+                null: '',
+                JANEIRO: 'JANEIRO',
+                FEVEREIRO: 'FEVEREIRO',
+                MARCO: 'MARCO',
+                ABRIL: 'ABRIL',
+                MAIO: 'MAIO',
+                JUNHO: 'JUNHO',
+                JULHO: 'JULHO',
+                AGOSTO: 'AGOSTO',
+                SETEMBRO: 'SETEMBRO',
+                OUTUBRO: 'OUTUBRO',
+                NOVEMBRO: 'NOVEMBRO',
+                DEZEMBRO: 'DEZEMBRO',
+              }[tarefaRecorrenteEmpresaModelo()!.mesLegal ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.recorrencia">Recorrencia</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="'erpDobemcontabilidadeApp.TipoRecorrenciaEnum.' + (tarefaRecorrenteEmpresaModelo()!.recorrencia ?? 'null')"
+              >{{
+                {
+                  null: '',
+                  DIARIO: 'DIARIO',
+                  SEMANAL: 'SEMANAL',
+                  MENSAL: 'MENSAL',
+                  BIMESTRAL: 'BIMESTRAL',
+                  TRIMESTRAL: 'TRIMESTRAL',
+                  SEMESTRAL: 'SEMESTRAL',
+                  ANUAL: 'ANUAL',
+                }[tarefaRecorrenteEmpresaModelo()!.recorrencia ?? 'null']
+              }}</span
+            >
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.tarefaRecorrenteEmpresaModelo.servicoContabilEmpresaModelo"
+              >Servico Contabil Empresa Modelo</span
+            >
+          </dt>
+          <dd>
+            @if (tarefaRecorrenteEmpresaModelo()!.servicoContabilEmpresaModelo) {
+              <div>
+                <a
+                  [routerLink]="[
+                    '/servico-contabil-empresa-modelo',
+                    tarefaRecorrenteEmpresaModelo()!.servicoContabilEmpresaModelo?.id,
+                    'view',
+                  ]"
+                  >{{ tarefaRecorrenteEmpresaModelo()!.servicoContabilEmpresaModelo?.id }}</a
+                >
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/tarefa-recorrente-empresa-modelo', tarefaRecorrenteEmpresaModelo()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

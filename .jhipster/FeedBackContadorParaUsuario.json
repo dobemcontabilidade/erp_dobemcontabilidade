@@ -1,0 +1,52 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051656"
+  },
+  "applications": "*",
+  "entityTableName": "feed_contador_para_usuario",
+  "fields": [
+    {
+      "fieldName": "comentario",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pontuacao",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "FeedBackContadorParaUsuario",
+  "relationships": [
+    {
+      "otherEntityField": "descricao",
+      "otherEntityName": "criterioAvaliacaoAtor",
+      "relationshipName": "criterioAvaliacaoAtor",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "usuarioEmpresa",
+      "relationshipName": "usuarioEmpresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "crc",
+      "otherEntityName": "contador",
+      "relationshipName": "contador",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "ordemServico",
+      "relationshipName": "ordemServico",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

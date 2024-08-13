@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051700"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "forma",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "disponivel",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "FormaDePagamento",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "assinaturaEmpresa",
+      "otherEntityRelationshipName": "formaDePagamento",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "cobrancaEmpresa",
+      "otherEntityRelationshipName": "formaDePagamento",
+      "relationshipName": "cobrancaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

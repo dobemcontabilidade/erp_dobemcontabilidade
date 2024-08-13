@@ -1,0 +1,53 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "contratoFuncionario": {
+      "home": {
+        "title": "Contrato Funcionarios",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Contrato Funcionario",
+        "createOrEditLabel": "Create or edit a Contrato Funcionario",
+        "notFound": "No Contrato Funcionarios found"
+      },
+      "created": "A new Contrato Funcionario is created with identifier {{ param }}",
+      "updated": "A Contrato Funcionario is updated with identifier {{ param }}",
+      "deleted": "A Contrato Funcionario is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contrato Funcionario {{ id }}?"
+      },
+      "detail": {
+        "title": "Contrato Funcionario"
+      },
+      "id": "ID",
+      "salarioFixo": "Salario Fixo",
+      "salarioVariavel": "Salario Variavel",
+      "estagio": "Estagio",
+      "naturezaEstagioEnum": "Natureza Estagio Enum",
+      "ctps": "Ctps",
+      "serieCtps": "Serie Ctps",
+      "orgaoEmissorDocumento": "Orgao Emissor Documento",
+      "dataValidadeDocumento": "Data Validade Documento",
+      "dataAdmissao": "Data Admissao",
+      "cargo": "Cargo",
+      "descricaoAtividades": "Descricao Atividades",
+      "situacao": "Situacao",
+      "valorSalarioFixo": "Valor Salario Fixo",
+      "valorSalarioVariavel": "Valor Salario Variavel",
+      "dataTerminoContrato": "Data Termino Contrato",
+      "datainicioContrato": "Datainicio Contrato",
+      "horasATrabalhadar": "Horas A Trabalhadar",
+      "codigoCargo": "Codigo Cargo",
+      "categoriaTrabalhador": "Categoria Trabalhador",
+      "tipoVinculoTrabalho": "Tipo Vinculo Trabalho",
+      "fgtsOpcao": "Fgts Opcao",
+      "tIpoDocumentoEnum": "T Ipo Documento Enum",
+      "periodoExperiencia": "Periodo Experiencia",
+      "tipoAdmisaoEnum": "Tipo Admisao Enum",
+      "periodoIntermitente": "Periodo Intermitente",
+      "indicativoAdmissao": "Indicativo Admissao",
+      "numeroPisNisPasep": "Numero Pis Nis Pasep",
+      "funcionario": "Funcionario",
+      "agenteIntegracaoEstagio": "Agente Integracao Estagio",
+      "instituicaoEnsino": "Instituicao Ensino"
+    }
+  }
+}

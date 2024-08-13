@@ -1,0 +1,10 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoRegimeTrabalhoEnum": {
+      "null": "",
+      "CLT": "CLT",
+      "RJU": "RJU",
+      "RJP": "RJP"
+    }
+  }
+}

@@ -1,0 +1,173 @@
+<div>
+  <h2 id="page-heading" data-cy="ParcelamentoImpostoHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.home.title">Parcelamento Impostos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-parcelamento-imposto"
+        [routerLink]="['/parcelamento-imposto/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.home.createLabel">Criar novo Parcelamento Imposto</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (parcelamentoImpostos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.home.notFound">Nenhum Parcelamento Imposto encontrado</span>
+    </div>
+  }
+
+  @if (parcelamentoImpostos && parcelamentoImpostos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diaVencimento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.diaVencimento">Dia Vencimento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroParcelas">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.numeroParcelas">Numero Parcelas</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlArquivoNegociacao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.urlArquivoNegociacao">Url Arquivo Negociacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroParcelasPagas">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.numeroParcelasPagas">Numero Parcelas Pagas</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroParcelasRegatantes">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.numeroParcelasRegatantes">Numero Parcelas Regatantes</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="situacaoSolicitacaoParcelamentoEnum">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.situacaoSolicitacaoParcelamentoEnum"
+                  >Situacao Solicitacao Parcelamento Enum</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="imposto.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.imposto">Imposto</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empresa.razaoSocial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.parcelamentoImposto.empresa">Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (parcelamentoImposto of parcelamentoImpostos; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/parcelamento-imposto', parcelamentoImposto.id, 'view']">{{ parcelamentoImposto.id }}</a>
+              </td>
+              <td>{{ parcelamentoImposto.diaVencimento }}</td>
+              <td>{{ parcelamentoImposto.numeroParcelas }}</td>
+              <td>{{ parcelamentoImposto.urlArquivoNegociacao }}</td>
+              <td>{{ parcelamentoImposto.numeroParcelasPagas }}</td>
+              <td>{{ parcelamentoImposto.numeroParcelasRegatantes }}</td>
+              <td
+                [jhiTranslate]="
+                  'erpDobemcontabilidadeApp.SituacaoSolicitacaoParcelamentoEnum.' +
+                  (parcelamentoImposto.situacaoSolicitacaoParcelamentoEnum ?? 'null')
+                "
+              >
+                {{
+                  { null: '', ABERTA: 'ABERTA', PROCESSADA: 'PROCESSADA', CANCELADA: 'CANCELADA', FINALIZADA: 'FINALIZADA' }[
+                    parcelamentoImposto.situacaoSolicitacaoParcelamentoEnum ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>
+                @if (parcelamentoImposto.imposto) {
+                  <div>
+                    <a [routerLink]="['/imposto', parcelamentoImposto.imposto.id, 'view']">{{ parcelamentoImposto.imposto.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (parcelamentoImposto.empresa) {
+                  <div>
+                    <a [routerLink]="['/empresa', parcelamentoImposto.empresa.id, 'view']">{{ parcelamentoImposto.empresa.razaoSocial }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/parcelamento-imposto', parcelamentoImposto.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/parcelamento-imposto', parcelamentoImposto.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(parcelamentoImposto)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

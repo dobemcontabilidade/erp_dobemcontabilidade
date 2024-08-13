@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051646"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nomeInstituicao",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "anoConclusao",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "urlComprovanteEscolaridade",
+      "fieldType": "String"
+    }
+  ],
+  "name": "EscolaridadePessoa",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoa",
+      "relationshipName": "pessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "escolaridade",
+      "relationshipName": "escolaridade",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

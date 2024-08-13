@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051802"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ordem",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "EtapaFluxoModelo",
+  "relationships": [
+    {
+      "otherEntityName": "servicoContabilEtapaFluxoModelo",
+      "otherEntityRelationshipName": "etapaFluxoModelo",
+      "relationshipName": "servicoContabilEtapaFluxoModelo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "fluxoModelo",
+      "relationshipName": "fluxoModelo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

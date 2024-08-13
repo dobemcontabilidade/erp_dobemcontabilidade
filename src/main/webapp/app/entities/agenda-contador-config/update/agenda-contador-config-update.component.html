@@ -1,0 +1,136 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-agenda-contador-config-heading"
+        data-cy="AgendaContadorConfigCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.home.createOrEditLabel"
+      >
+        Criar ou editar Agenda Contador Config
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ativo" jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.ativo">Ativo</label>
+          <input type="checkbox" class="form-check" name="ativo" id="field_ativo" data-cy="ativo" formControlName="ativo" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tipoVisualizacaoAgendaEnum"
+            jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.tipoVisualizacaoAgendaEnum"
+            >Tipo Visualizacao Agenda Enum</label
+          >
+          <select
+            class="form-control"
+            name="tipoVisualizacaoAgendaEnum"
+            formControlName="tipoVisualizacaoAgendaEnum"
+            id="field_tipoVisualizacaoAgendaEnum"
+            data-cy="tipoVisualizacaoAgendaEnum"
+          >
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoVisualizacaoAgendaEnum.null' | translate }}</option>
+            @for (tipoVisualizacaoAgendaEnum of tipoVisualizacaoAgendaEnumValues; track $index) {
+              <option [value]="tipoVisualizacaoAgendaEnum">
+                {{ 'erpDobemcontabilidadeApp.TipoVisualizacaoAgendaEnum.' + tipoVisualizacaoAgendaEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_agendaTarefaRecorrenteExecucao"
+            jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.agendaTarefaRecorrenteExecucao"
+            >Agenda Tarefa Recorrente Execucao</label
+          >
+          <select
+            class="form-control"
+            id="field_agendaTarefaRecorrenteExecucao"
+            data-cy="agendaTarefaRecorrenteExecucao"
+            name="agendaTarefaRecorrenteExecucao"
+            formControlName="agendaTarefaRecorrenteExecucao"
+            [compareWith]="compareAgendaTarefaRecorrenteExecucao"
+          >
+            @if (editForm.get(['agendaTarefaRecorrenteExecucao'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (agendaTarefaRecorrenteExecucaoOption of agendaTarefaRecorrenteExecucaosSharedCollection; track $index) {
+              <option [ngValue]="agendaTarefaRecorrenteExecucaoOption">{{ agendaTarefaRecorrenteExecucaoOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['agendaTarefaRecorrenteExecucao'])!.invalid &&
+          (editForm.get(['agendaTarefaRecorrenteExecucao'])!.dirty || editForm.get(['agendaTarefaRecorrenteExecucao'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['agendaTarefaRecorrenteExecucao'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_agendaTarefaOrdemServicoExecucao"
+            jhiTranslate="erpDobemcontabilidadeApp.agendaContadorConfig.agendaTarefaOrdemServicoExecucao"
+            >Agenda Tarefa Ordem Servico Execucao</label
+          >
+          <select
+            class="form-control"
+            id="field_agendaTarefaOrdemServicoExecucao"
+            data-cy="agendaTarefaOrdemServicoExecucao"
+            name="agendaTarefaOrdemServicoExecucao"
+            formControlName="agendaTarefaOrdemServicoExecucao"
+            [compareWith]="compareAgendaTarefaOrdemServicoExecucao"
+          >
+            @if (editForm.get(['agendaTarefaOrdemServicoExecucao'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (agendaTarefaOrdemServicoExecucaoOption of agendaTarefaOrdemServicoExecucaosSharedCollection; track $index) {
+              <option [ngValue]="agendaTarefaOrdemServicoExecucaoOption">{{ agendaTarefaOrdemServicoExecucaoOption.id }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['agendaTarefaOrdemServicoExecucao'])!.invalid &&
+          (editForm.get(['agendaTarefaOrdemServicoExecucao'])!.dirty || editForm.get(['agendaTarefaOrdemServicoExecucao'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['agendaTarefaOrdemServicoExecucao'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "TipoTelefoneEnum": {
+      "null": "",
+      "RESIDENCIAL": "RESIDENCIAL",
+      "COMERCIAL": "COMERCIAL",
+      "CELULAR": "CELULAR",
+      "WHATSAPP": "WHATSAPP"
+    }
+  }
+}

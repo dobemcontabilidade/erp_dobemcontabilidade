@@ -1,0 +1,11 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "PeriodoExperienciaEnum": {
+      "null": "",
+      "QUINZE": "QUINZE",
+      "TRINTA": "TRINTA",
+      "NOVENTA": "NOVENTA",
+      "SESENTA": "SESENTA"
+    }
+  }
+}

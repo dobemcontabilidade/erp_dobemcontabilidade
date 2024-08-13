@@ -1,0 +1,45 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051657"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ativa",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Funcionalidade",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "funcionalidadeGrupoAcessoPadrao",
+      "otherEntityRelationshipName": "funcionalidade",
+      "relationshipName": "funcionalidadeGrupoAcessoPadrao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "funcionalidadeGrupoAcessoEmpresa",
+      "otherEntityRelationshipName": "funcionalidade",
+      "relationshipName": "funcionalidadeGrupoAcessoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "modulo",
+      "relationshipName": "modulo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

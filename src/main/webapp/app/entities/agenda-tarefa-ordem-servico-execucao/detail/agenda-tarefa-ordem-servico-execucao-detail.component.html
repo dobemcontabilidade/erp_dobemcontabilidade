@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (agendaTarefaOrdemServicoExecucao()) {
+      <div>
+        <h2 data-cy="agendaTarefaOrdemServicoExecucaoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaOrdemServicoExecucao.detail.title"
+            >Agenda Tarefa Ordem Servico Execucao</span
+          >
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ agendaTarefaOrdemServicoExecucao()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaOrdemServicoExecucao.horaInicio">Hora Inicio</span></dt>
+          <dd>
+            <span>{{ agendaTarefaOrdemServicoExecucao()!.horaInicio | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaOrdemServicoExecucao.horaFim">Hora Fim</span></dt>
+          <dd>
+            <span>{{ agendaTarefaOrdemServicoExecucao()!.horaFim | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaOrdemServicoExecucao.diaInteiro">Dia Inteiro</span></dt>
+          <dd>
+            <span>{{ agendaTarefaOrdemServicoExecucao()!.diaInteiro }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaOrdemServicoExecucao.ativo">Ativo</span></dt>
+          <dd>
+            <span>{{ agendaTarefaOrdemServicoExecucao()!.ativo }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.agendaTarefaOrdemServicoExecucao.tarefaOrdemServicoExecucao"
+              >Tarefa Ordem Servico Execucao</span
+            >
+          </dt>
+          <dd>
+            @if (agendaTarefaOrdemServicoExecucao()!.tarefaOrdemServicoExecucao) {
+              <div>
+                <a
+                  [routerLink]="[
+                    '/tarefa-ordem-servico-execucao',
+                    agendaTarefaOrdemServicoExecucao()!.tarefaOrdemServicoExecucao?.id,
+                    'view',
+                  ]"
+                  >{{ agendaTarefaOrdemServicoExecucao()!.tarefaOrdemServicoExecucao?.nome }}</a
+                >
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/agenda-tarefa-ordem-servico-execucao', agendaTarefaOrdemServicoExecucao()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

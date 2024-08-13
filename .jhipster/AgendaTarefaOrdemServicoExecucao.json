@@ -1,0 +1,45 @@
+{
+  "annotations": {
+    "changelogDate": "20240813051608"
+  },
+  "applications": "*",
+  "entityTableName": "agen_tafe_ordem_serv_exec",
+  "fields": [
+    {
+      "fieldName": "horaInicio",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "horaFim",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "diaInteiro",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "AgendaTarefaOrdemServicoExecucao",
+  "relationships": [
+    {
+      "otherEntityName": "agendaContadorConfig",
+      "otherEntityRelationshipName": "agendaTarefaOrdemServicoExecucao",
+      "relationshipName": "agendaContadorConfig",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tarefaOrdemServicoExecucao",
+      "relationshipName": "tarefaOrdemServicoExecucao",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

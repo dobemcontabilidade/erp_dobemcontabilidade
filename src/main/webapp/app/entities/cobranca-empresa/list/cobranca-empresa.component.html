@@ -1,0 +1,170 @@
+<div>
+  <h2 id="page-heading" data-cy="CobrancaEmpresaHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.home.title">Cobranca Empresas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cobranca-empresa"
+        [routerLink]="['/cobranca-empresa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.home.createLabel">Criar novo Cobranca Empresa</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (cobrancaEmpresas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.home.notFound">Nenhum Cobranca Empresa encontrado</span>
+    </div>
+  }
+
+  @if (cobrancaEmpresas && cobrancaEmpresas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataCobranca">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.dataCobranca">Data Cobranca</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorPago">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.valorPago">Valor Pago</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlCobranca">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.urlCobranca">Url Cobranca</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlArquivo">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.urlArquivo">Url Arquivo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorCobrado">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.valorCobrado">Valor Cobrado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="situacaoCobranca">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.situacaoCobranca">Situacao Cobranca</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="assinaturaEmpresa.codigoAssinatura">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.assinaturaEmpresa">Assinatura Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="formaDePagamento.forma">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.cobrancaEmpresa.formaDePagamento">Forma De Pagamento</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (cobrancaEmpresa of cobrancaEmpresas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/cobranca-empresa', cobrancaEmpresa.id, 'view']">{{ cobrancaEmpresa.id }}</a>
+              </td>
+              <td>{{ cobrancaEmpresa.dataCobranca | formatMediumDatetime }}</td>
+              <td>{{ cobrancaEmpresa.valorPago }}</td>
+              <td>{{ cobrancaEmpresa.urlCobranca }}</td>
+              <td>{{ cobrancaEmpresa.urlArquivo }}</td>
+              <td>{{ cobrancaEmpresa.valorCobrado }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoCobrancaEnum.' + (cobrancaEmpresa.situacaoCobranca ?? 'null')">
+                {{
+                  { null: '', ABERTA: 'ABERTA', FECHADA: 'FECHADA', ATRASADA: 'ATRASADA', PAGA: 'PAGA' }[
+                    cobrancaEmpresa.situacaoCobranca ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>
+                @if (cobrancaEmpresa.assinaturaEmpresa) {
+                  <div>
+                    <a [routerLink]="['/assinatura-empresa', cobrancaEmpresa.assinaturaEmpresa.id, 'view']">{{
+                      cobrancaEmpresa.assinaturaEmpresa.codigoAssinatura
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (cobrancaEmpresa.formaDePagamento) {
+                  <div>
+                    <a [routerLink]="['/forma-de-pagamento', cobrancaEmpresa.formaDePagamento.id, 'view']">{{
+                      cobrancaEmpresa.formaDePagamento.forma
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/cobranca-empresa', cobrancaEmpresa.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/cobranca-empresa', cobrancaEmpresa.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(cobrancaEmpresa)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

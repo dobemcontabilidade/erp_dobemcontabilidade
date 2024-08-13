@@ -1,0 +1,140 @@
+<div>
+  <h2 id="page-heading" data-cy="EscolaridadePessoaHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.home.title">Escolaridade Pessoas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-escolaridade-pessoa"
+        [routerLink]="['/escolaridade-pessoa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.home.createLabel">Criar novo Escolaridade Pessoa</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (escolaridadePessoas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.home.notFound">Nenhum Escolaridade Pessoa encontrado</span>
+    </div>
+  }
+
+  @if (escolaridadePessoas && escolaridadePessoas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nomeInstituicao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.nomeInstituicao">Nome Instituicao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="anoConclusao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.anoConclusao">Ano Conclusao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlComprovanteEscolaridade">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.urlComprovanteEscolaridade"
+                  >Url Comprovante Escolaridade</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pessoa.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.pessoa">Pessoa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="escolaridade.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.escolaridadePessoa.escolaridade">Escolaridade</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (escolaridadePessoa of escolaridadePessoas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/escolaridade-pessoa', escolaridadePessoa.id, 'view']">{{ escolaridadePessoa.id }}</a>
+              </td>
+              <td>{{ escolaridadePessoa.nomeInstituicao }}</td>
+              <td>{{ escolaridadePessoa.anoConclusao }}</td>
+              <td>{{ escolaridadePessoa.urlComprovanteEscolaridade }}</td>
+              <td>
+                @if (escolaridadePessoa.pessoa) {
+                  <div>
+                    <a [routerLink]="['/pessoa', escolaridadePessoa.pessoa.id, 'view']">{{ escolaridadePessoa.pessoa.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (escolaridadePessoa.escolaridade) {
+                  <div>
+                    <a [routerLink]="['/escolaridade', escolaridadePessoa.escolaridade.id, 'view']">{{
+                      escolaridadePessoa.escolaridade.nome
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/escolaridade-pessoa', escolaridadePessoa.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/escolaridade-pessoa', escolaridadePessoa.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(escolaridadePessoa)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
