@@ -1,9 +1,0 @@
-{
-  "erpDobemcontabilidadeApp": {
-    "SexoEnum": {
-      "null": "",
-      "MASCULINO": "MASCULINO",
-      "FEMININO": "FEMININO"
-    }
-  }
-}

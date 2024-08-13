@@ -23,17 +23,7 @@ services:
     depends_on:
       postgresql:
         condition: service_healthy
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@dobemcontabilidade.com
-      PGADMIN_DEFAULT_PASSWORD: senhaAdmin
-    ports:
-      - '9000:80'
-    depends_on:
-      postgresql:
-        condition: service_healthy
   postgresql:
     extends:
       file: ./postgresql.yml
-      service: 'postgresql'
+      service: postgresql
