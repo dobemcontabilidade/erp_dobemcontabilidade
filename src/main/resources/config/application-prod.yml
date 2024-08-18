@@ -91,6 +91,17 @@ jhipster:
     ehcache: # Ehcache configuration
       time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
       max-entries: 1000 # Number of objects in each cache entry
+  cors:
+    # Allow Ionic for JHipster by default (* no longer allowed in Spring Boot 2.4+)
+    allowed-origins: 'https://erp.dobemcontabilidade.com, https://erpdobem.dobemcontabilidade.com, https://empresa.dobemcontabilidade.com, https://atendimento.dobemcontabilidade.com, https://chatbot.dobemcontabilidade.com, https://n8n.dobemcontabilidade.com'
+    # Enable CORS when running in GitHub Codespaces
+    allowed-origin-patterns: 'https://*.dobemcontabilidade.com'
+    allowed-methods: '*'
+    allowed-headers: '*'
+    exposed-headers: 'Authorization,Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params'
+    allow-credentials: true
+    max-age: 1800
+
   security:
     authentication:
       jwt:

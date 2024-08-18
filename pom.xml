@@ -5,7 +5,7 @@
 
     <groupId>com.dobemcontabilidade</groupId>
     <artifactId>erp-dobemcontabilidade</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <packaging>jar</packaging>
     <name>Erp Dobemcontabilidade</name>
     <description>Description for Erp Dobemcontabilidade</description>
