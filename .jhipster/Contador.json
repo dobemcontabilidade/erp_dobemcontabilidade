@@ -1,0 +1,119 @@
+{
+  "annotations": {
+    "changelogDate": "20240828040818"
+  },
+  "applications": "*",
+  "documentation": "ENTITIES",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "cpf",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "15"
+    },
+    {
+      "fieldName": "tituloEleitor",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rg",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "rgOrgaoExpeditor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rgUfExpedicao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomeMae",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "nomePai",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "localNascimento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "racaECor",
+      "fieldType": "RacaECorEnum",
+      "fieldValues": "AMARELA,BRANCO,INDIGENA,PARDO,NEGRO,NAOINFORMADO"
+    },
+    {
+      "fieldName": "pessoaComDeficiencia",
+      "fieldType": "PessoaComDeficienciaEnum",
+      "fieldValues": "DEFICIENCIAMOTORA,DEFICIENCIAVISUAL,DEFICIENCIAAUDITIVA,REABILITADO,NAOPOSSUI"
+    },
+    {
+      "fieldName": "estadoCivil",
+      "fieldType": "EstadoCivilEnum",
+      "fieldValues": "SOLTEIRO,CASADO,DIVORCIADO,VIUVO,UNIAOESTAVEL"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "SexoEnum",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MASCULINO,FEMININO"
+    },
+    {
+      "fieldName": "urlFotoPerfil",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rgOrgaoExpditor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "crc",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "limiteEmpresas",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "limiteAreaContabils",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "limiteFaturamento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "limiteDepartamentos",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "situacaoContador",
+      "fieldType": "SituacaoContadorEnum",
+      "fieldValues": "BANIDO,BLOQUEADO,HABILITADO,INAPTO,INATIVO,PENDENTE,SUSPENSO"
+    }
+  ],
+  "name": "Contador",
+  "relationships": [],
+  "searchEngine": "no"
+}

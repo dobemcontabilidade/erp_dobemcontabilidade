@@ -1,0 +1,15 @@
+export enum SituacaoContadorEnum {
+  BANIDO = 'BANIDO',
+
+  BLOQUEADO = 'BLOQUEADO',
+
+  HABILITADO = 'HABILITADO',
+
+  INAPTO = 'INAPTO',
+
+  INATIVO = 'INATIVO',
+
+  PENDENTE = 'PENDENTE',
+
+  SUSPENSO = 'SUSPENSO',
+}

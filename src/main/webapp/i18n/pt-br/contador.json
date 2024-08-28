@@ -1,0 +1,45 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "contador": {
+      "home": {
+        "title": "Contadors",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Contador",
+        "createOrEditLabel": "Criar ou editar Contador",
+        "notFound": "Nenhum Contador encontrado"
+      },
+      "created": "Um novo Contador foi criado com o identificador {{ param }}",
+      "updated": "Um Contador foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Contador foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Contador {{ id }}?"
+      },
+      "detail": {
+        "title": "Contador"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "cpf": "Cpf",
+      "dataNascimento": "Data Nascimento",
+      "tituloEleitor": "Titulo Eleitor",
+      "rg": "Rg",
+      "rgOrgaoExpeditor": "Rg Orgao Expeditor",
+      "rgUfExpedicao": "Rg Uf Expedicao",
+      "nomeMae": "Nome Mae",
+      "nomePai": "Nome Pai",
+      "localNascimento": "Local Nascimento",
+      "racaECor": "Raca E Cor",
+      "pessoaComDeficiencia": "Pessoa Com Deficiencia",
+      "estadoCivil": "Estado Civil",
+      "sexo": "Sexo",
+      "urlFotoPerfil": "Url Foto Perfil",
+      "rgOrgaoExpditor": "Rg Orgao Expditor",
+      "crc": "Crc",
+      "limiteEmpresas": "Limite Empresas",
+      "limiteAreaContabils": "Limite Area Contabils",
+      "limiteFaturamento": "Limite Faturamento",
+      "limiteDepartamentos": "Limite Departamentos",
+      "situacaoContador": "Situacao Contador"
+    }
+  }
+}

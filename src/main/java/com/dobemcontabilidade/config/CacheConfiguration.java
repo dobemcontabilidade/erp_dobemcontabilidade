@@ -83,6 +83,7 @@ public class CacheConfiguration {
             createCache(cm, com.dobemcontabilidade.domain.User.class.getName(), jcacheConfiguration);
             createCache(cm, com.dobemcontabilidade.domain.Authority.class.getName(), jcacheConfiguration);
             createCache(cm, com.dobemcontabilidade.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Contador.class.getName(), jcacheConfiguration);
             // jhipster-needle-redis-add-entry
         };
     }

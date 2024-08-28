@@ -1,0 +1,154 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (contador()) {
+      <div>
+        <h2 data-cy="contadorDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.contador.detail.title">Contador</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ contador()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.nome">Nome</span></dt>
+          <dd>
+            <span>{{ contador()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.cpf">Cpf</span></dt>
+          <dd>
+            <span>{{ contador()!.cpf }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.dataNascimento">Data Nascimento</span></dt>
+          <dd>
+            <span>{{ contador()!.dataNascimento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.tituloEleitor">Titulo Eleitor</span></dt>
+          <dd>
+            <span>{{ contador()!.tituloEleitor }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.rg">Rg</span></dt>
+          <dd>
+            <span>{{ contador()!.rg }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.rgOrgaoExpeditor">Rg Orgao Expeditor</span></dt>
+          <dd>
+            <span>{{ contador()!.rgOrgaoExpeditor }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.rgUfExpedicao">Rg Uf Expedicao</span></dt>
+          <dd>
+            <span>{{ contador()!.rgUfExpedicao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.nomeMae">Nome Mae</span></dt>
+          <dd>
+            <span>{{ contador()!.nomeMae }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.nomePai">Nome Pai</span></dt>
+          <dd>
+            <span>{{ contador()!.nomePai }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.localNascimento">Local Nascimento</span></dt>
+          <dd>
+            <span>{{ contador()!.localNascimento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.racaECor">Raca E Cor</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.RacaECorEnum.' + (contador()!.racaECor ?? 'null')">{{
+              {
+                null: '',
+                AMARELA: 'AMARELA',
+                BRANCO: 'BRANCO',
+                INDIGENA: 'INDIGENA',
+                PARDO: 'PARDO',
+                NEGRO: 'NEGRO',
+                NAOINFORMADO: 'NAOINFORMADO',
+              }[contador()!.racaECor ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.pessoaComDeficiencia">Pessoa Com Deficiencia</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.PessoaComDeficienciaEnum.' + (contador()!.pessoaComDeficiencia ?? 'null')">{{
+              {
+                null: '',
+                DEFICIENCIAMOTORA: 'DEFICIENCIAMOTORA',
+                DEFICIENCIAVISUAL: 'DEFICIENCIAVISUAL',
+                DEFICIENCIAAUDITIVA: 'DEFICIENCIAAUDITIVA',
+                REABILITADO: 'REABILITADO',
+                NAOPOSSUI: 'NAOPOSSUI',
+              }[contador()!.pessoaComDeficiencia ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.estadoCivil">Estado Civil</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.EstadoCivilEnum.' + (contador()!.estadoCivil ?? 'null')">{{
+              { null: '', SOLTEIRO: 'SOLTEIRO', CASADO: 'CASADO', DIVORCIADO: 'DIVORCIADO', VIUVO: 'VIUVO', UNIAOESTAVEL: 'UNIAOESTAVEL' }[
+                contador()!.estadoCivil ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.sexo">Sexo</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.SexoEnum.' + (contador()!.sexo ?? 'null')">{{
+              { null: '', MASCULINO: 'MASCULINO', FEMININO: 'FEMININO' }[contador()!.sexo ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.urlFotoPerfil">Url Foto Perfil</span></dt>
+          <dd>
+            <span>{{ contador()!.urlFotoPerfil }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.rgOrgaoExpditor">Rg Orgao Expditor</span></dt>
+          <dd>
+            <span>{{ contador()!.rgOrgaoExpditor }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.crc">Crc</span></dt>
+          <dd>
+            <span>{{ contador()!.crc }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.limiteEmpresas">Limite Empresas</span></dt>
+          <dd>
+            <span>{{ contador()!.limiteEmpresas }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.limiteAreaContabils">Limite Area Contabils</span></dt>
+          <dd>
+            <span>{{ contador()!.limiteAreaContabils }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.limiteFaturamento">Limite Faturamento</span></dt>
+          <dd>
+            <span>{{ contador()!.limiteFaturamento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.limiteDepartamentos">Limite Departamentos</span></dt>
+          <dd>
+            <span>{{ contador()!.limiteDepartamentos }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.situacaoContador">Situacao Contador</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoContadorEnum.' + (contador()!.situacaoContador ?? 'null')">{{
+              {
+                null: '',
+                BANIDO: 'BANIDO',
+                BLOQUEADO: 'BLOQUEADO',
+                HABILITADO: 'HABILITADO',
+                INAPTO: 'INAPTO',
+                INATIVO: 'INATIVO',
+                PENDENTE: 'PENDENTE',
+                SUSPENSO: 'SUSPENSO',
+              }[contador()!.situacaoContador ?? 'null']
+            }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/contador', contador()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

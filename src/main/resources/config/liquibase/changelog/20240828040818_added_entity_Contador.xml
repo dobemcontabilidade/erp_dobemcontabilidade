@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Contador.
+    -->
+    <changeSet id="20240828040818-1" author="jhipster">
+        <createTable tableName="contador" remarks="ENTITIES">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nome" type="varchar(200)">
+                <constraints nullable="false" />
+            </column>
+            <column name="cpf" type="varchar(200)">
+                <constraints nullable="false" />
+            </column>
+            <column name="data_nascimento" type="varchar(15)">
+                <constraints nullable="true" />
+            </column>
+            <column name="titulo_eleitor" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="rg" type="varchar(10)">
+                <constraints nullable="false" />
+            </column>
+            <column name="rg_orgao_expeditor" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="rg_uf_expedicao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nome_mae" type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nome_pai" type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+            <column name="local_nascimento" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="raca_e_cor" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pessoa_com_deficiencia" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="estado_civil" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sexo" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="url_foto_perfil" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="rg_orgao_expditor" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="crc" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="limite_empresas" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="limite_area_contabils" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="limite_faturamento" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="limite_departamentos" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="situacao_contador" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20240828040818-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/contador.csv"
+                  separator=";"
+                  tableName="contador"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="nome" type="string"/>
+            <column name="cpf" type="string"/>
+            <column name="data_nascimento" type="string"/>
+            <column name="titulo_eleitor" type="numeric"/>
+            <column name="rg" type="string"/>
+            <column name="rg_orgao_expeditor" type="string"/>
+            <column name="rg_uf_expedicao" type="string"/>
+            <column name="nome_mae" type="string"/>
+            <column name="nome_pai" type="string"/>
+            <column name="local_nascimento" type="string"/>
+            <column name="raca_e_cor" type="string"/>
+            <column name="pessoa_com_deficiencia" type="string"/>
+            <column name="estado_civil" type="string"/>
+            <column name="sexo" type="string"/>
+            <column name="url_foto_perfil" type="string"/>
+            <column name="rg_orgao_expditor" type="string"/>
+            <column name="crc" type="string"/>
+            <column name="limite_empresas" type="numeric"/>
+            <column name="limite_area_contabils" type="numeric"/>
+            <column name="limite_faturamento" type="numeric"/>
+            <column name="limite_departamentos" type="numeric"/>
+            <column name="situacao_contador" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,12 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "PessoaComDeficienciaEnum": {
+      "null": "",
+      "DEFICIENCIAMOTORA": "DEFICIENCIAMOTORA",
+      "DEFICIENCIAVISUAL": "DEFICIENCIAVISUAL",
+      "DEFICIENCIAAUDITIVA": "DEFICIENCIAAUDITIVA",
+      "REABILITADO": "REABILITADO",
+      "NAOPOSSUI": "NAOPOSSUI"
+    }
+  }
+}

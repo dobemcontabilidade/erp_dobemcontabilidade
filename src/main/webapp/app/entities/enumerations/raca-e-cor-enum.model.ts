@@ -1,0 +1,13 @@
+export enum RacaECorEnum {
+  AMARELA = 'AMARELA',
+
+  BRANCO = 'BRANCO',
+
+  INDIGENA = 'INDIGENA',
+
+  PARDO = 'PARDO',
+
+  NEGRO = 'NEGRO',
+
+  NAOINFORMADO = 'NAOINFORMADO',
+}
