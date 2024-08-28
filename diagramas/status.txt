@@ -1,0 +1,7 @@
+/**
+	dateCreate Instant
+	dateUpdate Instant
+	enable Boolean required
+    deleted Boolean
+    dateDelete Instant
+*/
