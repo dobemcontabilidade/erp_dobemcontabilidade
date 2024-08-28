@@ -1,47 +1,3 @@
-entity Empresa {
-    razaoSocial String required
-    nomeFantasia String required
-    descricaoDoNegocio TextBlob
-    cnpj String maxlength(20)
-    dataAbertura Instant
-    urlContratoSocial String
-    capitalSocial Double
-}
-
-entity Socio {
-    nome String maxlength(200)
-    prolabore Boolean
-    percentualSociedade Double
-    adminstrador Boolean required
-    distribuicaoLucro Boolean
-    responsavelReceita Boolean
-    percentualDistribuicaoLucro Double
-    funcaoSocio FuncaoSocioEnum required
-}
-
-entity CertificadoDigital {
-    urlCertificado TextBlob required
-    dataContratacao Instant
-    validade Integer
-    tipoCertificado TipoCertificadoEnum
-}
-
-entity CertificadoDigitalEmpresa {
-    nome String maxlength(300)
-    sigla String maxlength(20)
-    descricao TextBlob
-}
-
-entity FornecedorCertificado {
-    nome String maxlength(300)
-    sigla String maxlength(20)
-    descricao TextBlob
-}
-
-
-
-
-
 enum SexoEnum {
     MASCULINO, FEMININO
 }
@@ -50,13 +6,7 @@ enum TipoTarefaEnum {
     RECORRENTE, ORDEM_SERVICO
 }
 
-enum SituacaoUsuarioErpEnum {
-    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
-}
 
-enum SituacaoUsuarioContadorEnum {
-    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
-}
 
 enum SituacaoUsuarioEmpresaEnum {
     ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
@@ -78,6 +28,11 @@ enum SituacaoContratoEmpresaEnum {
     PROPOSTA, ATIVO, INATIVO, PENDENTE, BLOQUEADO, CANCELADO, EXCLUIDO
 }
 
+enum SituacaoTermoContratoAssinadoEnum {
+    ASSINADO, PENDENTE, CANCELADO, ENVIADO
+    }
+
+
 enum SituacaoPlanoContaAzulEnum {
     ATIVO, INATIVO, EXCLUIDO
 }
@@ -89,6 +44,7 @@ enum SituacaoPlanoContabilEnum {
 enum TipoContratoEnum {
     ABERTURA_EMPRESA, CONTRATACAO_PLANO
 }
+
 
 enum FuncaoSocioEnum {
     SOCIO, SOCIO_ADMINISTRADOR, SOCIO_GERENTE
@@ -116,4 +72,285 @@ enum TipoSegmentoEnum {
 
 enum TipoRedeSocialEnum {
     FACEBOOK, TWITTER, INSTAGRAN, YOUTUBE, LINKEDIN, OUTROS
+}
+
+entity Pessoajuridica {
+    razaoSocial String required
+    nomeFantasia String required
+    cnpj String maxlength(20)
+}
+
+entity Empresa {
+    razaoSocial String required
+    descricaoDoNegocio TextBlob
+    dataAbertura Instant
+    urlContratoSocial String
+    capitalSocial Double
+    cnae String required
+}
+
+entity Socio {
+    nome String maxlength(200)
+    prolabore Boolean
+    percentualSociedade Double
+    adminstrador Boolean required
+    distribuicaoLucro Boolean
+    responsavelReceita Boolean
+    percentualDistribuicaoLucro Double
+    funcaoSocio FuncaoSocioEnum required
+}
+
+entity CertificadoDigital {
+    nome String maxlength(300)
+    sigla String maxlength(20)
+    descricao TextBlob
+    tipoCertificado TipoCertificadoEnum
+}
+
+entity CertificadoDigitalEmpresa {
+    urlCertificado TextBlob required
+    dataContratacao Instant
+    dataVencimento Instant
+    diasUso Integer
+}
+
+entity FornecedorCertificado {
+    razaoSocial String required
+    sigla String maxlength(20)
+    descricao TextBlob
+}
+
+entity DocsEmpresa {
+    documento String maxlength(300)
+    descricao TextBlob
+    url TextBlob
+    dataEmissao Instant
+    dataEncerramento Instant
+    orgaoEmissor String
+}
+
+entity RedeSocial {
+    nome String required
+    descricao TextBlob
+    url TextBlob
+    logo String
+}
+
+entity RedeSocialEmpresa {
+    perfil String required
+    urlPerfil TextBlob
+}
+
+entity PessoaFisica {
+    nome String maxlength(200) required
+    cpf String required
+    dataNascimento Instant
+    tituloEleitor String
+    rg String required
+    rgOrgaoExpditor String
+    rgUfExpedicao String
+    estadoCivil EstadoCivilEnum
+    sexo SexoEnum required
+    urlFotoPerfil String
+}
+
+entity AssinaturaEmpresa {
+    razaoSocial String required
+    codigoAssinatura String
+    valorEnquadramento Double
+    valorTributacao Double
+    valorRamo Double
+    valorFuncionarios Double
+    valorSocios Double
+    valorFaturamento Double
+    valorPlanoContabil Double
+    valorPlanoContabilComDesconto Double
+    valorPlanoContaAzulComDesconto Double
+    valorMensalidade Double
+    valorPeriodo Double
+    valorAno Double
+    dataContratacao Instant
+    dataEncerramento Instant
+    diaVencimento Integer
+    situacao SituacaoContratoEmpresaEnum
+    tipoContrato TipoContratoEnum
+}
+
+entity EnderecoEmpresa  {
+    logradouro String
+    numero String
+    complemento String
+    bairro String
+    cep String
+    principal Boolean
+    filial Boolean
+    enderecoFiscal Boolean
+}
+
+entity Ramo {
+    nome String
+    descricao TextBlob
+}
+
+entity Tributacao {
+    nome String
+    descricao TextBlob
+    situacao SituacaoTributacaoEnum
+}
+
+entity Enquadramento {
+    nome String
+    sigla String
+    limiteInicial Double
+    limiteFinal Double
+    descricao TextBlob
+}
+
+entity FormaDePagamento {
+    forma String
+    descricao TextBlob
+    disponivel Boolean
+}
+
+entity GatewayPagamento {
+    nome String
+    disponivel Boolean
+}
+
+entity GatewayAssinaturaEmpresa {
+    codigoAssinatura String
+    disponivel Boolean
+}
+
+
+entity TermoContratoContabil {
+    titulo String
+    descricao TextBlob
+    urlDocumentoFonte TextBlob
+	documento TextBlob
+    disponivel Boolean
+	dataCriacao Instant
+}
+
+entity TermoContratoAssinaturaEmpresa {
+	dataAssinatura Instant
+    dataEnvioEmail Instant
+    urlDocumentoAssinado TextBlob
+    situacao SituacaoTermoContratoAssinadoEnum 
+}
+
+entity PeriodoPagamento {
+	periodo String
+	numeroDias Integer
+}
+
+
+entity DescontoPeriodoPagamento {
+	percentual Double
+}
+
+entity PlanoAssinaturaContabil {
+	nome String
+	adicionalSocio Double
+	adicionalFuncionario Double
+	sociosIsentos Integer
+	adicionalFaturamento Double
+	valorBaseFaturamento Double
+	valorBaseAbertura Double
+	situacao SituacaoPlanoContabilEnum
+}
+
+entity AdicionalEnquadramento {
+	valor Double	  
+}
+
+entity AdicionalRamo {
+	valor Double required
+}
+
+entity AdicionalTributacao {
+	valor Double required
+}
+
+entity Pais {
+	nome String
+	nacionalidade String
+	sigla String
+}
+
+entity Estado {
+	nome String
+	naturalidade String
+	sigla String
+}
+
+entity Cidade {
+	nome String required
+	contratacao Boolean
+	abertura Boolean
+}
+
+entity EnderecoPessoa  {
+	logradouro String
+	numero String
+	complemento String
+	bairro String
+	cep String	 
+	principal Boolean
+}
+
+entity Email  {
+	email String required
+	principal Boolean
+}
+
+entity Telefone {
+	codigoArea String required
+	telefone String required
+	principla Boolean
+	tipoTelefone TipoTelefoneEnum
+}
+
+entity DocsPessoa {
+	urlArquivo TextBlob required
+	tipo String
+	descricao TextBlob
+}
+
+relationship OneToOne {
+    Socio {PessoaFisica(nome) required} to PessoaFisica
+    Empresa {PessoaJuridica(razaoSocial) required} to Pessoajuridica
+}
+
+relationship OneToMany {
+    Pais to Estado{Pais(nome) required}
+    PessoaFisica to EnderecoPessoa{Pessoa(nome) required}
+	PessoaFisica to DocsPessoa{Pessoa(nome) required}
+	PessoaFisica to Email{Pessoa(nome) required}
+	PessoaFisica to Telefone{Pessoa(nome) required}
+	Cidade to EnderecoPessoa{Cidade(nome) required}
+	Cidade to EnderecoEmpresa{Cidade(nome) required}
+	Estado to Cidade{Estado(nome) required}
+    Pessoajuridica to CertificadoDigitalEmpresa{PessoaJuridica(razaoSocial) required}
+    CertificadoDigital to CertificadoDigitalEmpresa{CertificadoDigital(nome) required}
+    FornecedorCertificado to CertificadoDigitalEmpresa{FornecedorCertificado(razaoSocial) required}
+    Pessoajuridica to DocsEmpresa{PessoaJuridica(razaoSocial) required}
+    Pessoajuridica to EnderecoEmpresa{PessoaJuridica(razaoSocial) required}
+    PeriodoPagamento to AssinaturaEmpresa{PeriodoPagamento(periodo)required }
+    Empresa to Socio{Empresa(razaoSocial) required}
+    FormaDePagamento to AssinaturaEmpresa{FormaDePagamento(forma) required}
+    Empresa to AssinaturaEmpresa{Empresa(razaoSocial) required}
+    Tributacao to Empresa{Empresa(nome) required}
+    Tributacao to AdicionalTributacao{Tributacao(nome) required}
+    Ramo to Empresa{Ramo(nome) required}
+	Ramo to AdicionalRamo{Ramo(nome) required}
+    Enquadramento to Empresa{Enquadramento(nome) required}
+	Enquadramento to AdicionalEnquadramento{Enquadramento(nome) required}
+    PeriodoPagamento to DescontoPeriodoPagamento {PeriodoPagamento(periodo) required}
+   	PlanoAssinaturaContabil to DescontoPeriodoPagamento {PlanoAssinaturaContabil(nome) required}
+	PlanoAssinaturaContabil to AdicionalRamo{PlanoAssinaturaContabil(nome) required}
+	PlanoAssinaturaContabil to AdicionalTributacao{PlanoAssinaturaContabil(nome) required}
+	PlanoAssinaturaContabil to AdicionalEnquadramento{PlanoAssinaturaContabil(nome) required}
+    TermoContratoContabil to TermoContratoAssinaturaEmpresa{TermoContratoContabil(titulo) required}
+    AssinaturaEmpresa to TermoContratoAssinaturaEmpresa{Empresa(razaoSocial) required}
 }
