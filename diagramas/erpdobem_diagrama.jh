@@ -1,0 +1,119 @@
+entity Empresa {
+    razaoSocial String required
+    nomeFantasia String required
+    descricaoDoNegocio TextBlob
+    cnpj String maxlength(20)
+    dataAbertura Instant
+    urlContratoSocial String
+    capitalSocial Double
+}
+
+entity Socio {
+    nome String maxlength(200)
+    prolabore Boolean
+    percentualSociedade Double
+    adminstrador Boolean required
+    distribuicaoLucro Boolean
+    responsavelReceita Boolean
+    percentualDistribuicaoLucro Double
+    funcaoSocio FuncaoSocioEnum required
+}
+
+entity CertificadoDigital {
+    urlCertificado TextBlob required
+    dataContratacao Instant
+    validade Integer
+    tipoCertificado TipoCertificadoEnum
+}
+
+entity CertificadoDigitalEmpresa {
+    nome String maxlength(300)
+    sigla String maxlength(20)
+    descricao TextBlob
+}
+
+entity FornecedorCertificado {
+    nome String maxlength(300)
+    sigla String maxlength(20)
+    descricao TextBlob
+}
+
+
+
+
+
+enum SexoEnum {
+    MASCULINO, FEMININO
+}
+
+enum TipoTarefaEnum {
+    RECORRENTE, ORDEM_SERVICO
+}
+
+enum SituacaoUsuarioErpEnum {
+    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
+}
+
+enum SituacaoUsuarioContadorEnum {
+    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
+}
+
+enum SituacaoUsuarioEmpresaEnum {
+    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
+}
+
+enum SituacaoUsuarioGestaoEnum {
+    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
+}
+
+enum EstadoCivilEnum {
+    SOLTERO, CASADO, DIVORCIADO, VIUVO, UNIAO_ESTAVEL
+}
+
+enum TipoCertificadoEnum {
+    A, S, T, A1, A3, A4, OUTROS
+}
+
+enum SituacaoContratoEmpresaEnum {
+    PROPOSTA, ATIVO, INATIVO, PENDENTE, BLOQUEADO, CANCELADO, EXCLUIDO
+}
+
+enum SituacaoPlanoContaAzulEnum {
+    ATIVO, INATIVO, EXCLUIDO
+}
+
+enum SituacaoPlanoContabilEnum {
+    ATIVO, INATIVO, EXCLUIDO
+}
+
+enum TipoContratoEnum {
+    ABERTURA_EMPRESA, CONTRATACAO_PLANO
+}
+
+enum FuncaoSocioEnum {
+    SOCIO, SOCIO_ADMINISTRADOR, SOCIO_GERENTE
+}
+
+enum TipoTelefoneEnum {
+    RESIDENCIAL, COMERCIAL, CELULAR, WHATSAPP
+}
+
+enum SituacaoFuncionarioEnum {
+    ADMITIDO, AFASTADO, DEMITIDO, EXPERIENCIA, DEMITIDO_JUSTA_CAUSA
+}
+
+enum SituacaoTributacaoEnum {
+    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
+}
+
+enum SituacaoPagamentoEnum {
+    A_PAGAR, PAGO, EM_ATRASO
+}
+
+enum TipoSegmentoEnum {
+    SERVICO, COMERCIO, SERVICO_COMERCIO, INDUSTRIA
+}
+
+enum TipoRedeSocialEnum {
+    FACEBOOK, TWITTER, INSTAGRAN, YOUTUBE, LINKEDIN, OUTROS
+}
