@@ -1,0 +1,4 @@
+org.springframework.test.context.ContextCustomizerFactory = com.\
+    dobemcontabilidade.config.\
+    SqlTestContainersSpringContextCustomizerFactory,com.dobemcontabilidade.\
+    config.RedisTestContainersSpringContextCustomizerFactory
