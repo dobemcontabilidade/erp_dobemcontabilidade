@@ -1,0 +1,493 @@
+
+/** ENUMS **/
+
+enum MesCompetenciaEnum {
+    JANEIRO, FEVEREIRO, MARCO, ABRIL, MAIO, JUNHO , JULHO, AGOSTO, SETEMBRO, OUTUBRO, NOVEMBRO, DEZEMBRO
+}
+
+enum TipoContratoEnum {
+    ABERTURAEMPRESA, CONTRATACAOPLANO
+}
+
+enum TipoUsuarioEmpresaEnum {
+    SOCIO, FUNCIONARIO
+}
+
+enum SituacaoContratoEmpresaEnum {
+    PROPOSTA, ATIVO, INATIVO, PENDENTE, BLOQUEADO, CANCELADO, EXCLUIDO
+}
+
+enum SituacaoTarefaEnum {
+    AGENDADA, CANCELADA, EMEXECUCAO , CONCLUIDA, PENDENTE, DELETADA
+}
+
+enum SituacaoUsuarioEmpresaEnum {
+    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
+}
+
+enum EstadoCivilEnum {
+    SOLTEIRO, CASADO, DIVORCIADO, VIUVO, UNIAOESTAVEL
+}
+
+enum PessoaComDeficienciaEnum {
+    DEFICIENCIAMOTORA, DEFICIENCIAVISUAL, DEFICIENCIAAUDITIVA , REABILITADO, NAOPOSSUI
+}
+
+enum RacaECorEnum {
+    AMARELA,BRANCO,INDIGENA,PARDO,NEGRO,NAOINFORMADO
+}
+
+enum SituacaoContadorEnum {
+    BANIDO, BLOQUEADO, HABILITADO, INAPTO, INATIVO, PENDENTE, SUSPENSO
+}
+
+relationship OneToOne {
+    Contador {UsuarioContador(email) required} to UsuarioContador
+}
+
+enum SexoEnum {
+	MASCULINO, FEMININO
+}
+
+enum SituacaoUsuarioContadorEnum {
+	ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
+}
+
+enum TipoRecorrenciaEnum {
+    DIARIO, SEMANAL , MENSAL , BIMESTRAL, TRIMESTRAL, SEMESTRAL, ANUAL
+}
+
+enum TipoVisualizacaoAgendaEnum {
+     RECORRENTE, ORDEMSERVICO , SEMANAL, DIA, MES, EMPRESA
+}
+
+enum StatusDaOSEnum {
+    ABERTA, EMATENDIMENTO,COMPENDENCIA,CONCLUIDA, CANCELADA
+}
+
+
+/** ENTITIES **/
+
+
+entity Contador {
+    nome String maxlength(200) required
+    cpf String required maxlength(200)
+    dataNascimento String maxlength(15)
+    tituloEleitor Integer
+    rg String required maxlength(10)
+    rgOrgaoExpeditor String
+    rgUfExpedicao String
+    nomeMae String maxlength(200)
+    nomePai String maxlength(200)
+    localNascimento String
+    racaECor RacaECorEnum
+    pessoaComDeficiencia PessoaComDeficienciaEnum
+    estadoCivil EstadoCivilEnum
+    sexo SexoEnum required
+    urlFotoPerfil String
+	rgOrgaoExpditor String
+	crc String required
+	limiteEmpresas Integer
+	limiteAreaContabils Integer
+	limiteFaturamento Double
+    limiteDepartamentos Integer
+    situacaoContador SituacaoContadorEnum
+}
+
+entity AreaContabilContador {
+    percentualExperiencia Double
+	descricaoExperiencia TextBlob
+	pontuacaoEntrevista Double
+	pontuacaoAvaliacao Double
+    ativo Boolean
+}
+entity AreaContabil{
+    nome String
+    descricao TextBlob
+    percentual Double
+}
+entity DepartamentoContador {
+    percentualExperiencia Double
+	descricaoExperiencia TextBlob
+	pontuacaoEntrevista Double
+	pontuacaoAvaliacao Double
+}
+entity Departamento {
+    nome String
+	descricao TextBlob
+}
+
+entity UsuarioContador {
+	usuario String maxlength(100) required
+	senha TextBlob required
+    email String maxlength(200) required
+	dataHoraAtivacao Instant
+	dataLimiteAcesso Instant
+	situacao SituacaoUsuarioContadorEnum
+}
+
+entity PerfilContadorAreaContabil {
+	quantidadeEmpresas Integer
+	percentualExperiencia Double
+}
+
+entity TarefaOrdemServicoExecucao (taf_ordem_serv_exec){
+    nome String
+    descricao String
+    ordem Integer
+    dataEntrega Instant
+    dataAgendada Instant
+    concluida Boolean
+    notificarCliente Boolean
+    mes MesCompetenciaEnum
+    situacaoTarefa SituacaoTarefaEnum
+}
+
+entity AgendaTarefaOrdemServicoExecucao (agen_tafe_ordem_serv_exec)
+{
+    horaInicio Instant
+    horaFim Instant
+    diaInteiro Boolean
+    ativo Boolean
+}
+
+entity ContadorResponsavelOrdemServico (cont_respo_ordem_serv)
+{
+    dataAtribuicao Instant
+    dataRevogacao Instant
+}
+
+
+entity TermoAdesaoContador {
+    dataAdesao Instant
+    checked Boolean
+    urlDoc String
+}
+
+entity PerfilContador {
+    perfil String required
+    descricao String maxlength(200)
+    limiteEmpresas Integer
+    limiteDepartamentos Integer
+    limiteFaturamento Double
+}
+
+entity AvaliacaoContador {
+    pontuacao Double
+}
+
+entity PerfilContadorDepartamento {
+    quantidadeEmpresas Integer
+    percentualExperiencia Double
+}
+
+entity TermoDeAdesao {
+	titulo String
+	descricao TextBlob
+	urlDoc String
+}
+
+entity Avaliacao {
+    nome String
+    descricao TextBlob
+}
+
+entity AnexoOrdemServicoExecucao {
+    url String
+    descricao String
+    dataHoraUpload Instant
+}
+
+entity TarefaOrdemServico {
+    nome String
+    descricao String
+    notificarCliente Boolean
+    notificarContador Boolean
+    anoReferencia Integer
+    dataAdmin Instant
+}
+
+entity ServicoContabil {
+    nome String
+    valor Float
+    descricao String maxlength(200)
+    diasExecucao Integer
+    geraMulta Boolean
+    periodoExecucao Integer
+    diaLegal  Integer
+    mesLegal Integer
+    valorRefMulta Double
+
+}
+
+entity ContadorResponsavelTarefaRecorrente (cont_respo_tare_recorrente){
+    dataAtribuicao Instant
+    dataRevogacao Instant
+    concluida Boolean
+}
+
+entity SubTarefaOrdemServico{
+    nome String
+    descricao String
+    ordem Integer
+    concluida Boolean
+}
+entity TarefaRecorrente {
+    nome String
+    descricao String
+    notificarCliente Boolean
+    notificarContador Boolean
+    anoReferencia Integer
+    dataAdmin Instant
+    recorencia TipoRecorrenciaEnum
+}
+
+entity TarefaRecorrenteExecucao {
+    nome String
+    descricao String
+    dataEntrega Instant
+    dataAgendada Instant
+    ordem Integer
+    concluida Boolean
+    mes MesCompetenciaEnum
+    situacaoTarefa SituacaoTarefaEnum
+}
+
+entity AgendaTarefaRecorrenteExecucao (agen_tafe_reco_exec){
+    ativo Boolean
+    horaInicio Instant
+    horaFim Instant
+    diaInteiro Boolean
+    comentario String
+}
+
+entity AnexoTarefaRecorrenteExecucao (anexo_taf_reco_exec){
+    url String
+    descricao String
+    dataHoraUpload Instant
+}
+
+entity SubTarefaRecorrente{
+    nome String
+    descricao String
+    ordem Integer
+    concluida Boolean
+}
+
+entity AgendaContadorConfig {
+    ativo Boolean
+    tipoVisualizacaoAgendaEnum TipoVisualizacaoAgendaEnum
+}
+
+entity OrdemServico {
+    valor Float
+    prazo Instant
+    dataCriacao Instant
+    dataHoraCancelamento Instant
+    statusDaOS StatusDaOSEnum
+    descricao String
+ }
+
+ entity CriterioAvaliacao{
+    nome String required
+    descricao String
+}
+
+entity CriterioAvaliacaoAtor {
+    descricao TextBlob
+    ativo Boolean
+}
+
+entity FeedBackUsuarioParaContador (feed_usuario_para_contador){
+    comentario String
+    pontuacao Double
+    usuarioEmpresaID String
+}
+
+entity FeedBackContadorParaUsuario (feed_contador_para_usuario) {
+    comentario String
+    pontuacao Double
+    usuarioEmpresaID String required
+}
+
+ entity ServicoContabilOrdemServico{
+     dataAdmin Instant
+     dataLegal Instant
+ }
+
+ entity GrupoAcessoEmpresaUsuarioContador (grup_acess_empresa_usua_cont)
+{
+    nome String
+    dataExpiracao Instant
+    ilimitado Boolean
+    desabilitar Boolean
+}
+
+entity Permisao {
+    nome String
+    descricao String
+    label String
+}
+
+entity GrupoAcessoEmpresa
+{
+ nome String
+}
+
+entity GrupoAcessoUsuarioContador (grou_acess_usua_cont)
+{
+    dataExpiracao Instant
+    ilimitado Boolean
+    desabilitar Boolean
+}
+
+entity GrupoAcessoPadrao
+{
+ nome String
+}
+
+entity AreaContabilAssinaturaEmpresa (area_cont_assin_empresa){
+    ativo Boolean
+    dataAtribuicao Instant
+    dataRevogacao Instant
+}
+
+entity DepartamentoEmpresa {
+    pontuacao Double
+    depoimento String
+    reclamacao String
+}
+
+entity UsuarioEmpresa {
+
+      email String maxlength(200) required
+      senha TextBlob required
+      token TextBlob
+      ativo Boolean
+      dataHoraAtivacao Instant
+      dataLimiteAcesso Instant
+      situacaoUsuarioEmpresa SituacaoUsuarioEmpresaEnum
+      tipoUsuarioEmpresaEnum TipoUsuarioEmpresaEnum
+
+}
+
+entity TarefaEmpresa {
+    dataHora Instant
+}
+
+entity ServicoContabilAssinaturaEmpresa (serv_cont_assinatura_empresa){
+    dataLegal Instant required
+    dataAdmin Instant required
+}
+
+ entity AnexoServicoContabilEmpresa {
+     link String
+     dataHoraUpload Instant
+ }
+
+ entity AssinaturaEmpresa {
+    codigoAssinatura String
+    valorEnquadramento Double
+    valorTributacao Double
+    valorRamo Double
+    valorFuncionarios Double
+    valorSocios Double
+    valorFaturamento Double
+    valorPlanoContabil Double
+    valorPlanoContabilComDesconto Double
+    valorPlanoContaAzulComDesconto Double
+    valorMensalidade Double
+    valorPeriodo Double
+    valorAno Double
+    dataContratacao Instant
+    dataEncerramento Instant
+    diaVencimento Integer
+    situacaoContratoEmpresa SituacaoContratoEmpresaEnum
+    tipoContrato TipoContratoEnum
+}
+
+entity Esfera {
+    nome String maxlength(50)
+    descricao TextBlob
+}
+
+entity Imposto {
+    nome String
+    sigla String
+    descricao String
+}
+
+
+relationship OneToMany {
+
+    UsuarioContador to GrupoAcessoEmpresaUsuarioContador {UsuarioContador (email) required}
+    Permisao to GrupoAcessoEmpresaUsuarioContador {Permisao (nome)required }
+    GrupoAcessoEmpresa to GrupoAcessoEmpresaUsuarioContador  {GrupoAcessoEmpresa (nome) required}
+    UsuarioContador to GrupoAcessoUsuarioContador { UsuarioContador (email) required}
+    GrupoAcessoPadrao to GrupoAcessoUsuarioContador { GrupoAcessoPadrao (nome) required}
+    Contador to  AreaContabilAssinaturaEmpresa  {Contador (nome) required}
+   
+    Contador to DepartamentoEmpresa{Contador(crc) required}
+    UsuarioEmpresa to FeedBackContadorParaUsuario { UsuarioEmpresa required}
+    Contador to TarefaEmpresa{Contador(crc) required}
+    
+    CriterioAvaliacaoAtor to FeedBackContadorParaUsuario { CriterioAvaliacaoAtor(descricao) required}
+    Contador to FeedBackContadorParaUsuario {Contador (crc) required}
+  
+    AgendaTarefaRecorrenteExecucao to AgendaContadorConfig { AgendaTarefaRecorrenteExecucao required}
+   
+    Departamento to PerfilContadorDepartamento{Departamento(nome) required}
+    AreaContabil to ServicoContabil {AreaContabil(nome) required}
+    Departamento to DepartamentoContador{Departamento(nome) required}
+    AreaContabil to PerfilContadorAreaContabil{AreaContabil(nome) required}
+
+
+	AreaContabil to AreaContabilContador{AreaContabil(nome) required}
+    Contador to AreaContabilContador{Contador(nome) required}
+
+    Contador to DepartamentoContador{Contador(nome) required}
+	
+    Contador to ContadorResponsavelOrdemServico { Contador (nome) required}
+    Contador to TermoAdesaoContador{Contador(nome) required}
+    Contador to AvaliacaoContador{Contador(nome) required}
+    Contador to ContadorResponsavelTarefaRecorrente { Contador (nome) required}
+    Contador to OrdemServico {Contador (nome) required }
+
+
+    TarefaRecorrenteExecucao to AgendaTarefaRecorrenteExecucao { TarefaRecorrenteExecucao (nome) required}
+    TarefaRecorrenteExecucao to AnexoTarefaRecorrenteExecucao {TarefaRecorrenteExecucao(nome) required}
+    TarefaRecorrenteExecucao to SubTarefaRecorrente {TarefaRecorrenteExecucao(nome)  required}
+    TarefaRecorrenteExecucao to ContadorResponsavelTarefaRecorrente { TarefaRecorrenteExecucao (nome) required}
+
+    TarefaOrdemServicoExecucao to AgendaTarefaOrdemServicoExecucao { TarefaOrdemServicoExecucao (nome) required}
+    TarefaOrdemServicoExecucao to AnexoOrdemServicoExecucao {TarefaOrdemServicoExecucao(nome) required}
+    TarefaOrdemServicoExecucao to SubTarefaOrdemServico {TarefaOrdemServicoExecucao(nome)  required}
+    TarefaOrdemServicoExecucao to ContadorResponsavelOrdemServico { TarefaOrdemServicoExecucao (nome) required}
+
+    AgendaTarefaOrdemServicoExecucao to AgendaContadorConfig { AgendaTarefaOrdemServicoExecucao required}
+
+    PerfilContador to Contador{PerfilContador(perfil) required}
+    PerfilContador to PerfilContadorDepartamento{PerfilContador(perfil) required}
+    TermoDeAdesao to TermoAdesaoContador{TermoDeAdesao(titulo) required}
+    Avaliacao to AvaliacaoContador{Avaliacao(nome) required}
+    TarefaRecorrente to TarefaRecorrenteExecucao {TarefaRecorrente(nome) required}
+    TarefaOrdemServico to TarefaOrdemServicoExecucao {TarefaOrdemServico(nome) required}
+    OrdemServico to FeedBackUsuarioParaContador {OrdemServico  required}
+    OrdemServico to FeedBackContadorParaUsuario {OrdemServico  required}
+   
+   
+    UsuarioContador to FeedBackUsuarioParaContador {UsuarioContador  required }
+    CriterioAvaliacaoAtor to FeedBackUsuarioParaContador { CriterioAvaliacaoAtor(descricao) required}
+    ServicoContabilAssinaturaEmpresa to TarefaRecorrente {ServicoContabilAssinaturaEmpresa  required}
+    ServicoContabilAssinaturaEmpresa to AnexoServicoContabilEmpresa {ServicoContabilAssinaturaEmpresa  required}
+    ServicoContabil to ServicoContabilAssinaturaEmpresa {ServicoContabil (nome) required}
+    AssinaturaEmpresa to ServicoContabilAssinaturaEmpresa {AssinaturaEmpresa (codigoAssinatura) required}
+    AssinaturaEmpresa to  AreaContabilAssinaturaEmpresa  {AssinaturaEmpresa (codigoAssinatura) required}
+    AreaContabil to  AreaContabilAssinaturaEmpresa  {AreaContabil (nome) required}
+    Esfera  to Imposto  {Esfera(nome) required}
+    Esfera to ServicoContabil {Esfera(nome) required}
+    ServicoContabil to ServicoContabilOrdemServico {ServicoContabil (nome) required}
+    OrdemServico to ServicoContabilOrdemServico {OrdemServico (descricao) required}
+
+
+}

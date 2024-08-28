@@ -88,7 +88,6 @@ entity AssinaturaEmpresa {
     diaVencimento Integer
     situacaoContratoEmpresa SituacaoContratoEmpresaEnum
     tipoContrato TipoContratoEnum
-
 }
 entity AgendaTarefaRecorrenteExecucao (agen_tafe_reco_exec){
     ativo Boolean
@@ -144,12 +143,11 @@ entity AvaliacaoContador {
 entity Avaliacao {
     nome String
     descricao TextBlob
-
 }
 
 
 entity AreaContabil{
-    nome String 
+    nome String
     descricao String maxlength(200)
     percentual Double
 }
@@ -197,7 +195,6 @@ entity Banco {
 entity CriterioAvaliacao{
     nome String required
     descricao String
-
 }
 
 entity CriterioAvaliacaoAtor {
@@ -306,7 +303,7 @@ entity ContratoFuncionario {
     periodoIntermitente PeriodoIntermitenteEnum
     indicativoAdmissao IndicativoAdmissaoEnum
     numeroPisNisPasep Integer
-    
+
 
 }
 entity ClasseCnae {
@@ -316,11 +313,12 @@ entity ClasseCnae {
 }
 
 entity ContadorResponsavelTarefaRecorrente (cont_respo_tare_recorrente){
-
     dataAtribuicao Instant
     dataRevogacao Instant
     concluida Boolean
 }
+
+
 entity Denuncia {
     titulo String required
       mensagem String required
@@ -473,7 +471,6 @@ entity Enquadramento {
 entity Esfera {
     nome String maxlength(50)
     descricao TextBlob
-
 }
 
 entity Estado {
@@ -509,7 +506,7 @@ entity FeedBackContadorParaUsuario (feed_contador_para_usuario) {
 }
 
 entity Funcionalidade {
-    nome String 
+    nome String
     ativa Boolean
 }
 
@@ -581,7 +578,7 @@ entity GrupoAcessoEmpresaUsuarioContador (grup_acess_empresa_usua_cont)
 
 entity GrupoAcessoUsuarioContador (grou_acess_usua_cont)
 {
-  
+
     dataExpiracao Instant
     ilimitado Boolean
     desabilitar Boolean
@@ -618,7 +615,7 @@ entity GrupoCnae {
 
 entity InstituicaoEnsino{
     nome String maxlength(200) required
-    cnpj String 
+    cnpj String
     logradouro String
       numero String maxlength(5)
       complemento String maxlength(100)
@@ -682,7 +679,7 @@ entity Pais {
 
 }
 entity PerfilAcesso {
-    nome String 
+    nome String
     descricao String
 }
 
@@ -829,8 +826,8 @@ entity Tarefa {
 }
 entity TarefaEmpresa {
     dataHora Instant
-
 }
+
 entity Telefone {
     codigoArea String required maxlength(3)
     telefone String required
@@ -861,9 +858,9 @@ entity TarefaRecorrenteEmpresaModelo (taf_reco_empresa_modelo){
 entity TermoDeAdesao {
     titulo String
     descricao TextBlob
-
-
 }
+
+
 entity TipoDenuncia {
     tipo String
       descricao TextBlob
@@ -878,7 +875,7 @@ entity Tributacao {
 
 
 entity UsuarioContador {
-    
+
      email String maxlength(200) required
       senha TextBlob required
       token TextBlob
@@ -890,7 +887,7 @@ entity UsuarioContador {
 
 
 entity UsuarioEmpresa {
-    
+
       email String maxlength(200) required
       senha TextBlob required
       token TextBlob
@@ -1057,7 +1054,6 @@ entity TarefaRecorrenteExecucao {
 
 
 entity TarefaOrdemServico {
-
     nome String
     descricao String
     notificarCliente Boolean
@@ -1315,199 +1311,149 @@ relationship OneToOne {
 
     Socio {Pessoa(nome) required} to Pessoa
     Funcionario {UsuarioEmpresa (email) required } to  UsuarioEmpresa
-    Socio {UsuarioEmpresa(email) required } to  UsuarioEmpresa 
+    Socio {UsuarioEmpresa(email) required } to  UsuarioEmpresa
     Contador {Pessoa(nome) required} to Pessoa
     Administrador {Pessoa(nome) required} to Pessoa
     Contador {UsuarioContador(email) required} to UsuarioContador
     UsuarioGestao  {Administrador(nome) required} to Administrador
-   
+
 }
 relationship OneToMany {
 
- 
+    UsuarioContador to GrupoAcessoEmpresaUsuarioContador {UsuarioContador (email) required}
+    Permisao to GrupoAcessoEmpresaUsuarioContador {Permisao (nome)required }
+    GrupoAcessoEmpresa to GrupoAcessoEmpresaUsuarioContador  {GrupoAcessoEmpresa (nome) required}
+    UsuarioContador to GrupoAcessoUsuarioContador { UsuarioContador (email) required}
+    GrupoAcessoPadrao to GrupoAcessoUsuarioContador { GrupoAcessoPadrao (nome) required}
+    Contador to  AreaContabilAssinaturaEmpresa  {Contador (crc) required}
+    UsuarioEmpresa to FeedBackUsuarioParaContador {UsuarioEmpresa required }
+    UsuarioContador to FeedBackUsuarioParaContador {UsuarioContador  required }
+    CriterioAvaliacaoAtor to FeedBackUsuarioParaContador { CriterioAvaliacaoAtor(descricao) required}
+    CriterioAvaliacaoAtor to FeedBackContadorParaUsuario { CriterioAvaliacaoAtor(descricao) required}
+    UsuarioEmpresa to FeedBackContadorParaUsuario { UsuarioEmpresa required}
+    Contador to FeedBackContadorParaUsuario {Contador (crc) required}
+    OrdemServico to FeedBackUsuarioParaContador {OrdemServico  required}
+    OrdemServico to FeedBackContadorParaUsuario {OrdemServico  required}
+    Contador to OrdemServico {Contador (crc) required }  // ok
+    Contador to AreaContabilContador {Contador(crc) required}
+    AreaContabil to AreaContabilContador {AreaContabil(nome) required}
+    AgendaTarefaRecorrenteExecucao to AgendaContadorConfig { AgendaTarefaRecorrenteExecucao required}
+    AgendaTarefaOrdemServicoExecucao to AgendaContadorConfig { AgendaTarefaOrdemServicoExecucao required}
+    TarefaOrdemServicoExecucao to ContadorResponsavelOrdemServico { TarefaOrdemServicoExecucao (nome) required}
+    Contador to ContadorResponsavelOrdemServico { Contador (crc) required}
+    TarefaRecorrenteExecucao to ContadorResponsavelTarefaRecorrente { TarefaRecorrenteExecucao (nome) required}
+    Contador to ContadorResponsavelTarefaRecorrente { Contador (crc) required}
+    Departamento to PerfilContadorDepartamento{Departamento(nome) required}
+    Departamento to DepartamentoContador{Departamento(nome) required}
+    Contador to DepartamentoEmpresa{Contador(crc) required}
+    Contador to DepartamentoContador{Contador(crc) required}
+    Contador to TermoAdesaoContador{Contador(crc) required}
+    Contador to AvaliacaoContador{Contador(crc) required}
+    Contador to TarefaEmpresa{Contador(crc) required}
+    PerfilContador to Contador{PerfilContador(perfil) required}
+    PerfilContador to PerfilContadorDepartamento{PerfilContador(perfil) required}
+    TermoDeAdesao to TermoAdesaoContador{TermoDeAdesao(titulo) required}
+    Avaliacao to AvaliacaoContador{Avaliacao(nome) required}
+
+
     Pessoa to Funcionario {Pessoa (nome) required }
     Empresa to Funcionario{Empresa(razaoSocial) required}
-
     Sistema to Modulo {Sistema(nome) required}
     Modulo to Funcionalidade {Modulo(nome)required}
     Funcionalidade to FuncionalidadeGrupoAcessoPadrao { Funcionalidade (nome) required}
     GrupoAcessoPadrao to FuncionalidadeGrupoAcessoPadrao {GrupoAcessoPadrao (nome)required }
     Permisao to FuncionalidadeGrupoAcessoPadrao {Permisao (nome)required }
-
     Funcionalidade to FuncionalidadeGrupoAcessoEmpresa {Funcionalidade (nome) required}
     GrupoAcessoEmpresa to FuncionalidadeGrupoAcessoEmpresa  {GrupoAcessoEmpresa (nome) required}
     Permisao to FuncionalidadeGrupoAcessoEmpresa  {Permisao (nome)required }
-
-
     AssinaturaEmpresa to GrupoAcessoEmpresa {AssinaturaEmpresa (codigoAssinatura) required}
-    
     GrupoAcessoEmpresa to GrupoAcessoUsuarioEmpresa {GrupoAcessoEmpresa (nome) required}
     UsuarioEmpresa to GrupoAcessoUsuarioEmpresa {UsuarioEmpresa (email) required}
-
-    UsuarioContador to GrupoAcessoEmpresaUsuarioContador {UsuarioContador (email) required}
-    Permisao to GrupoAcessoEmpresaUsuarioContador {Permisao (nome)required }
-    GrupoAcessoEmpresa to GrupoAcessoEmpresaUsuarioContador  {GrupoAcessoEmpresa (nome) required}
-
-    UsuarioContador to GrupoAcessoUsuarioContador { UsuarioContador (email) required}
-    GrupoAcessoPadrao to GrupoAcessoUsuarioContador { GrupoAcessoPadrao (nome) required}
-
-
-
     AreaContabil to  AreaContabilAssinaturaEmpresa  {AreaContabil (nome) required}
     AssinaturaEmpresa to  AreaContabilAssinaturaEmpresa  {AssinaturaEmpresa (codigoAssinatura) required}
-    Contador to  AreaContabilAssinaturaEmpresa  {Contador (crc) required}
-
     CriterioAvaliacao to CriterioAvaliacaoAtor { CriterioAvaliacao(descricao) required}
     AtorAvaliado to CriterioAvaliacaoAtor { AtorAvaliado(nome) required}
-
-    UsuarioEmpresa to FeedBackUsuarioParaContador {UsuarioEmpresa required }
-    UsuarioContador to FeedBackUsuarioParaContador {UsuarioContador  required }
-    CriterioAvaliacaoAtor to FeedBackUsuarioParaContador { CriterioAvaliacaoAtor(descricao) required}
-    OrdemServico to FeedBackUsuarioParaContador {OrdemServico  required}
-    
-    CriterioAvaliacaoAtor to FeedBackContadorParaUsuario { CriterioAvaliacaoAtor(descricao) required}
-    UsuarioEmpresa to FeedBackContadorParaUsuario { UsuarioEmpresa required}
-    Contador to FeedBackContadorParaUsuario {Contador (crc) required}
-    OrdemServico to FeedBackContadorParaUsuario {OrdemServico  required}
-
-
+    Empresa to OrdemServico {Empresa (razaoSocial) required }  // ok
+    FluxoModelo to OrdemServico {FluxoModelo (nome)  }  // ok
+    OrdemServico to EtapaFluxoExecucao  {OrdemServico required}
+    OrdemServico to ServicoContabilOrdemServico {OrdemServico (descricao) required}
     EmpresaModelo to ServicoContabilEmpresaModelo {EmpresaModelo(nome) required}
     ServicoContabil to  ServicoContabilEmpresaModelo {ServicoContabil (nome) required}
     ServicoContabilEmpresaModelo to TarefaRecorrenteEmpresaModelo {ServicoContabilEmpresaModelo required }
-
     Pessoa to AnexoPessoa{Pessoa(nome) required}
     AnexoPessoa to AnexoRequeridoPessoa {AnexoPessoa(descricao) required}
     AnexoRequerido to AnexoRequeridoPessoa {AnexoRequerido(nome) required}
-
     Empresa to AnexoEmpresa{Empresa(razaoSocial) required}
     AnexoRequeridoEmpresa to AnexoEmpresa{AnexoRequeridoEmpresa required}
-
     AnexoRequerido to AnexoRequeridoEmpresa {AnexoRequerido(nome) required}
     Enquadramento to AnexoRequeridoEmpresa {Enquadramento(nome) required}
     Tributacao to AnexoRequeridoEmpresa {Tributacao(nome) required}
     Ramo to AnexoRequeridoEmpresa {Ramo(nome) required}
-
-
     Pessoa to EscolaridadePessoa {Pessoa(nome) required} // ok
     Escolaridade to EscolaridadePessoa { Escolaridade(nome) required }
-    
-
     Funcionario  to Estrangeiro {Funcionario required} // ok
-  
     Cidade  to InstituicaoEnsino {Cidade (nome) required} //  ok
     Pessoa to BancoPessoa{Pessoa(nome) required} // ok
     Banco to BancoPessoa{Banco(nome) required} //ok
     AreaContabil to ServicoContabil {AreaContabil(nome) required} // ok
     Esfera to ServicoContabil {Esfera(nome) required} // ok
-
     Cidade  to AgenteIntegracaoEstagio {Cidade (nome) required} //  ok
-
-
-    Funcionario to ContratoFuncionario {Funcionario required } 
+    Funcionario to ContratoFuncionario {Funcionario required }
     AgenteIntegracaoEstagio to ContratoFuncionario {AgenteIntegracaoEstagio (razaoSocial)}
     InstituicaoEnsino to ContratoFuncionario {InstituicaoEnsino (nome)}
-    Funcionario to DemissaoFuncionario {Funcionario required } 
-
+    Funcionario to DemissaoFuncionario {Funcionario required }
     Ramo to EmpresaModelo {Ramo (nome) required } // ok
     Enquadramento to EmpresaModelo{Enquadramento(nome) required} // ok
     Tributacao to EmpresaModelo{Tributacao(nome) required} // ok
     Cidade to EmpresaModelo{Cidade(nome) required} // ok
     EmpresaModelo to ImpostoEmpresaModelo {EmpresaModelo (nome) required}
-
-    Empresa to OrdemServico {Empresa (razaoSocial) required }  // ok
-    Contador to OrdemServico {Contador (crc) required }  // ok
-    FluxoModelo to OrdemServico {FluxoModelo (nome)  }  // ok
-
     Cidade to FluxoModelo {Cidade(nome) required} //ok
     FluxoModelo to EtapaFluxoModelo{FluxoModelo(nome) required}
-
     EtapaFluxoModelo to ServicoContabilEtapaFluxoModelo {EtapaFluxoModelo (nome) required}
     ServicoContabil to ServicoContabilEtapaFluxoModelo {ServicoContabil (nome) required}
-
-    OrdemServico to EtapaFluxoExecucao  {OrdemServico required}
-    
-
-    Contador to AreaContabilContador {Contador(crc) required}
-    AreaContabil to AreaContabilContador {AreaContabil(nome) required}
-
-
     ServicoContabil to ServicoContabilEtapaFluxoExecucao { ServicoContabil(nome) required}
     EtapaFluxoExecucao to ServicoContabilEtapaFluxoExecucao { EtapaFluxoExecucao(nome) required}
-
     ServicoContabil to AnexoRequeridoServicoContabil {ServicoContabil(nome) required}
     AnexoRequerido to AnexoRequeridoServicoContabil {AnexoRequerido (nome) required}
-
-
     ServicoContabil to ServicoContabilOrdemServico {ServicoContabil(nome) required}
-    OrdemServico to ServicoContabilOrdemServico {OrdemServico (descricao) required}
-
     AnexoRequerido to AnexoServicoContabilEmpresa {AnexoRequerido (nome) required}
     ServicoContabilAssinaturaEmpresa to AnexoServicoContabilEmpresa {ServicoContabilAssinaturaEmpresa  required}
-
     //Empresa to ServicoContabilAssinaturaEmpresa {Empresa (razaoSocial) required}
     ServicoContabil to ServicoContabilAssinaturaEmpresa {ServicoContabil (nome) required}
-
-
-
-    AgendaTarefaRecorrenteExecucao to AgendaContadorConfig { AgendaTarefaRecorrenteExecucao required}
-    AgendaTarefaOrdemServicoExecucao to AgendaContadorConfig { AgendaTarefaOrdemServicoExecucao required}
-
-
     AnexoRequerido to AnexoRequeridoTarefaOrdemServico {AnexoRequerido (nome) required}
     TarefaOrdemServico to AnexoRequeridoTarefaOrdemServico {TarefaOrdemServico (nome) required}
     ServicoContabilOrdemServico to TarefaOrdemServico {ServicoContabilOrdemServico  required}
-
-
     TarefaOrdemServicoExecucao to AgendaTarefaOrdemServicoExecucao { TarefaOrdemServicoExecucao (nome) required}
     TarefaOrdemServicoExecucao to AnexoOrdemServicoExecucao {TarefaOrdemServicoExecucao(nome) required}
     TarefaOrdemServicoExecucao to SubTarefaOrdemServico {TarefaOrdemServicoExecucao(nome)  required}
     TarefaOrdemServico to TarefaOrdemServicoExecucao {TarefaOrdemServico(nome) required}
-    TarefaOrdemServicoExecucao to ContadorResponsavelOrdemServico { TarefaOrdemServicoExecucao (nome) required}
-    Contador to ContadorResponsavelOrdemServico { Contador (crc) required}
-
-
     TarefaRecorrenteExecucao to AgendaTarefaRecorrenteExecucao { TarefaRecorrenteExecucao (nome) required}
     TarefaRecorrenteExecucao to AnexoTarefaRecorrenteExecucao {TarefaRecorrenteExecucao(nome) required}
     TarefaRecorrenteExecucao to SubTarefaRecorrente {TarefaRecorrenteExecucao(nome)  required}
     TarefaRecorrente to TarefaRecorrenteExecucao {TarefaRecorrente(nome) required}
-    TarefaRecorrenteExecucao to ContadorResponsavelTarefaRecorrente { TarefaRecorrenteExecucao (nome) required}
-    Contador to ContadorResponsavelTarefaRecorrente { Contador (crc) required}
-
     ServicoContabilAssinaturaEmpresa to TarefaRecorrente {ServicoContabilAssinaturaEmpresa  required}
-
     AnexoRequerido to AnexoRequeridoTarefaRecorrente {AnexoRequerido (nome) required}
     TarefaRecorrente to AnexoRequeridoTarefaRecorrente {TarefaRecorrente (nome) required}
-
     Pessoa to DependentesFuncionario {Pessoa (nome) required}
     Funcionario to DependentesFuncionario {Funcionario required}
     Funcionario to EmpresaVinculada {Funcionario required}
     Profissao to Funcionario {Profissao (nome) required }
-
-
     Empresa to AnexoRequeridoEmpresa {Empresa(razaoSocial) }
     EmpresaModelo to AnexoRequeridoEmpresa {EmpresaModelo(nome) required}
     AnexoRequerido to AnexoRequeridoEmpresa {AnexoRequerido (nome) required}
-
     AssinaturaEmpresa to ServicoContabilAssinaturaEmpresa {AssinaturaEmpresa(codigoAssinatura) required}
     ServicoContabil to ServicoContabilAssinaturaEmpresa { ServicoContabil (nome) required }
-
     Empresa to ImpostoEmpresa {Empresa(razaoSocial) required}
     Imposto to ImpostoEmpresa {Imposto(nome) required}
     Esfera  to Imposto  {Esfera(nome) required} // ok
-
     Imposto to ParcelamentoImposto {Imposto(nome) required} // ok
     ParcelamentoImposto to  ParcelaImpostoAPagar { ParcelamentoImposto required} // ajustado
     ParcelamentoImposto  to ImpostoParcelado {ParcelamentoImposto  required} // ajustado
     ImpostoAPagarEmpresa to ImpostoParcelado {ImpostoAPagarEmpresa required} // ajustado
-
     ImpostoEmpresa to ImpostoAPagarEmpresa {Imposto(diaVencimento) required} // ok
-
     Empresa to ParcelamentoImposto {Empresa(razaoSocial) required} // ok
-
     AssinaturaEmpresa to GatewayAssinaturaEmpresa{AssinaturaEmpresa(codigoAssinatura) required}
     GatewayPagamento to GatewayAssinaturaEmpresa{GatewayPagamento(nome) required}
-
-
     Imposto  to  ImpostoEmpresaModelo {Imposto(nome) required}
     EmpresaModelo to TarefaEmpresaModelo {EmpresaModelo(nome) required}
     ServicoContabil  to TarefaEmpresaModelo {ServicoContabil(nome) required}
@@ -1521,7 +1467,6 @@ relationship OneToMany {
     ClasseCnae to SubclasseCnae{Classe(descricao) required}
     SubclasseCnae to ObservacaoCnae{Subclasse(descricao) required}
     SubclasseCnae to AtividadeEmpresa{cnae(descricao) required}
-
     PeriodoPagamento to CalculoPlanoAssinatura{PeriodoPagamento(periodo) required}
     PlanoContaAzul to CalculoPlanoAssinatura{PlanoContaAzul(nome) required}
     PlanoContabil to CalculoPlanoAssinatura{PlanoContabil(nome) required}
@@ -1529,7 +1474,6 @@ relationship OneToMany {
     Tributacao to CalculoPlanoAssinatura{Tributacao(nome) required}
     DescontoPlanoContabil to CalculoPlanoAssinatura {DescontoPlanoContabil(percentual) required}
     DescontoPlanoContaAzul to CalculoPlanoAssinatura {DescontoPlanoContaAzul(percentual) required}
-
     AssinaturaEmpresa  to CalculoPlanoAssinatura{AssinaturaEmpresa(codigoAssinatura) required}
     AssinaturaEmpresa to Pagamento{AssinaturaEmpresa(codigoAssinatura) required}
     PeriodoPagamento to AssinaturaEmpresa{PeriodoPagamento(periodo) required}
@@ -1559,10 +1503,9 @@ relationship OneToMany {
     PlanoContabil to AdicionalEnquadramento{PlanoContabil(nome) required}
     PlanoContabil to ValorBaseRamo {PlanoContabil(nome) required}
     Departamento to DepartamentoEmpresa{Departamento(nome) required}
-    Departamento to PerfilContadorDepartamento{Departamento(nome) required}
-    Departamento to DepartamentoContador{Departamento(nome) required}
+
     Departamento to DepartamentoFuncionario{Departamento(nome) required}
-   
+
     Empresa to DepartamentoEmpresa{Empresa(razaoSocial) required}
     Empresa to TarefaEmpresa{Empresa(razaoSocial) required}
     Empresa to EnderecoEmpresa{Empresa(razaoSocial) required}
@@ -1582,25 +1525,19 @@ relationship OneToMany {
     Cidade to EnderecoPessoa{Cidade(nome) required}
     Cidade to EnderecoEmpresa{Cidade(nome) required}
     Estado to Cidade{Estado(nome) required}
-    Contador to DepartamentoEmpresa{Contador(crc) required}
-    Contador to DepartamentoContador{Contador(crc) required}
-    Contador to TermoAdesaoContador{Contador(crc) required}
+
     Empresa to TermoAdesaoEmpresa{Empresa(razaoSocial) required}
     PlanoContabil to TermoAdesaoEmpresa{PlanoContabil(nome) required}
 
-    Contador to AvaliacaoContador{Contador(crc) required}
-    Contador to TarefaEmpresa{Contador(crc) required}
-    PerfilContador to Contador{PerfilContador(perfil) required}
-    PerfilContador to PerfilContadorDepartamento{PerfilContador(perfil) required}
+
     Tarefa to TarefaEmpresa{Tarefa(titulo) required}
     Tarefa to Subtarefa{Tarefa(titulo) required}
     Esfera to Tarefa {Esfera(nome) required}
     Frequencia to Tarefa {Frequencia(nome) required}
     Competencia to Tarefa {Competencia(nome) required}
-    TermoDeAdesao to TermoAdesaoContador{TermoDeAdesao(titulo) required}
 
-    Avaliacao to AvaliacaoContador{Avaliacao(nome) required}
-    
+
+
     Profissao  to Socio  {Profissao(nome) } // ajustado
 }
 relationship ManyToMany {
