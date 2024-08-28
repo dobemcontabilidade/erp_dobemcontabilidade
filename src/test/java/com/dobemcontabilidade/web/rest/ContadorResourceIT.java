@@ -521,16 +521,16 @@ class ContadorResourceIT {
         partialUpdatedContador.setId(contador.getId());
 
         partialUpdatedContador
-            .cpf(UPDATED_CPF)
-            .rg(UPDATED_RG)
+            .nome(UPDATED_NOME)
+            .dataNascimento(UPDATED_DATA_NASCIMENTO)
+            .rgOrgaoExpeditor(UPDATED_RG_ORGAO_EXPEDITOR)
             .nomeMae(UPDATED_NOME_MAE)
             .nomePai(UPDATED_NOME_PAI)
             .localNascimento(UPDATED_LOCAL_NASCIMENTO)
-            .racaECor(UPDATED_RACA_E_COR)
             .pessoaComDeficiencia(UPDATED_PESSOA_COM_DEFICIENCIA)
-            .sexo(UPDATED_SEXO)
+            .estadoCivil(UPDATED_ESTADO_CIVIL)
             .crc(UPDATED_CRC)
-            .limiteAreaContabils(UPDATED_LIMITE_AREA_CONTABILS)
+            .limiteEmpresas(UPDATED_LIMITE_EMPRESAS)
             .limiteFaturamento(UPDATED_LIMITE_FATURAMENTO);
 
         restContadorMockMvc

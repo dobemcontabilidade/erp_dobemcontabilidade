@@ -142,7 +142,7 @@ spring:
       client:
         provider:
           oidc:
-            issuer-uri: http://localhost:9080/realms/jhipster
+            issuer-uri: https://auth.dobemcontabilidade.com/realms/jhipster
         registration:
           oidc:
             client-id: web_app
@@ -214,7 +214,7 @@ jhipster:
     license: unlicensed
     license-url:
   security:
-    content-security-policy: "default-src 'self'; frame-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:"
+    content-security-policy: "default-src 'self'; frame-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:"
     oauth2:
       audience:
         - account
