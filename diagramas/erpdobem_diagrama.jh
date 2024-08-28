@@ -2,19 +2,19 @@ enum SexoEnum {
     MASCULINO, FEMININO
 }
 
-enum TipoTarefaEnum {
-    RECORRENTE, ORDEM_SERVICO
-}
+//enum TipoTarefaEnum {
+//    RECORRENTE, ORDEM_SERVICO
+//}
 
 
 
-enum SituacaoUsuarioEmpresaEnum {
-    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
-}
+//enum SituacaoUsuarioEmpresaEnum {
+//    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
+//}
 
-enum SituacaoUsuarioGestaoEnum {
-    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
-}
+//enum SituacaoUsuarioGestaoEnum {
+//    ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
+//}
 
 enum EstadoCivilEnum {
     SOLTERO, CASADO, DIVORCIADO, VIUVO, UNIAO_ESTAVEL
@@ -33,9 +33,9 @@ enum SituacaoTermoContratoAssinadoEnum {
     }
 
 
-enum SituacaoPlanoContaAzulEnum {
-    ATIVO, INATIVO, EXCLUIDO
-}
+//enum SituacaoPlanoContaAzulEnum {
+//    ATIVO, INATIVO, EXCLUIDO
+//}
 
 enum SituacaoPlanoContabilEnum {
     ATIVO, INATIVO, EXCLUIDO
@@ -54,25 +54,25 @@ enum TipoTelefoneEnum {
     RESIDENCIAL, COMERCIAL, CELULAR, WHATSAPP
 }
 
-enum SituacaoFuncionarioEnum {
-    ADMITIDO, AFASTADO, DEMITIDO, EXPERIENCIA, DEMITIDO_JUSTA_CAUSA
-}
+//enum SituacaoFuncionarioEnum {
+//    ADMITIDO, AFASTADO, DEMITIDO, EXPERIENCIA, DEMITIDO_JUSTA_CAUSA
+//}
 
 enum SituacaoTributacaoEnum {
     ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
 }
 
-enum SituacaoPagamentoEnum {
-    A_PAGAR, PAGO, EM_ATRASO
-}
+//enum SituacaoPagamentoEnum {
+//    A_PAGAR, PAGO, EM_ATRASO
+//}
 
-enum TipoSegmentoEnum {
-    SERVICO, COMERCIO, SERVICO_COMERCIO, INDUSTRIA
-}
+//enum TipoSegmentoEnum {
+//    SERVICO, COMERCIO, SERVICO_COMERCIO, INDUSTRIA
+//}
 
-enum TipoRedeSocialEnum {
-    FACEBOOK, TWITTER, INSTAGRAN, YOUTUBE, LINKEDIN, OUTROS
-}
+//enum TipoRedeSocialEnum {
+//    FACEBOOK, TWITTER, INSTAGRAN, YOUTUBE, LINKEDIN, OUTROS
+//}
 
 entity Pessoajuridica {
     razaoSocial String required
@@ -212,15 +212,15 @@ entity FormaDePagamento {
     disponivel Boolean
 }
 
-entity GatewayPagamento {
-    nome String
-    disponivel Boolean
-}
-
-entity GatewayAssinaturaEmpresa {
-    codigoAssinatura String
-    disponivel Boolean
-}
+//entity GatewayPagamento {
+//    nome String
+//    disponivel Boolean
+//}
+//
+//entity GatewayAssinaturaEmpresa {
+//    codigoAssinatura String
+//    disponivel Boolean
+//}
 
 
 entity TermoContratoContabil {
@@ -236,7 +236,7 @@ entity TermoContratoAssinaturaEmpresa {
 	dataAssinatura Instant
     dataEnvioEmail Instant
     urlDocumentoAssinado TextBlob
-    situacao SituacaoTermoContratoAssinadoEnum 
+    situacao SituacaoTermoContratoAssinadoEnum
 }
 
 entity PeriodoPagamento {
@@ -261,7 +261,7 @@ entity PlanoAssinaturaContabil {
 }
 
 entity AdicionalEnquadramento {
-	valor Double	  
+	valor Double
 }
 
 entity AdicionalRamo {
@@ -295,7 +295,7 @@ entity EnderecoPessoa  {
 	numero String
 	complemento String
 	bairro String
-	cep String	 
+	cep String
 	principal Boolean
 }
 
@@ -323,6 +323,10 @@ relationship OneToOne {
 }
 
 relationship OneToMany {
+
+    RedeSocial to RedeSocialEmpresa{RedeSocial(nome) required}
+    Pessoajuridica to RedeSocialEmpresa{Pessoajuridica(razaoSocial) required}
+
     Pais to Estado{Pais(nome) required}
     PessoaFisica to EnderecoPessoa{Pessoa(nome) required}
 	PessoaFisica to DocsPessoa{Pessoa(nome) required}
