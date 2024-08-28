@@ -1,0 +1,35 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "planoAssinaturaContabil": {
+      "home": {
+        "title": "Plano Assinatura Contabils",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Plano Assinatura Contabil",
+        "createOrEditLabel": "Criar ou editar Plano Assinatura Contabil",
+        "notFound": "Nenhum Plano Assinatura Contabil encontrado"
+      },
+      "created": "Um novo Plano Assinatura Contabil foi criado com o identificador {{ param }}",
+      "updated": "Um Plano Assinatura Contabil foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Plano Assinatura Contabil foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Plano Assinatura Contabil {{ id }}?"
+      },
+      "detail": {
+        "title": "Plano Assinatura Contabil"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "adicionalSocio": "Adicional Socio",
+      "adicionalFuncionario": "Adicional Funcionario",
+      "sociosIsentos": "Socios Isentos",
+      "adicionalFaturamento": "Adicional Faturamento",
+      "valorBaseFaturamento": "Valor Base Faturamento",
+      "valorBaseAbertura": "Valor Base Abertura",
+      "situacao": "Situacao",
+      "descontoPeriodoPagamento": "Desconto Periodo Pagamento",
+      "adicionalRamo": "Adicional Ramo",
+      "adicionalTributacao": "Adicional Tributacao",
+      "adicionalEnquadramento": "Adicional Enquadramento"
+    }
+  }
+}

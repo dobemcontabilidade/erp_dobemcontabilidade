@@ -1,6 +1,16 @@
 enum SexoEnum {
     MASCULINO, FEMININO
 }
+enum RacaECorEnum {
+    AMARELA,BRANCO,INDIGENA,PARDO,NEGRO,NAOINFORMADO
+}
+enum SituacaoContadorEnum {
+    BANIDO, BLOQUEADO, HABILITADO, INAPTO, INATIVO, PENDENTE, SUSPENSO
+}
+
+enum PessoaComDeficienciaEnum {
+    DEFICIENCIAMOTORA, DEFICIENCIAVISUAL, DEFICIENCIAAUDITIVA , REABILITADO, NAOPOSSUI
+}
 
 //enum TipoTarefaEnum {
 //    RECORRENTE, ORDEM_SERVICO
@@ -315,6 +325,31 @@ entity DocsPessoa {
 	urlArquivo TextBlob required
 	tipo String
 	descricao TextBlob
+}
+
+entity Contador {
+    nome String maxlength(200) required
+    cpf String required maxlength(200)
+    dataNascimento String maxlength(15)
+    tituloEleitor Integer
+    rg String required maxlength(10)
+    rgOrgaoExpeditor String
+    rgUfExpedicao String
+    nomeMae String maxlength(200)
+    nomePai String maxlength(200)
+    localNascimento String
+    racaECor RacaECorEnum
+    pessoaComDeficiencia PessoaComDeficienciaEnum
+    estadoCivil EstadoCivilEnum
+    sexo SexoEnum required
+    urlFotoPerfil String
+    rgOrgaoExpditor String
+    crc String required
+    limiteEmpresas Integer
+    limiteAreaContabils Integer
+    limiteFaturamento Double
+    limiteDepartamentos Integer
+    situacaoContador SituacaoContadorEnum
 }
 
 relationship OneToOne {

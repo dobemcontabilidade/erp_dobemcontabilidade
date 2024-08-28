@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (certificadoDigitalEmpresa()) {
+      <div>
+        <h2 data-cy="certificadoDigitalEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.detail.title">Certificado Digital Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ certificadoDigitalEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.urlCertificado">Url Certificado</span></dt>
+          <dd>
+            <span>{{ certificadoDigitalEmpresa()!.urlCertificado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.dataContratacao">Data Contratacao</span></dt>
+          <dd>
+            <span>{{ certificadoDigitalEmpresa()!.dataContratacao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.dataVencimento">Data Vencimento</span></dt>
+          <dd>
+            <span>{{ certificadoDigitalEmpresa()!.dataVencimento | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.diasUso">Dias Uso</span></dt>
+          <dd>
+            <span>{{ certificadoDigitalEmpresa()!.diasUso }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.pessoaJuridica">Pessoa Juridica</span></dt>
+          <dd>
+            @if (certificadoDigitalEmpresa()!.pessoaJuridica) {
+              <div>
+                <a [routerLink]="['/pessoajuridica', certificadoDigitalEmpresa()!.pessoaJuridica?.id, 'view']">{{
+                  certificadoDigitalEmpresa()!.pessoaJuridica?.razaoSocial
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.certificadoDigital">Certificado Digital</span></dt>
+          <dd>
+            @if (certificadoDigitalEmpresa()!.certificadoDigital) {
+              <div>
+                <a [routerLink]="['/certificado-digital', certificadoDigitalEmpresa()!.certificadoDigital?.id, 'view']">{{
+                  certificadoDigitalEmpresa()!.certificadoDigital?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.fornecedorCertificado">Fornecedor Certificado</span>
+          </dt>
+          <dd>
+            @if (certificadoDigitalEmpresa()!.fornecedorCertificado) {
+              <div>
+                <a [routerLink]="['/fornecedor-certificado', certificadoDigitalEmpresa()!.fornecedorCertificado?.id, 'view']">{{
+                  certificadoDigitalEmpresa()!.fornecedorCertificado?.razaoSocial
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/certificado-digital-empresa', certificadoDigitalEmpresa()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

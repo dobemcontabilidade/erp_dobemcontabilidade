@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194159"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "titulo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "urlDocumentoFonte",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "documento",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "disponivel",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dataCriacao",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "TermoContratoContabil",
+  "relationships": [
+    {
+      "otherEntityName": "termoContratoAssinaturaEmpresa",
+      "otherEntityRelationshipName": "termoContratoContabil",
+      "relationshipName": "termoContratoAssinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "fornecedorCertificado": {
+      "home": {
+        "title": "Fornecedor Certificados",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Fornecedor Certificado",
+        "createOrEditLabel": "Create or edit a Fornecedor Certificado",
+        "notFound": "No Fornecedor Certificados found"
+      },
+      "created": "A new Fornecedor Certificado is created with identifier {{ param }}",
+      "updated": "A Fornecedor Certificado is updated with identifier {{ param }}",
+      "deleted": "A Fornecedor Certificado is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Fornecedor Certificado {{ id }}?"
+      },
+      "detail": {
+        "title": "Fornecedor Certificado"
+      },
+      "id": "ID",
+      "razaoSocial": "Razao Social",
+      "sigla": "Sigla",
+      "descricao": "Descricao",
+      "certificadoDigitalEmpresa": "Certificado Digital Empresa"
+    }
+  }
+}

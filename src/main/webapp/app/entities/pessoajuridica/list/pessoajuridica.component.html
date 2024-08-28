@@ -1,0 +1,110 @@
+<div>
+  <h2 id="page-heading" data-cy="PessoajuridicaHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.home.title">Pessoajuridicas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pessoajuridica"
+        [routerLink]="['/pessoajuridica/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.home.createLabel">Criar novo Pessoajuridica</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (pessoajuridicas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.home.notFound">Nenhum Pessoajuridica encontrado</span>
+    </div>
+  }
+
+  @if (pessoajuridicas && pessoajuridicas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="razaoSocial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.razaoSocial">Razao Social</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nomeFantasia">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.nomeFantasia">Nome Fantasia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cnpj">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.cnpj">Cnpj</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pessoajuridica of pessoajuridicas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/pessoajuridica', pessoajuridica.id, 'view']">{{ pessoajuridica.id }}</a>
+              </td>
+              <td>{{ pessoajuridica.razaoSocial }}</td>
+              <td>{{ pessoajuridica.nomeFantasia }}</td>
+              <td>{{ pessoajuridica.cnpj }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/pessoajuridica', pessoajuridica.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/pessoajuridica', pessoajuridica.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(pessoajuridica)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

@@ -1,0 +1,118 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-rede-social-empresa-heading"
+        data-cy="RedeSocialEmpresaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.home.createOrEditLabel"
+      >
+        Criar ou editar Rede Social Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_perfil" jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.perfil">Perfil</label>
+          <input type="text" class="form-control" name="perfil" id="field_perfil" data-cy="perfil" formControlName="perfil" />
+          @if (editForm.get('perfil')!.invalid && (editForm.get('perfil')!.dirty || editForm.get('perfil')!.touched)) {
+            <div>
+              @if (editForm.get('perfil')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_urlPerfil" jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.urlPerfil"
+            >Url Perfil</label
+          >
+          <textarea class="form-control" name="urlPerfil" id="field_urlPerfil" data-cy="urlPerfil" formControlName="urlPerfil"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_redeSocial" jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.redeSocial"
+            >Rede Social</label
+          >
+          <select
+            class="form-control"
+            id="field_redeSocial"
+            data-cy="redeSocial"
+            name="redeSocial"
+            formControlName="redeSocial"
+            [compareWith]="compareRedeSocial"
+          >
+            @if (editForm.get(['redeSocial'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (redeSocialOption of redeSocialsSharedCollection; track $index) {
+              <option [ngValue]="redeSocialOption">{{ redeSocialOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['redeSocial'])!.invalid && (editForm.get(['redeSocial'])!.dirty || editForm.get(['redeSocial'])!.touched)) {
+          <div>
+            @if (editForm.get(['redeSocial'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pessoajuridica" jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.pessoajuridica"
+            >Pessoajuridica</label
+          >
+          <select
+            class="form-control"
+            id="field_pessoajuridica"
+            data-cy="pessoajuridica"
+            name="pessoajuridica"
+            formControlName="pessoajuridica"
+            [compareWith]="comparePessoajuridica"
+          >
+            @if (editForm.get(['pessoajuridica'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (pessoajuridicaOption of pessoajuridicasSharedCollection; track $index) {
+              <option [ngValue]="pessoajuridicaOption">{{ pessoajuridicaOption.razaoSocial }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['pessoajuridica'])!.invalid &&
+          (editForm.get(['pessoajuridica'])!.dirty || editForm.get(['pessoajuridica'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['pessoajuridica'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194143"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "razaoSocial",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nomeFantasia",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cnpj",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    }
+  ],
+  "name": "Pessoajuridica",
+  "relationships": [
+    {
+      "otherEntityName": "redeSocialEmpresa",
+      "otherEntityRelationshipName": "pessoajuridica",
+      "relationshipName": "redeSocialEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "certificadoDigitalEmpresa",
+      "otherEntityRelationshipName": "pessoaJuridica",
+      "relationshipName": "certificadoDigitalEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "docsEmpresa",
+      "otherEntityRelationshipName": "pessoaJuridica",
+      "relationshipName": "docsEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "enderecoEmpresa",
+      "otherEntityRelationshipName": "pessoaJuridica",
+      "relationshipName": "enderecoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

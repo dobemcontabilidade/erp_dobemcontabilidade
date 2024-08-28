@@ -1,0 +1,122 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194153"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "razaoSocial",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigoAssinatura",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valorEnquadramento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorTributacao",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorRamo",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorFuncionarios",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorSocios",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorFaturamento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorPlanoContabil",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorPlanoContabilComDesconto",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorPlanoContaAzulComDesconto",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorMensalidade",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorPeriodo",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorAno",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "dataContratacao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataEncerramento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "diaVencimento",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoContratoEmpresaEnum",
+      "fieldValues": "PROPOSTA,ATIVO,INATIVO,PENDENTE,BLOQUEADO,CANCELADO,EXCLUIDO"
+    },
+    {
+      "fieldName": "tipoContrato",
+      "fieldType": "TipoContratoEnum",
+      "fieldValues": "ABERTURA_EMPRESA,CONTRATACAO_PLANO"
+    }
+  ],
+  "name": "AssinaturaEmpresa",
+  "relationships": [
+    {
+      "otherEntityName": "termoContratoAssinaturaEmpresa",
+      "otherEntityRelationshipName": "empresa",
+      "relationshipName": "termoContratoAssinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "periodo",
+      "otherEntityName": "periodoPagamento",
+      "relationshipName": "periodoPagamento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "forma",
+      "otherEntityName": "formaDePagamento",
+      "relationshipName": "formaDePagamento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

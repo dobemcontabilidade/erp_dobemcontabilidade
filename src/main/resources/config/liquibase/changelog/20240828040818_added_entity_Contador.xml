@@ -10,7 +10,7 @@
         Added the entity Contador.
     -->
     <changeSet id="20240828040818-1" author="jhipster">
-        <createTable tableName="contador" remarks="ENTITIES">
+        <createTable tableName="contador">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

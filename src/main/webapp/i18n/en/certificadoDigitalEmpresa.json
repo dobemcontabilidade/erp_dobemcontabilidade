@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "certificadoDigitalEmpresa": {
+      "home": {
+        "title": "Certificado Digital Empresas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Certificado Digital Empresa",
+        "createOrEditLabel": "Create or edit a Certificado Digital Empresa",
+        "notFound": "No Certificado Digital Empresas found"
+      },
+      "created": "A new Certificado Digital Empresa is created with identifier {{ param }}",
+      "updated": "A Certificado Digital Empresa is updated with identifier {{ param }}",
+      "deleted": "A Certificado Digital Empresa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Certificado Digital Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Certificado Digital Empresa"
+      },
+      "id": "ID",
+      "urlCertificado": "Url Certificado",
+      "dataContratacao": "Data Contratacao",
+      "dataVencimento": "Data Vencimento",
+      "diasUso": "Dias Uso",
+      "pessoaJuridica": "Pessoa Juridica",
+      "certificadoDigital": "Certificado Digital",
+      "fornecedorCertificado": "Fornecedor Certificado"
+    }
+  }
+}

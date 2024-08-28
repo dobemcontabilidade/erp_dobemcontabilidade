@@ -1,0 +1,38 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "pessoaFisica": {
+      "home": {
+        "title": "Pessoa Fisicas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Pessoa Fisica",
+        "createOrEditLabel": "Criar ou editar Pessoa Fisica",
+        "notFound": "Nenhum Pessoa Fisica encontrado"
+      },
+      "created": "Um novo Pessoa Fisica foi criado com o identificador {{ param }}",
+      "updated": "Um Pessoa Fisica foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Pessoa Fisica foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Pessoa Fisica {{ id }}?"
+      },
+      "detail": {
+        "title": "Pessoa Fisica"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "cpf": "Cpf",
+      "dataNascimento": "Data Nascimento",
+      "tituloEleitor": "Titulo Eleitor",
+      "rg": "Rg",
+      "rgOrgaoExpditor": "Rg Orgao Expditor",
+      "rgUfExpedicao": "Rg Uf Expedicao",
+      "estadoCivil": "Estado Civil",
+      "sexo": "Sexo",
+      "urlFotoPerfil": "Url Foto Perfil",
+      "enderecoPessoa": "Endereco Pessoa",
+      "docsPessoa": "Docs Pessoa",
+      "email": "Email",
+      "telefone": "Telefone",
+      "socio": "Socio"
+    }
+  }
+}

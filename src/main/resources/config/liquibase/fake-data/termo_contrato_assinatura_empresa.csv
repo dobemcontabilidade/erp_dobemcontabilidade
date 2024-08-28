@@ -1,0 +1,11 @@
+id;data_assinatura;data_envio_email;url_documento_assinado;situacao;termo_contrato_contabil_id;empresa_id
+1;2024-08-27T23:16:23;2024-08-28T09:46:22;../fake-data/blob/hipster.txt;CANCELADO;1;1
+2;2024-08-28T02:21:54;2024-08-28T18:07:11;../fake-data/blob/hipster.txt;ASSINADO;2;2
+3;2024-08-28T06:38:24;2024-08-28T02:08:32;../fake-data/blob/hipster.txt;ENVIADO;3;3
+4;2024-08-28T18:39:28;2024-08-28T02:55:48;../fake-data/blob/hipster.txt;ASSINADO;4;4
+5;2024-08-28T17:22:52;2024-08-28T09:56:45;../fake-data/blob/hipster.txt;CANCELADO;5;5
+6;2024-08-28T10:37:53;2024-08-28T08:09:26;../fake-data/blob/hipster.txt;ASSINADO;6;6
+7;2024-08-28T19:02:52;2024-08-27T23:37:01;../fake-data/blob/hipster.txt;ENVIADO;7;7
+8;2024-08-28T02:29:15;2024-08-27T21:22:57;../fake-data/blob/hipster.txt;ENVIADO;8;8
+9;2024-08-28T00:07:24;2024-08-28T00:40:17;../fake-data/blob/hipster.txt;ASSINADO;9;9
+10;2024-08-28T19:07:20;2024-08-27T22:18:12;../fake-data/blob/hipster.txt;ENVIADO;10;10

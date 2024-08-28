@@ -1,0 +1,404 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-assinatura-empresa-heading"
+        data-cy="AssinaturaEmpresaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.home.createOrEditLabel"
+      >
+        Criar ou editar Assinatura Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_razaoSocial" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.razaoSocial"
+            >Razao Social</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="razaoSocial"
+            id="field_razaoSocial"
+            data-cy="razaoSocial"
+            formControlName="razaoSocial"
+          />
+          @if (editForm.get('razaoSocial')!.invalid && (editForm.get('razaoSocial')!.dirty || editForm.get('razaoSocial')!.touched)) {
+            <div>
+              @if (editForm.get('razaoSocial')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codigoAssinatura" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.codigoAssinatura"
+            >Codigo Assinatura</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codigoAssinatura"
+            id="field_codigoAssinatura"
+            data-cy="codigoAssinatura"
+            formControlName="codigoAssinatura"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_valorEnquadramento"
+            jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorEnquadramento"
+            >Valor Enquadramento</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorEnquadramento"
+            id="field_valorEnquadramento"
+            data-cy="valorEnquadramento"
+            formControlName="valorEnquadramento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorTributacao" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorTributacao"
+            >Valor Tributacao</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorTributacao"
+            id="field_valorTributacao"
+            data-cy="valorTributacao"
+            formControlName="valorTributacao"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorRamo" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorRamo"
+            >Valor Ramo</label
+          >
+          <input type="number" class="form-control" name="valorRamo" id="field_valorRamo" data-cy="valorRamo" formControlName="valorRamo" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_valorFuncionarios"
+            jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorFuncionarios"
+            >Valor Funcionarios</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorFuncionarios"
+            id="field_valorFuncionarios"
+            data-cy="valorFuncionarios"
+            formControlName="valorFuncionarios"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorSocios" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorSocios"
+            >Valor Socios</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorSocios"
+            id="field_valorSocios"
+            data-cy="valorSocios"
+            formControlName="valorSocios"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorFaturamento" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorFaturamento"
+            >Valor Faturamento</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorFaturamento"
+            id="field_valorFaturamento"
+            data-cy="valorFaturamento"
+            formControlName="valorFaturamento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_valorPlanoContabil"
+            jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorPlanoContabil"
+            >Valor Plano Contabil</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorPlanoContabil"
+            id="field_valorPlanoContabil"
+            data-cy="valorPlanoContabil"
+            formControlName="valorPlanoContabil"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_valorPlanoContabilComDesconto"
+            jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorPlanoContabilComDesconto"
+            >Valor Plano Contabil Com Desconto</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorPlanoContabilComDesconto"
+            id="field_valorPlanoContabilComDesconto"
+            data-cy="valorPlanoContabilComDesconto"
+            formControlName="valorPlanoContabilComDesconto"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_valorPlanoContaAzulComDesconto"
+            jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorPlanoContaAzulComDesconto"
+            >Valor Plano Conta Azul Com Desconto</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorPlanoContaAzulComDesconto"
+            id="field_valorPlanoContaAzulComDesconto"
+            data-cy="valorPlanoContaAzulComDesconto"
+            formControlName="valorPlanoContaAzulComDesconto"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorMensalidade" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorMensalidade"
+            >Valor Mensalidade</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorMensalidade"
+            id="field_valorMensalidade"
+            data-cy="valorMensalidade"
+            formControlName="valorMensalidade"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorPeriodo" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorPeriodo"
+            >Valor Periodo</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorPeriodo"
+            id="field_valorPeriodo"
+            data-cy="valorPeriodo"
+            formControlName="valorPeriodo"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valorAno" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.valorAno"
+            >Valor Ano</label
+          >
+          <input type="number" class="form-control" name="valorAno" id="field_valorAno" data-cy="valorAno" formControlName="valorAno" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataContratacao" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.dataContratacao"
+            >Data Contratacao</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataContratacao"
+              data-cy="dataContratacao"
+              type="datetime-local"
+              class="form-control"
+              name="dataContratacao"
+              formControlName="dataContratacao"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataEncerramento" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.dataEncerramento"
+            >Data Encerramento</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataEncerramento"
+              data-cy="dataEncerramento"
+              type="datetime-local"
+              class="form-control"
+              name="dataEncerramento"
+              formControlName="dataEncerramento"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diaVencimento" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.diaVencimento"
+            >Dia Vencimento</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="diaVencimento"
+            id="field_diaVencimento"
+            data-cy="diaVencimento"
+            formControlName="diaVencimento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_situacao" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.situacao">Situacao</label>
+          <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao" data-cy="situacao">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.SituacaoContratoEmpresaEnum.null' | translate }}</option>
+            @for (situacaoContratoEmpresaEnum of situacaoContratoEmpresaEnumValues; track $index) {
+              <option [value]="situacaoContratoEmpresaEnum">
+                {{ 'erpDobemcontabilidadeApp.SituacaoContratoEmpresaEnum.' + situacaoContratoEmpresaEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tipoContrato" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.tipoContrato"
+            >Tipo Contrato</label
+          >
+          <select class="form-control" name="tipoContrato" formControlName="tipoContrato" id="field_tipoContrato" data-cy="tipoContrato">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoContratoEnum.null' | translate }}</option>
+            @for (tipoContratoEnum of tipoContratoEnumValues; track $index) {
+              <option [value]="tipoContratoEnum">{{ 'erpDobemcontabilidadeApp.TipoContratoEnum.' + tipoContratoEnum | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_periodoPagamento" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.periodoPagamento"
+            >Periodo Pagamento</label
+          >
+          <select
+            class="form-control"
+            id="field_periodoPagamento"
+            data-cy="periodoPagamento"
+            name="periodoPagamento"
+            formControlName="periodoPagamento"
+            [compareWith]="comparePeriodoPagamento"
+          >
+            @if (editForm.get(['periodoPagamento'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (periodoPagamentoOption of periodoPagamentosSharedCollection; track $index) {
+              <option [ngValue]="periodoPagamentoOption">{{ periodoPagamentoOption.periodo }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['periodoPagamento'])!.invalid &&
+          (editForm.get(['periodoPagamento'])!.dirty || editForm.get(['periodoPagamento'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['periodoPagamento'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_formaDePagamento" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.formaDePagamento"
+            >Forma De Pagamento</label
+          >
+          <select
+            class="form-control"
+            id="field_formaDePagamento"
+            data-cy="formaDePagamento"
+            name="formaDePagamento"
+            formControlName="formaDePagamento"
+            [compareWith]="compareFormaDePagamento"
+          >
+            @if (editForm.get(['formaDePagamento'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (formaDePagamentoOption of formaDePagamentosSharedCollection; track $index) {
+              <option [ngValue]="formaDePagamentoOption">{{ formaDePagamentoOption.forma }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['formaDePagamento'])!.invalid &&
+          (editForm.get(['formaDePagamento'])!.dirty || editForm.get(['formaDePagamento'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['formaDePagamento'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_empresa" jhiTranslate="erpDobemcontabilidadeApp.assinaturaEmpresa.empresa">Empresa</label>
+          <select
+            class="form-control"
+            id="field_empresa"
+            data-cy="empresa"
+            name="empresa"
+            formControlName="empresa"
+            [compareWith]="compareEmpresa"
+          >
+            @if (editForm.get(['empresa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (empresaOption of empresasSharedCollection; track $index) {
+              <option [ngValue]="empresaOption">{{ empresaOption.razaoSocial }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['empresa'])!.invalid && (editForm.get(['empresa'])!.dirty || editForm.get(['empresa'])!.touched)) {
+          <div>
+            @if (editForm.get(['empresa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

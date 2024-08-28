@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "docsPessoa": {
+      "home": {
+        "title": "Docs Pessoas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Docs Pessoa",
+        "createOrEditLabel": "Criar ou editar Docs Pessoa",
+        "notFound": "Nenhum Docs Pessoa encontrado"
+      },
+      "created": "Um novo Docs Pessoa foi criado com o identificador {{ param }}",
+      "updated": "Um Docs Pessoa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Docs Pessoa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Docs Pessoa {{ id }}?"
+      },
+      "detail": {
+        "title": "Docs Pessoa"
+      },
+      "id": "ID",
+      "urlArquivo": "Url Arquivo",
+      "tipo": "Tipo",
+      "descricao": "Descricao",
+      "pessoa": "Pessoa"
+    }
+  }
+}

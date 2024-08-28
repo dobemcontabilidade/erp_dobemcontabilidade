@@ -1,0 +1,31 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "pessoajuridica": {
+      "home": {
+        "title": "Pessoajuridicas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Pessoajuridica",
+        "createOrEditLabel": "Criar ou editar Pessoajuridica",
+        "notFound": "Nenhum Pessoajuridica encontrado"
+      },
+      "created": "Um novo Pessoajuridica foi criado com o identificador {{ param }}",
+      "updated": "Um Pessoajuridica foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Pessoajuridica foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Pessoajuridica {{ id }}?"
+      },
+      "detail": {
+        "title": "Pessoajuridica"
+      },
+      "id": "ID",
+      "razaoSocial": "Razao Social",
+      "nomeFantasia": "Nome Fantasia",
+      "cnpj": "Cnpj",
+      "redeSocialEmpresa": "Rede Social Empresa",
+      "certificadoDigitalEmpresa": "Certificado Digital Empresa",
+      "docsEmpresa": "Docs Empresa",
+      "enderecoEmpresa": "Endereco Empresa",
+      "empresa": "Empresa"
+    }
+  }
+}

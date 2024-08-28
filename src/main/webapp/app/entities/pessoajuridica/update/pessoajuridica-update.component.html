@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-pessoajuridica-heading"
+        data-cy="PessoajuridicaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.home.createOrEditLabel"
+      >
+        Criar ou editar Pessoajuridica
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_razaoSocial" jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.razaoSocial"
+            >Razao Social</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="razaoSocial"
+            id="field_razaoSocial"
+            data-cy="razaoSocial"
+            formControlName="razaoSocial"
+          />
+          @if (editForm.get('razaoSocial')!.invalid && (editForm.get('razaoSocial')!.dirty || editForm.get('razaoSocial')!.touched)) {
+            <div>
+              @if (editForm.get('razaoSocial')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomeFantasia" jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.nomeFantasia"
+            >Nome Fantasia</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nomeFantasia"
+            id="field_nomeFantasia"
+            data-cy="nomeFantasia"
+            formControlName="nomeFantasia"
+          />
+          @if (editForm.get('nomeFantasia')!.invalid && (editForm.get('nomeFantasia')!.dirty || editForm.get('nomeFantasia')!.touched)) {
+            <div>
+              @if (editForm.get('nomeFantasia')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cnpj" jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.cnpj">Cnpj</label>
+          <input type="text" class="form-control" name="cnpj" id="field_cnpj" data-cy="cnpj" formControlName="cnpj" />
+          @if (editForm.get('cnpj')!.invalid && (editForm.get('cnpj')!.dirty || editForm.get('cnpj')!.touched)) {
+            <div>
+              @if (editForm.get('cnpj')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '20' }"
+                  >Este campo não pode ter mais de 20 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

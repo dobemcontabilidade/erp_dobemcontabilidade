@@ -1,0 +1,35 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194148"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "razaoSocial",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "name": "FornecedorCertificado",
+  "relationships": [
+    {
+      "otherEntityName": "certificadoDigitalEmpresa",
+      "otherEntityRelationshipName": "fornecedorCertificado",
+      "relationshipName": "certificadoDigitalEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

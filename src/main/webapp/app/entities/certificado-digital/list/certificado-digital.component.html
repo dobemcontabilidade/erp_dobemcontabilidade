@@ -1,0 +1,124 @@
+<div>
+  <h2 id="page-heading" data-cy="CertificadoDigitalHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.home.title">Certificado Digitals</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-certificado-digital"
+        [routerLink]="['/certificado-digital/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.home.createLabel">Criar novo Certificado Digital</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (certificadoDigitals?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.home.notFound">Nenhum Certificado Digital encontrado</span>
+    </div>
+  }
+
+  @if (certificadoDigitals && certificadoDigitals.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sigla">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.sigla">Sigla</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.descricao">Descricao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoCertificado">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.tipoCertificado">Tipo Certificado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (certificadoDigital of certificadoDigitals; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/certificado-digital', certificadoDigital.id, 'view']">{{ certificadoDigital.id }}</a>
+              </td>
+              <td>{{ certificadoDigital.nome }}</td>
+              <td>{{ certificadoDigital.sigla }}</td>
+              <td>{{ certificadoDigital.descricao }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.TipoCertificadoEnum.' + (certificadoDigital.tipoCertificado ?? 'null')">
+                {{
+                  { null: '', A: 'A', S: 'S', T: 'T', A1: 'A1', A3: 'A3', A4: 'A4', OUTROS: 'OUTROS' }[
+                    certificadoDigital.tipoCertificado ?? 'null'
+                  ]
+                }}
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/certificado-digital', certificadoDigital.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/certificado-digital', certificadoDigital.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(certificadoDigital)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

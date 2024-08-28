@@ -5,7 +5,6 @@ import com.dobemcontabilidade.domain.enumeration.PessoaComDeficienciaEnum;
 import com.dobemcontabilidade.domain.enumeration.RacaECorEnum;
 import com.dobemcontabilidade.domain.enumeration.SexoEnum;
 import com.dobemcontabilidade.domain.enumeration.SituacaoContadorEnum;
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
@@ -13,9 +12,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
- * ENTITIES
+ * A Contador.
  */
-@Schema(description = "ENTITIES")
 @Entity
 @Table(name = "contador")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

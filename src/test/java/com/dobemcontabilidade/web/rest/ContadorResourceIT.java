@@ -74,7 +74,7 @@ class ContadorResourceIT {
     private static final PessoaComDeficienciaEnum DEFAULT_PESSOA_COM_DEFICIENCIA = PessoaComDeficienciaEnum.DEFICIENCIAMOTORA;
     private static final PessoaComDeficienciaEnum UPDATED_PESSOA_COM_DEFICIENCIA = PessoaComDeficienciaEnum.DEFICIENCIAVISUAL;
 
-    private static final EstadoCivilEnum DEFAULT_ESTADO_CIVIL = EstadoCivilEnum.SOLTEIRO;
+    private static final EstadoCivilEnum DEFAULT_ESTADO_CIVIL = EstadoCivilEnum.SOLTERO;
     private static final EstadoCivilEnum UPDATED_ESTADO_CIVIL = EstadoCivilEnum.CASADO;
 
     private static final SexoEnum DEFAULT_SEXO = SexoEnum.MASCULINO;
@@ -523,15 +523,19 @@ class ContadorResourceIT {
         partialUpdatedContador
             .nome(UPDATED_NOME)
             .dataNascimento(UPDATED_DATA_NASCIMENTO)
-            .rgOrgaoExpeditor(UPDATED_RG_ORGAO_EXPEDITOR)
+            .tituloEleitor(UPDATED_TITULO_ELEITOR)
+            .rg(UPDATED_RG)
             .nomeMae(UPDATED_NOME_MAE)
             .nomePai(UPDATED_NOME_PAI)
-            .localNascimento(UPDATED_LOCAL_NASCIMENTO)
-            .pessoaComDeficiencia(UPDATED_PESSOA_COM_DEFICIENCIA)
+            .racaECor(UPDATED_RACA_E_COR)
             .estadoCivil(UPDATED_ESTADO_CIVIL)
-            .crc(UPDATED_CRC)
+            .urlFotoPerfil(UPDATED_URL_FOTO_PERFIL)
+            .rgOrgaoExpditor(UPDATED_RG_ORGAO_EXPDITOR)
             .limiteEmpresas(UPDATED_LIMITE_EMPRESAS)
-            .limiteFaturamento(UPDATED_LIMITE_FATURAMENTO);
+            .limiteAreaContabils(UPDATED_LIMITE_AREA_CONTABILS)
+            .limiteFaturamento(UPDATED_LIMITE_FATURAMENTO)
+            .limiteDepartamentos(UPDATED_LIMITE_DEPARTAMENTOS)
+            .situacaoContador(UPDATED_SITUACAO_CONTADOR);
 
         restContadorMockMvc
             .perform(

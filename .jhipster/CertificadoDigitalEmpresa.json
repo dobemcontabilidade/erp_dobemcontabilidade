@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194147"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "urlCertificado",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataContratacao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataVencimento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "diasUso",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "CertificadoDigitalEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "pessoajuridica",
+      "relationshipName": "pessoaJuridica",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "certificadoDigital",
+      "relationshipName": "certificadoDigital",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "fornecedorCertificado",
+      "relationshipName": "fornecedorCertificado",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

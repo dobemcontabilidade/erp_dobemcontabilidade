@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194212"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "codigoArea",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "principla",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "tipoTelefone",
+      "fieldType": "TipoTelefoneEnum",
+      "fieldValues": "RESIDENCIAL,COMERCIAL,CELULAR,WHATSAPP"
+    }
+  ],
+  "name": "Telefone",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoaFisica",
+      "relationshipName": "pessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

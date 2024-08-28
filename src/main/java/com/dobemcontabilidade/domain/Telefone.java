@@ -1,0 +1,158 @@
+package com.dobemcontabilidade.domain;
+
+import com.dobemcontabilidade.domain.enumeration.TipoTelefoneEnum;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import java.io.Serializable;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+/**
+ * A Telefone.
+ */
+@Entity
+@Table(name = "telefone")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@SuppressWarnings("common-java:DuplicatedBlocks")
+public class Telefone implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
+    @Column(name = "id")
+    private Long id;
+
+    @NotNull
+    @Column(name = "codigo_area", nullable = false)
+    private String codigoArea;
+
+    @NotNull
+    @Column(name = "telefone", nullable = false)
+    private String telefone;
+
+    @Column(name = "principla")
+    private Boolean principla;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_telefone")
+    private TipoTelefoneEnum tipoTelefone;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties(value = { "enderecoPessoas", "docsPessoas", "emails", "telefones", "socio" }, allowSetters = true)
+    private PessoaFisica pessoa;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public Telefone id(Long id) {
+        this.setId(id);
+        return this;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCodigoArea() {
+        return this.codigoArea;
+    }
+
+    public Telefone codigoArea(String codigoArea) {
+        this.setCodigoArea(codigoArea);
+        return this;
+    }
+
+    public void setCodigoArea(String codigoArea) {
+        this.codigoArea = codigoArea;
+    }
+
+    public String getTelefone() {
+        return this.telefone;
+    }
+
+    public Telefone telefone(String telefone) {
+        this.setTelefone(telefone);
+        return this;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public Boolean getPrincipla() {
+        return this.principla;
+    }
+
+    public Telefone principla(Boolean principla) {
+        this.setPrincipla(principla);
+        return this;
+    }
+
+    public void setPrincipla(Boolean principla) {
+        this.principla = principla;
+    }
+
+    public TipoTelefoneEnum getTipoTelefone() {
+        return this.tipoTelefone;
+    }
+
+    public Telefone tipoTelefone(TipoTelefoneEnum tipoTelefone) {
+        this.setTipoTelefone(tipoTelefone);
+        return this;
+    }
+
+    public void setTipoTelefone(TipoTelefoneEnum tipoTelefone) {
+        this.tipoTelefone = tipoTelefone;
+    }
+
+    public PessoaFisica getPessoa() {
+        return this.pessoa;
+    }
+
+    public void setPessoa(PessoaFisica pessoaFisica) {
+        this.pessoa = pessoaFisica;
+    }
+
+    public Telefone pessoa(PessoaFisica pessoaFisica) {
+        this.setPessoa(pessoaFisica);
+        return this;
+    }
+
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Telefone)) {
+            return false;
+        }
+        return getId() != null && getId().equals(((Telefone) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        return getClass().hashCode();
+    }
+
+    // prettier-ignore
+    @Override
+    public String toString() {
+        return "Telefone{" +
+            "id=" + getId() +
+            ", codigoArea='" + getCodigoArea() + "'" +
+            ", telefone='" + getTelefone() + "'" +
+            ", principla='" + getPrincipla() + "'" +
+            ", tipoTelefone='" + getTipoTelefone() + "'" +
+            "}";
+    }
+}

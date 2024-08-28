@@ -1,0 +1,157 @@
+<div>
+  <h2 id="page-heading" data-cy="PlanoAssinaturaContabilHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.home.title">Plano Assinatura Contabils</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-plano-assinatura-contabil"
+        [routerLink]="['/plano-assinatura-contabil/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.home.createLabel">Criar novo Plano Assinatura Contabil</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (planoAssinaturaContabils?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.home.notFound">Nenhum Plano Assinatura Contabil encontrado</span>
+    </div>
+  }
+
+  @if (planoAssinaturaContabils && planoAssinaturaContabils.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adicionalSocio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.adicionalSocio">Adicional Socio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adicionalFuncionario">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.adicionalFuncionario">Adicional Funcionario</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sociosIsentos">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.sociosIsentos">Socios Isentos</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adicionalFaturamento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.adicionalFaturamento">Adicional Faturamento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorBaseFaturamento">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.valorBaseFaturamento">Valor Base Faturamento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="valorBaseAbertura">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.valorBaseAbertura">Valor Base Abertura</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="situacao">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.situacao">Situacao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (planoAssinaturaContabil of planoAssinaturaContabils; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/plano-assinatura-contabil', planoAssinaturaContabil.id, 'view']">{{ planoAssinaturaContabil.id }}</a>
+              </td>
+              <td>{{ planoAssinaturaContabil.nome }}</td>
+              <td>{{ planoAssinaturaContabil.adicionalSocio }}</td>
+              <td>{{ planoAssinaturaContabil.adicionalFuncionario }}</td>
+              <td>{{ planoAssinaturaContabil.sociosIsentos }}</td>
+              <td>{{ planoAssinaturaContabil.adicionalFaturamento }}</td>
+              <td>{{ planoAssinaturaContabil.valorBaseFaturamento }}</td>
+              <td>{{ planoAssinaturaContabil.valorBaseAbertura }}</td>
+              <td [jhiTranslate]="'erpDobemcontabilidadeApp.SituacaoPlanoContabilEnum.' + (planoAssinaturaContabil.situacao ?? 'null')">
+                {{ { null: '', ATIVO: 'ATIVO', INATIVO: 'INATIVO', EXCLUIDO: 'EXCLUIDO' }[planoAssinaturaContabil.situacao ?? 'null'] }}
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/plano-assinatura-contabil', planoAssinaturaContabil.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/plano-assinatura-contabil', planoAssinaturaContabil.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button
+                    type="submit"
+                    (click)="delete(planoAssinaturaContabil)"
+                    class="btn btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

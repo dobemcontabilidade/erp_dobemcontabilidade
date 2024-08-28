@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "redeSocial": {
+      "home": {
+        "title": "Rede Socials",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Rede Social",
+        "createOrEditLabel": "Create or edit a Rede Social",
+        "notFound": "No Rede Socials found"
+      },
+      "created": "A new Rede Social is created with identifier {{ param }}",
+      "updated": "A Rede Social is updated with identifier {{ param }}",
+      "deleted": "A Rede Social is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Rede Social {{ id }}?"
+      },
+      "detail": {
+        "title": "Rede Social"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "url": "Url",
+      "logo": "Logo",
+      "redeSocialEmpresa": "Rede Social Empresa"
+    }
+  }
+}

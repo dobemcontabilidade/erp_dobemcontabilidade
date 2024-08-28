@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (email()) {
+      <div>
+        <h2 data-cy="emailDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.email.detail.title">Email</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ email()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.email.email">Email</span></dt>
+          <dd>
+            <span>{{ email()!.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.email.principal">Principal</span></dt>
+          <dd>
+            <span>{{ email()!.principal }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.email.pessoa">Pessoa</span></dt>
+          <dd>
+            @if (email()!.pessoa) {
+              <div>
+                <a [routerLink]="['/pessoa-fisica', email()!.pessoa?.id, 'view']">{{ email()!.pessoa?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/email', email()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

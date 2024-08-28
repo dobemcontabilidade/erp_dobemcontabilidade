@@ -1,0 +1,87 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194152"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "cpf",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "tituloEleitor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rg",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "rgOrgaoExpditor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rgUfExpedicao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "estadoCivil",
+      "fieldType": "EstadoCivilEnum",
+      "fieldValues": "SOLTERO,CASADO,DIVORCIADO,VIUVO,UNIAO_ESTAVEL"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "SexoEnum",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MASCULINO,FEMININO"
+    },
+    {
+      "fieldName": "urlFotoPerfil",
+      "fieldType": "String"
+    }
+  ],
+  "name": "PessoaFisica",
+  "relationships": [
+    {
+      "otherEntityName": "enderecoPessoa",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "enderecoPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "docsPessoa",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "docsPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "email",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "email",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "telefone",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "telefone",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

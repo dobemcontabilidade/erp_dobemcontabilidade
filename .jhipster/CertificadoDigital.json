@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194146"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "300"
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "tipoCertificado",
+      "fieldType": "TipoCertificadoEnum",
+      "fieldValues": "A,S,T,A1,A3,A4,OUTROS"
+    }
+  ],
+  "name": "CertificadoDigital",
+  "relationships": [
+    {
+      "otherEntityName": "certificadoDigitalEmpresa",
+      "otherEntityRelationshipName": "certificadoDigital",
+      "relationshipName": "certificadoDigitalEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -85,7 +85,7 @@
           <dt><span jhiTranslate="erpDobemcontabilidadeApp.contador.estadoCivil">Estado Civil</span></dt>
           <dd>
             <span [jhiTranslate]="'erpDobemcontabilidadeApp.EstadoCivilEnum.' + (contador()!.estadoCivil ?? 'null')">{{
-              { null: '', SOLTEIRO: 'SOLTEIRO', CASADO: 'CASADO', DIVORCIADO: 'DIVORCIADO', VIUVO: 'VIUVO', UNIAOESTAVEL: 'UNIAOESTAVEL' }[
+              { null: '', SOLTERO: 'SOLTERO', CASADO: 'CASADO', DIVORCIADO: 'DIVORCIADO', VIUVO: 'VIUVO', UNIAO_ESTAVEL: 'UNIAO_ESTAVEL' }[
                 contador()!.estadoCivil ?? 'null'
               ]
             }}</span>

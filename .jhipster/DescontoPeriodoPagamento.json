@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194202"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "percentual",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "DescontoPeriodoPagamento",
+  "relationships": [
+    {
+      "otherEntityField": "periodo",
+      "otherEntityName": "periodoPagamento",
+      "relationshipName": "periodoPagamento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "planoAssinaturaContabil",
+      "relationshipName": "planoAssinaturaContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

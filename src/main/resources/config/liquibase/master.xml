@@ -12,7 +12,56 @@
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240828040818_added_entity_Contador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194143_added_entity_Pessoajuridica.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194144_added_entity_Empresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194145_added_entity_Socio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194146_added_entity_CertificadoDigital.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194147_added_entity_CertificadoDigitalEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194148_added_entity_FornecedorCertificado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194149_added_entity_DocsEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194150_added_entity_RedeSocial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194151_added_entity_RedeSocialEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194152_added_entity_PessoaFisica.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194153_added_entity_AssinaturaEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194154_added_entity_EnderecoEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194155_added_entity_Ramo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194156_added_entity_Tributacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194157_added_entity_Enquadramento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194158_added_entity_FormaDePagamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194159_added_entity_TermoContratoContabil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194200_added_entity_TermoContratoAssinaturaEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194201_added_entity_PeriodoPagamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194202_added_entity_DescontoPeriodoPagamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194203_added_entity_PlanoAssinaturaContabil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194204_added_entity_AdicionalEnquadramento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194205_added_entity_AdicionalRamo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194206_added_entity_AdicionalTributacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194207_added_entity_Pais.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194208_added_entity_Estado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194209_added_entity_Cidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194210_added_entity_EnderecoPessoa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194211_added_entity_Email.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194212_added_entity_Telefone.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194213_added_entity_DocsPessoa.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20240828194144_added_entity_constraints_Empresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194145_added_entity_constraints_Socio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194147_added_entity_constraints_CertificadoDigitalEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194149_added_entity_constraints_DocsEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194151_added_entity_constraints_RedeSocialEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194153_added_entity_constraints_AssinaturaEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194154_added_entity_constraints_EnderecoEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194200_added_entity_constraints_TermoContratoAssinaturaEmpresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194202_added_entity_constraints_DescontoPeriodoPagamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194204_added_entity_constraints_AdicionalEnquadramento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194205_added_entity_constraints_AdicionalRamo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194206_added_entity_constraints_AdicionalTributacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194208_added_entity_constraints_Estado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194209_added_entity_constraints_Cidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194210_added_entity_constraints_EnderecoPessoa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194211_added_entity_constraints_Email.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194212_added_entity_constraints_Telefone.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240828194213_added_entity_constraints_DocsPessoa.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

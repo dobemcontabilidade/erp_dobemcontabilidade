@@ -4,9 +4,9 @@ package com.dobemcontabilidade.domain.enumeration;
  * The EstadoCivilEnum enumeration.
  */
 public enum EstadoCivilEnum {
-    SOLTEIRO,
+    SOLTERO,
     CASADO,
     DIVORCIADO,
     VIUVO,
-    UNIAOESTAVEL,
+    UNIAO_ESTAVEL,
 }

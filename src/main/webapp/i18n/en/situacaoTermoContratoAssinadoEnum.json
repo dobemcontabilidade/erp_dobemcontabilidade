@@ -1,0 +1,11 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "SituacaoTermoContratoAssinadoEnum": {
+      "null": "",
+      "ASSINADO": "ASSINADO",
+      "PENDENTE": "PENDENTE",
+      "CANCELADO": "CANCELADO",
+      "ENVIADO": "ENVIADO"
+    }
+  }
+}

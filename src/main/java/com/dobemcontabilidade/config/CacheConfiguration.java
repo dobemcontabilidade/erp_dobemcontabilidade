@@ -84,6 +84,150 @@ public class CacheConfiguration {
             createCache(cm, com.dobemcontabilidade.domain.Authority.class.getName(), jcacheConfiguration);
             createCache(cm, com.dobemcontabilidade.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             createCache(cm, com.dobemcontabilidade.domain.Contador.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Pessoajuridica.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Pessoajuridica.class.getName() + ".redeSocialEmpresas", jcacheConfiguration);
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.Pessoajuridica.class.getName() + ".certificadoDigitalEmpresas",
+                jcacheConfiguration
+            );
+            createCache(cm, com.dobemcontabilidade.domain.Pessoajuridica.class.getName() + ".docsEmpresas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Pessoajuridica.class.getName() + ".enderecoEmpresas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Empresa.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Empresa.class.getName() + ".socios", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Empresa.class.getName() + ".assinaturaEmpresas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Socio.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.CertificadoDigital.class.getName(), jcacheConfiguration);
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.CertificadoDigital.class.getName() + ".certificadoDigitalEmpresas",
+                jcacheConfiguration
+            );
+            createCache(cm, com.dobemcontabilidade.domain.CertificadoDigitalEmpresa.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.FornecedorCertificado.class.getName(), jcacheConfiguration);
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.FornecedorCertificado.class.getName() + ".certificadoDigitalEmpresas",
+                jcacheConfiguration
+            );
+            createCache(cm, com.dobemcontabilidade.domain.DocsEmpresa.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.RedeSocial.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.RedeSocial.class.getName() + ".redeSocialEmpresas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.RedeSocialEmpresa.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.PessoaFisica.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.PessoaFisica.class.getName() + ".enderecoPessoas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.PessoaFisica.class.getName() + ".docsPessoas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.PessoaFisica.class.getName() + ".emails", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.PessoaFisica.class.getName() + ".telefones", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.AssinaturaEmpresa.class.getName(), jcacheConfiguration);
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.AssinaturaEmpresa.class.getName() + ".termoContratoAssinaturaEmpresas",
+                jcacheConfiguration
+            );
+            createCache(cm, com.dobemcontabilidade.domain.EnderecoEmpresa.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Ramo.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Ramo.class.getName() + ".empresas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Ramo.class.getName() + ".adicionalRamos", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Tributacao.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Tributacao.class.getName() + ".empresas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Tributacao.class.getName() + ".adicionalTributacaos", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Enquadramento.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Enquadramento.class.getName() + ".empresas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Enquadramento.class.getName() + ".adicionalEnquadramentos", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.FormaDePagamento.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.FormaDePagamento.class.getName() + ".assinaturaEmpresas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.TermoContratoContabil.class.getName(), jcacheConfiguration);
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.TermoContratoContabil.class.getName() + ".termoContratoAssinaturaEmpresas",
+                jcacheConfiguration
+            );
+            createCache(cm, com.dobemcontabilidade.domain.TermoContratoAssinaturaEmpresa.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.PeriodoPagamento.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.PeriodoPagamento.class.getName() + ".assinaturaEmpresas", jcacheConfiguration);
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PeriodoPagamento.class.getName() + ".descontoPeriodoPagamentos",
+                jcacheConfiguration
+            );
+            createCache(cm, com.dobemcontabilidade.domain.DescontoPeriodoPagamento.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName(), jcacheConfiguration);
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".descontoPeriodoPagamentos",
+                jcacheConfiguration
+            );
+            createCache(cm, com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".adicionalRamos", jcacheConfiguration);
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".adicionalTributacaos",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".adicionalEnquadramentos",
+                jcacheConfiguration
+            );
+            createCache(cm, com.dobemcontabilidade.domain.AdicionalEnquadramento.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.AdicionalRamo.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.AdicionalTributacao.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Pais.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Pais.class.getName() + ".estados", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Estado.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Estado.class.getName() + ".cidades", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Cidade.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Cidade.class.getName() + ".enderecoPessoas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Cidade.class.getName() + ".enderecoEmpresas", jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.EnderecoPessoa.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Email.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.Telefone.class.getName(), jcacheConfiguration);
+            createCache(cm, com.dobemcontabilidade.domain.DocsPessoa.class.getName(), jcacheConfiguration);
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.Pessoajuridica.class.getName() + ".certificadoDigitalEmpresas",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.CertificadoDigital.class.getName() + ".certificadoDigitalEmpresas",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.FornecedorCertificado.class.getName() + ".certificadoDigitalEmpresas",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.AssinaturaEmpresa.class.getName() + ".termoContratoAssinaturaEmpresas",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.TermoContratoContabil.class.getName() + ".termoContratoAssinaturaEmpresas",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PeriodoPagamento.class.getName() + ".descontoPeriodoPagamentos",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".descontoPeriodoPagamentos",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".adicionalTributacaos",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".adicionalEnquadramentos",
+                jcacheConfiguration
+            );
             // jhipster-needle-redis-add-entry
         };
     }

@@ -1,0 +1,35 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194155"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "name": "Ramo",
+  "relationships": [
+    {
+      "otherEntityName": "empresa",
+      "otherEntityRelationshipName": "ramo",
+      "relationshipName": "empresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalRamo",
+      "otherEntityRelationshipName": "ramo",
+      "relationshipName": "adicionalRamo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

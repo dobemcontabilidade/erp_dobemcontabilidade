@@ -1,0 +1,31 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "pessoajuridica": {
+      "home": {
+        "title": "Pessoajuridicas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Pessoajuridica",
+        "createOrEditLabel": "Create or edit a Pessoajuridica",
+        "notFound": "No Pessoajuridicas found"
+      },
+      "created": "A new Pessoajuridica is created with identifier {{ param }}",
+      "updated": "A Pessoajuridica is updated with identifier {{ param }}",
+      "deleted": "A Pessoajuridica is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Pessoajuridica {{ id }}?"
+      },
+      "detail": {
+        "title": "Pessoajuridica"
+      },
+      "id": "ID",
+      "razaoSocial": "Razao Social",
+      "nomeFantasia": "Nome Fantasia",
+      "cnpj": "Cnpj",
+      "redeSocialEmpresa": "Rede Social Empresa",
+      "certificadoDigitalEmpresa": "Certificado Digital Empresa",
+      "docsEmpresa": "Docs Empresa",
+      "enderecoEmpresa": "Endereco Empresa",
+      "empresa": "Empresa"
+    }
+  }
+}

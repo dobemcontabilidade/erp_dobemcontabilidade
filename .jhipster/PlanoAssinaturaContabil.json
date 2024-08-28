@@ -1,0 +1,73 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194203"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adicionalSocio",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "adicionalFuncionario",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "sociosIsentos",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "adicionalFaturamento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorBaseFaturamento",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorBaseAbertura",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoPlanoContabilEnum",
+      "fieldValues": "ATIVO,INATIVO,EXCLUIDO"
+    }
+  ],
+  "name": "PlanoAssinaturaContabil",
+  "relationships": [
+    {
+      "otherEntityName": "descontoPeriodoPagamento",
+      "otherEntityRelationshipName": "planoAssinaturaContabil",
+      "relationshipName": "descontoPeriodoPagamento",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalRamo",
+      "otherEntityRelationshipName": "planoAssinaturaContabil",
+      "relationshipName": "adicionalRamo",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalTributacao",
+      "otherEntityRelationshipName": "planoAssinaturaContabil",
+      "relationshipName": "adicionalTributacao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalEnquadramento",
+      "otherEntityRelationshipName": "planoAssinaturaContabil",
+      "relationshipName": "adicionalEnquadramento",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

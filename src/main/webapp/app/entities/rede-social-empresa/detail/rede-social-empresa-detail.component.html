@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (redeSocialEmpresa()) {
+      <div>
+        <h2 data-cy="redeSocialEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.detail.title">Rede Social Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ redeSocialEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.perfil">Perfil</span></dt>
+          <dd>
+            <span>{{ redeSocialEmpresa()!.perfil }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.urlPerfil">Url Perfil</span></dt>
+          <dd>
+            <span>{{ redeSocialEmpresa()!.urlPerfil }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.redeSocial">Rede Social</span></dt>
+          <dd>
+            @if (redeSocialEmpresa()!.redeSocial) {
+              <div>
+                <a [routerLink]="['/rede-social', redeSocialEmpresa()!.redeSocial?.id, 'view']">{{
+                  redeSocialEmpresa()!.redeSocial?.nome
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.redeSocialEmpresa.pessoajuridica">Pessoajuridica</span></dt>
+          <dd>
+            @if (redeSocialEmpresa()!.pessoajuridica) {
+              <div>
+                <a [routerLink]="['/pessoajuridica', redeSocialEmpresa()!.pessoajuridica?.id, 'view']">{{
+                  redeSocialEmpresa()!.pessoajuridica?.razaoSocial
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/rede-social-empresa', redeSocialEmpresa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

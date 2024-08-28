@@ -1,0 +1,214 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-certificado-digital-empresa-heading"
+        data-cy="CertificadoDigitalEmpresaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.home.createOrEditLabel"
+      >
+        Criar ou editar Certificado Digital Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_urlCertificado"
+            jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.urlCertificado"
+            >Url Certificado</label
+          >
+          <textarea
+            class="form-control"
+            name="urlCertificado"
+            id="field_urlCertificado"
+            data-cy="urlCertificado"
+            formControlName="urlCertificado"
+          ></textarea>
+          @if (
+            editForm.get('urlCertificado')!.invalid && (editForm.get('urlCertificado')!.dirty || editForm.get('urlCertificado')!.touched)
+          ) {
+            <div>
+              @if (editForm.get('urlCertificado')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataContratacao"
+            jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.dataContratacao"
+            >Data Contratacao</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataContratacao"
+              data-cy="dataContratacao"
+              type="datetime-local"
+              class="form-control"
+              name="dataContratacao"
+              formControlName="dataContratacao"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataVencimento"
+            jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.dataVencimento"
+            >Data Vencimento</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataVencimento"
+              data-cy="dataVencimento"
+              type="datetime-local"
+              class="form-control"
+              name="dataVencimento"
+              formControlName="dataVencimento"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diasUso" jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.diasUso"
+            >Dias Uso</label
+          >
+          <input type="number" class="form-control" name="diasUso" id="field_diasUso" data-cy="diasUso" formControlName="diasUso" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_pessoaJuridica"
+            jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.pessoaJuridica"
+            >Pessoa Juridica</label
+          >
+          <select
+            class="form-control"
+            id="field_pessoaJuridica"
+            data-cy="pessoaJuridica"
+            name="pessoaJuridica"
+            formControlName="pessoaJuridica"
+            [compareWith]="comparePessoajuridica"
+          >
+            @if (editForm.get(['pessoaJuridica'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (pessoajuridicaOption of pessoajuridicasSharedCollection; track $index) {
+              <option [ngValue]="pessoajuridicaOption">{{ pessoajuridicaOption.razaoSocial }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['pessoaJuridica'])!.invalid &&
+          (editForm.get(['pessoaJuridica'])!.dirty || editForm.get(['pessoaJuridica'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['pessoaJuridica'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_certificadoDigital"
+            jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.certificadoDigital"
+            >Certificado Digital</label
+          >
+          <select
+            class="form-control"
+            id="field_certificadoDigital"
+            data-cy="certificadoDigital"
+            name="certificadoDigital"
+            formControlName="certificadoDigital"
+            [compareWith]="compareCertificadoDigital"
+          >
+            @if (editForm.get(['certificadoDigital'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (certificadoDigitalOption of certificadoDigitalsSharedCollection; track $index) {
+              <option [ngValue]="certificadoDigitalOption">{{ certificadoDigitalOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['certificadoDigital'])!.invalid &&
+          (editForm.get(['certificadoDigital'])!.dirty || editForm.get(['certificadoDigital'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['certificadoDigital'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_fornecedorCertificado"
+            jhiTranslate="erpDobemcontabilidadeApp.certificadoDigitalEmpresa.fornecedorCertificado"
+            >Fornecedor Certificado</label
+          >
+          <select
+            class="form-control"
+            id="field_fornecedorCertificado"
+            data-cy="fornecedorCertificado"
+            name="fornecedorCertificado"
+            formControlName="fornecedorCertificado"
+            [compareWith]="compareFornecedorCertificado"
+          >
+            @if (editForm.get(['fornecedorCertificado'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (fornecedorCertificadoOption of fornecedorCertificadosSharedCollection; track $index) {
+              <option [ngValue]="fornecedorCertificadoOption">{{ fornecedorCertificadoOption.razaoSocial }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['fornecedorCertificado'])!.invalid &&
+          (editForm.get(['fornecedorCertificado'])!.dirty || editForm.get(['fornecedorCertificado'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['fornecedorCertificado'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

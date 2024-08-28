@@ -1,0 +1,47 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194209"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contratacao",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "abertura",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "Cidade",
+  "relationships": [
+    {
+      "otherEntityName": "enderecoPessoa",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "enderecoPessoa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "enderecoEmpresa",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "enderecoEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "estado",
+      "relationshipName": "estado",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "termoContratoContabil": {
+      "home": {
+        "title": "Termo Contrato Contabils",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Termo Contrato Contabil",
+        "createOrEditLabel": "Criar ou editar Termo Contrato Contabil",
+        "notFound": "Nenhum Termo Contrato Contabil encontrado"
+      },
+      "created": "Um novo Termo Contrato Contabil foi criado com o identificador {{ param }}",
+      "updated": "Um Termo Contrato Contabil foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Termo Contrato Contabil foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Termo Contrato Contabil {{ id }}?"
+      },
+      "detail": {
+        "title": "Termo Contrato Contabil"
+      },
+      "id": "ID",
+      "titulo": "Titulo",
+      "descricao": "Descricao",
+      "urlDocumentoFonte": "Url Documento Fonte",
+      "documento": "Documento",
+      "disponivel": "Disponivel",
+      "dataCriacao": "Data Criacao",
+      "termoContratoAssinaturaEmpresa": "Termo Contrato Assinatura Empresa"
+    }
+  }
+}

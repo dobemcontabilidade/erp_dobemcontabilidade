@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194211"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "principal",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "Email",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoaFisica",
+      "relationshipName": "pessoa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

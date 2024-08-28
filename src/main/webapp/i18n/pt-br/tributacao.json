@@ -1,0 +1,28 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "tributacao": {
+      "home": {
+        "title": "Tributacaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Tributacao",
+        "createOrEditLabel": "Criar ou editar Tributacao",
+        "notFound": "Nenhum Tributacao encontrado"
+      },
+      "created": "Um novo Tributacao foi criado com o identificador {{ param }}",
+      "updated": "Um Tributacao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tributacao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tributacao {{ id }}?"
+      },
+      "detail": {
+        "title": "Tributacao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "situacao": "Situacao",
+      "empresa": "Empresa",
+      "adicionalTributacao": "Adicional Tributacao"
+    }
+  }
+}

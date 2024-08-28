@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194158"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "forma",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "disponivel",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "FormaDePagamento",
+  "relationships": [
+    {
+      "otherEntityName": "assinaturaEmpresa",
+      "otherEntityRelationshipName": "formaDePagamento",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

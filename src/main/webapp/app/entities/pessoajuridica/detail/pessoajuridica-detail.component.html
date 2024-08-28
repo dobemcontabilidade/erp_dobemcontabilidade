@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (pessoajuridica()) {
+      <div>
+        <h2 data-cy="pessoajuridicaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.detail.title">Pessoajuridica</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ pessoajuridica()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.razaoSocial">Razao Social</span></dt>
+          <dd>
+            <span>{{ pessoajuridica()!.razaoSocial }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.nomeFantasia">Nome Fantasia</span></dt>
+          <dd>
+            <span>{{ pessoajuridica()!.nomeFantasia }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoajuridica.cnpj">Cnpj</span></dt>
+          <dd>
+            <span>{{ pessoajuridica()!.cnpj }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/pessoajuridica', pessoajuridica()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

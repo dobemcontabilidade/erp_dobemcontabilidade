@@ -1,0 +1,85 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194144"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "razaoSocial",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricaoDoNegocio",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "dataAbertura",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "urlContratoSocial",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "capitalSocial",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "cnae",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Empresa",
+  "relationships": [
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "pessoajuridica",
+      "relationshipName": "pessoaJuridica",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "socio",
+      "otherEntityRelationshipName": "empresa",
+      "relationshipName": "socio",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "assinaturaEmpresa",
+      "otherEntityRelationshipName": "empresa",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tributacao",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "ramo",
+      "relationshipName": "ramo",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "enquadramento",
+      "relationshipName": "enquadramento",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

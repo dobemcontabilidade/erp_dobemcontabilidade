@@ -1,0 +1,178 @@
+<div>
+  <h2 id="page-heading" data-cy="EmpresaHeading">
+    <span jhiTranslate="erpDobemcontabilidadeApp.empresa.home.title">Empresas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.empresa.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-empresa"
+        [routerLink]="['/empresa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="erpDobemcontabilidadeApp.empresa.home.createLabel">Criar novo Empresa</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (empresas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="erpDobemcontabilidadeApp.empresa.home.notFound">Nenhum Empresa encontrado</span>
+    </div>
+  }
+
+  @if (empresas && empresas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">Código</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="razaoSocial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.razaoSocial">Razao Social</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descricaoDoNegocio">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.descricaoDoNegocio">Descricao Do Negocio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataAbertura">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.dataAbertura">Data Abertura</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="urlContratoSocial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.urlContratoSocial">Url Contrato Social</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="capitalSocial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.capitalSocial">Capital Social</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cnae">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.cnae">Cnae</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pessoaJuridica.razaoSocial">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.pessoaJuridica">Pessoa Juridica</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empresa.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.empresa">Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ramo.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.ramo">Ramo</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="enquadramento.nome">
+              <div class="d-flex">
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.enquadramento">Enquadramento</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (empresa of empresas; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/empresa', empresa.id, 'view']">{{ empresa.id }}</a>
+              </td>
+              <td>{{ empresa.razaoSocial }}</td>
+              <td>{{ empresa.descricaoDoNegocio }}</td>
+              <td>{{ empresa.dataAbertura | formatMediumDatetime }}</td>
+              <td>{{ empresa.urlContratoSocial }}</td>
+              <td>{{ empresa.capitalSocial }}</td>
+              <td>{{ empresa.cnae }}</td>
+              <td>
+                @if (empresa.pessoaJuridica) {
+                  <div>
+                    <a [routerLink]="['/pessoajuridica', empresa.pessoaJuridica.id, 'view']">{{ empresa.pessoaJuridica.razaoSocial }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (empresa.empresa) {
+                  <div>
+                    <a [routerLink]="['/tributacao', empresa.empresa.id, 'view']">{{ empresa.empresa.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (empresa.ramo) {
+                  <div>
+                    <a [routerLink]="['/ramo', empresa.ramo.id, 'view']">{{ empresa.ramo.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (empresa.enquadramento) {
+                  <div>
+                    <a [routerLink]="['/enquadramento', empresa.enquadramento.id, 'view']">{{ empresa.enquadramento.nome }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/empresa', empresa.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/empresa', empresa.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(empresa)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

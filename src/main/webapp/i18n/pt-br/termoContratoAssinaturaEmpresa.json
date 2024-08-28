@@ -1,0 +1,29 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "termoContratoAssinaturaEmpresa": {
+      "home": {
+        "title": "Termo Contrato Assinatura Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Termo Contrato Assinatura Empresa",
+        "createOrEditLabel": "Criar ou editar Termo Contrato Assinatura Empresa",
+        "notFound": "Nenhum Termo Contrato Assinatura Empresa encontrado"
+      },
+      "created": "Um novo Termo Contrato Assinatura Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Termo Contrato Assinatura Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Termo Contrato Assinatura Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Termo Contrato Assinatura Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Termo Contrato Assinatura Empresa"
+      },
+      "id": "ID",
+      "dataAssinatura": "Data Assinatura",
+      "dataEnvioEmail": "Data Envio Email",
+      "urlDocumentoAssinado": "Url Documento Assinado",
+      "situacao": "Situacao",
+      "termoContratoContabil": "Termo Contrato Contabil",
+      "empresa": "Empresa"
+    }
+  }
+}

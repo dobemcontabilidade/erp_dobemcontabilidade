@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194207"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nacionalidade",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Pais",
+  "relationships": [
+    {
+      "otherEntityName": "estado",
+      "otherEntityRelationshipName": "pais",
+      "relationshipName": "estado",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -1,0 +1,172 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-termo-contrato-assinatura-empresa-heading"
+        data-cy="TermoContratoAssinaturaEmpresaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.home.createOrEditLabel"
+      >
+        Criar ou editar Termo Contrato Assinatura Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataAssinatura"
+            jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.dataAssinatura"
+            >Data Assinatura</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataAssinatura"
+              data-cy="dataAssinatura"
+              type="datetime-local"
+              class="form-control"
+              name="dataAssinatura"
+              formControlName="dataAssinatura"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_dataEnvioEmail"
+            jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.dataEnvioEmail"
+            >Data Envio Email</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataEnvioEmail"
+              data-cy="dataEnvioEmail"
+              type="datetime-local"
+              class="form-control"
+              name="dataEnvioEmail"
+              formControlName="dataEnvioEmail"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_urlDocumentoAssinado"
+            jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.urlDocumentoAssinado"
+            >Url Documento Assinado</label
+          >
+          <textarea
+            class="form-control"
+            name="urlDocumentoAssinado"
+            id="field_urlDocumentoAssinado"
+            data-cy="urlDocumentoAssinado"
+            formControlName="urlDocumentoAssinado"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_situacao" jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.situacao"
+            >Situacao</label
+          >
+          <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao" data-cy="situacao">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.SituacaoTermoContratoAssinadoEnum.null' | translate }}</option>
+            @for (situacaoTermoContratoAssinadoEnum of situacaoTermoContratoAssinadoEnumValues; track $index) {
+              <option [value]="situacaoTermoContratoAssinadoEnum">
+                {{ 'erpDobemcontabilidadeApp.SituacaoTermoContratoAssinadoEnum.' + situacaoTermoContratoAssinadoEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_termoContratoContabil"
+            jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.termoContratoContabil"
+            >Termo Contrato Contabil</label
+          >
+          <select
+            class="form-control"
+            id="field_termoContratoContabil"
+            data-cy="termoContratoContabil"
+            name="termoContratoContabil"
+            formControlName="termoContratoContabil"
+            [compareWith]="compareTermoContratoContabil"
+          >
+            @if (editForm.get(['termoContratoContabil'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (termoContratoContabilOption of termoContratoContabilsSharedCollection; track $index) {
+              <option [ngValue]="termoContratoContabilOption">{{ termoContratoContabilOption.titulo }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['termoContratoContabil'])!.invalid &&
+          (editForm.get(['termoContratoContabil'])!.dirty || editForm.get(['termoContratoContabil'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['termoContratoContabil'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_empresa" jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.empresa"
+            >Empresa</label
+          >
+          <select
+            class="form-control"
+            id="field_empresa"
+            data-cy="empresa"
+            name="empresa"
+            formControlName="empresa"
+            [compareWith]="compareAssinaturaEmpresa"
+          >
+            @if (editForm.get(['empresa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (assinaturaEmpresaOption of assinaturaEmpresasSharedCollection; track $index) {
+              <option [ngValue]="assinaturaEmpresaOption">{{ assinaturaEmpresaOption.razaoSocial }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['empresa'])!.invalid && (editForm.get(['empresa'])!.dirty || editForm.get(['empresa'])!.touched)) {
+          <div>
+            @if (editForm.get(['empresa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

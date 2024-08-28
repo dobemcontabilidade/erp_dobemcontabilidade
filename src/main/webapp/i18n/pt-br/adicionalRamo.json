@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "adicionalRamo": {
+      "home": {
+        "title": "Adicional Ramos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Adicional Ramo",
+        "createOrEditLabel": "Criar ou editar Adicional Ramo",
+        "notFound": "Nenhum Adicional Ramo encontrado"
+      },
+      "created": "Um novo Adicional Ramo foi criado com o identificador {{ param }}",
+      "updated": "Um Adicional Ramo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Adicional Ramo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Adicional Ramo {{ id }}?"
+      },
+      "detail": {
+        "title": "Adicional Ramo"
+      },
+      "id": "ID",
+      "valor": "Valor",
+      "ramo": "Ramo",
+      "planoAssinaturaContabil": "Plano Assinatura Contabil"
+    }
+  }
+}

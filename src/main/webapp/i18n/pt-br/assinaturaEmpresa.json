@@ -1,0 +1,46 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "assinaturaEmpresa": {
+      "home": {
+        "title": "Assinatura Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Assinatura Empresa",
+        "createOrEditLabel": "Criar ou editar Assinatura Empresa",
+        "notFound": "Nenhum Assinatura Empresa encontrado"
+      },
+      "created": "Um novo Assinatura Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Assinatura Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Assinatura Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Assinatura Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Assinatura Empresa"
+      },
+      "id": "ID",
+      "razaoSocial": "Razao Social",
+      "codigoAssinatura": "Codigo Assinatura",
+      "valorEnquadramento": "Valor Enquadramento",
+      "valorTributacao": "Valor Tributacao",
+      "valorRamo": "Valor Ramo",
+      "valorFuncionarios": "Valor Funcionarios",
+      "valorSocios": "Valor Socios",
+      "valorFaturamento": "Valor Faturamento",
+      "valorPlanoContabil": "Valor Plano Contabil",
+      "valorPlanoContabilComDesconto": "Valor Plano Contabil Com Desconto",
+      "valorPlanoContaAzulComDesconto": "Valor Plano Conta Azul Com Desconto",
+      "valorMensalidade": "Valor Mensalidade",
+      "valorPeriodo": "Valor Periodo",
+      "valorAno": "Valor Ano",
+      "dataContratacao": "Data Contratacao",
+      "dataEncerramento": "Data Encerramento",
+      "diaVencimento": "Dia Vencimento",
+      "situacao": "Situacao",
+      "tipoContrato": "Tipo Contrato",
+      "termoContratoAssinaturaEmpresa": "Termo Contrato Assinatura Empresa",
+      "periodoPagamento": "Periodo Pagamento",
+      "formaDePagamento": "Forma De Pagamento",
+      "empresa": "Empresa"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194156"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoTributacaoEnum",
+      "fieldValues": "ATIVO,INATIVO,BLOQUEADO,EXCLUIDO"
+    }
+  ],
+  "name": "Tributacao",
+  "relationships": [
+    {
+      "otherEntityName": "empresa",
+      "otherEntityRelationshipName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "adicionalTributacao",
+      "otherEntityRelationshipName": "tributacao",
+      "relationshipName": "adicionalTributacao",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -1,0 +1,65 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194145"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "prolabore",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "percentualSociedade",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "adminstrador",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "distribuicaoLucro",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "responsavelReceita",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "percentualDistribuicaoLucro",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "funcaoSocio",
+      "fieldType": "FuncaoSocioEnum",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SOCIO,SOCIO_ADMINISTRADOR,SOCIO_GERENTE"
+    }
+  ],
+  "name": "Socio",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pessoaFisica",
+      "relationshipName": "pessoaFisica",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

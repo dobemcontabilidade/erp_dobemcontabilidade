@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (docsPessoa()) {
+      <div>
+        <h2 data-cy="docsPessoaDetailsHeading"><span jhiTranslate="erpDobemcontabilidadeApp.docsPessoa.detail.title">Docs Pessoa</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ docsPessoa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsPessoa.urlArquivo">Url Arquivo</span></dt>
+          <dd>
+            <span>{{ docsPessoa()!.urlArquivo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsPessoa.tipo">Tipo</span></dt>
+          <dd>
+            <span>{{ docsPessoa()!.tipo }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsPessoa.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ docsPessoa()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsPessoa.pessoa">Pessoa</span></dt>
+          <dd>
+            @if (docsPessoa()!.pessoa) {
+              <div>
+                <a [routerLink]="['/pessoa-fisica', docsPessoa()!.pessoa?.id, 'view']">{{ docsPessoa()!.pessoa?.nome }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/docs-pessoa', docsPessoa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

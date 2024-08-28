@@ -1,0 +1,60 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194154"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "logradouro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numero",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "complemento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cep",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "principal",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "filial",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "enderecoFiscal",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "EnderecoEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "cidade",
+      "relationshipName": "cidade",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "pessoajuridica",
+      "relationshipName": "pessoaJuridica",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

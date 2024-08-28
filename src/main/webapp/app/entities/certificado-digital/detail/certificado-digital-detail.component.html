@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (certificadoDigital()) {
+      <div>
+        <h2 data-cy="certificadoDigitalDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.detail.title">Certificado Digital</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ certificadoDigital()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.nome">Nome</span></dt>
+          <dd>
+            <span>{{ certificadoDigital()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.sigla">Sigla</span></dt>
+          <dd>
+            <span>{{ certificadoDigital()!.sigla }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ certificadoDigital()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.certificadoDigital.tipoCertificado">Tipo Certificado</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.TipoCertificadoEnum.' + (certificadoDigital()!.tipoCertificado ?? 'null')">{{
+              { null: '', A: 'A', S: 'S', T: 'T', A1: 'A1', A3: 'A3', A4: 'A4', OUTROS: 'OUTROS' }[
+                certificadoDigital()!.tipoCertificado ?? 'null'
+              ]
+            }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/certificado-digital', certificadoDigital()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

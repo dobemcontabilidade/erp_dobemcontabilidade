@@ -1,0 +1,158 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-plano-assinatura-contabil-heading"
+        data-cy="PlanoAssinaturaContabilCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.home.createOrEditLabel"
+      >
+        Criar ou editar Plano Assinatura Contabil
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nome" jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_adicionalSocio"
+            jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.adicionalSocio"
+            >Adicional Socio</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="adicionalSocio"
+            id="field_adicionalSocio"
+            data-cy="adicionalSocio"
+            formControlName="adicionalSocio"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_adicionalFuncionario"
+            jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.adicionalFuncionario"
+            >Adicional Funcionario</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="adicionalFuncionario"
+            id="field_adicionalFuncionario"
+            data-cy="adicionalFuncionario"
+            formControlName="adicionalFuncionario"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sociosIsentos" jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.sociosIsentos"
+            >Socios Isentos</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="sociosIsentos"
+            id="field_sociosIsentos"
+            data-cy="sociosIsentos"
+            formControlName="sociosIsentos"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_adicionalFaturamento"
+            jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.adicionalFaturamento"
+            >Adicional Faturamento</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="adicionalFaturamento"
+            id="field_adicionalFaturamento"
+            data-cy="adicionalFaturamento"
+            formControlName="adicionalFaturamento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_valorBaseFaturamento"
+            jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.valorBaseFaturamento"
+            >Valor Base Faturamento</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorBaseFaturamento"
+            id="field_valorBaseFaturamento"
+            data-cy="valorBaseFaturamento"
+            formControlName="valorBaseFaturamento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_valorBaseAbertura"
+            jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.valorBaseAbertura"
+            >Valor Base Abertura</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorBaseAbertura"
+            id="field_valorBaseAbertura"
+            data-cy="valorBaseAbertura"
+            formControlName="valorBaseAbertura"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_situacao" jhiTranslate="erpDobemcontabilidadeApp.planoAssinaturaContabil.situacao"
+            >Situacao</label
+          >
+          <select class="form-control" name="situacao" formControlName="situacao" id="field_situacao" data-cy="situacao">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.SituacaoPlanoContabilEnum.null' | translate }}</option>
+            @for (situacaoPlanoContabilEnum of situacaoPlanoContabilEnumValues; track $index) {
+              <option [value]="situacaoPlanoContabilEnum">
+                {{ 'erpDobemcontabilidadeApp.SituacaoPlanoContabilEnum.' + situacaoPlanoContabilEnum | translate }}
+              </option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

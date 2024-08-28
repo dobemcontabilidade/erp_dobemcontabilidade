@@ -1,0 +1,87 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (termoContratoAssinaturaEmpresa()) {
+      <div>
+        <h2 data-cy="termoContratoAssinaturaEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.detail.title">Termo Contrato Assinatura Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ termoContratoAssinaturaEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.dataAssinatura">Data Assinatura</span></dt>
+          <dd>
+            <span>{{ termoContratoAssinaturaEmpresa()!.dataAssinatura | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.dataEnvioEmail">Data Envio Email</span></dt>
+          <dd>
+            <span>{{ termoContratoAssinaturaEmpresa()!.dataEnvioEmail | formatMediumDatetime }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.urlDocumentoAssinado">Url Documento Assinado</span>
+          </dt>
+          <dd>
+            <span>{{ termoContratoAssinaturaEmpresa()!.urlDocumentoAssinado }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.situacao">Situacao</span></dt>
+          <dd>
+            <span
+              [jhiTranslate]="
+                'erpDobemcontabilidadeApp.SituacaoTermoContratoAssinadoEnum.' + (termoContratoAssinaturaEmpresa()!.situacao ?? 'null')
+              "
+              >{{
+                { null: '', ASSINADO: 'ASSINADO', PENDENTE: 'PENDENTE', CANCELADO: 'CANCELADO', ENVIADO: 'ENVIADO' }[
+                  termoContratoAssinaturaEmpresa()!.situacao ?? 'null'
+                ]
+              }}</span
+            >
+          </dd>
+          <dt>
+            <span jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.termoContratoContabil"
+              >Termo Contrato Contabil</span
+            >
+          </dt>
+          <dd>
+            @if (termoContratoAssinaturaEmpresa()!.termoContratoContabil) {
+              <div>
+                <a [routerLink]="['/termo-contrato-contabil', termoContratoAssinaturaEmpresa()!.termoContratoContabil?.id, 'view']">{{
+                  termoContratoAssinaturaEmpresa()!.termoContratoContabil?.titulo
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.termoContratoAssinaturaEmpresa.empresa">Empresa</span></dt>
+          <dd>
+            @if (termoContratoAssinaturaEmpresa()!.empresa) {
+              <div>
+                <a [routerLink]="['/assinatura-empresa', termoContratoAssinaturaEmpresa()!.empresa?.id, 'view']">{{
+                  termoContratoAssinaturaEmpresa()!.empresa?.razaoSocial
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/termo-contrato-assinatura-empresa', termoContratoAssinaturaEmpresa()!.id, 'edit']"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

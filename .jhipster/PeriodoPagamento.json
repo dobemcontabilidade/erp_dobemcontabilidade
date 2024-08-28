@@ -1,0 +1,34 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194201"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "periodo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroDias",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "PeriodoPagamento",
+  "relationships": [
+    {
+      "otherEntityName": "assinaturaEmpresa",
+      "otherEntityRelationshipName": "periodoPagamento",
+      "relationshipName": "assinaturaEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "descontoPeriodoPagamento",
+      "otherEntityRelationshipName": "periodoPagamento",
+      "relationshipName": "descontoPeriodoPagamento",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194200"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "dataAssinatura",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataEnvioEmail",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "urlDocumentoAssinado",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "situacao",
+      "fieldType": "SituacaoTermoContratoAssinadoEnum",
+      "fieldValues": "ASSINADO,PENDENTE,CANCELADO,ENVIADO"
+    }
+  ],
+  "name": "TermoContratoAssinaturaEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "titulo",
+      "otherEntityName": "termoContratoContabil",
+      "relationshipName": "termoContratoContabil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "assinaturaEmpresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

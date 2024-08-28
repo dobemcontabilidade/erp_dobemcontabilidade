@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194150"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "logo",
+      "fieldType": "String"
+    }
+  ],
+  "name": "RedeSocial",
+  "relationships": [
+    {
+      "otherEntityName": "redeSocialEmpresa",
+      "otherEntityRelationshipName": "redeSocial",
+      "relationshipName": "redeSocialEmpresa",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

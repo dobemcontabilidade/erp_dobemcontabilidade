@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (enquadramento()) {
+      <div>
+        <h2 data-cy="enquadramentoDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.enquadramento.detail.title">Enquadramento</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ enquadramento()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.enquadramento.nome">Nome</span></dt>
+          <dd>
+            <span>{{ enquadramento()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.enquadramento.sigla">Sigla</span></dt>
+          <dd>
+            <span>{{ enquadramento()!.sigla }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.enquadramento.limiteInicial">Limite Inicial</span></dt>
+          <dd>
+            <span>{{ enquadramento()!.limiteInicial }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.enquadramento.limiteFinal">Limite Final</span></dt>
+          <dd>
+            <span>{{ enquadramento()!.limiteFinal }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.enquadramento.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ enquadramento()!.descricao }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/enquadramento', enquadramento()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

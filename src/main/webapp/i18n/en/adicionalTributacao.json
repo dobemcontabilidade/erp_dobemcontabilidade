@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "adicionalTributacao": {
+      "home": {
+        "title": "Adicional Tributacaos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Adicional Tributacao",
+        "createOrEditLabel": "Create or edit a Adicional Tributacao",
+        "notFound": "No Adicional Tributacaos found"
+      },
+      "created": "A new Adicional Tributacao is created with identifier {{ param }}",
+      "updated": "A Adicional Tributacao is updated with identifier {{ param }}",
+      "deleted": "A Adicional Tributacao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Adicional Tributacao {{ id }}?"
+      },
+      "detail": {
+        "title": "Adicional Tributacao"
+      },
+      "id": "ID",
+      "valor": "Valor",
+      "tributacao": "Tributacao",
+      "planoAssinaturaContabil": "Plano Assinatura Contabil"
+    }
+  }
+}

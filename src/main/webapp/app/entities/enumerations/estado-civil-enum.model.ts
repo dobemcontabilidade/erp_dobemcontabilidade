@@ -1,5 +1,5 @@
 export enum EstadoCivilEnum {
-  SOLTEIRO = 'SOLTEIRO',
+  SOLTERO = 'SOLTERO',
 
   CASADO = 'CASADO',
 
@@ -7,5 +7,5 @@ export enum EstadoCivilEnum {
 
   VIUVO = 'VIUVO',
 
-  UNIAOESTAVEL = 'UNIAOESTAVEL',
+  UNIAO_ESTAVEL = 'UNIAO_ESTAVEL',
 }

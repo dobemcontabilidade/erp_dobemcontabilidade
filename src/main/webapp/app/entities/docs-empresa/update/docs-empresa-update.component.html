@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-docs-empresa-heading"
+        data-cy="DocsEmpresaCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.home.createOrEditLabel"
+      >
+        Criar ou editar Docs Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_documento" jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.documento">Documento</label>
+          <input type="text" class="form-control" name="documento" id="field_documento" data-cy="documento" formControlName="documento" />
+          @if (editForm.get('documento')!.invalid && (editForm.get('documento')!.dirty || editForm.get('documento')!.touched)) {
+            <div>
+              @if (editForm.get('documento')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '300' }"
+                  >Este campo não pode ter mais de 300 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_descricao" jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.descricao">Descricao</label>
+          <textarea class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_url" jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.url">Url</label>
+          <textarea class="form-control" name="url" id="field_url" data-cy="url" formControlName="url"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataEmissao" jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.dataEmissao"
+            >Data Emissao</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataEmissao"
+              data-cy="dataEmissao"
+              type="datetime-local"
+              class="form-control"
+              name="dataEmissao"
+              formControlName="dataEmissao"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dataEncerramento" jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.dataEncerramento"
+            >Data Encerramento</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataEncerramento"
+              data-cy="dataEncerramento"
+              type="datetime-local"
+              class="form-control"
+              name="dataEncerramento"
+              formControlName="dataEncerramento"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_orgaoEmissor" jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.orgaoEmissor"
+            >Orgao Emissor</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="orgaoEmissor"
+            id="field_orgaoEmissor"
+            data-cy="orgaoEmissor"
+            formControlName="orgaoEmissor"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pessoaJuridica" jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.pessoaJuridica"
+            >Pessoa Juridica</label
+          >
+          <select
+            class="form-control"
+            id="field_pessoaJuridica"
+            data-cy="pessoaJuridica"
+            name="pessoaJuridica"
+            formControlName="pessoaJuridica"
+            [compareWith]="comparePessoajuridica"
+          >
+            @if (editForm.get(['pessoaJuridica'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (pessoajuridicaOption of pessoajuridicasSharedCollection; track $index) {
+              <option [ngValue]="pessoajuridicaOption">{{ pessoajuridicaOption.razaoSocial }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['pessoaJuridica'])!.invalid &&
+          (editForm.get(['pessoaJuridica'])!.dirty || editForm.get(['pessoaJuridica'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['pessoaJuridica'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

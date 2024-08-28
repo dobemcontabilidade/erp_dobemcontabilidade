@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194151"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "perfil",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "urlPerfil",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "name": "RedeSocialEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "redeSocial",
+      "relationshipName": "redeSocial",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "pessoajuridica",
+      "relationshipName": "pessoajuridica",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

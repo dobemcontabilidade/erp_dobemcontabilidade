@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194208"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "naturalidade",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sigla",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Estado",
+  "relationships": [
+    {
+      "otherEntityName": "cidade",
+      "otherEntityRelationshipName": "estado",
+      "relationshipName": "cidade",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pais",
+      "relationshipName": "pais",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

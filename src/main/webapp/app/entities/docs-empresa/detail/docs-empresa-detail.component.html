@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (docsEmpresa()) {
+      <div>
+        <h2 data-cy="docsEmpresaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.detail.title">Docs Empresa</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ docsEmpresa()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.documento">Documento</span></dt>
+          <dd>
+            <span>{{ docsEmpresa()!.documento }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.descricao">Descricao</span></dt>
+          <dd>
+            <span>{{ docsEmpresa()!.descricao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.url">Url</span></dt>
+          <dd>
+            <span>{{ docsEmpresa()!.url }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.dataEmissao">Data Emissao</span></dt>
+          <dd>
+            <span>{{ docsEmpresa()!.dataEmissao | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.dataEncerramento">Data Encerramento</span></dt>
+          <dd>
+            <span>{{ docsEmpresa()!.dataEncerramento | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.orgaoEmissor">Orgao Emissor</span></dt>
+          <dd>
+            <span>{{ docsEmpresa()!.orgaoEmissor }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.docsEmpresa.pessoaJuridica">Pessoa Juridica</span></dt>
+          <dd>
+            @if (docsEmpresa()!.pessoaJuridica) {
+              <div>
+                <a [routerLink]="['/pessoajuridica', docsEmpresa()!.pessoaJuridica?.id, 'view']">{{
+                  docsEmpresa()!.pessoaJuridica?.razaoSocial
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/docs-empresa', docsEmpresa()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

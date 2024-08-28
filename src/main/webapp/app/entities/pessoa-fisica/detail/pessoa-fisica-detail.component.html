@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (pessoaFisica()) {
+      <div>
+        <h2 data-cy="pessoaFisicaDetailsHeading">
+          <span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.detail.title">Pessoa Fisica</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ pessoaFisica()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.nome">Nome</span></dt>
+          <dd>
+            <span>{{ pessoaFisica()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.cpf">Cpf</span></dt>
+          <dd>
+            <span>{{ pessoaFisica()!.cpf }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.dataNascimento">Data Nascimento</span></dt>
+          <dd>
+            <span>{{ pessoaFisica()!.dataNascimento | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.tituloEleitor">Titulo Eleitor</span></dt>
+          <dd>
+            <span>{{ pessoaFisica()!.tituloEleitor }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.rg">Rg</span></dt>
+          <dd>
+            <span>{{ pessoaFisica()!.rg }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.rgOrgaoExpditor">Rg Orgao Expditor</span></dt>
+          <dd>
+            <span>{{ pessoaFisica()!.rgOrgaoExpditor }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.rgUfExpedicao">Rg Uf Expedicao</span></dt>
+          <dd>
+            <span>{{ pessoaFisica()!.rgUfExpedicao }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.estadoCivil">Estado Civil</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.EstadoCivilEnum.' + (pessoaFisica()!.estadoCivil ?? 'null')">{{
+              { null: '', SOLTERO: 'SOLTERO', CASADO: 'CASADO', DIVORCIADO: 'DIVORCIADO', VIUVO: 'VIUVO', UNIAO_ESTAVEL: 'UNIAO_ESTAVEL' }[
+                pessoaFisica()!.estadoCivil ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.sexo">Sexo</span></dt>
+          <dd>
+            <span [jhiTranslate]="'erpDobemcontabilidadeApp.SexoEnum.' + (pessoaFisica()!.sexo ?? 'null')">{{
+              { null: '', MASCULINO: 'MASCULINO', FEMININO: 'FEMININO' }[pessoaFisica()!.sexo ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.pessoaFisica.urlFotoPerfil">Url Foto Perfil</span></dt>
+          <dd>
+            <span>{{ pessoaFisica()!.urlFotoPerfil }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/pessoa-fisica', pessoaFisica()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

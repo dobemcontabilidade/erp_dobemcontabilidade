@@ -1,0 +1,35 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "empresa": {
+      "home": {
+        "title": "Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Empresa",
+        "createOrEditLabel": "Criar ou editar Empresa",
+        "notFound": "Nenhum Empresa encontrado"
+      },
+      "created": "Um novo Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Empresa"
+      },
+      "id": "ID",
+      "razaoSocial": "Razao Social",
+      "descricaoDoNegocio": "Descricao Do Negocio",
+      "dataAbertura": "Data Abertura",
+      "urlContratoSocial": "Url Contrato Social",
+      "capitalSocial": "Capital Social",
+      "cnae": "Cnae",
+      "pessoaJuridica": "Pessoa Juridica",
+      "socio": "Socio",
+      "assinaturaEmpresa": "Assinatura Empresa",
+      "empresa": "Empresa",
+      "ramo": "Ramo",
+      "enquadramento": "Enquadramento"
+    }
+  }
+}

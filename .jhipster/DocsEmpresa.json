@@ -1,0 +1,48 @@
+{
+  "annotations": {
+    "changelogDate": "20240828194149"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "documento",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "300"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "dataEmissao",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dataEncerramento",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "orgaoEmissor",
+      "fieldType": "String"
+    }
+  ],
+  "name": "DocsEmpresa",
+  "relationships": [
+    {
+      "otherEntityField": "razaoSocial",
+      "otherEntityName": "pessoajuridica",
+      "relationshipName": "pessoaJuridica",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no"
+}

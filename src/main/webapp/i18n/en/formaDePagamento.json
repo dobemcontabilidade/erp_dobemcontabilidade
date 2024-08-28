@@ -1,0 +1,27 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "formaDePagamento": {
+      "home": {
+        "title": "Forma De Pagamentos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Forma De Pagamento",
+        "createOrEditLabel": "Create or edit a Forma De Pagamento",
+        "notFound": "No Forma De Pagamentos found"
+      },
+      "created": "A new Forma De Pagamento is created with identifier {{ param }}",
+      "updated": "A Forma De Pagamento is updated with identifier {{ param }}",
+      "deleted": "A Forma De Pagamento is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Forma De Pagamento {{ id }}?"
+      },
+      "detail": {
+        "title": "Forma De Pagamento"
+      },
+      "id": "ID",
+      "forma": "Forma",
+      "descricao": "Descricao",
+      "disponivel": "Disponivel",
+      "assinaturaEmpresa": "Assinatura Empresa"
+    }
+  }
+}

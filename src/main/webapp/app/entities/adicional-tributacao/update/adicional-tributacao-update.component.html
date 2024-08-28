@@ -1,0 +1,117 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-adicional-tributacao-heading"
+        data-cy="AdicionalTributacaoCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.adicionalTributacao.home.createOrEditLabel"
+      >
+        Criar ou editar Adicional Tributacao
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.adicionalTributacao.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valor" jhiTranslate="erpDobemcontabilidadeApp.adicionalTributacao.valor">Valor</label>
+          <input type="number" class="form-control" name="valor" id="field_valor" data-cy="valor" formControlName="valor" />
+          @if (editForm.get('valor')!.invalid && (editForm.get('valor')!.dirty || editForm.get('valor')!.touched)) {
+            <div>
+              @if (editForm.get('valor')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              <small class="form-text text-danger" [hidden]="!editForm.get('valor')?.errors?.number" jhiTranslate="entity.validation.number"
+                >Este campo é do tipo numérico.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tributacao" jhiTranslate="erpDobemcontabilidadeApp.adicionalTributacao.tributacao"
+            >Tributacao</label
+          >
+          <select
+            class="form-control"
+            id="field_tributacao"
+            data-cy="tributacao"
+            name="tributacao"
+            formControlName="tributacao"
+            [compareWith]="compareTributacao"
+          >
+            @if (editForm.get(['tributacao'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (tributacaoOption of tributacaosSharedCollection; track $index) {
+              <option [ngValue]="tributacaoOption">{{ tributacaoOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['tributacao'])!.invalid && (editForm.get(['tributacao'])!.dirty || editForm.get(['tributacao'])!.touched)) {
+          <div>
+            @if (editForm.get(['tributacao'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_planoAssinaturaContabil"
+            jhiTranslate="erpDobemcontabilidadeApp.adicionalTributacao.planoAssinaturaContabil"
+            >Plano Assinatura Contabil</label
+          >
+          <select
+            class="form-control"
+            id="field_planoAssinaturaContabil"
+            data-cy="planoAssinaturaContabil"
+            name="planoAssinaturaContabil"
+            formControlName="planoAssinaturaContabil"
+            [compareWith]="comparePlanoAssinaturaContabil"
+          >
+            @if (editForm.get(['planoAssinaturaContabil'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (planoAssinaturaContabilOption of planoAssinaturaContabilsSharedCollection; track $index) {
+              <option [ngValue]="planoAssinaturaContabilOption">{{ planoAssinaturaContabilOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['planoAssinaturaContabil'])!.invalid &&
+          (editForm.get(['planoAssinaturaContabil'])!.dirty || editForm.get(['planoAssinaturaContabil'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['planoAssinaturaContabil'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

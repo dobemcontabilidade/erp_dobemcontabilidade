@@ -1,0 +1,30 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "docsEmpresa": {
+      "home": {
+        "title": "Docs Empresas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Docs Empresa",
+        "createOrEditLabel": "Criar ou editar Docs Empresa",
+        "notFound": "Nenhum Docs Empresa encontrado"
+      },
+      "created": "Um novo Docs Empresa foi criado com o identificador {{ param }}",
+      "updated": "Um Docs Empresa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Docs Empresa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Docs Empresa {{ id }}?"
+      },
+      "detail": {
+        "title": "Docs Empresa"
+      },
+      "id": "ID",
+      "documento": "Documento",
+      "descricao": "Descricao",
+      "url": "Url",
+      "dataEmissao": "Data Emissao",
+      "dataEncerramento": "Data Encerramento",
+      "orgaoEmissor": "Orgao Emissor",
+      "pessoaJuridica": "Pessoa Juridica"
+    }
+  }
+}

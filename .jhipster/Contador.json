@@ -3,7 +3,6 @@
     "changelogDate": "20240828040818"
   },
   "applications": "*",
-  "documentation": "ENTITIES",
   "fields": [
     {
       "fieldName": "nome",
@@ -70,7 +69,7 @@
     {
       "fieldName": "estadoCivil",
       "fieldType": "EstadoCivilEnum",
-      "fieldValues": "SOLTEIRO,CASADO,DIVORCIADO,VIUVO,UNIAOESTAVEL"
+      "fieldValues": "SOLTERO,CASADO,DIVORCIADO,VIUVO,UNIAO_ESTAVEL"
     },
     {
       "fieldName": "sexo",

@@ -1,0 +1,114 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-telefone-heading"
+        data-cy="TelefoneCreateUpdateHeading"
+        jhiTranslate="erpDobemcontabilidadeApp.telefone.home.createOrEditLabel"
+      >
+        Criar ou editar Telefone
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="erpDobemcontabilidadeApp.telefone.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codigoArea" jhiTranslate="erpDobemcontabilidadeApp.telefone.codigoArea">Codigo Area</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codigoArea"
+            id="field_codigoArea"
+            data-cy="codigoArea"
+            formControlName="codigoArea"
+          />
+          @if (editForm.get('codigoArea')!.invalid && (editForm.get('codigoArea')!.dirty || editForm.get('codigoArea')!.touched)) {
+            <div>
+              @if (editForm.get('codigoArea')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telefone" jhiTranslate="erpDobemcontabilidadeApp.telefone.telefone">Telefone</label>
+          <input type="text" class="form-control" name="telefone" id="field_telefone" data-cy="telefone" formControlName="telefone" />
+          @if (editForm.get('telefone')!.invalid && (editForm.get('telefone')!.dirty || editForm.get('telefone')!.touched)) {
+            <div>
+              @if (editForm.get('telefone')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_principla" jhiTranslate="erpDobemcontabilidadeApp.telefone.principla">Principla</label>
+          <input type="checkbox" class="form-check" name="principla" id="field_principla" data-cy="principla" formControlName="principla" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tipoTelefone" jhiTranslate="erpDobemcontabilidadeApp.telefone.tipoTelefone"
+            >Tipo Telefone</label
+          >
+          <select class="form-control" name="tipoTelefone" formControlName="tipoTelefone" id="field_tipoTelefone" data-cy="tipoTelefone">
+            <option [ngValue]="null">{{ 'erpDobemcontabilidadeApp.TipoTelefoneEnum.null' | translate }}</option>
+            @for (tipoTelefoneEnum of tipoTelefoneEnumValues; track $index) {
+              <option [value]="tipoTelefoneEnum">{{ 'erpDobemcontabilidadeApp.TipoTelefoneEnum.' + tipoTelefoneEnum | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pessoa" jhiTranslate="erpDobemcontabilidadeApp.telefone.pessoa">Pessoa</label>
+          <select
+            class="form-control"
+            id="field_pessoa"
+            data-cy="pessoa"
+            name="pessoa"
+            formControlName="pessoa"
+            [compareWith]="comparePessoaFisica"
+          >
+            @if (editForm.get(['pessoa'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (pessoaFisicaOption of pessoaFisicasSharedCollection; track $index) {
+              <option [ngValue]="pessoaFisicaOption">{{ pessoaFisicaOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['pessoa'])!.invalid && (editForm.get(['pessoa'])!.dirty || editForm.get(['pessoa'])!.touched)) {
+          <div>
+            @if (editForm.get(['pessoa'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

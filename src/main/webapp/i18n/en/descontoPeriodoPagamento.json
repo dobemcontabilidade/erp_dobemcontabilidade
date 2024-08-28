@@ -1,0 +1,26 @@
+{
+  "erpDobemcontabilidadeApp": {
+    "descontoPeriodoPagamento": {
+      "home": {
+        "title": "Desconto Periodo Pagamentos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Desconto Periodo Pagamento",
+        "createOrEditLabel": "Create or edit a Desconto Periodo Pagamento",
+        "notFound": "No Desconto Periodo Pagamentos found"
+      },
+      "created": "A new Desconto Periodo Pagamento is created with identifier {{ param }}",
+      "updated": "A Desconto Periodo Pagamento is updated with identifier {{ param }}",
+      "deleted": "A Desconto Periodo Pagamento is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Desconto Periodo Pagamento {{ id }}?"
+      },
+      "detail": {
+        "title": "Desconto Periodo Pagamento"
+      },
+      "id": "ID",
+      "percentual": "Percentual",
+      "periodoPagamento": "Periodo Pagamento",
+      "planoAssinaturaContabil": "Plano Assinatura Contabil"
+    }
+  }
+}

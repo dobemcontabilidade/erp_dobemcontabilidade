@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity RedeSocialEmpresa.
+    -->
+    <changeSet id="20240828194151-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="rede_social_id"
+                                 baseTableName="rede_social_empresa"
+                                 constraintName="fk_rede_social_empresa__rede_social_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rede_social"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="pessoajuridica_id"
+                                 baseTableName="rede_social_empresa"
+                                 constraintName="fk_rede_social_empresa__pessoajuridica_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pessoajuridica"
+                                 />
+    </changeSet>
+</databaseChangeLog>
