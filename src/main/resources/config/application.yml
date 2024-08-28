@@ -142,7 +142,7 @@ spring:
       client:
         provider:
           oidc:
-            issuer-uri: https://auth.dobemcontabilidade.com/realms/jhipster
+            issuer-uri: ${URL_KEYCLOAK}
         registration:
           oidc:
             client-id: web_app
