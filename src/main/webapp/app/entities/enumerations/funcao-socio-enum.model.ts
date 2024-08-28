@@ -1,7 +1,0 @@
-export enum FuncaoSocioEnum {
-  SOCIO = 'SOCIO',
-
-  SOCIO_ADMINISTRADOR = 'SOCIO_ADMINISTRADOR',
-
-  SOCIO_GERENTE = 'SOCIO_GERENTE',
-}

@@ -1,5 +1,0 @@
-export enum TipoContratoEnum {
-  ABERTURA_EMPRESA = 'ABERTURA_EMPRESA',
-
-  CONTRATACAO_PLANO = 'CONTRATACAO_PLANO',
-}
