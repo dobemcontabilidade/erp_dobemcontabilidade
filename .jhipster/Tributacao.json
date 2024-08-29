@@ -23,7 +23,7 @@
   "relationships": [
     {
       "otherEntityName": "empresa",
-      "otherEntityRelationshipName": "empresa",
+      "otherEntityRelationshipName": "tributacao",
       "relationshipName": "empresa",
       "relationshipSide": "left",
       "relationshipType": "one-to-many"

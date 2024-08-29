@@ -1,4 +1,4 @@
-id;razao_social;descricao_do_negocio;data_abertura;url_contrato_social;capital_social;cnae;pessoa_juridica_id;empresa_id;ramo_id;enquadramento_id
+id;razao_social;descricao_do_negocio;data_abertura;url_contrato_social;capital_social;cnae;pessoa_juridica_id;tributacao_id;ramo_id;enquadramento_id
 1;forenenst;../fake-data/blob/hipster.txt;2024-08-28T10:43:17;along loftily sturgeon;22745.12;spectacles;1;1;1;1
 2;minus establish;../fake-data/blob/hipster.txt;2024-08-28T18:06:09;conservative pace salary;21908.93;fen afore;2;2;2;2
 3;arctic constellation;../fake-data/blob/hipster.txt;2024-08-28T13:23:02;pea under;6593.06;tunnel whoever before;3;3;3;3

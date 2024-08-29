@@ -65,7 +65,7 @@ public class EmpresaAsserts {
         assertThat(expected)
             .as("Verify Empresa relationships")
             .satisfies(e -> assertThat(e.getPessoaJuridica()).as("check pessoaJuridica").isEqualTo(actual.getPessoaJuridica()))
-            .satisfies(e -> assertThat(e.getEmpresa()).as("check empresa").isEqualTo(actual.getEmpresa()))
+            .satisfies(e -> assertThat(e.getTributacao()).as("check tributacao").isEqualTo(actual.getTributacao()))
             .satisfies(e -> assertThat(e.getRamo()).as("check ramo").isEqualTo(actual.getRamo()))
             .satisfies(e -> assertThat(e.getEnquadramento()).as("check enquadramento").isEqualTo(actual.getEnquadramento()));
     }

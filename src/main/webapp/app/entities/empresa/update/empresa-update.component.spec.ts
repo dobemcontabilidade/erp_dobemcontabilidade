@@ -79,12 +79,12 @@ describe('Empresa Management Update Component', () => {
 
     it('Should call Tributacao query and add missing value', () => {
       const empresa: IEmpresa = { id: 456 };
-      const empresa: ITributacao = { id: 25043 };
-      empresa.empresa = empresa;
+      const tributacao: ITributacao = { id: 25043 };
+      empresa.tributacao = tributacao;
 
       const tributacaoCollection: ITributacao[] = [{ id: 2282 }];
       jest.spyOn(tributacaoService, 'query').mockReturnValue(of(new HttpResponse({ body: tributacaoCollection })));
-      const additionalTributacaos = [empresa];
+      const additionalTributacaos = [tributacao];
       const expectedCollection: ITributacao[] = [...additionalTributacaos, ...tributacaoCollection];
       jest.spyOn(tributacaoService, 'addTributacaoToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -147,8 +147,8 @@ describe('Empresa Management Update Component', () => {
       const empresa: IEmpresa = { id: 456 };
       const pessoaJuridica: IPessoajuridica = { id: 26706 };
       empresa.pessoaJuridica = pessoaJuridica;
-      const empresa: ITributacao = { id: 11703 };
-      empresa.empresa = empresa;
+      const tributacao: ITributacao = { id: 11703 };
+      empresa.tributacao = tributacao;
       const ramo: IRamo = { id: 30601 };
       empresa.ramo = ramo;
       const enquadramento: IEnquadramento = { id: 12830 };
@@ -158,7 +158,7 @@ describe('Empresa Management Update Component', () => {
       comp.ngOnInit();
 
       expect(comp.pessoaJuridicasCollection).toContain(pessoaJuridica);
-      expect(comp.tributacaosSharedCollection).toContain(empresa);
+      expect(comp.tributacaosSharedCollection).toContain(tributacao);
       expect(comp.ramosSharedCollection).toContain(ramo);
       expect(comp.enquadramentosSharedCollection).toContain(enquadramento);
       expect(comp.empresa).toEqual(empresa);

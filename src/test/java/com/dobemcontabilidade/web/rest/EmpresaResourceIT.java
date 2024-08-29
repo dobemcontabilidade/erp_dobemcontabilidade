@@ -123,7 +123,7 @@ class EmpresaResourceIT {
         } else {
             tributacao = TestUtil.findAll(em, Tributacao.class).get(0);
         }
-        empresa.setEmpresa(tributacao);
+        empresa.setTributacao(tributacao);
         // Add required entity
         Ramo ramo;
         if (TestUtil.findAll(em, Ramo.class).isEmpty()) {
@@ -180,7 +180,7 @@ class EmpresaResourceIT {
         } else {
             tributacao = TestUtil.findAll(em, Tributacao.class).get(0);
         }
-        empresa.setEmpresa(tributacao);
+        empresa.setTributacao(tributacao);
         // Add required entity
         Ramo ramo;
         if (TestUtil.findAll(em, Ramo.class).isEmpty()) {

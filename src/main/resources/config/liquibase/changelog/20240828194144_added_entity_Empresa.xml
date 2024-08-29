@@ -35,7 +35,7 @@
             <column name="pessoa_juridica_id" type="bigint">
                 <constraints nullable="false" unique="true" uniqueConstraintName="ux_empresa__pessoa_juridica_id" />
             </column>
-            <column name="empresa_id" type="bigint">
+            <column name="tributacao_id" type="bigint">
                 <constraints nullable="false" />
             </column>
             <column name="ramo_id" type="bigint">
@@ -73,7 +73,7 @@
             <column name="capital_social" type="numeric"/>
             <column name="cnae" type="string"/>
             <column name="pessoa_juridica_id" type="numeric"/>
-            <column name="empresa_id" type="numeric"/>
+            <column name="tributacao_id" type="numeric"/>
             <column name="ramo_id" type="numeric"/>
             <column name="enquadramento_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

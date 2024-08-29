@@ -27,18 +27,18 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
     }
 
     @Query(
-        value = "select empresa from Empresa empresa left join fetch empresa.pessoaJuridica left join fetch empresa.empresa left join fetch empresa.ramo left join fetch empresa.enquadramento",
+        value = "select empresa from Empresa empresa left join fetch empresa.pessoaJuridica left join fetch empresa.tributacao left join fetch empresa.ramo left join fetch empresa.enquadramento",
         countQuery = "select count(empresa) from Empresa empresa"
     )
     Page<Empresa> findAllWithToOneRelationships(Pageable pageable);
 
     @Query(
-        "select empresa from Empresa empresa left join fetch empresa.pessoaJuridica left join fetch empresa.empresa left join fetch empresa.ramo left join fetch empresa.enquadramento"
+        "select empresa from Empresa empresa left join fetch empresa.pessoaJuridica left join fetch empresa.tributacao left join fetch empresa.ramo left join fetch empresa.enquadramento"
     )
     List<Empresa> findAllWithToOneRelationships();
 
     @Query(
-        "select empresa from Empresa empresa left join fetch empresa.pessoaJuridica left join fetch empresa.empresa left join fetch empresa.ramo left join fetch empresa.enquadramento where empresa.id =:id"
+        "select empresa from Empresa empresa left join fetch empresa.pessoaJuridica left join fetch empresa.tributacao left join fetch empresa.ramo left join fetch empresa.enquadramento where empresa.id =:id"
     )
     Optional<Empresa> findOneWithToOneRelationships(@Param("id") Long id);
 }

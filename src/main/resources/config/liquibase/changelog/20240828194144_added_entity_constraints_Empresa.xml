@@ -17,9 +17,9 @@
                                  referencedTableName="pessoajuridica"
                                  />
 
-        <addForeignKeyConstraint baseColumnNames="empresa_id"
+        <addForeignKeyConstraint baseColumnNames="tributacao_id"
                                  baseTableName="empresa"
-                                 constraintName="fk_empresa__empresa_id"
+                                 constraintName="fk_empresa__tributacao_id"
                                  referencedColumnNames="id"
                                  referencedTableName="tributacao"
                                  />

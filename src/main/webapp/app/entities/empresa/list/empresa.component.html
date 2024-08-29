@@ -90,9 +90,9 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="empresa.nome">
+            <th scope="col" jhiSortBy="tributacao.nome">
               <div class="d-flex">
-                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.empresa">Empresa</span>
+                <span jhiTranslate="erpDobemcontabilidadeApp.empresa.tributacao">Tributacao</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
@@ -131,9 +131,9 @@
                 }
               </td>
               <td>
-                @if (empresa.empresa) {
+                @if (empresa.tributacao) {
                   <div>
-                    <a [routerLink]="['/tributacao', empresa.empresa.id, 'view']">{{ empresa.empresa.nome }}</a>
+                    <a [routerLink]="['/tributacao', empresa.tributacao.id, 'view']">{{ empresa.tributacao.nome }}</a>
                   </div>
                 }
               </td>

@@ -107,7 +107,7 @@ public class AssinaturaEmpresa implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties(
-        value = { "pessoaJuridica", "socios", "assinaturaEmpresas", "empresa", "ramo", "enquadramento" },
+        value = { "pessoaJuridica", "socios", "assinaturaEmpresas", "tributacao", "ramo", "enquadramento" },
         allowSetters = true
     )
     private Empresa empresa;

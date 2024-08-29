@@ -38,7 +38,7 @@ type EmpresaFormGroupContent = {
   capitalSocial: FormControl<EmpresaFormRawValue['capitalSocial']>;
   cnae: FormControl<EmpresaFormRawValue['cnae']>;
   pessoaJuridica: FormControl<EmpresaFormRawValue['pessoaJuridica']>;
-  empresa: FormControl<EmpresaFormRawValue['empresa']>;
+  tributacao: FormControl<EmpresaFormRawValue['tributacao']>;
   ramo: FormControl<EmpresaFormRawValue['ramo']>;
   enquadramento: FormControl<EmpresaFormRawValue['enquadramento']>;
 };
@@ -73,7 +73,7 @@ export class EmpresaFormService {
       pessoaJuridica: new FormControl(empresaRawValue.pessoaJuridica, {
         validators: [Validators.required],
       }),
-      empresa: new FormControl(empresaRawValue.empresa, {
+      tributacao: new FormControl(empresaRawValue.tributacao, {
         validators: [Validators.required],
       }),
       ramo: new FormControl(empresaRawValue.ramo, {

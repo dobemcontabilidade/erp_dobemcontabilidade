@@ -35,7 +35,7 @@ public class Ramo implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "ramo")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
-        value = { "pessoaJuridica", "socios", "assinaturaEmpresas", "empresa", "ramo", "enquadramento" },
+        value = { "pessoaJuridica", "socios", "assinaturaEmpresas", "tributacao", "ramo", "enquadramento" },
         allowSetters = true
     )
     private Set<Empresa> empresas = new HashSet<>();

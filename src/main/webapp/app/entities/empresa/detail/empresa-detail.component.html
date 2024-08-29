@@ -49,11 +49,11 @@
               </div>
             }
           </dd>
-          <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresa.empresa">Empresa</span></dt>
+          <dt><span jhiTranslate="erpDobemcontabilidadeApp.empresa.tributacao">Tributacao</span></dt>
           <dd>
-            @if (empresa()!.empresa) {
+            @if (empresa()!.tributacao) {
               <div>
-                <a [routerLink]="['/tributacao', empresa()!.empresa?.id, 'view']">{{ empresa()!.empresa?.nome }}</a>
+                <a [routerLink]="['/tributacao', empresa()!.tributacao?.id, 'view']">{{ empresa()!.tributacao?.nome }}</a>
               </div>
             }
           </dd>

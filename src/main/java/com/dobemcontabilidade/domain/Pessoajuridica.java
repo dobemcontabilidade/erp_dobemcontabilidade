@@ -59,7 +59,7 @@ public class Pessoajuridica implements Serializable {
     private Set<EnderecoEmpresa> enderecoEmpresas = new HashSet<>();
 
     @JsonIgnoreProperties(
-        value = { "pessoaJuridica", "socios", "assinaturaEmpresas", "empresa", "ramo", "enquadramento" },
+        value = { "pessoaJuridica", "socios", "assinaturaEmpresas", "tributacao", "ramo", "enquadramento" },
         allowSetters = true
     )
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoaJuridica")

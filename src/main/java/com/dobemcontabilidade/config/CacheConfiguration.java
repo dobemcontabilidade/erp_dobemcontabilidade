@@ -228,6 +228,51 @@ public class CacheConfiguration {
                 com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".adicionalEnquadramentos",
                 jcacheConfiguration
             );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.Pessoajuridica.class.getName() + ".certificadoDigitalEmpresas",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.CertificadoDigital.class.getName() + ".certificadoDigitalEmpresas",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.FornecedorCertificado.class.getName() + ".certificadoDigitalEmpresas",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.AssinaturaEmpresa.class.getName() + ".termoContratoAssinaturaEmpresas",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.TermoContratoContabil.class.getName() + ".termoContratoAssinaturaEmpresas",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PeriodoPagamento.class.getName() + ".descontoPeriodoPagamentos",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".descontoPeriodoPagamentos",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".adicionalTributacaos",
+                jcacheConfiguration
+            );
+            createCache(
+                cm,
+                com.dobemcontabilidade.domain.PlanoAssinaturaContabil.class.getName() + ".adicionalEnquadramentos",
+                jcacheConfiguration
+            );
             // jhipster-needle-redis-add-entry
         };
     }

@@ -37,10 +37,10 @@ public class Tributacao implements Serializable {
     @Column(name = "situacao")
     private SituacaoTributacaoEnum situacao;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "empresa")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tributacao")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
-        value = { "pessoaJuridica", "socios", "assinaturaEmpresas", "empresa", "ramo", "enquadramento" },
+        value = { "pessoaJuridica", "socios", "assinaturaEmpresas", "tributacao", "ramo", "enquadramento" },
         allowSetters = true
     )
     private Set<Empresa> empresas = new HashSet<>();
@@ -110,10 +110,10 @@ public class Tributacao implements Serializable {
 
     public void setEmpresas(Set<Empresa> empresas) {
         if (this.empresas != null) {
-            this.empresas.forEach(i -> i.setEmpresa(null));
+            this.empresas.forEach(i -> i.setTributacao(null));
         }
         if (empresas != null) {
-            empresas.forEach(i -> i.setEmpresa(this));
+            empresas.forEach(i -> i.setTributacao(this));
         }
         this.empresas = empresas;
     }
@@ -125,13 +125,13 @@ public class Tributacao implements Serializable {
 
     public Tributacao addEmpresa(Empresa empresa) {
         this.empresas.add(empresa);
-        empresa.setEmpresa(this);
+        empresa.setTributacao(this);
         return this;
     }
 
     public Tributacao removeEmpresa(Empresa empresa) {
         this.empresas.remove(empresa);
-        empresa.setEmpresa(null);
+        empresa.setTributacao(null);
         return this;
     }
 

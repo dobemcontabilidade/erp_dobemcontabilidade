@@ -33,19 +33,19 @@ class TributacaoTest {
 
         tributacao.addEmpresa(empresaBack);
         assertThat(tributacao.getEmpresas()).containsOnly(empresaBack);
-        assertThat(empresaBack.getEmpresa()).isEqualTo(tributacao);
+        assertThat(empresaBack.getTributacao()).isEqualTo(tributacao);
 
         tributacao.removeEmpresa(empresaBack);
         assertThat(tributacao.getEmpresas()).doesNotContain(empresaBack);
-        assertThat(empresaBack.getEmpresa()).isNull();
+        assertThat(empresaBack.getTributacao()).isNull();
 
         tributacao.empresas(new HashSet<>(Set.of(empresaBack)));
         assertThat(tributacao.getEmpresas()).containsOnly(empresaBack);
-        assertThat(empresaBack.getEmpresa()).isEqualTo(tributacao);
+        assertThat(empresaBack.getTributacao()).isEqualTo(tributacao);
 
         tributacao.setEmpresas(new HashSet<>());
         assertThat(tributacao.getEmpresas()).doesNotContain(empresaBack);
-        assertThat(empresaBack.getEmpresa()).isNull();
+        assertThat(empresaBack.getTributacao()).isNull();
     }
 
     @Test

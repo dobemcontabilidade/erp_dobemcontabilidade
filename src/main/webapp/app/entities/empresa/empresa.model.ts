@@ -13,7 +13,7 @@ export interface IEmpresa {
   capitalSocial?: number | null;
   cnae?: string | null;
   pessoaJuridica?: IPessoajuridica | null;
-  empresa?: ITributacao | null;
+  tributacao?: ITributacao | null;
   ramo?: IRamo | null;
   enquadramento?: IEnquadramento | null;
 }

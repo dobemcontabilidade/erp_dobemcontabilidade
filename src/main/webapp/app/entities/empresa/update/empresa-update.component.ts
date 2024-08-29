@@ -131,7 +131,7 @@ export class EmpresaUpdateComponent implements OnInit {
     );
     this.tributacaosSharedCollection = this.tributacaoService.addTributacaoToCollectionIfMissing<ITributacao>(
       this.tributacaosSharedCollection,
-      empresa.empresa,
+      empresa.tributacao,
     );
     this.ramosSharedCollection = this.ramoService.addRamoToCollectionIfMissing<IRamo>(this.ramosSharedCollection, empresa.ramo);
     this.enquadramentosSharedCollection = this.enquadramentoService.addEnquadramentoToCollectionIfMissing<IEnquadramento>(
@@ -156,7 +156,7 @@ export class EmpresaUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<ITributacao[]>) => res.body ?? []))
       .pipe(
         map((tributacaos: ITributacao[]) =>
-          this.tributacaoService.addTributacaoToCollectionIfMissing<ITributacao>(tributacaos, this.empresa?.empresa),
+          this.tributacaoService.addTributacaoToCollectionIfMissing<ITributacao>(tributacaos, this.empresa?.tributacao),
         ),
       )
       .subscribe((tributacaos: ITributacao[]) => (this.tributacaosSharedCollection = tributacaos));

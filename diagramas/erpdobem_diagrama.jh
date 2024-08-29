@@ -359,17 +359,21 @@ relationship OneToOne {
 
 relationship OneToMany {
 
+     Pais to Estado{Pais(nome) required}
+     Estado to Cidade{Estado(nome) required}
+
     RedeSocial to RedeSocialEmpresa{RedeSocial(nome) required}
     Pessoajuridica to RedeSocialEmpresa{Pessoajuridica(razaoSocial) required}
 
-    Pais to Estado{Pais(nome) required}
+   
     PessoaFisica to EnderecoPessoa{Pessoa(nome) required}
 	PessoaFisica to DocsPessoa{Pessoa(nome) required}
 	PessoaFisica to Email{Pessoa(nome) required}
 	PessoaFisica to Telefone{Pessoa(nome) required}
+
 	Cidade to EnderecoPessoa{Cidade(nome) required}
 	Cidade to EnderecoEmpresa{Cidade(nome) required}
-	Estado to Cidade{Estado(nome) required}
+	
     Pessoajuridica to CertificadoDigitalEmpresa{PessoaJuridica(razaoSocial) required}
     CertificadoDigital to CertificadoDigitalEmpresa{CertificadoDigital(nome) required}
     FornecedorCertificado to CertificadoDigitalEmpresa{FornecedorCertificado(razaoSocial) required}
@@ -379,17 +383,19 @@ relationship OneToMany {
     Empresa to Socio{Empresa(razaoSocial) required}
     FormaDePagamento to AssinaturaEmpresa{FormaDePagamento(forma) required}
     Empresa to AssinaturaEmpresa{Empresa(razaoSocial) required}
-    Tributacao to Empresa{Empresa(nome) required}
+    Tributacao to Empresa{Tributacao(nome) required}
     Tributacao to AdicionalTributacao{Tributacao(nome) required}
     Ramo to Empresa{Ramo(nome) required}
 	Ramo to AdicionalRamo{Ramo(nome) required}
     Enquadramento to Empresa{Enquadramento(nome) required}
 	Enquadramento to AdicionalEnquadramento{Enquadramento(nome) required}
     PeriodoPagamento to DescontoPeriodoPagamento {PeriodoPagamento(periodo) required}
+    
    	PlanoAssinaturaContabil to DescontoPeriodoPagamento {PlanoAssinaturaContabil(nome) required}
 	PlanoAssinaturaContabil to AdicionalRamo{PlanoAssinaturaContabil(nome) required}
 	PlanoAssinaturaContabil to AdicionalTributacao{PlanoAssinaturaContabil(nome) required}
 	PlanoAssinaturaContabil to AdicionalEnquadramento{PlanoAssinaturaContabil(nome) required}
+    
     TermoContratoContabil to TermoContratoAssinaturaEmpresa{TermoContratoContabil(titulo) required}
     AssinaturaEmpresa to TermoContratoAssinaturaEmpresa{Empresa(razaoSocial) required}
 }

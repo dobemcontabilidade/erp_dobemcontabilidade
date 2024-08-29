@@ -140,16 +140,16 @@
         }
 
         <div class="mb-3">
-          <label class="form-label" for="field_empresa" jhiTranslate="erpDobemcontabilidadeApp.empresa.empresa">Empresa</label>
+          <label class="form-label" for="field_tributacao" jhiTranslate="erpDobemcontabilidadeApp.empresa.tributacao">Tributacao</label>
           <select
             class="form-control"
-            id="field_empresa"
-            data-cy="empresa"
-            name="empresa"
-            formControlName="empresa"
+            id="field_tributacao"
+            data-cy="tributacao"
+            name="tributacao"
+            formControlName="tributacao"
             [compareWith]="compareTributacao"
           >
-            @if (editForm.get(['empresa'])!.value == null) {
+            @if (editForm.get(['tributacao'])!.value == null) {
               <option [ngValue]="null" selected></option>
             }
             @for (tributacaoOption of tributacaosSharedCollection; track $index) {
@@ -157,9 +157,9 @@
             }
           </select>
         </div>
-        @if (editForm.get(['empresa'])!.invalid && (editForm.get(['empresa'])!.dirty || editForm.get(['empresa'])!.touched)) {
+        @if (editForm.get(['tributacao'])!.invalid && (editForm.get(['tributacao'])!.dirty || editForm.get(['tributacao'])!.touched)) {
           <div>
-            @if (editForm.get(['empresa'])?.errors?.required) {
+            @if (editForm.get(['tributacao'])?.errors?.required) {
               <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
             }
           </div>

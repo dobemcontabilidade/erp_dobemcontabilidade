@@ -59,7 +59,7 @@
     {
       "otherEntityField": "nome",
       "otherEntityName": "tributacao",
-      "relationshipName": "empresa",
+      "relationshipName": "tributacao",
       "relationshipSide": "right",
       "relationshipType": "many-to-one",
       "relationshipValidateRules": "required"

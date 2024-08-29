@@ -87,15 +87,15 @@ class EmpresaTest {
     }
 
     @Test
-    void empresaTest() {
+    void tributacaoTest() {
         Empresa empresa = getEmpresaRandomSampleGenerator();
         Tributacao tributacaoBack = getTributacaoRandomSampleGenerator();
 
-        empresa.setEmpresa(tributacaoBack);
-        assertThat(empresa.getEmpresa()).isEqualTo(tributacaoBack);
+        empresa.setTributacao(tributacaoBack);
+        assertThat(empresa.getTributacao()).isEqualTo(tributacaoBack);
 
-        empresa.empresa(null);
-        assertThat(empresa.getEmpresa()).isNull();
+        empresa.tributacao(null);
+        assertThat(empresa.getTributacao()).isNull();
     }
 
     @Test

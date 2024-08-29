@@ -73,7 +73,7 @@ public class Empresa implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties(value = { "empresas", "adicionalTributacaos" }, allowSetters = true)
-    private Tributacao empresa;
+    private Tributacao tributacao;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -253,16 +253,16 @@ public class Empresa implements Serializable {
         return this;
     }
 
-    public Tributacao getEmpresa() {
-        return this.empresa;
+    public Tributacao getTributacao() {
+        return this.tributacao;
     }
 
-    public void setEmpresa(Tributacao tributacao) {
-        this.empresa = tributacao;
+    public void setTributacao(Tributacao tributacao) {
+        this.tributacao = tributacao;
     }
 
-    public Empresa empresa(Tributacao tributacao) {
-        this.setEmpresa(tributacao);
+    public Empresa tributacao(Tributacao tributacao) {
+        this.setTributacao(tributacao);
         return this;
     }
 
