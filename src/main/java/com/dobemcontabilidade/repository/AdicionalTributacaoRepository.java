@@ -13,7 +13,8 @@ import org.springframework.stereotype.Repository;
  * Spring Data JPA repository for the AdicionalTributacao entity.
  */
 @Repository
-public interface AdicionalTributacaoRepository extends JpaRepository<AdicionalTributacao, Long> {
+public interface AdicionalTributacaoRepository
+    extends JpaRepository<AdicionalTributacao, Long>, JpaSpecificationExecutor<AdicionalTributacao> {
     default Optional<AdicionalTributacao> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }

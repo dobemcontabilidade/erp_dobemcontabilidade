@@ -402,4 +402,16 @@ relationship OneToMany {
 
 
 filter
-    DescontoPeriodoPagamento
+    Estado,
+    Cidade,
+    Tributacao,
+    Ramo,
+    Enquadramento,
+    DescontoPeriodoPagamento,
+    AdicionalEnquadramento,
+    AdicionalTributacao,
+    AdicionalRamo,
+    Empresa,
+    PlanoAssinaturaContabil,
+    AssinaturaEmpresa,
+    Pessoajuridica

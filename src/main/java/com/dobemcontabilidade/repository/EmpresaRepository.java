@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * Spring Data JPA repository for the Empresa entity.
  */
 @Repository
-public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
+public interface EmpresaRepository extends JpaRepository<Empresa, Long>, JpaSpecificationExecutor<Empresa> {
     default Optional<Empresa> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }

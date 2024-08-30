@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.Enquadramento;
 import com.dobemcontabilidade.repository.EnquadramentoRepository;
+import com.dobemcontabilidade.service.EnquadramentoQueryService;
+import com.dobemcontabilidade.service.EnquadramentoService;
+import com.dobemcontabilidade.service.criteria.EnquadramentoCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -22,7 +24,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/enquadramentos")
-@Transactional
 public class EnquadramentoResource {
 
     private static final Logger log = LoggerFactory.getLogger(EnquadramentoResource.class);
@@ -32,10 +33,20 @@ public class EnquadramentoResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final EnquadramentoService enquadramentoService;
+
     private final EnquadramentoRepository enquadramentoRepository;
 
-    public EnquadramentoResource(EnquadramentoRepository enquadramentoRepository) {
+    private final EnquadramentoQueryService enquadramentoQueryService;
+
+    public EnquadramentoResource(
+        EnquadramentoService enquadramentoService,
+        EnquadramentoRepository enquadramentoRepository,
+        EnquadramentoQueryService enquadramentoQueryService
+    ) {
+        this.enquadramentoService = enquadramentoService;
         this.enquadramentoRepository = enquadramentoRepository;
+        this.enquadramentoQueryService = enquadramentoQueryService;
     }
 
     /**
@@ -51,7 +62,7 @@ public class EnquadramentoResource {
         if (enquadramento.getId() != null) {
             throw new BadRequestAlertException("A new enquadramento cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        enquadramento = enquadramentoRepository.save(enquadramento);
+        enquadramento = enquadramentoService.save(enquadramento);
         return ResponseEntity.created(new URI("/api/enquadramentos/" + enquadramento.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, enquadramento.getId().toString()))
             .body(enquadramento);
@@ -84,7 +95,7 @@ public class EnquadramentoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        enquadramento = enquadramentoRepository.save(enquadramento);
+        enquadramento = enquadramentoService.update(enquadramento);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, enquadramento.getId().toString()))
             .body(enquadramento);
@@ -118,28 +129,7 @@ public class EnquadramentoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<Enquadramento> result = enquadramentoRepository
-            .findById(enquadramento.getId())
-            .map(existingEnquadramento -> {
-                if (enquadramento.getNome() != null) {
-                    existingEnquadramento.setNome(enquadramento.getNome());
-                }
-                if (enquadramento.getSigla() != null) {
-                    existingEnquadramento.setSigla(enquadramento.getSigla());
-                }
-                if (enquadramento.getLimiteInicial() != null) {
-                    existingEnquadramento.setLimiteInicial(enquadramento.getLimiteInicial());
-                }
-                if (enquadramento.getLimiteFinal() != null) {
-                    existingEnquadramento.setLimiteFinal(enquadramento.getLimiteFinal());
-                }
-                if (enquadramento.getDescricao() != null) {
-                    existingEnquadramento.setDescricao(enquadramento.getDescricao());
-                }
-
-                return existingEnquadramento;
-            })
-            .map(enquadramentoRepository::save);
+        Optional<Enquadramento> result = enquadramentoService.partialUpdate(enquadramento);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -150,12 +140,27 @@ public class EnquadramentoResource {
     /**
      * {@code GET  /enquadramentos} : get all the enquadramentos.
      *
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of enquadramentos in body.
      */
     @GetMapping("")
-    public List<Enquadramento> getAllEnquadramentos() {
-        log.debug("REST request to get all Enquadramentos");
-        return enquadramentoRepository.findAll();
+    public ResponseEntity<List<Enquadramento>> getAllEnquadramentos(EnquadramentoCriteria criteria) {
+        log.debug("REST request to get Enquadramentos by criteria: {}", criteria);
+
+        List<Enquadramento> entityList = enquadramentoQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /enquadramentos/count} : count all the enquadramentos.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countEnquadramentos(EnquadramentoCriteria criteria) {
+        log.debug("REST request to count Enquadramentos by criteria: {}", criteria);
+        return ResponseEntity.ok().body(enquadramentoQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -167,7 +172,7 @@ public class EnquadramentoResource {
     @GetMapping("/{id}")
     public ResponseEntity<Enquadramento> getEnquadramento(@PathVariable("id") Long id) {
         log.debug("REST request to get Enquadramento : {}", id);
-        Optional<Enquadramento> enquadramento = enquadramentoRepository.findById(id);
+        Optional<Enquadramento> enquadramento = enquadramentoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(enquadramento);
     }
 
@@ -180,7 +185,7 @@ public class EnquadramentoResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEnquadramento(@PathVariable("id") Long id) {
         log.debug("REST request to delete Enquadramento : {}", id);
-        enquadramentoRepository.deleteById(id);
+        enquadramentoService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();

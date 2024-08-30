@@ -38,6 +38,7 @@
       "fieldValues": "ATIVO,INATIVO,EXCLUIDO"
     }
   ],
+  "jpaMetamodelFiltering": true,
   "name": "PlanoAssinaturaContabil",
   "relationships": [
     {
@@ -69,5 +70,6 @@
       "relationshipType": "one-to-many"
     }
   ],
-  "searchEngine": "no"
+  "searchEngine": "no",
+  "service": "serviceClass"
 }

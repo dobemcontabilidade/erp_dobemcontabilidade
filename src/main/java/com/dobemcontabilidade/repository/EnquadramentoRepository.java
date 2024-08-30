@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface EnquadramentoRepository extends JpaRepository<Enquadramento, Long> {}
+public interface EnquadramentoRepository extends JpaRepository<Enquadramento, Long>, JpaSpecificationExecutor<Enquadramento> {}

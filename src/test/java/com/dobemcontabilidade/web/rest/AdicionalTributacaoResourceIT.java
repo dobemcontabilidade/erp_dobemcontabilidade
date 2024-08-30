@@ -14,6 +14,7 @@ import com.dobemcontabilidade.domain.AdicionalTributacao;
 import com.dobemcontabilidade.domain.PlanoAssinaturaContabil;
 import com.dobemcontabilidade.domain.Tributacao;
 import com.dobemcontabilidade.repository.AdicionalTributacaoRepository;
+import com.dobemcontabilidade.service.AdicionalTributacaoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ class AdicionalTributacaoResourceIT {
 
     private static final Double DEFAULT_VALOR = 1D;
     private static final Double UPDATED_VALOR = 2D;
+    private static final Double SMALLER_VALOR = 1D - 1D;
 
     private static final String ENTITY_API_URL = "/api/adicional-tributacaos";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -60,6 +62,9 @@ class AdicionalTributacaoResourceIT {
 
     @Mock
     private AdicionalTributacaoRepository adicionalTributacaoRepositoryMock;
+
+    @Mock
+    private AdicionalTributacaoService adicionalTributacaoServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -230,16 +235,16 @@ class AdicionalTributacaoResourceIT {
 
     @SuppressWarnings({ "unchecked" })
     void getAllAdicionalTributacaosWithEagerRelationshipsIsEnabled() throws Exception {
-        when(adicionalTributacaoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(adicionalTributacaoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restAdicionalTributacaoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(adicionalTributacaoRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(adicionalTributacaoServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({ "unchecked" })
     void getAllAdicionalTributacaosWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(adicionalTributacaoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(adicionalTributacaoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restAdicionalTributacaoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
         verify(adicionalTributacaoRepositoryMock, times(1)).findAll(any(Pageable.class));
@@ -258,6 +263,178 @@ class AdicionalTributacaoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(adicionalTributacao.getId().intValue()))
             .andExpect(jsonPath("$.valor").value(DEFAULT_VALOR.doubleValue()));
+    }
+
+    @Test
+    @Transactional
+    void getAdicionalTributacaosByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedAdicionalTributacao = adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+
+        Long id = adicionalTributacao.getId();
+
+        defaultAdicionalTributacaoFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultAdicionalTributacaoFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultAdicionalTributacaoFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalTributacaosByValorIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalTributacao = adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+
+        // Get all the adicionalTributacaoList where valor equals to
+        defaultAdicionalTributacaoFiltering("valor.equals=" + DEFAULT_VALOR, "valor.equals=" + UPDATED_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalTributacaosByValorIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedAdicionalTributacao = adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+
+        // Get all the adicionalTributacaoList where valor in
+        defaultAdicionalTributacaoFiltering("valor.in=" + DEFAULT_VALOR + "," + UPDATED_VALOR, "valor.in=" + UPDATED_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalTributacaosByValorIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedAdicionalTributacao = adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+
+        // Get all the adicionalTributacaoList where valor is not null
+        defaultAdicionalTributacaoFiltering("valor.specified=true", "valor.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalTributacaosByValorIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalTributacao = adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+
+        // Get all the adicionalTributacaoList where valor is greater than or equal to
+        defaultAdicionalTributacaoFiltering("valor.greaterThanOrEqual=" + DEFAULT_VALOR, "valor.greaterThanOrEqual=" + UPDATED_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalTributacaosByValorIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalTributacao = adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+
+        // Get all the adicionalTributacaoList where valor is less than or equal to
+        defaultAdicionalTributacaoFiltering("valor.lessThanOrEqual=" + DEFAULT_VALOR, "valor.lessThanOrEqual=" + SMALLER_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalTributacaosByValorIsLessThanSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalTributacao = adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+
+        // Get all the adicionalTributacaoList where valor is less than
+        defaultAdicionalTributacaoFiltering("valor.lessThan=" + UPDATED_VALOR, "valor.lessThan=" + DEFAULT_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalTributacaosByValorIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalTributacao = adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+
+        // Get all the adicionalTributacaoList where valor is greater than
+        defaultAdicionalTributacaoFiltering("valor.greaterThan=" + SMALLER_VALOR, "valor.greaterThan=" + DEFAULT_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalTributacaosByTributacaoIsEqualToSomething() throws Exception {
+        Tributacao tributacao;
+        if (TestUtil.findAll(em, Tributacao.class).isEmpty()) {
+            adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+            tributacao = TributacaoResourceIT.createEntity(em);
+        } else {
+            tributacao = TestUtil.findAll(em, Tributacao.class).get(0);
+        }
+        em.persist(tributacao);
+        em.flush();
+        adicionalTributacao.setTributacao(tributacao);
+        adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+        Long tributacaoId = tributacao.getId();
+        // Get all the adicionalTributacaoList where tributacao equals to tributacaoId
+        defaultAdicionalTributacaoShouldBeFound("tributacaoId.equals=" + tributacaoId);
+
+        // Get all the adicionalTributacaoList where tributacao equals to (tributacaoId + 1)
+        defaultAdicionalTributacaoShouldNotBeFound("tributacaoId.equals=" + (tributacaoId + 1));
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalTributacaosByPlanoAssinaturaContabilIsEqualToSomething() throws Exception {
+        PlanoAssinaturaContabil planoAssinaturaContabil;
+        if (TestUtil.findAll(em, PlanoAssinaturaContabil.class).isEmpty()) {
+            adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+            planoAssinaturaContabil = PlanoAssinaturaContabilResourceIT.createEntity(em);
+        } else {
+            planoAssinaturaContabil = TestUtil.findAll(em, PlanoAssinaturaContabil.class).get(0);
+        }
+        em.persist(planoAssinaturaContabil);
+        em.flush();
+        adicionalTributacao.setPlanoAssinaturaContabil(planoAssinaturaContabil);
+        adicionalTributacaoRepository.saveAndFlush(adicionalTributacao);
+        Long planoAssinaturaContabilId = planoAssinaturaContabil.getId();
+        // Get all the adicionalTributacaoList where planoAssinaturaContabil equals to planoAssinaturaContabilId
+        defaultAdicionalTributacaoShouldBeFound("planoAssinaturaContabilId.equals=" + planoAssinaturaContabilId);
+
+        // Get all the adicionalTributacaoList where planoAssinaturaContabil equals to (planoAssinaturaContabilId + 1)
+        defaultAdicionalTributacaoShouldNotBeFound("planoAssinaturaContabilId.equals=" + (planoAssinaturaContabilId + 1));
+    }
+
+    private void defaultAdicionalTributacaoFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultAdicionalTributacaoShouldBeFound(shouldBeFound);
+        defaultAdicionalTributacaoShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultAdicionalTributacaoShouldBeFound(String filter) throws Exception {
+        restAdicionalTributacaoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(adicionalTributacao.getId().intValue())))
+            .andExpect(jsonPath("$.[*].valor").value(hasItem(DEFAULT_VALOR.doubleValue())));
+
+        // Check, that the count call also returns 1
+        restAdicionalTributacaoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultAdicionalTributacaoShouldNotBeFound(String filter) throws Exception {
+        restAdicionalTributacaoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restAdicionalTributacaoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
     }
 
     @Test

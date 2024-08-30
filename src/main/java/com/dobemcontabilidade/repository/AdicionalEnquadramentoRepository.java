@@ -13,7 +13,8 @@ import org.springframework.stereotype.Repository;
  * Spring Data JPA repository for the AdicionalEnquadramento entity.
  */
 @Repository
-public interface AdicionalEnquadramentoRepository extends JpaRepository<AdicionalEnquadramento, Long> {
+public interface AdicionalEnquadramentoRepository
+    extends JpaRepository<AdicionalEnquadramento, Long>, JpaSpecificationExecutor<AdicionalEnquadramento> {
     default Optional<AdicionalEnquadramento> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }

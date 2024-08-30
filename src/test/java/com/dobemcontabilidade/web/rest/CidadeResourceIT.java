@@ -13,6 +13,7 @@ import com.dobemcontabilidade.IntegrationTest;
 import com.dobemcontabilidade.domain.Cidade;
 import com.dobemcontabilidade.domain.Estado;
 import com.dobemcontabilidade.repository.CidadeRepository;
+import com.dobemcontabilidade.service.CidadeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
@@ -65,6 +66,9 @@ class CidadeResourceIT {
 
     @Mock
     private CidadeRepository cidadeRepositoryMock;
+
+    @Mock
+    private CidadeService cidadeServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -205,16 +209,16 @@ class CidadeResourceIT {
 
     @SuppressWarnings({ "unchecked" })
     void getAllCidadesWithEagerRelationshipsIsEnabled() throws Exception {
-        when(cidadeRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(cidadeServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restCidadeMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(cidadeRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(cidadeServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({ "unchecked" })
     void getAllCidadesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(cidadeRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(cidadeServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restCidadeMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
         verify(cidadeRepositoryMock, times(1)).findAll(any(Pageable.class));
@@ -235,6 +239,201 @@ class CidadeResourceIT {
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
             .andExpect(jsonPath("$.contratacao").value(DEFAULT_CONTRATACAO.booleanValue()))
             .andExpect(jsonPath("$.abertura").value(DEFAULT_ABERTURA.booleanValue()));
+    }
+
+    @Test
+    @Transactional
+    void getCidadesByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        Long id = cidade.getId();
+
+        defaultCidadeFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultCidadeFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultCidadeFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByNomeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where nome equals to
+        defaultCidadeFiltering("nome.equals=" + DEFAULT_NOME, "nome.equals=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByNomeIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where nome in
+        defaultCidadeFiltering("nome.in=" + DEFAULT_NOME + "," + UPDATED_NOME, "nome.in=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByNomeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where nome is not null
+        defaultCidadeFiltering("nome.specified=true", "nome.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByNomeContainsSomething() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where nome contains
+        defaultCidadeFiltering("nome.contains=" + DEFAULT_NOME, "nome.contains=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByNomeNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where nome does not contain
+        defaultCidadeFiltering("nome.doesNotContain=" + UPDATED_NOME, "nome.doesNotContain=" + DEFAULT_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByContratacaoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where contratacao equals to
+        defaultCidadeFiltering("contratacao.equals=" + DEFAULT_CONTRATACAO, "contratacao.equals=" + UPDATED_CONTRATACAO);
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByContratacaoIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where contratacao in
+        defaultCidadeFiltering(
+            "contratacao.in=" + DEFAULT_CONTRATACAO + "," + UPDATED_CONTRATACAO,
+            "contratacao.in=" + UPDATED_CONTRATACAO
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByContratacaoIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where contratacao is not null
+        defaultCidadeFiltering("contratacao.specified=true", "contratacao.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByAberturaIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where abertura equals to
+        defaultCidadeFiltering("abertura.equals=" + DEFAULT_ABERTURA, "abertura.equals=" + UPDATED_ABERTURA);
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByAberturaIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where abertura in
+        defaultCidadeFiltering("abertura.in=" + DEFAULT_ABERTURA + "," + UPDATED_ABERTURA, "abertura.in=" + UPDATED_ABERTURA);
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByAberturaIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedCidade = cidadeRepository.saveAndFlush(cidade);
+
+        // Get all the cidadeList where abertura is not null
+        defaultCidadeFiltering("abertura.specified=true", "abertura.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllCidadesByEstadoIsEqualToSomething() throws Exception {
+        Estado estado;
+        if (TestUtil.findAll(em, Estado.class).isEmpty()) {
+            cidadeRepository.saveAndFlush(cidade);
+            estado = EstadoResourceIT.createEntity(em);
+        } else {
+            estado = TestUtil.findAll(em, Estado.class).get(0);
+        }
+        em.persist(estado);
+        em.flush();
+        cidade.setEstado(estado);
+        cidadeRepository.saveAndFlush(cidade);
+        Long estadoId = estado.getId();
+        // Get all the cidadeList where estado equals to estadoId
+        defaultCidadeShouldBeFound("estadoId.equals=" + estadoId);
+
+        // Get all the cidadeList where estado equals to (estadoId + 1)
+        defaultCidadeShouldNotBeFound("estadoId.equals=" + (estadoId + 1));
+    }
+
+    private void defaultCidadeFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultCidadeShouldBeFound(shouldBeFound);
+        defaultCidadeShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultCidadeShouldBeFound(String filter) throws Exception {
+        restCidadeMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(cidade.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].contratacao").value(hasItem(DEFAULT_CONTRATACAO.booleanValue())))
+            .andExpect(jsonPath("$.[*].abertura").value(hasItem(DEFAULT_ABERTURA.booleanValue())));
+
+        // Check, that the count call also returns 1
+        restCidadeMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultCidadeShouldNotBeFound(String filter) throws Exception {
+        restCidadeMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restCidadeMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
     }
 
     @Test

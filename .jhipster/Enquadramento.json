@@ -26,6 +26,7 @@
       "fieldTypeBlobContent": "text"
     }
   ],
+  "jpaMetamodelFiltering": true,
   "name": "Enquadramento",
   "relationships": [
     {
@@ -43,5 +44,6 @@
       "relationshipType": "one-to-many"
     }
   ],
-  "searchEngine": "no"
+  "searchEngine": "no",
+  "service": "serviceClass"
 }

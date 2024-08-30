@@ -142,7 +142,7 @@ export class EmpresaUpdateComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.pessoajuridicaService
-      .query({ filter: 'empresa-is-null' })
+      .query({ 'empresaId.specified': 'false' })
       .pipe(map((res: HttpResponse<IPessoajuridica[]>) => res.body ?? []))
       .pipe(
         map((pessoajuridicas: IPessoajuridica[]) =>

@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.AdicionalRamo;
 import com.dobemcontabilidade.repository.AdicionalRamoRepository;
+import com.dobemcontabilidade.service.AdicionalRamoQueryService;
+import com.dobemcontabilidade.service.AdicionalRamoService;
+import com.dobemcontabilidade.service.criteria.AdicionalRamoCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -24,7 +26,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/adicional-ramos")
-@Transactional
 public class AdicionalRamoResource {
 
     private static final Logger log = LoggerFactory.getLogger(AdicionalRamoResource.class);
@@ -34,10 +35,20 @@ public class AdicionalRamoResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final AdicionalRamoService adicionalRamoService;
+
     private final AdicionalRamoRepository adicionalRamoRepository;
 
-    public AdicionalRamoResource(AdicionalRamoRepository adicionalRamoRepository) {
+    private final AdicionalRamoQueryService adicionalRamoQueryService;
+
+    public AdicionalRamoResource(
+        AdicionalRamoService adicionalRamoService,
+        AdicionalRamoRepository adicionalRamoRepository,
+        AdicionalRamoQueryService adicionalRamoQueryService
+    ) {
+        this.adicionalRamoService = adicionalRamoService;
         this.adicionalRamoRepository = adicionalRamoRepository;
+        this.adicionalRamoQueryService = adicionalRamoQueryService;
     }
 
     /**
@@ -53,7 +64,7 @@ public class AdicionalRamoResource {
         if (adicionalRamo.getId() != null) {
             throw new BadRequestAlertException("A new adicionalRamo cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        adicionalRamo = adicionalRamoRepository.save(adicionalRamo);
+        adicionalRamo = adicionalRamoService.save(adicionalRamo);
         return ResponseEntity.created(new URI("/api/adicional-ramos/" + adicionalRamo.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, adicionalRamo.getId().toString()))
             .body(adicionalRamo);
@@ -86,7 +97,7 @@ public class AdicionalRamoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        adicionalRamo = adicionalRamoRepository.save(adicionalRamo);
+        adicionalRamo = adicionalRamoService.update(adicionalRamo);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, adicionalRamo.getId().toString()))
             .body(adicionalRamo);
@@ -120,16 +131,7 @@ public class AdicionalRamoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<AdicionalRamo> result = adicionalRamoRepository
-            .findById(adicionalRamo.getId())
-            .map(existingAdicionalRamo -> {
-                if (adicionalRamo.getValor() != null) {
-                    existingAdicionalRamo.setValor(adicionalRamo.getValor());
-                }
-
-                return existingAdicionalRamo;
-            })
-            .map(adicionalRamoRepository::save);
+        Optional<AdicionalRamo> result = adicionalRamoService.partialUpdate(adicionalRamo);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -140,19 +142,27 @@ public class AdicionalRamoResource {
     /**
      * {@code GET  /adicional-ramos} : get all the adicionalRamos.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of adicionalRamos in body.
      */
     @GetMapping("")
-    public List<AdicionalRamo> getAllAdicionalRamos(
-        @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
-    ) {
-        log.debug("REST request to get all AdicionalRamos");
-        if (eagerload) {
-            return adicionalRamoRepository.findAllWithEagerRelationships();
-        } else {
-            return adicionalRamoRepository.findAll();
-        }
+    public ResponseEntity<List<AdicionalRamo>> getAllAdicionalRamos(AdicionalRamoCriteria criteria) {
+        log.debug("REST request to get AdicionalRamos by criteria: {}", criteria);
+
+        List<AdicionalRamo> entityList = adicionalRamoQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /adicional-ramos/count} : count all the adicionalRamos.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countAdicionalRamos(AdicionalRamoCriteria criteria) {
+        log.debug("REST request to count AdicionalRamos by criteria: {}", criteria);
+        return ResponseEntity.ok().body(adicionalRamoQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -164,7 +174,7 @@ public class AdicionalRamoResource {
     @GetMapping("/{id}")
     public ResponseEntity<AdicionalRamo> getAdicionalRamo(@PathVariable("id") Long id) {
         log.debug("REST request to get AdicionalRamo : {}", id);
-        Optional<AdicionalRamo> adicionalRamo = adicionalRamoRepository.findOneWithEagerRelationships(id);
+        Optional<AdicionalRamo> adicionalRamo = adicionalRamoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(adicionalRamo);
     }
 
@@ -177,7 +187,7 @@ public class AdicionalRamoResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAdicionalRamo(@PathVariable("id") Long id) {
         log.debug("REST request to delete AdicionalRamo : {}", id);
-        adicionalRamoRepository.deleteById(id);
+        adicionalRamoService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();

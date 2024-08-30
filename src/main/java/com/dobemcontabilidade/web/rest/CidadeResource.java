@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.Cidade;
 import com.dobemcontabilidade.repository.CidadeRepository;
+import com.dobemcontabilidade.service.CidadeQueryService;
+import com.dobemcontabilidade.service.CidadeService;
+import com.dobemcontabilidade.service.criteria.CidadeCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -24,7 +26,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/cidades")
-@Transactional
 public class CidadeResource {
 
     private static final Logger log = LoggerFactory.getLogger(CidadeResource.class);
@@ -34,10 +35,16 @@ public class CidadeResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final CidadeService cidadeService;
+
     private final CidadeRepository cidadeRepository;
 
-    public CidadeResource(CidadeRepository cidadeRepository) {
+    private final CidadeQueryService cidadeQueryService;
+
+    public CidadeResource(CidadeService cidadeService, CidadeRepository cidadeRepository, CidadeQueryService cidadeQueryService) {
+        this.cidadeService = cidadeService;
         this.cidadeRepository = cidadeRepository;
+        this.cidadeQueryService = cidadeQueryService;
     }
 
     /**
@@ -53,7 +60,7 @@ public class CidadeResource {
         if (cidade.getId() != null) {
             throw new BadRequestAlertException("A new cidade cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        cidade = cidadeRepository.save(cidade);
+        cidade = cidadeService.save(cidade);
         return ResponseEntity.created(new URI("/api/cidades/" + cidade.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, cidade.getId().toString()))
             .body(cidade);
@@ -86,7 +93,7 @@ public class CidadeResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        cidade = cidadeRepository.save(cidade);
+        cidade = cidadeService.update(cidade);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, cidade.getId().toString()))
             .body(cidade);
@@ -120,22 +127,7 @@ public class CidadeResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<Cidade> result = cidadeRepository
-            .findById(cidade.getId())
-            .map(existingCidade -> {
-                if (cidade.getNome() != null) {
-                    existingCidade.setNome(cidade.getNome());
-                }
-                if (cidade.getContratacao() != null) {
-                    existingCidade.setContratacao(cidade.getContratacao());
-                }
-                if (cidade.getAbertura() != null) {
-                    existingCidade.setAbertura(cidade.getAbertura());
-                }
-
-                return existingCidade;
-            })
-            .map(cidadeRepository::save);
+        Optional<Cidade> result = cidadeService.partialUpdate(cidade);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -146,17 +138,27 @@ public class CidadeResource {
     /**
      * {@code GET  /cidades} : get all the cidades.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of cidades in body.
      */
     @GetMapping("")
-    public List<Cidade> getAllCidades(@RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload) {
-        log.debug("REST request to get all Cidades");
-        if (eagerload) {
-            return cidadeRepository.findAllWithEagerRelationships();
-        } else {
-            return cidadeRepository.findAll();
-        }
+    public ResponseEntity<List<Cidade>> getAllCidades(CidadeCriteria criteria) {
+        log.debug("REST request to get Cidades by criteria: {}", criteria);
+
+        List<Cidade> entityList = cidadeQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /cidades/count} : count all the cidades.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countCidades(CidadeCriteria criteria) {
+        log.debug("REST request to count Cidades by criteria: {}", criteria);
+        return ResponseEntity.ok().body(cidadeQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -168,7 +170,7 @@ public class CidadeResource {
     @GetMapping("/{id}")
     public ResponseEntity<Cidade> getCidade(@PathVariable("id") Long id) {
         log.debug("REST request to get Cidade : {}", id);
-        Optional<Cidade> cidade = cidadeRepository.findOneWithEagerRelationships(id);
+        Optional<Cidade> cidade = cidadeService.findOne(id);
         return ResponseUtil.wrapOrNotFound(cidade);
     }
 
@@ -181,7 +183,7 @@ public class CidadeResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCidade(@PathVariable("id") Long id) {
         log.debug("REST request to delete Cidade : {}", id);
-        cidadeRepository.deleteById(id);
+        cidadeService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();

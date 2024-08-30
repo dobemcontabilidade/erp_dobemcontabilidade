@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface RamoRepository extends JpaRepository<Ramo, Long> {}
+public interface RamoRepository extends JpaRepository<Ramo, Long>, JpaSpecificationExecutor<Ramo> {}

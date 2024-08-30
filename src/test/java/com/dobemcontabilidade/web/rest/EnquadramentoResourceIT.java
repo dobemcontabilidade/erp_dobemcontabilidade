@@ -41,9 +41,11 @@ class EnquadramentoResourceIT {
 
     private static final Double DEFAULT_LIMITE_INICIAL = 1D;
     private static final Double UPDATED_LIMITE_INICIAL = 2D;
+    private static final Double SMALLER_LIMITE_INICIAL = 1D - 1D;
 
     private static final Double DEFAULT_LIMITE_FINAL = 1D;
     private static final Double UPDATED_LIMITE_FINAL = 2D;
+    private static final Double SMALLER_LIMITE_FINAL = 1D - 1D;
 
     private static final String DEFAULT_DESCRICAO = "AAAAAAAAAA";
     private static final String UPDATED_DESCRICAO = "BBBBBBBBBB";
@@ -192,6 +194,332 @@ class EnquadramentoResourceIT {
             .andExpect(jsonPath("$.limiteInicial").value(DEFAULT_LIMITE_INICIAL.doubleValue()))
             .andExpect(jsonPath("$.limiteFinal").value(DEFAULT_LIMITE_FINAL.doubleValue()))
             .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO.toString()));
+    }
+
+    @Test
+    @Transactional
+    void getEnquadramentosByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        Long id = enquadramento.getId();
+
+        defaultEnquadramentoFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultEnquadramentoFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultEnquadramentoFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByNomeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where nome equals to
+        defaultEnquadramentoFiltering("nome.equals=" + DEFAULT_NOME, "nome.equals=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByNomeIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where nome in
+        defaultEnquadramentoFiltering("nome.in=" + DEFAULT_NOME + "," + UPDATED_NOME, "nome.in=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByNomeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where nome is not null
+        defaultEnquadramentoFiltering("nome.specified=true", "nome.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByNomeContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where nome contains
+        defaultEnquadramentoFiltering("nome.contains=" + DEFAULT_NOME, "nome.contains=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByNomeNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where nome does not contain
+        defaultEnquadramentoFiltering("nome.doesNotContain=" + UPDATED_NOME, "nome.doesNotContain=" + DEFAULT_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosBySiglaIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where sigla equals to
+        defaultEnquadramentoFiltering("sigla.equals=" + DEFAULT_SIGLA, "sigla.equals=" + UPDATED_SIGLA);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosBySiglaIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where sigla in
+        defaultEnquadramentoFiltering("sigla.in=" + DEFAULT_SIGLA + "," + UPDATED_SIGLA, "sigla.in=" + UPDATED_SIGLA);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosBySiglaIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where sigla is not null
+        defaultEnquadramentoFiltering("sigla.specified=true", "sigla.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosBySiglaContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where sigla contains
+        defaultEnquadramentoFiltering("sigla.contains=" + DEFAULT_SIGLA, "sigla.contains=" + UPDATED_SIGLA);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosBySiglaNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where sigla does not contain
+        defaultEnquadramentoFiltering("sigla.doesNotContain=" + UPDATED_SIGLA, "sigla.doesNotContain=" + DEFAULT_SIGLA);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteInicialIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteInicial equals to
+        defaultEnquadramentoFiltering("limiteInicial.equals=" + DEFAULT_LIMITE_INICIAL, "limiteInicial.equals=" + UPDATED_LIMITE_INICIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteInicialIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteInicial in
+        defaultEnquadramentoFiltering(
+            "limiteInicial.in=" + DEFAULT_LIMITE_INICIAL + "," + UPDATED_LIMITE_INICIAL,
+            "limiteInicial.in=" + UPDATED_LIMITE_INICIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteInicialIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteInicial is not null
+        defaultEnquadramentoFiltering("limiteInicial.specified=true", "limiteInicial.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteInicialIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteInicial is greater than or equal to
+        defaultEnquadramentoFiltering(
+            "limiteInicial.greaterThanOrEqual=" + DEFAULT_LIMITE_INICIAL,
+            "limiteInicial.greaterThanOrEqual=" + UPDATED_LIMITE_INICIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteInicialIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteInicial is less than or equal to
+        defaultEnquadramentoFiltering(
+            "limiteInicial.lessThanOrEqual=" + DEFAULT_LIMITE_INICIAL,
+            "limiteInicial.lessThanOrEqual=" + SMALLER_LIMITE_INICIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteInicialIsLessThanSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteInicial is less than
+        defaultEnquadramentoFiltering(
+            "limiteInicial.lessThan=" + UPDATED_LIMITE_INICIAL,
+            "limiteInicial.lessThan=" + DEFAULT_LIMITE_INICIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteInicialIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteInicial is greater than
+        defaultEnquadramentoFiltering(
+            "limiteInicial.greaterThan=" + SMALLER_LIMITE_INICIAL,
+            "limiteInicial.greaterThan=" + DEFAULT_LIMITE_INICIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteFinalIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteFinal equals to
+        defaultEnquadramentoFiltering("limiteFinal.equals=" + DEFAULT_LIMITE_FINAL, "limiteFinal.equals=" + UPDATED_LIMITE_FINAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteFinalIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteFinal in
+        defaultEnquadramentoFiltering(
+            "limiteFinal.in=" + DEFAULT_LIMITE_FINAL + "," + UPDATED_LIMITE_FINAL,
+            "limiteFinal.in=" + UPDATED_LIMITE_FINAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteFinalIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteFinal is not null
+        defaultEnquadramentoFiltering("limiteFinal.specified=true", "limiteFinal.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteFinalIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteFinal is greater than or equal to
+        defaultEnquadramentoFiltering(
+            "limiteFinal.greaterThanOrEqual=" + DEFAULT_LIMITE_FINAL,
+            "limiteFinal.greaterThanOrEqual=" + UPDATED_LIMITE_FINAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteFinalIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteFinal is less than or equal to
+        defaultEnquadramentoFiltering(
+            "limiteFinal.lessThanOrEqual=" + DEFAULT_LIMITE_FINAL,
+            "limiteFinal.lessThanOrEqual=" + SMALLER_LIMITE_FINAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteFinalIsLessThanSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteFinal is less than
+        defaultEnquadramentoFiltering("limiteFinal.lessThan=" + UPDATED_LIMITE_FINAL, "limiteFinal.lessThan=" + DEFAULT_LIMITE_FINAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllEnquadramentosByLimiteFinalIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        insertedEnquadramento = enquadramentoRepository.saveAndFlush(enquadramento);
+
+        // Get all the enquadramentoList where limiteFinal is greater than
+        defaultEnquadramentoFiltering("limiteFinal.greaterThan=" + SMALLER_LIMITE_FINAL, "limiteFinal.greaterThan=" + DEFAULT_LIMITE_FINAL);
+    }
+
+    private void defaultEnquadramentoFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultEnquadramentoShouldBeFound(shouldBeFound);
+        defaultEnquadramentoShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultEnquadramentoShouldBeFound(String filter) throws Exception {
+        restEnquadramentoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(enquadramento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)))
+            .andExpect(jsonPath("$.[*].limiteInicial").value(hasItem(DEFAULT_LIMITE_INICIAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].limiteFinal").value(hasItem(DEFAULT_LIMITE_FINAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
+
+        // Check, that the count call also returns 1
+        restEnquadramentoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultEnquadramentoShouldNotBeFound(String filter) throws Exception {
+        restEnquadramentoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restEnquadramentoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
     }
 
     @Test

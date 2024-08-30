@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.Ramo;
 import com.dobemcontabilidade.repository.RamoRepository;
+import com.dobemcontabilidade.service.RamoQueryService;
+import com.dobemcontabilidade.service.RamoService;
+import com.dobemcontabilidade.service.criteria.RamoCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -22,7 +24,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/ramos")
-@Transactional
 public class RamoResource {
 
     private static final Logger log = LoggerFactory.getLogger(RamoResource.class);
@@ -32,10 +33,16 @@ public class RamoResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final RamoService ramoService;
+
     private final RamoRepository ramoRepository;
 
-    public RamoResource(RamoRepository ramoRepository) {
+    private final RamoQueryService ramoQueryService;
+
+    public RamoResource(RamoService ramoService, RamoRepository ramoRepository, RamoQueryService ramoQueryService) {
+        this.ramoService = ramoService;
         this.ramoRepository = ramoRepository;
+        this.ramoQueryService = ramoQueryService;
     }
 
     /**
@@ -51,7 +58,7 @@ public class RamoResource {
         if (ramo.getId() != null) {
             throw new BadRequestAlertException("A new ramo cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        ramo = ramoRepository.save(ramo);
+        ramo = ramoService.save(ramo);
         return ResponseEntity.created(new URI("/api/ramos/" + ramo.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, ramo.getId().toString()))
             .body(ramo);
@@ -82,7 +89,7 @@ public class RamoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        ramo = ramoRepository.save(ramo);
+        ramo = ramoService.update(ramo);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, ramo.getId().toString()))
             .body(ramo);
@@ -114,19 +121,7 @@ public class RamoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<Ramo> result = ramoRepository
-            .findById(ramo.getId())
-            .map(existingRamo -> {
-                if (ramo.getNome() != null) {
-                    existingRamo.setNome(ramo.getNome());
-                }
-                if (ramo.getDescricao() != null) {
-                    existingRamo.setDescricao(ramo.getDescricao());
-                }
-
-                return existingRamo;
-            })
-            .map(ramoRepository::save);
+        Optional<Ramo> result = ramoService.partialUpdate(ramo);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -137,12 +132,27 @@ public class RamoResource {
     /**
      * {@code GET  /ramos} : get all the ramos.
      *
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of ramos in body.
      */
     @GetMapping("")
-    public List<Ramo> getAllRamos() {
-        log.debug("REST request to get all Ramos");
-        return ramoRepository.findAll();
+    public ResponseEntity<List<Ramo>> getAllRamos(RamoCriteria criteria) {
+        log.debug("REST request to get Ramos by criteria: {}", criteria);
+
+        List<Ramo> entityList = ramoQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /ramos/count} : count all the ramos.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countRamos(RamoCriteria criteria) {
+        log.debug("REST request to count Ramos by criteria: {}", criteria);
+        return ResponseEntity.ok().body(ramoQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -154,7 +164,7 @@ public class RamoResource {
     @GetMapping("/{id}")
     public ResponseEntity<Ramo> getRamo(@PathVariable("id") Long id) {
         log.debug("REST request to get Ramo : {}", id);
-        Optional<Ramo> ramo = ramoRepository.findById(id);
+        Optional<Ramo> ramo = ramoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(ramo);
     }
 
@@ -167,7 +177,7 @@ public class RamoResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRamo(@PathVariable("id") Long id) {
         log.debug("REST request to delete Ramo : {}", id);
-        ramoRepository.deleteById(id);
+        ramoService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * Spring Data JPA repository for the Cidade entity.
  */
 @Repository
-public interface CidadeRepository extends JpaRepository<Cidade, Long> {
+public interface CidadeRepository extends JpaRepository<Cidade, Long>, JpaSpecificationExecutor<Cidade> {
     default Optional<Cidade> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }

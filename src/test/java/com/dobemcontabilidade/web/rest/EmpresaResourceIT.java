@@ -16,6 +16,7 @@ import com.dobemcontabilidade.domain.Pessoajuridica;
 import com.dobemcontabilidade.domain.Ramo;
 import com.dobemcontabilidade.domain.Tributacao;
 import com.dobemcontabilidade.repository.EmpresaRepository;
+import com.dobemcontabilidade.service.EmpresaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import java.time.Instant;
@@ -61,6 +62,7 @@ class EmpresaResourceIT {
 
     private static final Double DEFAULT_CAPITAL_SOCIAL = 1D;
     private static final Double UPDATED_CAPITAL_SOCIAL = 2D;
+    private static final Double SMALLER_CAPITAL_SOCIAL = 1D - 1D;
 
     private static final String DEFAULT_CNAE = "AAAAAAAAAA";
     private static final String UPDATED_CNAE = "BBBBBBBBBB";
@@ -79,6 +81,9 @@ class EmpresaResourceIT {
 
     @Mock
     private EmpresaRepository empresaRepositoryMock;
+
+    @Mock
+    private EmpresaService empresaServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -310,16 +315,16 @@ class EmpresaResourceIT {
 
     @SuppressWarnings({ "unchecked" })
     void getAllEmpresasWithEagerRelationshipsIsEnabled() throws Exception {
-        when(empresaRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(empresaServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restEmpresaMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(empresaRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(empresaServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({ "unchecked" })
     void getAllEmpresasWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(empresaRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(empresaServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restEmpresaMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
         verify(empresaRepositoryMock, times(1)).findAll(any(Pageable.class));
@@ -343,6 +348,429 @@ class EmpresaResourceIT {
             .andExpect(jsonPath("$.urlContratoSocial").value(DEFAULT_URL_CONTRATO_SOCIAL))
             .andExpect(jsonPath("$.capitalSocial").value(DEFAULT_CAPITAL_SOCIAL.doubleValue()))
             .andExpect(jsonPath("$.cnae").value(DEFAULT_CNAE));
+    }
+
+    @Test
+    @Transactional
+    void getEmpresasByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        Long id = empresa.getId();
+
+        defaultEmpresaFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultEmpresaFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultEmpresaFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByRazaoSocialIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where razaoSocial equals to
+        defaultEmpresaFiltering("razaoSocial.equals=" + DEFAULT_RAZAO_SOCIAL, "razaoSocial.equals=" + UPDATED_RAZAO_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByRazaoSocialIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where razaoSocial in
+        defaultEmpresaFiltering(
+            "razaoSocial.in=" + DEFAULT_RAZAO_SOCIAL + "," + UPDATED_RAZAO_SOCIAL,
+            "razaoSocial.in=" + UPDATED_RAZAO_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByRazaoSocialIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where razaoSocial is not null
+        defaultEmpresaFiltering("razaoSocial.specified=true", "razaoSocial.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByRazaoSocialContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where razaoSocial contains
+        defaultEmpresaFiltering("razaoSocial.contains=" + DEFAULT_RAZAO_SOCIAL, "razaoSocial.contains=" + UPDATED_RAZAO_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByRazaoSocialNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where razaoSocial does not contain
+        defaultEmpresaFiltering("razaoSocial.doesNotContain=" + UPDATED_RAZAO_SOCIAL, "razaoSocial.doesNotContain=" + DEFAULT_RAZAO_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByDataAberturaIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where dataAbertura equals to
+        defaultEmpresaFiltering("dataAbertura.equals=" + DEFAULT_DATA_ABERTURA, "dataAbertura.equals=" + UPDATED_DATA_ABERTURA);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByDataAberturaIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where dataAbertura in
+        defaultEmpresaFiltering(
+            "dataAbertura.in=" + DEFAULT_DATA_ABERTURA + "," + UPDATED_DATA_ABERTURA,
+            "dataAbertura.in=" + UPDATED_DATA_ABERTURA
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByDataAberturaIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where dataAbertura is not null
+        defaultEmpresaFiltering("dataAbertura.specified=true", "dataAbertura.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByUrlContratoSocialIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where urlContratoSocial equals to
+        defaultEmpresaFiltering(
+            "urlContratoSocial.equals=" + DEFAULT_URL_CONTRATO_SOCIAL,
+            "urlContratoSocial.equals=" + UPDATED_URL_CONTRATO_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByUrlContratoSocialIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where urlContratoSocial in
+        defaultEmpresaFiltering(
+            "urlContratoSocial.in=" + DEFAULT_URL_CONTRATO_SOCIAL + "," + UPDATED_URL_CONTRATO_SOCIAL,
+            "urlContratoSocial.in=" + UPDATED_URL_CONTRATO_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByUrlContratoSocialIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where urlContratoSocial is not null
+        defaultEmpresaFiltering("urlContratoSocial.specified=true", "urlContratoSocial.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByUrlContratoSocialContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where urlContratoSocial contains
+        defaultEmpresaFiltering(
+            "urlContratoSocial.contains=" + DEFAULT_URL_CONTRATO_SOCIAL,
+            "urlContratoSocial.contains=" + UPDATED_URL_CONTRATO_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByUrlContratoSocialNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where urlContratoSocial does not contain
+        defaultEmpresaFiltering(
+            "urlContratoSocial.doesNotContain=" + UPDATED_URL_CONTRATO_SOCIAL,
+            "urlContratoSocial.doesNotContain=" + DEFAULT_URL_CONTRATO_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCapitalSocialIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where capitalSocial equals to
+        defaultEmpresaFiltering("capitalSocial.equals=" + DEFAULT_CAPITAL_SOCIAL, "capitalSocial.equals=" + UPDATED_CAPITAL_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCapitalSocialIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where capitalSocial in
+        defaultEmpresaFiltering(
+            "capitalSocial.in=" + DEFAULT_CAPITAL_SOCIAL + "," + UPDATED_CAPITAL_SOCIAL,
+            "capitalSocial.in=" + UPDATED_CAPITAL_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCapitalSocialIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where capitalSocial is not null
+        defaultEmpresaFiltering("capitalSocial.specified=true", "capitalSocial.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCapitalSocialIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where capitalSocial is greater than or equal to
+        defaultEmpresaFiltering(
+            "capitalSocial.greaterThanOrEqual=" + DEFAULT_CAPITAL_SOCIAL,
+            "capitalSocial.greaterThanOrEqual=" + UPDATED_CAPITAL_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCapitalSocialIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where capitalSocial is less than or equal to
+        defaultEmpresaFiltering(
+            "capitalSocial.lessThanOrEqual=" + DEFAULT_CAPITAL_SOCIAL,
+            "capitalSocial.lessThanOrEqual=" + SMALLER_CAPITAL_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCapitalSocialIsLessThanSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where capitalSocial is less than
+        defaultEmpresaFiltering("capitalSocial.lessThan=" + UPDATED_CAPITAL_SOCIAL, "capitalSocial.lessThan=" + DEFAULT_CAPITAL_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCapitalSocialIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where capitalSocial is greater than
+        defaultEmpresaFiltering(
+            "capitalSocial.greaterThan=" + SMALLER_CAPITAL_SOCIAL,
+            "capitalSocial.greaterThan=" + DEFAULT_CAPITAL_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCnaeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where cnae equals to
+        defaultEmpresaFiltering("cnae.equals=" + DEFAULT_CNAE, "cnae.equals=" + UPDATED_CNAE);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCnaeIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where cnae in
+        defaultEmpresaFiltering("cnae.in=" + DEFAULT_CNAE + "," + UPDATED_CNAE, "cnae.in=" + UPDATED_CNAE);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCnaeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where cnae is not null
+        defaultEmpresaFiltering("cnae.specified=true", "cnae.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCnaeContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where cnae contains
+        defaultEmpresaFiltering("cnae.contains=" + DEFAULT_CNAE, "cnae.contains=" + UPDATED_CNAE);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByCnaeNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEmpresa = empresaRepository.saveAndFlush(empresa);
+
+        // Get all the empresaList where cnae does not contain
+        defaultEmpresaFiltering("cnae.doesNotContain=" + UPDATED_CNAE, "cnae.doesNotContain=" + DEFAULT_CNAE);
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByPessoaJuridicaIsEqualToSomething() throws Exception {
+        // Get already existing entity
+        Pessoajuridica pessoaJuridica = empresa.getPessoaJuridica();
+        empresaRepository.saveAndFlush(empresa);
+        Long pessoaJuridicaId = pessoaJuridica.getId();
+        // Get all the empresaList where pessoaJuridica equals to pessoaJuridicaId
+        defaultEmpresaShouldBeFound("pessoaJuridicaId.equals=" + pessoaJuridicaId);
+
+        // Get all the empresaList where pessoaJuridica equals to (pessoaJuridicaId + 1)
+        defaultEmpresaShouldNotBeFound("pessoaJuridicaId.equals=" + (pessoaJuridicaId + 1));
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByTributacaoIsEqualToSomething() throws Exception {
+        Tributacao tributacao;
+        if (TestUtil.findAll(em, Tributacao.class).isEmpty()) {
+            empresaRepository.saveAndFlush(empresa);
+            tributacao = TributacaoResourceIT.createEntity(em);
+        } else {
+            tributacao = TestUtil.findAll(em, Tributacao.class).get(0);
+        }
+        em.persist(tributacao);
+        em.flush();
+        empresa.setTributacao(tributacao);
+        empresaRepository.saveAndFlush(empresa);
+        Long tributacaoId = tributacao.getId();
+        // Get all the empresaList where tributacao equals to tributacaoId
+        defaultEmpresaShouldBeFound("tributacaoId.equals=" + tributacaoId);
+
+        // Get all the empresaList where tributacao equals to (tributacaoId + 1)
+        defaultEmpresaShouldNotBeFound("tributacaoId.equals=" + (tributacaoId + 1));
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByRamoIsEqualToSomething() throws Exception {
+        Ramo ramo;
+        if (TestUtil.findAll(em, Ramo.class).isEmpty()) {
+            empresaRepository.saveAndFlush(empresa);
+            ramo = RamoResourceIT.createEntity(em);
+        } else {
+            ramo = TestUtil.findAll(em, Ramo.class).get(0);
+        }
+        em.persist(ramo);
+        em.flush();
+        empresa.setRamo(ramo);
+        empresaRepository.saveAndFlush(empresa);
+        Long ramoId = ramo.getId();
+        // Get all the empresaList where ramo equals to ramoId
+        defaultEmpresaShouldBeFound("ramoId.equals=" + ramoId);
+
+        // Get all the empresaList where ramo equals to (ramoId + 1)
+        defaultEmpresaShouldNotBeFound("ramoId.equals=" + (ramoId + 1));
+    }
+
+    @Test
+    @Transactional
+    void getAllEmpresasByEnquadramentoIsEqualToSomething() throws Exception {
+        Enquadramento enquadramento;
+        if (TestUtil.findAll(em, Enquadramento.class).isEmpty()) {
+            empresaRepository.saveAndFlush(empresa);
+            enquadramento = EnquadramentoResourceIT.createEntity(em);
+        } else {
+            enquadramento = TestUtil.findAll(em, Enquadramento.class).get(0);
+        }
+        em.persist(enquadramento);
+        em.flush();
+        empresa.setEnquadramento(enquadramento);
+        empresaRepository.saveAndFlush(empresa);
+        Long enquadramentoId = enquadramento.getId();
+        // Get all the empresaList where enquadramento equals to enquadramentoId
+        defaultEmpresaShouldBeFound("enquadramentoId.equals=" + enquadramentoId);
+
+        // Get all the empresaList where enquadramento equals to (enquadramentoId + 1)
+        defaultEmpresaShouldNotBeFound("enquadramentoId.equals=" + (enquadramentoId + 1));
+    }
+
+    private void defaultEmpresaFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultEmpresaShouldBeFound(shouldBeFound);
+        defaultEmpresaShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultEmpresaShouldBeFound(String filter) throws Exception {
+        restEmpresaMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(empresa.getId().intValue())))
+            .andExpect(jsonPath("$.[*].razaoSocial").value(hasItem(DEFAULT_RAZAO_SOCIAL)))
+            .andExpect(jsonPath("$.[*].descricaoDoNegocio").value(hasItem(DEFAULT_DESCRICAO_DO_NEGOCIO.toString())))
+            .andExpect(jsonPath("$.[*].dataAbertura").value(hasItem(DEFAULT_DATA_ABERTURA.toString())))
+            .andExpect(jsonPath("$.[*].urlContratoSocial").value(hasItem(DEFAULT_URL_CONTRATO_SOCIAL)))
+            .andExpect(jsonPath("$.[*].capitalSocial").value(hasItem(DEFAULT_CAPITAL_SOCIAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].cnae").value(hasItem(DEFAULT_CNAE)));
+
+        // Check, that the count call also returns 1
+        restEmpresaMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultEmpresaShouldNotBeFound(String filter) throws Exception {
+        restEmpresaMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restEmpresaMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
     }
 
     @Test

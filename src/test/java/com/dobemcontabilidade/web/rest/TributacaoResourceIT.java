@@ -177,6 +177,146 @@ class TributacaoResourceIT {
 
     @Test
     @Transactional
+    void getTributacaosByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedTributacao = tributacaoRepository.saveAndFlush(tributacao);
+
+        Long id = tributacao.getId();
+
+        defaultTributacaoFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultTributacaoFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultTributacaoFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllTributacaosByNomeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedTributacao = tributacaoRepository.saveAndFlush(tributacao);
+
+        // Get all the tributacaoList where nome equals to
+        defaultTributacaoFiltering("nome.equals=" + DEFAULT_NOME, "nome.equals=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllTributacaosByNomeIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedTributacao = tributacaoRepository.saveAndFlush(tributacao);
+
+        // Get all the tributacaoList where nome in
+        defaultTributacaoFiltering("nome.in=" + DEFAULT_NOME + "," + UPDATED_NOME, "nome.in=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllTributacaosByNomeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedTributacao = tributacaoRepository.saveAndFlush(tributacao);
+
+        // Get all the tributacaoList where nome is not null
+        defaultTributacaoFiltering("nome.specified=true", "nome.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllTributacaosByNomeContainsSomething() throws Exception {
+        // Initialize the database
+        insertedTributacao = tributacaoRepository.saveAndFlush(tributacao);
+
+        // Get all the tributacaoList where nome contains
+        defaultTributacaoFiltering("nome.contains=" + DEFAULT_NOME, "nome.contains=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllTributacaosByNomeNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedTributacao = tributacaoRepository.saveAndFlush(tributacao);
+
+        // Get all the tributacaoList where nome does not contain
+        defaultTributacaoFiltering("nome.doesNotContain=" + UPDATED_NOME, "nome.doesNotContain=" + DEFAULT_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllTributacaosBySituacaoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedTributacao = tributacaoRepository.saveAndFlush(tributacao);
+
+        // Get all the tributacaoList where situacao equals to
+        defaultTributacaoFiltering("situacao.equals=" + DEFAULT_SITUACAO, "situacao.equals=" + UPDATED_SITUACAO);
+    }
+
+    @Test
+    @Transactional
+    void getAllTributacaosBySituacaoIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedTributacao = tributacaoRepository.saveAndFlush(tributacao);
+
+        // Get all the tributacaoList where situacao in
+        defaultTributacaoFiltering("situacao.in=" + DEFAULT_SITUACAO + "," + UPDATED_SITUACAO, "situacao.in=" + UPDATED_SITUACAO);
+    }
+
+    @Test
+    @Transactional
+    void getAllTributacaosBySituacaoIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedTributacao = tributacaoRepository.saveAndFlush(tributacao);
+
+        // Get all the tributacaoList where situacao is not null
+        defaultTributacaoFiltering("situacao.specified=true", "situacao.specified=false");
+    }
+
+    private void defaultTributacaoFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultTributacaoShouldBeFound(shouldBeFound);
+        defaultTributacaoShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultTributacaoShouldBeFound(String filter) throws Exception {
+        restTributacaoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(tributacao.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())))
+            .andExpect(jsonPath("$.[*].situacao").value(hasItem(DEFAULT_SITUACAO.toString())));
+
+        // Check, that the count call also returns 1
+        restTributacaoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultTributacaoShouldNotBeFound(String filter) throws Exception {
+        restTributacaoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restTributacaoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
+    }
+
+    @Test
+    @Transactional
     void getNonExistingTributacao() throws Exception {
         // Get the tributacao
         restTributacaoMockMvc.perform(get(ENTITY_API_URL_ID, Long.MAX_VALUE)).andExpect(status().isNotFound());

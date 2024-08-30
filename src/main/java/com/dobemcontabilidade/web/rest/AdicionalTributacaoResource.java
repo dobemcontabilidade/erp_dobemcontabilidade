@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.AdicionalTributacao;
 import com.dobemcontabilidade.repository.AdicionalTributacaoRepository;
+import com.dobemcontabilidade.service.AdicionalTributacaoQueryService;
+import com.dobemcontabilidade.service.AdicionalTributacaoService;
+import com.dobemcontabilidade.service.criteria.AdicionalTributacaoCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -24,7 +26,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/adicional-tributacaos")
-@Transactional
 public class AdicionalTributacaoResource {
 
     private static final Logger log = LoggerFactory.getLogger(AdicionalTributacaoResource.class);
@@ -34,10 +35,20 @@ public class AdicionalTributacaoResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final AdicionalTributacaoService adicionalTributacaoService;
+
     private final AdicionalTributacaoRepository adicionalTributacaoRepository;
 
-    public AdicionalTributacaoResource(AdicionalTributacaoRepository adicionalTributacaoRepository) {
+    private final AdicionalTributacaoQueryService adicionalTributacaoQueryService;
+
+    public AdicionalTributacaoResource(
+        AdicionalTributacaoService adicionalTributacaoService,
+        AdicionalTributacaoRepository adicionalTributacaoRepository,
+        AdicionalTributacaoQueryService adicionalTributacaoQueryService
+    ) {
+        this.adicionalTributacaoService = adicionalTributacaoService;
         this.adicionalTributacaoRepository = adicionalTributacaoRepository;
+        this.adicionalTributacaoQueryService = adicionalTributacaoQueryService;
     }
 
     /**
@@ -54,7 +65,7 @@ public class AdicionalTributacaoResource {
         if (adicionalTributacao.getId() != null) {
             throw new BadRequestAlertException("A new adicionalTributacao cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        adicionalTributacao = adicionalTributacaoRepository.save(adicionalTributacao);
+        adicionalTributacao = adicionalTributacaoService.save(adicionalTributacao);
         return ResponseEntity.created(new URI("/api/adicional-tributacaos/" + adicionalTributacao.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, adicionalTributacao.getId().toString()))
             .body(adicionalTributacao);
@@ -87,7 +98,7 @@ public class AdicionalTributacaoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        adicionalTributacao = adicionalTributacaoRepository.save(adicionalTributacao);
+        adicionalTributacao = adicionalTributacaoService.update(adicionalTributacao);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, adicionalTributacao.getId().toString()))
             .body(adicionalTributacao);
@@ -121,16 +132,7 @@ public class AdicionalTributacaoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<AdicionalTributacao> result = adicionalTributacaoRepository
-            .findById(adicionalTributacao.getId())
-            .map(existingAdicionalTributacao -> {
-                if (adicionalTributacao.getValor() != null) {
-                    existingAdicionalTributacao.setValor(adicionalTributacao.getValor());
-                }
-
-                return existingAdicionalTributacao;
-            })
-            .map(adicionalTributacaoRepository::save);
+        Optional<AdicionalTributacao> result = adicionalTributacaoService.partialUpdate(adicionalTributacao);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -141,19 +143,27 @@ public class AdicionalTributacaoResource {
     /**
      * {@code GET  /adicional-tributacaos} : get all the adicionalTributacaos.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of adicionalTributacaos in body.
      */
     @GetMapping("")
-    public List<AdicionalTributacao> getAllAdicionalTributacaos(
-        @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
-    ) {
-        log.debug("REST request to get all AdicionalTributacaos");
-        if (eagerload) {
-            return adicionalTributacaoRepository.findAllWithEagerRelationships();
-        } else {
-            return adicionalTributacaoRepository.findAll();
-        }
+    public ResponseEntity<List<AdicionalTributacao>> getAllAdicionalTributacaos(AdicionalTributacaoCriteria criteria) {
+        log.debug("REST request to get AdicionalTributacaos by criteria: {}", criteria);
+
+        List<AdicionalTributacao> entityList = adicionalTributacaoQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /adicional-tributacaos/count} : count all the adicionalTributacaos.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countAdicionalTributacaos(AdicionalTributacaoCriteria criteria) {
+        log.debug("REST request to count AdicionalTributacaos by criteria: {}", criteria);
+        return ResponseEntity.ok().body(adicionalTributacaoQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -165,7 +175,7 @@ public class AdicionalTributacaoResource {
     @GetMapping("/{id}")
     public ResponseEntity<AdicionalTributacao> getAdicionalTributacao(@PathVariable("id") Long id) {
         log.debug("REST request to get AdicionalTributacao : {}", id);
-        Optional<AdicionalTributacao> adicionalTributacao = adicionalTributacaoRepository.findOneWithEagerRelationships(id);
+        Optional<AdicionalTributacao> adicionalTributacao = adicionalTributacaoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(adicionalTributacao);
     }
 
@@ -178,7 +188,7 @@ public class AdicionalTributacaoResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAdicionalTributacao(@PathVariable("id") Long id) {
         log.debug("REST request to delete AdicionalTributacao : {}", id);
-        adicionalTributacaoRepository.deleteById(id);
+        adicionalTributacaoService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();

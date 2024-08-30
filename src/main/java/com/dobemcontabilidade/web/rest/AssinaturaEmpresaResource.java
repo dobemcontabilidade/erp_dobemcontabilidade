@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.AssinaturaEmpresa;
 import com.dobemcontabilidade.repository.AssinaturaEmpresaRepository;
+import com.dobemcontabilidade.service.AssinaturaEmpresaQueryService;
+import com.dobemcontabilidade.service.AssinaturaEmpresaService;
+import com.dobemcontabilidade.service.criteria.AssinaturaEmpresaCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -24,7 +26,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/assinatura-empresas")
-@Transactional
 public class AssinaturaEmpresaResource {
 
     private static final Logger log = LoggerFactory.getLogger(AssinaturaEmpresaResource.class);
@@ -34,10 +35,20 @@ public class AssinaturaEmpresaResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final AssinaturaEmpresaService assinaturaEmpresaService;
+
     private final AssinaturaEmpresaRepository assinaturaEmpresaRepository;
 
-    public AssinaturaEmpresaResource(AssinaturaEmpresaRepository assinaturaEmpresaRepository) {
+    private final AssinaturaEmpresaQueryService assinaturaEmpresaQueryService;
+
+    public AssinaturaEmpresaResource(
+        AssinaturaEmpresaService assinaturaEmpresaService,
+        AssinaturaEmpresaRepository assinaturaEmpresaRepository,
+        AssinaturaEmpresaQueryService assinaturaEmpresaQueryService
+    ) {
+        this.assinaturaEmpresaService = assinaturaEmpresaService;
         this.assinaturaEmpresaRepository = assinaturaEmpresaRepository;
+        this.assinaturaEmpresaQueryService = assinaturaEmpresaQueryService;
     }
 
     /**
@@ -54,7 +65,7 @@ public class AssinaturaEmpresaResource {
         if (assinaturaEmpresa.getId() != null) {
             throw new BadRequestAlertException("A new assinaturaEmpresa cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        assinaturaEmpresa = assinaturaEmpresaRepository.save(assinaturaEmpresa);
+        assinaturaEmpresa = assinaturaEmpresaService.save(assinaturaEmpresa);
         return ResponseEntity.created(new URI("/api/assinatura-empresas/" + assinaturaEmpresa.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, assinaturaEmpresa.getId().toString()))
             .body(assinaturaEmpresa);
@@ -87,7 +98,7 @@ public class AssinaturaEmpresaResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        assinaturaEmpresa = assinaturaEmpresaRepository.save(assinaturaEmpresa);
+        assinaturaEmpresa = assinaturaEmpresaService.update(assinaturaEmpresa);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, assinaturaEmpresa.getId().toString()))
             .body(assinaturaEmpresa);
@@ -121,70 +132,7 @@ public class AssinaturaEmpresaResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<AssinaturaEmpresa> result = assinaturaEmpresaRepository
-            .findById(assinaturaEmpresa.getId())
-            .map(existingAssinaturaEmpresa -> {
-                if (assinaturaEmpresa.getRazaoSocial() != null) {
-                    existingAssinaturaEmpresa.setRazaoSocial(assinaturaEmpresa.getRazaoSocial());
-                }
-                if (assinaturaEmpresa.getCodigoAssinatura() != null) {
-                    existingAssinaturaEmpresa.setCodigoAssinatura(assinaturaEmpresa.getCodigoAssinatura());
-                }
-                if (assinaturaEmpresa.getValorEnquadramento() != null) {
-                    existingAssinaturaEmpresa.setValorEnquadramento(assinaturaEmpresa.getValorEnquadramento());
-                }
-                if (assinaturaEmpresa.getValorTributacao() != null) {
-                    existingAssinaturaEmpresa.setValorTributacao(assinaturaEmpresa.getValorTributacao());
-                }
-                if (assinaturaEmpresa.getValorRamo() != null) {
-                    existingAssinaturaEmpresa.setValorRamo(assinaturaEmpresa.getValorRamo());
-                }
-                if (assinaturaEmpresa.getValorFuncionarios() != null) {
-                    existingAssinaturaEmpresa.setValorFuncionarios(assinaturaEmpresa.getValorFuncionarios());
-                }
-                if (assinaturaEmpresa.getValorSocios() != null) {
-                    existingAssinaturaEmpresa.setValorSocios(assinaturaEmpresa.getValorSocios());
-                }
-                if (assinaturaEmpresa.getValorFaturamento() != null) {
-                    existingAssinaturaEmpresa.setValorFaturamento(assinaturaEmpresa.getValorFaturamento());
-                }
-                if (assinaturaEmpresa.getValorPlanoContabil() != null) {
-                    existingAssinaturaEmpresa.setValorPlanoContabil(assinaturaEmpresa.getValorPlanoContabil());
-                }
-                if (assinaturaEmpresa.getValorPlanoContabilComDesconto() != null) {
-                    existingAssinaturaEmpresa.setValorPlanoContabilComDesconto(assinaturaEmpresa.getValorPlanoContabilComDesconto());
-                }
-                if (assinaturaEmpresa.getValorPlanoContaAzulComDesconto() != null) {
-                    existingAssinaturaEmpresa.setValorPlanoContaAzulComDesconto(assinaturaEmpresa.getValorPlanoContaAzulComDesconto());
-                }
-                if (assinaturaEmpresa.getValorMensalidade() != null) {
-                    existingAssinaturaEmpresa.setValorMensalidade(assinaturaEmpresa.getValorMensalidade());
-                }
-                if (assinaturaEmpresa.getValorPeriodo() != null) {
-                    existingAssinaturaEmpresa.setValorPeriodo(assinaturaEmpresa.getValorPeriodo());
-                }
-                if (assinaturaEmpresa.getValorAno() != null) {
-                    existingAssinaturaEmpresa.setValorAno(assinaturaEmpresa.getValorAno());
-                }
-                if (assinaturaEmpresa.getDataContratacao() != null) {
-                    existingAssinaturaEmpresa.setDataContratacao(assinaturaEmpresa.getDataContratacao());
-                }
-                if (assinaturaEmpresa.getDataEncerramento() != null) {
-                    existingAssinaturaEmpresa.setDataEncerramento(assinaturaEmpresa.getDataEncerramento());
-                }
-                if (assinaturaEmpresa.getDiaVencimento() != null) {
-                    existingAssinaturaEmpresa.setDiaVencimento(assinaturaEmpresa.getDiaVencimento());
-                }
-                if (assinaturaEmpresa.getSituacao() != null) {
-                    existingAssinaturaEmpresa.setSituacao(assinaturaEmpresa.getSituacao());
-                }
-                if (assinaturaEmpresa.getTipoContrato() != null) {
-                    existingAssinaturaEmpresa.setTipoContrato(assinaturaEmpresa.getTipoContrato());
-                }
-
-                return existingAssinaturaEmpresa;
-            })
-            .map(assinaturaEmpresaRepository::save);
+        Optional<AssinaturaEmpresa> result = assinaturaEmpresaService.partialUpdate(assinaturaEmpresa);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -195,19 +143,27 @@ public class AssinaturaEmpresaResource {
     /**
      * {@code GET  /assinatura-empresas} : get all the assinaturaEmpresas.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of assinaturaEmpresas in body.
      */
     @GetMapping("")
-    public List<AssinaturaEmpresa> getAllAssinaturaEmpresas(
-        @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
-    ) {
-        log.debug("REST request to get all AssinaturaEmpresas");
-        if (eagerload) {
-            return assinaturaEmpresaRepository.findAllWithEagerRelationships();
-        } else {
-            return assinaturaEmpresaRepository.findAll();
-        }
+    public ResponseEntity<List<AssinaturaEmpresa>> getAllAssinaturaEmpresas(AssinaturaEmpresaCriteria criteria) {
+        log.debug("REST request to get AssinaturaEmpresas by criteria: {}", criteria);
+
+        List<AssinaturaEmpresa> entityList = assinaturaEmpresaQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /assinatura-empresas/count} : count all the assinaturaEmpresas.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countAssinaturaEmpresas(AssinaturaEmpresaCriteria criteria) {
+        log.debug("REST request to count AssinaturaEmpresas by criteria: {}", criteria);
+        return ResponseEntity.ok().body(assinaturaEmpresaQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -219,7 +175,7 @@ public class AssinaturaEmpresaResource {
     @GetMapping("/{id}")
     public ResponseEntity<AssinaturaEmpresa> getAssinaturaEmpresa(@PathVariable("id") Long id) {
         log.debug("REST request to get AssinaturaEmpresa : {}", id);
-        Optional<AssinaturaEmpresa> assinaturaEmpresa = assinaturaEmpresaRepository.findOneWithEagerRelationships(id);
+        Optional<AssinaturaEmpresa> assinaturaEmpresa = assinaturaEmpresaService.findOne(id);
         return ResponseUtil.wrapOrNotFound(assinaturaEmpresa);
     }
 
@@ -232,7 +188,7 @@ public class AssinaturaEmpresaResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAssinaturaEmpresa(@PathVariable("id") Long id) {
         log.debug("REST request to delete AssinaturaEmpresa : {}", id);
-        assinaturaEmpresaRepository.deleteById(id);
+        assinaturaEmpresaService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();

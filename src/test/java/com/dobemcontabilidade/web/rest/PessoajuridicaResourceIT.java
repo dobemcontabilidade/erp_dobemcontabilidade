@@ -220,6 +220,228 @@ class PessoajuridicaResourceIT {
 
     @Test
     @Transactional
+    void getPessoajuridicasByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        Long id = pessoajuridica.getId();
+
+        defaultPessoajuridicaFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultPessoajuridicaFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultPessoajuridicaFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByRazaoSocialIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where razaoSocial equals to
+        defaultPessoajuridicaFiltering("razaoSocial.equals=" + DEFAULT_RAZAO_SOCIAL, "razaoSocial.equals=" + UPDATED_RAZAO_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByRazaoSocialIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where razaoSocial in
+        defaultPessoajuridicaFiltering(
+            "razaoSocial.in=" + DEFAULT_RAZAO_SOCIAL + "," + UPDATED_RAZAO_SOCIAL,
+            "razaoSocial.in=" + UPDATED_RAZAO_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByRazaoSocialIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where razaoSocial is not null
+        defaultPessoajuridicaFiltering("razaoSocial.specified=true", "razaoSocial.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByRazaoSocialContainsSomething() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where razaoSocial contains
+        defaultPessoajuridicaFiltering("razaoSocial.contains=" + DEFAULT_RAZAO_SOCIAL, "razaoSocial.contains=" + UPDATED_RAZAO_SOCIAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByRazaoSocialNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where razaoSocial does not contain
+        defaultPessoajuridicaFiltering(
+            "razaoSocial.doesNotContain=" + UPDATED_RAZAO_SOCIAL,
+            "razaoSocial.doesNotContain=" + DEFAULT_RAZAO_SOCIAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByNomeFantasiaIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where nomeFantasia equals to
+        defaultPessoajuridicaFiltering("nomeFantasia.equals=" + DEFAULT_NOME_FANTASIA, "nomeFantasia.equals=" + UPDATED_NOME_FANTASIA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByNomeFantasiaIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where nomeFantasia in
+        defaultPessoajuridicaFiltering(
+            "nomeFantasia.in=" + DEFAULT_NOME_FANTASIA + "," + UPDATED_NOME_FANTASIA,
+            "nomeFantasia.in=" + UPDATED_NOME_FANTASIA
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByNomeFantasiaIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where nomeFantasia is not null
+        defaultPessoajuridicaFiltering("nomeFantasia.specified=true", "nomeFantasia.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByNomeFantasiaContainsSomething() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where nomeFantasia contains
+        defaultPessoajuridicaFiltering("nomeFantasia.contains=" + DEFAULT_NOME_FANTASIA, "nomeFantasia.contains=" + UPDATED_NOME_FANTASIA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByNomeFantasiaNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where nomeFantasia does not contain
+        defaultPessoajuridicaFiltering(
+            "nomeFantasia.doesNotContain=" + UPDATED_NOME_FANTASIA,
+            "nomeFantasia.doesNotContain=" + DEFAULT_NOME_FANTASIA
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByCnpjIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where cnpj equals to
+        defaultPessoajuridicaFiltering("cnpj.equals=" + DEFAULT_CNPJ, "cnpj.equals=" + UPDATED_CNPJ);
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByCnpjIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where cnpj in
+        defaultPessoajuridicaFiltering("cnpj.in=" + DEFAULT_CNPJ + "," + UPDATED_CNPJ, "cnpj.in=" + UPDATED_CNPJ);
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByCnpjIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where cnpj is not null
+        defaultPessoajuridicaFiltering("cnpj.specified=true", "cnpj.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByCnpjContainsSomething() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where cnpj contains
+        defaultPessoajuridicaFiltering("cnpj.contains=" + DEFAULT_CNPJ, "cnpj.contains=" + UPDATED_CNPJ);
+    }
+
+    @Test
+    @Transactional
+    void getAllPessoajuridicasByCnpjNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedPessoajuridica = pessoajuridicaRepository.saveAndFlush(pessoajuridica);
+
+        // Get all the pessoajuridicaList where cnpj does not contain
+        defaultPessoajuridicaFiltering("cnpj.doesNotContain=" + UPDATED_CNPJ, "cnpj.doesNotContain=" + DEFAULT_CNPJ);
+    }
+
+    private void defaultPessoajuridicaFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultPessoajuridicaShouldBeFound(shouldBeFound);
+        defaultPessoajuridicaShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultPessoajuridicaShouldBeFound(String filter) throws Exception {
+        restPessoajuridicaMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(pessoajuridica.getId().intValue())))
+            .andExpect(jsonPath("$.[*].razaoSocial").value(hasItem(DEFAULT_RAZAO_SOCIAL)))
+            .andExpect(jsonPath("$.[*].nomeFantasia").value(hasItem(DEFAULT_NOME_FANTASIA)))
+            .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ)));
+
+        // Check, that the count call also returns 1
+        restPessoajuridicaMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultPessoajuridicaShouldNotBeFound(String filter) throws Exception {
+        restPessoajuridicaMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restPessoajuridicaMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
+    }
+
+    @Test
+    @Transactional
     void getNonExistingPessoajuridica() throws Exception {
         // Get the pessoajuridica
         restPessoajuridicaMockMvc.perform(get(ENTITY_API_URL_ID, Long.MAX_VALUE)).andExpect(status().isNotFound());

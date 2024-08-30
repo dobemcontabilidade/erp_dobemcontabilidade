@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.PlanoAssinaturaContabil;
 import com.dobemcontabilidade.repository.PlanoAssinaturaContabilRepository;
+import com.dobemcontabilidade.service.PlanoAssinaturaContabilQueryService;
+import com.dobemcontabilidade.service.PlanoAssinaturaContabilService;
+import com.dobemcontabilidade.service.criteria.PlanoAssinaturaContabilCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -22,7 +24,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/plano-assinatura-contabils")
-@Transactional
 public class PlanoAssinaturaContabilResource {
 
     private static final Logger log = LoggerFactory.getLogger(PlanoAssinaturaContabilResource.class);
@@ -32,10 +33,20 @@ public class PlanoAssinaturaContabilResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final PlanoAssinaturaContabilService planoAssinaturaContabilService;
+
     private final PlanoAssinaturaContabilRepository planoAssinaturaContabilRepository;
 
-    public PlanoAssinaturaContabilResource(PlanoAssinaturaContabilRepository planoAssinaturaContabilRepository) {
+    private final PlanoAssinaturaContabilQueryService planoAssinaturaContabilQueryService;
+
+    public PlanoAssinaturaContabilResource(
+        PlanoAssinaturaContabilService planoAssinaturaContabilService,
+        PlanoAssinaturaContabilRepository planoAssinaturaContabilRepository,
+        PlanoAssinaturaContabilQueryService planoAssinaturaContabilQueryService
+    ) {
+        this.planoAssinaturaContabilService = planoAssinaturaContabilService;
         this.planoAssinaturaContabilRepository = planoAssinaturaContabilRepository;
+        this.planoAssinaturaContabilQueryService = planoAssinaturaContabilQueryService;
     }
 
     /**
@@ -53,7 +64,7 @@ public class PlanoAssinaturaContabilResource {
         if (planoAssinaturaContabil.getId() != null) {
             throw new BadRequestAlertException("A new planoAssinaturaContabil cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        planoAssinaturaContabil = planoAssinaturaContabilRepository.save(planoAssinaturaContabil);
+        planoAssinaturaContabil = planoAssinaturaContabilService.save(planoAssinaturaContabil);
         return ResponseEntity.created(new URI("/api/plano-assinatura-contabils/" + planoAssinaturaContabil.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, planoAssinaturaContabil.getId().toString()))
             .body(planoAssinaturaContabil);
@@ -86,7 +97,7 @@ public class PlanoAssinaturaContabilResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        planoAssinaturaContabil = planoAssinaturaContabilRepository.save(planoAssinaturaContabil);
+        planoAssinaturaContabil = planoAssinaturaContabilService.update(planoAssinaturaContabil);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, planoAssinaturaContabil.getId().toString()))
             .body(planoAssinaturaContabil);
@@ -120,37 +131,7 @@ public class PlanoAssinaturaContabilResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<PlanoAssinaturaContabil> result = planoAssinaturaContabilRepository
-            .findById(planoAssinaturaContabil.getId())
-            .map(existingPlanoAssinaturaContabil -> {
-                if (planoAssinaturaContabil.getNome() != null) {
-                    existingPlanoAssinaturaContabil.setNome(planoAssinaturaContabil.getNome());
-                }
-                if (planoAssinaturaContabil.getAdicionalSocio() != null) {
-                    existingPlanoAssinaturaContabil.setAdicionalSocio(planoAssinaturaContabil.getAdicionalSocio());
-                }
-                if (planoAssinaturaContabil.getAdicionalFuncionario() != null) {
-                    existingPlanoAssinaturaContabil.setAdicionalFuncionario(planoAssinaturaContabil.getAdicionalFuncionario());
-                }
-                if (planoAssinaturaContabil.getSociosIsentos() != null) {
-                    existingPlanoAssinaturaContabil.setSociosIsentos(planoAssinaturaContabil.getSociosIsentos());
-                }
-                if (planoAssinaturaContabil.getAdicionalFaturamento() != null) {
-                    existingPlanoAssinaturaContabil.setAdicionalFaturamento(planoAssinaturaContabil.getAdicionalFaturamento());
-                }
-                if (planoAssinaturaContabil.getValorBaseFaturamento() != null) {
-                    existingPlanoAssinaturaContabil.setValorBaseFaturamento(planoAssinaturaContabil.getValorBaseFaturamento());
-                }
-                if (planoAssinaturaContabil.getValorBaseAbertura() != null) {
-                    existingPlanoAssinaturaContabil.setValorBaseAbertura(planoAssinaturaContabil.getValorBaseAbertura());
-                }
-                if (planoAssinaturaContabil.getSituacao() != null) {
-                    existingPlanoAssinaturaContabil.setSituacao(planoAssinaturaContabil.getSituacao());
-                }
-
-                return existingPlanoAssinaturaContabil;
-            })
-            .map(planoAssinaturaContabilRepository::save);
+        Optional<PlanoAssinaturaContabil> result = planoAssinaturaContabilService.partialUpdate(planoAssinaturaContabil);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -161,12 +142,27 @@ public class PlanoAssinaturaContabilResource {
     /**
      * {@code GET  /plano-assinatura-contabils} : get all the planoAssinaturaContabils.
      *
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of planoAssinaturaContabils in body.
      */
     @GetMapping("")
-    public List<PlanoAssinaturaContabil> getAllPlanoAssinaturaContabils() {
-        log.debug("REST request to get all PlanoAssinaturaContabils");
-        return planoAssinaturaContabilRepository.findAll();
+    public ResponseEntity<List<PlanoAssinaturaContabil>> getAllPlanoAssinaturaContabils(PlanoAssinaturaContabilCriteria criteria) {
+        log.debug("REST request to get PlanoAssinaturaContabils by criteria: {}", criteria);
+
+        List<PlanoAssinaturaContabil> entityList = planoAssinaturaContabilQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /plano-assinatura-contabils/count} : count all the planoAssinaturaContabils.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countPlanoAssinaturaContabils(PlanoAssinaturaContabilCriteria criteria) {
+        log.debug("REST request to count PlanoAssinaturaContabils by criteria: {}", criteria);
+        return ResponseEntity.ok().body(planoAssinaturaContabilQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -178,7 +174,7 @@ public class PlanoAssinaturaContabilResource {
     @GetMapping("/{id}")
     public ResponseEntity<PlanoAssinaturaContabil> getPlanoAssinaturaContabil(@PathVariable("id") Long id) {
         log.debug("REST request to get PlanoAssinaturaContabil : {}", id);
-        Optional<PlanoAssinaturaContabil> planoAssinaturaContabil = planoAssinaturaContabilRepository.findById(id);
+        Optional<PlanoAssinaturaContabil> planoAssinaturaContabil = planoAssinaturaContabilService.findOne(id);
         return ResponseUtil.wrapOrNotFound(planoAssinaturaContabil);
     }
 
@@ -191,7 +187,7 @@ public class PlanoAssinaturaContabilResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePlanoAssinaturaContabil(@PathVariable("id") Long id) {
         log.debug("REST request to delete PlanoAssinaturaContabil : {}", id);
-        planoAssinaturaContabilRepository.deleteById(id);
+        planoAssinaturaContabilService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();

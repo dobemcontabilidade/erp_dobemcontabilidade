@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.Empresa;
 import com.dobemcontabilidade.repository.EmpresaRepository;
+import com.dobemcontabilidade.service.EmpresaQueryService;
+import com.dobemcontabilidade.service.EmpresaService;
+import com.dobemcontabilidade.service.criteria.EmpresaCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -24,7 +26,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/empresas")
-@Transactional
 public class EmpresaResource {
 
     private static final Logger log = LoggerFactory.getLogger(EmpresaResource.class);
@@ -34,10 +35,16 @@ public class EmpresaResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final EmpresaService empresaService;
+
     private final EmpresaRepository empresaRepository;
 
-    public EmpresaResource(EmpresaRepository empresaRepository) {
+    private final EmpresaQueryService empresaQueryService;
+
+    public EmpresaResource(EmpresaService empresaService, EmpresaRepository empresaRepository, EmpresaQueryService empresaQueryService) {
+        this.empresaService = empresaService;
         this.empresaRepository = empresaRepository;
+        this.empresaQueryService = empresaQueryService;
     }
 
     /**
@@ -53,7 +60,7 @@ public class EmpresaResource {
         if (empresa.getId() != null) {
             throw new BadRequestAlertException("A new empresa cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        empresa = empresaRepository.save(empresa);
+        empresa = empresaService.save(empresa);
         return ResponseEntity.created(new URI("/api/empresas/" + empresa.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, empresa.getId().toString()))
             .body(empresa);
@@ -86,7 +93,7 @@ public class EmpresaResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        empresa = empresaRepository.save(empresa);
+        empresa = empresaService.update(empresa);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, empresa.getId().toString()))
             .body(empresa);
@@ -120,31 +127,7 @@ public class EmpresaResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<Empresa> result = empresaRepository
-            .findById(empresa.getId())
-            .map(existingEmpresa -> {
-                if (empresa.getRazaoSocial() != null) {
-                    existingEmpresa.setRazaoSocial(empresa.getRazaoSocial());
-                }
-                if (empresa.getDescricaoDoNegocio() != null) {
-                    existingEmpresa.setDescricaoDoNegocio(empresa.getDescricaoDoNegocio());
-                }
-                if (empresa.getDataAbertura() != null) {
-                    existingEmpresa.setDataAbertura(empresa.getDataAbertura());
-                }
-                if (empresa.getUrlContratoSocial() != null) {
-                    existingEmpresa.setUrlContratoSocial(empresa.getUrlContratoSocial());
-                }
-                if (empresa.getCapitalSocial() != null) {
-                    existingEmpresa.setCapitalSocial(empresa.getCapitalSocial());
-                }
-                if (empresa.getCnae() != null) {
-                    existingEmpresa.setCnae(empresa.getCnae());
-                }
-
-                return existingEmpresa;
-            })
-            .map(empresaRepository::save);
+        Optional<Empresa> result = empresaService.partialUpdate(empresa);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -155,17 +138,27 @@ public class EmpresaResource {
     /**
      * {@code GET  /empresas} : get all the empresas.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of empresas in body.
      */
     @GetMapping("")
-    public List<Empresa> getAllEmpresas(@RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload) {
-        log.debug("REST request to get all Empresas");
-        if (eagerload) {
-            return empresaRepository.findAllWithEagerRelationships();
-        } else {
-            return empresaRepository.findAll();
-        }
+    public ResponseEntity<List<Empresa>> getAllEmpresas(EmpresaCriteria criteria) {
+        log.debug("REST request to get Empresas by criteria: {}", criteria);
+
+        List<Empresa> entityList = empresaQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /empresas/count} : count all the empresas.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countEmpresas(EmpresaCriteria criteria) {
+        log.debug("REST request to count Empresas by criteria: {}", criteria);
+        return ResponseEntity.ok().body(empresaQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -177,7 +170,7 @@ public class EmpresaResource {
     @GetMapping("/{id}")
     public ResponseEntity<Empresa> getEmpresa(@PathVariable("id") Long id) {
         log.debug("REST request to get Empresa : {}", id);
-        Optional<Empresa> empresa = empresaRepository.findOneWithEagerRelationships(id);
+        Optional<Empresa> empresa = empresaService.findOne(id);
         return ResponseUtil.wrapOrNotFound(empresa);
     }
 
@@ -190,7 +183,7 @@ public class EmpresaResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEmpresa(@PathVariable("id") Long id) {
         log.debug("REST request to delete Empresa : {}", id);
-        empresaRepository.deleteById(id);
+        empresaService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();

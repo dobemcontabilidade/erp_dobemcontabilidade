@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.Estado;
 import com.dobemcontabilidade.repository.EstadoRepository;
+import com.dobemcontabilidade.service.EstadoQueryService;
+import com.dobemcontabilidade.service.EstadoService;
+import com.dobemcontabilidade.service.criteria.EstadoCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -24,7 +26,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/estados")
-@Transactional
 public class EstadoResource {
 
     private static final Logger log = LoggerFactory.getLogger(EstadoResource.class);
@@ -34,10 +35,16 @@ public class EstadoResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final EstadoService estadoService;
+
     private final EstadoRepository estadoRepository;
 
-    public EstadoResource(EstadoRepository estadoRepository) {
+    private final EstadoQueryService estadoQueryService;
+
+    public EstadoResource(EstadoService estadoService, EstadoRepository estadoRepository, EstadoQueryService estadoQueryService) {
+        this.estadoService = estadoService;
         this.estadoRepository = estadoRepository;
+        this.estadoQueryService = estadoQueryService;
     }
 
     /**
@@ -53,7 +60,7 @@ public class EstadoResource {
         if (estado.getId() != null) {
             throw new BadRequestAlertException("A new estado cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        estado = estadoRepository.save(estado);
+        estado = estadoService.save(estado);
         return ResponseEntity.created(new URI("/api/estados/" + estado.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, estado.getId().toString()))
             .body(estado);
@@ -86,7 +93,7 @@ public class EstadoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        estado = estadoRepository.save(estado);
+        estado = estadoService.update(estado);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, estado.getId().toString()))
             .body(estado);
@@ -120,22 +127,7 @@ public class EstadoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<Estado> result = estadoRepository
-            .findById(estado.getId())
-            .map(existingEstado -> {
-                if (estado.getNome() != null) {
-                    existingEstado.setNome(estado.getNome());
-                }
-                if (estado.getNaturalidade() != null) {
-                    existingEstado.setNaturalidade(estado.getNaturalidade());
-                }
-                if (estado.getSigla() != null) {
-                    existingEstado.setSigla(estado.getSigla());
-                }
-
-                return existingEstado;
-            })
-            .map(estadoRepository::save);
+        Optional<Estado> result = estadoService.partialUpdate(estado);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -146,17 +138,27 @@ public class EstadoResource {
     /**
      * {@code GET  /estados} : get all the estados.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of estados in body.
      */
     @GetMapping("")
-    public List<Estado> getAllEstados(@RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload) {
-        log.debug("REST request to get all Estados");
-        if (eagerload) {
-            return estadoRepository.findAllWithEagerRelationships();
-        } else {
-            return estadoRepository.findAll();
-        }
+    public ResponseEntity<List<Estado>> getAllEstados(EstadoCriteria criteria) {
+        log.debug("REST request to get Estados by criteria: {}", criteria);
+
+        List<Estado> entityList = estadoQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /estados/count} : count all the estados.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countEstados(EstadoCriteria criteria) {
+        log.debug("REST request to count Estados by criteria: {}", criteria);
+        return ResponseEntity.ok().body(estadoQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -168,7 +170,7 @@ public class EstadoResource {
     @GetMapping("/{id}")
     public ResponseEntity<Estado> getEstado(@PathVariable("id") Long id) {
         log.debug("REST request to get Estado : {}", id);
-        Optional<Estado> estado = estadoRepository.findOneWithEagerRelationships(id);
+        Optional<Estado> estado = estadoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(estado);
     }
 
@@ -181,7 +183,7 @@ public class EstadoResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEstado(@PathVariable("id") Long id) {
         log.debug("REST request to delete Estado : {}", id);
-        estadoRepository.deleteById(id);
+        estadoService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();

@@ -47,11 +47,7 @@ export class PessoajuridicaComponent implements OnInit {
     this.subscription = combineLatest([this.activatedRoute.queryParamMap, this.activatedRoute.data])
       .pipe(
         tap(([params, data]) => this.fillComponentAttributeFromRoute(params, data)),
-        tap(() => {
-          if (!this.pessoajuridicas || this.pessoajuridicas.length === 0) {
-            this.load();
-          }
-        }),
+        tap(() => this.load()),
       )
       .subscribe();
   }

@@ -14,6 +14,7 @@ import com.dobemcontabilidade.domain.AdicionalRamo;
 import com.dobemcontabilidade.domain.PlanoAssinaturaContabil;
 import com.dobemcontabilidade.domain.Ramo;
 import com.dobemcontabilidade.repository.AdicionalRamoRepository;
+import com.dobemcontabilidade.service.AdicionalRamoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ class AdicionalRamoResourceIT {
 
     private static final Double DEFAULT_VALOR = 1D;
     private static final Double UPDATED_VALOR = 2D;
+    private static final Double SMALLER_VALOR = 1D - 1D;
 
     private static final String ENTITY_API_URL = "/api/adicional-ramos";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -60,6 +62,9 @@ class AdicionalRamoResourceIT {
 
     @Mock
     private AdicionalRamoRepository adicionalRamoRepositoryMock;
+
+    @Mock
+    private AdicionalRamoService adicionalRamoServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -220,16 +225,16 @@ class AdicionalRamoResourceIT {
 
     @SuppressWarnings({ "unchecked" })
     void getAllAdicionalRamosWithEagerRelationshipsIsEnabled() throws Exception {
-        when(adicionalRamoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(adicionalRamoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restAdicionalRamoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(adicionalRamoRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(adicionalRamoServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({ "unchecked" })
     void getAllAdicionalRamosWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(adicionalRamoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(adicionalRamoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restAdicionalRamoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
         verify(adicionalRamoRepositoryMock, times(1)).findAll(any(Pageable.class));
@@ -248,6 +253,178 @@ class AdicionalRamoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(adicionalRamo.getId().intValue()))
             .andExpect(jsonPath("$.valor").value(DEFAULT_VALOR.doubleValue()));
+    }
+
+    @Test
+    @Transactional
+    void getAdicionalRamosByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedAdicionalRamo = adicionalRamoRepository.saveAndFlush(adicionalRamo);
+
+        Long id = adicionalRamo.getId();
+
+        defaultAdicionalRamoFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultAdicionalRamoFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultAdicionalRamoFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalRamosByValorIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalRamo = adicionalRamoRepository.saveAndFlush(adicionalRamo);
+
+        // Get all the adicionalRamoList where valor equals to
+        defaultAdicionalRamoFiltering("valor.equals=" + DEFAULT_VALOR, "valor.equals=" + UPDATED_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalRamosByValorIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedAdicionalRamo = adicionalRamoRepository.saveAndFlush(adicionalRamo);
+
+        // Get all the adicionalRamoList where valor in
+        defaultAdicionalRamoFiltering("valor.in=" + DEFAULT_VALOR + "," + UPDATED_VALOR, "valor.in=" + UPDATED_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalRamosByValorIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedAdicionalRamo = adicionalRamoRepository.saveAndFlush(adicionalRamo);
+
+        // Get all the adicionalRamoList where valor is not null
+        defaultAdicionalRamoFiltering("valor.specified=true", "valor.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalRamosByValorIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalRamo = adicionalRamoRepository.saveAndFlush(adicionalRamo);
+
+        // Get all the adicionalRamoList where valor is greater than or equal to
+        defaultAdicionalRamoFiltering("valor.greaterThanOrEqual=" + DEFAULT_VALOR, "valor.greaterThanOrEqual=" + UPDATED_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalRamosByValorIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalRamo = adicionalRamoRepository.saveAndFlush(adicionalRamo);
+
+        // Get all the adicionalRamoList where valor is less than or equal to
+        defaultAdicionalRamoFiltering("valor.lessThanOrEqual=" + DEFAULT_VALOR, "valor.lessThanOrEqual=" + SMALLER_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalRamosByValorIsLessThanSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalRamo = adicionalRamoRepository.saveAndFlush(adicionalRamo);
+
+        // Get all the adicionalRamoList where valor is less than
+        defaultAdicionalRamoFiltering("valor.lessThan=" + UPDATED_VALOR, "valor.lessThan=" + DEFAULT_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalRamosByValorIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalRamo = adicionalRamoRepository.saveAndFlush(adicionalRamo);
+
+        // Get all the adicionalRamoList where valor is greater than
+        defaultAdicionalRamoFiltering("valor.greaterThan=" + SMALLER_VALOR, "valor.greaterThan=" + DEFAULT_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalRamosByRamoIsEqualToSomething() throws Exception {
+        Ramo ramo;
+        if (TestUtil.findAll(em, Ramo.class).isEmpty()) {
+            adicionalRamoRepository.saveAndFlush(adicionalRamo);
+            ramo = RamoResourceIT.createEntity(em);
+        } else {
+            ramo = TestUtil.findAll(em, Ramo.class).get(0);
+        }
+        em.persist(ramo);
+        em.flush();
+        adicionalRamo.setRamo(ramo);
+        adicionalRamoRepository.saveAndFlush(adicionalRamo);
+        Long ramoId = ramo.getId();
+        // Get all the adicionalRamoList where ramo equals to ramoId
+        defaultAdicionalRamoShouldBeFound("ramoId.equals=" + ramoId);
+
+        // Get all the adicionalRamoList where ramo equals to (ramoId + 1)
+        defaultAdicionalRamoShouldNotBeFound("ramoId.equals=" + (ramoId + 1));
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalRamosByPlanoAssinaturaContabilIsEqualToSomething() throws Exception {
+        PlanoAssinaturaContabil planoAssinaturaContabil;
+        if (TestUtil.findAll(em, PlanoAssinaturaContabil.class).isEmpty()) {
+            adicionalRamoRepository.saveAndFlush(adicionalRamo);
+            planoAssinaturaContabil = PlanoAssinaturaContabilResourceIT.createEntity(em);
+        } else {
+            planoAssinaturaContabil = TestUtil.findAll(em, PlanoAssinaturaContabil.class).get(0);
+        }
+        em.persist(planoAssinaturaContabil);
+        em.flush();
+        adicionalRamo.setPlanoAssinaturaContabil(planoAssinaturaContabil);
+        adicionalRamoRepository.saveAndFlush(adicionalRamo);
+        Long planoAssinaturaContabilId = planoAssinaturaContabil.getId();
+        // Get all the adicionalRamoList where planoAssinaturaContabil equals to planoAssinaturaContabilId
+        defaultAdicionalRamoShouldBeFound("planoAssinaturaContabilId.equals=" + planoAssinaturaContabilId);
+
+        // Get all the adicionalRamoList where planoAssinaturaContabil equals to (planoAssinaturaContabilId + 1)
+        defaultAdicionalRamoShouldNotBeFound("planoAssinaturaContabilId.equals=" + (planoAssinaturaContabilId + 1));
+    }
+
+    private void defaultAdicionalRamoFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultAdicionalRamoShouldBeFound(shouldBeFound);
+        defaultAdicionalRamoShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultAdicionalRamoShouldBeFound(String filter) throws Exception {
+        restAdicionalRamoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(adicionalRamo.getId().intValue())))
+            .andExpect(jsonPath("$.[*].valor").value(hasItem(DEFAULT_VALOR.doubleValue())));
+
+        // Check, that the count call also returns 1
+        restAdicionalRamoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultAdicionalRamoShouldNotBeFound(String filter) throws Exception {
+        restAdicionalRamoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restAdicionalRamoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
     }
 
     @Test

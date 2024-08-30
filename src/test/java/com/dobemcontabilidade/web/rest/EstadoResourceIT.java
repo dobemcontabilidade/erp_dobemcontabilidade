@@ -13,6 +13,7 @@ import com.dobemcontabilidade.IntegrationTest;
 import com.dobemcontabilidade.domain.Estado;
 import com.dobemcontabilidade.domain.Pais;
 import com.dobemcontabilidade.repository.EstadoRepository;
+import com.dobemcontabilidade.service.EstadoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
@@ -65,6 +66,9 @@ class EstadoResourceIT {
 
     @Mock
     private EstadoRepository estadoRepositoryMock;
+
+    @Mock
+    private EstadoService estadoServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -189,16 +193,16 @@ class EstadoResourceIT {
 
     @SuppressWarnings({ "unchecked" })
     void getAllEstadosWithEagerRelationshipsIsEnabled() throws Exception {
-        when(estadoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(estadoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restEstadoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(estadoRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(estadoServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({ "unchecked" })
     void getAllEstadosWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(estadoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(estadoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restEstadoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
         verify(estadoRepositoryMock, times(1)).findAll(any(Pageable.class));
@@ -219,6 +223,244 @@ class EstadoResourceIT {
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
             .andExpect(jsonPath("$.naturalidade").value(DEFAULT_NATURALIDADE))
             .andExpect(jsonPath("$.sigla").value(DEFAULT_SIGLA));
+    }
+
+    @Test
+    @Transactional
+    void getEstadosByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        Long id = estado.getId();
+
+        defaultEstadoFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultEstadoFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultEstadoFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByNomeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where nome equals to
+        defaultEstadoFiltering("nome.equals=" + DEFAULT_NOME, "nome.equals=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByNomeIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where nome in
+        defaultEstadoFiltering("nome.in=" + DEFAULT_NOME + "," + UPDATED_NOME, "nome.in=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByNomeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where nome is not null
+        defaultEstadoFiltering("nome.specified=true", "nome.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByNomeContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where nome contains
+        defaultEstadoFiltering("nome.contains=" + DEFAULT_NOME, "nome.contains=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByNomeNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where nome does not contain
+        defaultEstadoFiltering("nome.doesNotContain=" + UPDATED_NOME, "nome.doesNotContain=" + DEFAULT_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByNaturalidadeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where naturalidade equals to
+        defaultEstadoFiltering("naturalidade.equals=" + DEFAULT_NATURALIDADE, "naturalidade.equals=" + UPDATED_NATURALIDADE);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByNaturalidadeIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where naturalidade in
+        defaultEstadoFiltering(
+            "naturalidade.in=" + DEFAULT_NATURALIDADE + "," + UPDATED_NATURALIDADE,
+            "naturalidade.in=" + UPDATED_NATURALIDADE
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByNaturalidadeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where naturalidade is not null
+        defaultEstadoFiltering("naturalidade.specified=true", "naturalidade.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByNaturalidadeContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where naturalidade contains
+        defaultEstadoFiltering("naturalidade.contains=" + DEFAULT_NATURALIDADE, "naturalidade.contains=" + UPDATED_NATURALIDADE);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByNaturalidadeNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where naturalidade does not contain
+        defaultEstadoFiltering(
+            "naturalidade.doesNotContain=" + UPDATED_NATURALIDADE,
+            "naturalidade.doesNotContain=" + DEFAULT_NATURALIDADE
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosBySiglaIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where sigla equals to
+        defaultEstadoFiltering("sigla.equals=" + DEFAULT_SIGLA, "sigla.equals=" + UPDATED_SIGLA);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosBySiglaIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where sigla in
+        defaultEstadoFiltering("sigla.in=" + DEFAULT_SIGLA + "," + UPDATED_SIGLA, "sigla.in=" + UPDATED_SIGLA);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosBySiglaIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where sigla is not null
+        defaultEstadoFiltering("sigla.specified=true", "sigla.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosBySiglaContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where sigla contains
+        defaultEstadoFiltering("sigla.contains=" + DEFAULT_SIGLA, "sigla.contains=" + UPDATED_SIGLA);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosBySiglaNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedEstado = estadoRepository.saveAndFlush(estado);
+
+        // Get all the estadoList where sigla does not contain
+        defaultEstadoFiltering("sigla.doesNotContain=" + UPDATED_SIGLA, "sigla.doesNotContain=" + DEFAULT_SIGLA);
+    }
+
+    @Test
+    @Transactional
+    void getAllEstadosByPaisIsEqualToSomething() throws Exception {
+        Pais pais;
+        if (TestUtil.findAll(em, Pais.class).isEmpty()) {
+            estadoRepository.saveAndFlush(estado);
+            pais = PaisResourceIT.createEntity(em);
+        } else {
+            pais = TestUtil.findAll(em, Pais.class).get(0);
+        }
+        em.persist(pais);
+        em.flush();
+        estado.setPais(pais);
+        estadoRepository.saveAndFlush(estado);
+        Long paisId = pais.getId();
+        // Get all the estadoList where pais equals to paisId
+        defaultEstadoShouldBeFound("paisId.equals=" + paisId);
+
+        // Get all the estadoList where pais equals to (paisId + 1)
+        defaultEstadoShouldNotBeFound("paisId.equals=" + (paisId + 1));
+    }
+
+    private void defaultEstadoFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultEstadoShouldBeFound(shouldBeFound);
+        defaultEstadoShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultEstadoShouldBeFound(String filter) throws Exception {
+        restEstadoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(estado.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].naturalidade").value(hasItem(DEFAULT_NATURALIDADE)))
+            .andExpect(jsonPath("$.[*].sigla").value(hasItem(DEFAULT_SIGLA)));
+
+        // Check, that the count call also returns 1
+        restEstadoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultEstadoShouldNotBeFound(String filter) throws Exception {
+        restEstadoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restEstadoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
     }
 
     @Test

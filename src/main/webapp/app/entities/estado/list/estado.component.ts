@@ -47,11 +47,7 @@ export class EstadoComponent implements OnInit {
     this.subscription = combineLatest([this.activatedRoute.queryParamMap, this.activatedRoute.data])
       .pipe(
         tap(([params, data]) => this.fillComponentAttributeFromRoute(params, data)),
-        tap(() => {
-          if (!this.estados || this.estados.length === 0) {
-            this.load();
-          }
-        }),
+        tap(() => this.load()),
       )
       .subscribe();
   }

@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface PlanoAssinaturaContabilRepository extends JpaRepository<PlanoAssinaturaContabil, Long> {}
+public interface PlanoAssinaturaContabilRepository
+    extends JpaRepository<PlanoAssinaturaContabil, Long>, JpaSpecificationExecutor<PlanoAssinaturaContabil> {}

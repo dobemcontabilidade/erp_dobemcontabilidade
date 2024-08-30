@@ -84,6 +84,7 @@
       "fieldValues": "ABERTURA_EMPRESA,CONTRATACAO_PLANO"
     }
   ],
+  "jpaMetamodelFiltering": true,
   "name": "AssinaturaEmpresa",
   "relationships": [
     {
@@ -118,5 +119,6 @@
       "relationshipValidateRules": "required"
     }
   ],
-  "searchEngine": "no"
+  "searchEngine": "no",
+  "service": "serviceClass"
 }

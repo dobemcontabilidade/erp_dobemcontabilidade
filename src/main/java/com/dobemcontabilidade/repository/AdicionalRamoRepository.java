@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * Spring Data JPA repository for the AdicionalRamo entity.
  */
 @Repository
-public interface AdicionalRamoRepository extends JpaRepository<AdicionalRamo, Long> {
+public interface AdicionalRamoRepository extends JpaRepository<AdicionalRamo, Long>, JpaSpecificationExecutor<AdicionalRamo> {
     default Optional<AdicionalRamo> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }

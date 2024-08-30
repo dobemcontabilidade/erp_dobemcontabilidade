@@ -21,6 +21,7 @@
       "fieldValidateRulesMaxlength": "20"
     }
   ],
+  "jpaMetamodelFiltering": true,
   "name": "Pessoajuridica",
   "relationships": [
     {
@@ -52,5 +53,6 @@
       "relationshipType": "one-to-many"
     }
   ],
-  "searchEngine": "no"
+  "searchEngine": "no",
+  "service": "serviceClass"
 }

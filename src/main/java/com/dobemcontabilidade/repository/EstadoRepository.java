@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * Spring Data JPA repository for the Estado entity.
  */
 @Repository
-public interface EstadoRepository extends JpaRepository<Estado, Long> {
+public interface EstadoRepository extends JpaRepository<Estado, Long>, JpaSpecificationExecutor<Estado> {
     default Optional<Estado> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }

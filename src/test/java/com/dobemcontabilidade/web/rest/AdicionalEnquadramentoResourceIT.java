@@ -14,6 +14,7 @@ import com.dobemcontabilidade.domain.AdicionalEnquadramento;
 import com.dobemcontabilidade.domain.Enquadramento;
 import com.dobemcontabilidade.domain.PlanoAssinaturaContabil;
 import com.dobemcontabilidade.repository.AdicionalEnquadramentoRepository;
+import com.dobemcontabilidade.service.AdicionalEnquadramentoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ class AdicionalEnquadramentoResourceIT {
 
     private static final Double DEFAULT_VALOR = 1D;
     private static final Double UPDATED_VALOR = 2D;
+    private static final Double SMALLER_VALOR = 1D - 1D;
 
     private static final String ENTITY_API_URL = "/api/adicional-enquadramentos";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -60,6 +62,9 @@ class AdicionalEnquadramentoResourceIT {
 
     @Mock
     private AdicionalEnquadramentoRepository adicionalEnquadramentoRepositoryMock;
+
+    @Mock
+    private AdicionalEnquadramentoService adicionalEnquadramentoServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -215,16 +220,16 @@ class AdicionalEnquadramentoResourceIT {
 
     @SuppressWarnings({ "unchecked" })
     void getAllAdicionalEnquadramentosWithEagerRelationshipsIsEnabled() throws Exception {
-        when(adicionalEnquadramentoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(adicionalEnquadramentoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restAdicionalEnquadramentoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(adicionalEnquadramentoRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(adicionalEnquadramentoServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({ "unchecked" })
     void getAllAdicionalEnquadramentosWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(adicionalEnquadramentoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(adicionalEnquadramentoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restAdicionalEnquadramentoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
         verify(adicionalEnquadramentoRepositoryMock, times(1)).findAll(any(Pageable.class));
@@ -243,6 +248,178 @@ class AdicionalEnquadramentoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(adicionalEnquadramento.getId().intValue()))
             .andExpect(jsonPath("$.valor").value(DEFAULT_VALOR.doubleValue()));
+    }
+
+    @Test
+    @Transactional
+    void getAdicionalEnquadramentosByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedAdicionalEnquadramento = adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+
+        Long id = adicionalEnquadramento.getId();
+
+        defaultAdicionalEnquadramentoFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultAdicionalEnquadramentoFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultAdicionalEnquadramentoFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalEnquadramentosByValorIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalEnquadramento = adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+
+        // Get all the adicionalEnquadramentoList where valor equals to
+        defaultAdicionalEnquadramentoFiltering("valor.equals=" + DEFAULT_VALOR, "valor.equals=" + UPDATED_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalEnquadramentosByValorIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedAdicionalEnquadramento = adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+
+        // Get all the adicionalEnquadramentoList where valor in
+        defaultAdicionalEnquadramentoFiltering("valor.in=" + DEFAULT_VALOR + "," + UPDATED_VALOR, "valor.in=" + UPDATED_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalEnquadramentosByValorIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedAdicionalEnquadramento = adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+
+        // Get all the adicionalEnquadramentoList where valor is not null
+        defaultAdicionalEnquadramentoFiltering("valor.specified=true", "valor.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalEnquadramentosByValorIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalEnquadramento = adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+
+        // Get all the adicionalEnquadramentoList where valor is greater than or equal to
+        defaultAdicionalEnquadramentoFiltering("valor.greaterThanOrEqual=" + DEFAULT_VALOR, "valor.greaterThanOrEqual=" + UPDATED_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalEnquadramentosByValorIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalEnquadramento = adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+
+        // Get all the adicionalEnquadramentoList where valor is less than or equal to
+        defaultAdicionalEnquadramentoFiltering("valor.lessThanOrEqual=" + DEFAULT_VALOR, "valor.lessThanOrEqual=" + SMALLER_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalEnquadramentosByValorIsLessThanSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalEnquadramento = adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+
+        // Get all the adicionalEnquadramentoList where valor is less than
+        defaultAdicionalEnquadramentoFiltering("valor.lessThan=" + UPDATED_VALOR, "valor.lessThan=" + DEFAULT_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalEnquadramentosByValorIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        insertedAdicionalEnquadramento = adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+
+        // Get all the adicionalEnquadramentoList where valor is greater than
+        defaultAdicionalEnquadramentoFiltering("valor.greaterThan=" + SMALLER_VALOR, "valor.greaterThan=" + DEFAULT_VALOR);
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalEnquadramentosByEnquadramentoIsEqualToSomething() throws Exception {
+        Enquadramento enquadramento;
+        if (TestUtil.findAll(em, Enquadramento.class).isEmpty()) {
+            adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+            enquadramento = EnquadramentoResourceIT.createEntity(em);
+        } else {
+            enquadramento = TestUtil.findAll(em, Enquadramento.class).get(0);
+        }
+        em.persist(enquadramento);
+        em.flush();
+        adicionalEnquadramento.setEnquadramento(enquadramento);
+        adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+        Long enquadramentoId = enquadramento.getId();
+        // Get all the adicionalEnquadramentoList where enquadramento equals to enquadramentoId
+        defaultAdicionalEnquadramentoShouldBeFound("enquadramentoId.equals=" + enquadramentoId);
+
+        // Get all the adicionalEnquadramentoList where enquadramento equals to (enquadramentoId + 1)
+        defaultAdicionalEnquadramentoShouldNotBeFound("enquadramentoId.equals=" + (enquadramentoId + 1));
+    }
+
+    @Test
+    @Transactional
+    void getAllAdicionalEnquadramentosByPlanoAssinaturaContabilIsEqualToSomething() throws Exception {
+        PlanoAssinaturaContabil planoAssinaturaContabil;
+        if (TestUtil.findAll(em, PlanoAssinaturaContabil.class).isEmpty()) {
+            adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+            planoAssinaturaContabil = PlanoAssinaturaContabilResourceIT.createEntity(em);
+        } else {
+            planoAssinaturaContabil = TestUtil.findAll(em, PlanoAssinaturaContabil.class).get(0);
+        }
+        em.persist(planoAssinaturaContabil);
+        em.flush();
+        adicionalEnquadramento.setPlanoAssinaturaContabil(planoAssinaturaContabil);
+        adicionalEnquadramentoRepository.saveAndFlush(adicionalEnquadramento);
+        Long planoAssinaturaContabilId = planoAssinaturaContabil.getId();
+        // Get all the adicionalEnquadramentoList where planoAssinaturaContabil equals to planoAssinaturaContabilId
+        defaultAdicionalEnquadramentoShouldBeFound("planoAssinaturaContabilId.equals=" + planoAssinaturaContabilId);
+
+        // Get all the adicionalEnquadramentoList where planoAssinaturaContabil equals to (planoAssinaturaContabilId + 1)
+        defaultAdicionalEnquadramentoShouldNotBeFound("planoAssinaturaContabilId.equals=" + (planoAssinaturaContabilId + 1));
+    }
+
+    private void defaultAdicionalEnquadramentoFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultAdicionalEnquadramentoShouldBeFound(shouldBeFound);
+        defaultAdicionalEnquadramentoShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultAdicionalEnquadramentoShouldBeFound(String filter) throws Exception {
+        restAdicionalEnquadramentoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(adicionalEnquadramento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].valor").value(hasItem(DEFAULT_VALOR.doubleValue())));
+
+        // Check, that the count call also returns 1
+        restAdicionalEnquadramentoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultAdicionalEnquadramentoShouldNotBeFound(String filter) throws Exception {
+        restAdicionalEnquadramentoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restAdicionalEnquadramentoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
     }
 
     @Test

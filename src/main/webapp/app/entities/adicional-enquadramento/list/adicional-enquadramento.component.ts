@@ -48,11 +48,7 @@ export class AdicionalEnquadramentoComponent implements OnInit {
     this.subscription = combineLatest([this.activatedRoute.queryParamMap, this.activatedRoute.data])
       .pipe(
         tap(([params, data]) => this.fillComponentAttributeFromRoute(params, data)),
-        tap(() => {
-          if (!this.adicionalEnquadramentos || this.adicionalEnquadramentos.length === 0) {
-            this.load();
-          }
-        }),
+        tap(() => this.load()),
       )
       .subscribe();
   }

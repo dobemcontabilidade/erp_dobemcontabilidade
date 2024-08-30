@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.Pessoajuridica;
 import com.dobemcontabilidade.repository.PessoajuridicaRepository;
+import com.dobemcontabilidade.service.PessoajuridicaQueryService;
+import com.dobemcontabilidade.service.PessoajuridicaService;
+import com.dobemcontabilidade.service.criteria.PessoajuridicaCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -10,12 +13,10 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -25,7 +26,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/pessoajuridicas")
-@Transactional
 public class PessoajuridicaResource {
 
     private static final Logger log = LoggerFactory.getLogger(PessoajuridicaResource.class);
@@ -35,10 +35,20 @@ public class PessoajuridicaResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final PessoajuridicaService pessoajuridicaService;
+
     private final PessoajuridicaRepository pessoajuridicaRepository;
 
-    public PessoajuridicaResource(PessoajuridicaRepository pessoajuridicaRepository) {
+    private final PessoajuridicaQueryService pessoajuridicaQueryService;
+
+    public PessoajuridicaResource(
+        PessoajuridicaService pessoajuridicaService,
+        PessoajuridicaRepository pessoajuridicaRepository,
+        PessoajuridicaQueryService pessoajuridicaQueryService
+    ) {
+        this.pessoajuridicaService = pessoajuridicaService;
         this.pessoajuridicaRepository = pessoajuridicaRepository;
+        this.pessoajuridicaQueryService = pessoajuridicaQueryService;
     }
 
     /**
@@ -55,7 +65,7 @@ public class PessoajuridicaResource {
         if (pessoajuridica.getId() != null) {
             throw new BadRequestAlertException("A new pessoajuridica cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        pessoajuridica = pessoajuridicaRepository.save(pessoajuridica);
+        pessoajuridica = pessoajuridicaService.save(pessoajuridica);
         return ResponseEntity.created(new URI("/api/pessoajuridicas/" + pessoajuridica.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, pessoajuridica.getId().toString()))
             .body(pessoajuridica);
@@ -88,7 +98,7 @@ public class PessoajuridicaResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        pessoajuridica = pessoajuridicaRepository.save(pessoajuridica);
+        pessoajuridica = pessoajuridicaService.update(pessoajuridica);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, pessoajuridica.getId().toString()))
             .body(pessoajuridica);
@@ -122,22 +132,7 @@ public class PessoajuridicaResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<Pessoajuridica> result = pessoajuridicaRepository
-            .findById(pessoajuridica.getId())
-            .map(existingPessoajuridica -> {
-                if (pessoajuridica.getRazaoSocial() != null) {
-                    existingPessoajuridica.setRazaoSocial(pessoajuridica.getRazaoSocial());
-                }
-                if (pessoajuridica.getNomeFantasia() != null) {
-                    existingPessoajuridica.setNomeFantasia(pessoajuridica.getNomeFantasia());
-                }
-                if (pessoajuridica.getCnpj() != null) {
-                    existingPessoajuridica.setCnpj(pessoajuridica.getCnpj());
-                }
-
-                return existingPessoajuridica;
-            })
-            .map(pessoajuridicaRepository::save);
+        Optional<Pessoajuridica> result = pessoajuridicaService.partialUpdate(pessoajuridica);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -148,19 +143,27 @@ public class PessoajuridicaResource {
     /**
      * {@code GET  /pessoajuridicas} : get all the pessoajuridicas.
      *
-     * @param filter the filter of the request.
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pessoajuridicas in body.
      */
     @GetMapping("")
-    public List<Pessoajuridica> getAllPessoajuridicas(@RequestParam(name = "filter", required = false) String filter) {
-        if ("empresa-is-null".equals(filter)) {
-            log.debug("REST request to get all Pessoajuridicas where empresa is null");
-            return StreamSupport.stream(pessoajuridicaRepository.findAll().spliterator(), false)
-                .filter(pessoajuridica -> pessoajuridica.getEmpresa() == null)
-                .toList();
-        }
-        log.debug("REST request to get all Pessoajuridicas");
-        return pessoajuridicaRepository.findAll();
+    public ResponseEntity<List<Pessoajuridica>> getAllPessoajuridicas(PessoajuridicaCriteria criteria) {
+        log.debug("REST request to get Pessoajuridicas by criteria: {}", criteria);
+
+        List<Pessoajuridica> entityList = pessoajuridicaQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /pessoajuridicas/count} : count all the pessoajuridicas.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countPessoajuridicas(PessoajuridicaCriteria criteria) {
+        log.debug("REST request to count Pessoajuridicas by criteria: {}", criteria);
+        return ResponseEntity.ok().body(pessoajuridicaQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -172,7 +175,7 @@ public class PessoajuridicaResource {
     @GetMapping("/{id}")
     public ResponseEntity<Pessoajuridica> getPessoajuridica(@PathVariable("id") Long id) {
         log.debug("REST request to get Pessoajuridica : {}", id);
-        Optional<Pessoajuridica> pessoajuridica = pessoajuridicaRepository.findById(id);
+        Optional<Pessoajuridica> pessoajuridica = pessoajuridicaService.findOne(id);
         return ResponseUtil.wrapOrNotFound(pessoajuridica);
     }
 
@@ -185,7 +188,7 @@ public class PessoajuridicaResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePessoajuridica(@PathVariable("id") Long id) {
         log.debug("REST request to delete Pessoajuridica : {}", id);
-        pessoajuridicaRepository.deleteById(id);
+        pessoajuridicaService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();

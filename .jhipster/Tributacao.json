@@ -19,6 +19,7 @@
       "fieldValues": "ATIVO,INATIVO,BLOQUEADO,EXCLUIDO"
     }
   ],
+  "jpaMetamodelFiltering": true,
   "name": "Tributacao",
   "relationships": [
     {
@@ -36,5 +37,6 @@
       "relationshipType": "one-to-many"
     }
   ],
-  "searchEngine": "no"
+  "searchEngine": "no",
+  "service": "serviceClass"
 }

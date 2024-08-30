@@ -47,11 +47,7 @@ export class CidadeComponent implements OnInit {
     this.subscription = combineLatest([this.activatedRoute.queryParamMap, this.activatedRoute.data])
       .pipe(
         tap(([params, data]) => this.fillComponentAttributeFromRoute(params, data)),
-        tap(() => {
-          if (!this.cidades || this.cidades.length === 0) {
-            this.load();
-          }
-        }),
+        tap(() => this.load()),
       )
       .subscribe();
   }

@@ -17,6 +17,7 @@
       "fieldType": "String"
     }
   ],
+  "jpaMetamodelFiltering": true,
   "name": "Estado",
   "relationships": [
     {
@@ -35,5 +36,6 @@
       "relationshipValidateRules": "required"
     }
   ],
-  "searchEngine": "no"
+  "searchEngine": "no",
+  "service": "serviceClass"
 }

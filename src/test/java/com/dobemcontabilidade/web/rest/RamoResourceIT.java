@@ -169,6 +169,115 @@ class RamoResourceIT {
 
     @Test
     @Transactional
+    void getRamosByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedRamo = ramoRepository.saveAndFlush(ramo);
+
+        Long id = ramo.getId();
+
+        defaultRamoFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultRamoFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultRamoFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllRamosByNomeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedRamo = ramoRepository.saveAndFlush(ramo);
+
+        // Get all the ramoList where nome equals to
+        defaultRamoFiltering("nome.equals=" + DEFAULT_NOME, "nome.equals=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllRamosByNomeIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedRamo = ramoRepository.saveAndFlush(ramo);
+
+        // Get all the ramoList where nome in
+        defaultRamoFiltering("nome.in=" + DEFAULT_NOME + "," + UPDATED_NOME, "nome.in=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllRamosByNomeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedRamo = ramoRepository.saveAndFlush(ramo);
+
+        // Get all the ramoList where nome is not null
+        defaultRamoFiltering("nome.specified=true", "nome.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllRamosByNomeContainsSomething() throws Exception {
+        // Initialize the database
+        insertedRamo = ramoRepository.saveAndFlush(ramo);
+
+        // Get all the ramoList where nome contains
+        defaultRamoFiltering("nome.contains=" + DEFAULT_NOME, "nome.contains=" + UPDATED_NOME);
+    }
+
+    @Test
+    @Transactional
+    void getAllRamosByNomeNotContainsSomething() throws Exception {
+        // Initialize the database
+        insertedRamo = ramoRepository.saveAndFlush(ramo);
+
+        // Get all the ramoList where nome does not contain
+        defaultRamoFiltering("nome.doesNotContain=" + UPDATED_NOME, "nome.doesNotContain=" + DEFAULT_NOME);
+    }
+
+    private void defaultRamoFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultRamoShouldBeFound(shouldBeFound);
+        defaultRamoShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultRamoShouldBeFound(String filter) throws Exception {
+        restRamoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(ramo.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
+
+        // Check, that the count call also returns 1
+        restRamoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultRamoShouldNotBeFound(String filter) throws Exception {
+        restRamoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restRamoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
+    }
+
+    @Test
+    @Transactional
     void getNonExistingRamo() throws Exception {
         // Get the ramo
         restRamoMockMvc.perform(get(ENTITY_API_URL_ID, Long.MAX_VALUE)).andExpect(status().isNotFound());
