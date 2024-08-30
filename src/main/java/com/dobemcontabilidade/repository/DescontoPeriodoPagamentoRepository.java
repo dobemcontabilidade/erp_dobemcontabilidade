@@ -13,7 +13,8 @@ import org.springframework.stereotype.Repository;
  * Spring Data JPA repository for the DescontoPeriodoPagamento entity.
  */
 @Repository
-public interface DescontoPeriodoPagamentoRepository extends JpaRepository<DescontoPeriodoPagamento, Long> {
+public interface DescontoPeriodoPagamentoRepository
+    extends JpaRepository<DescontoPeriodoPagamento, Long>, JpaSpecificationExecutor<DescontoPeriodoPagamento> {
     default Optional<DescontoPeriodoPagamento> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }

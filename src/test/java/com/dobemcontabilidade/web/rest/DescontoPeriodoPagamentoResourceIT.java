@@ -14,6 +14,7 @@ import com.dobemcontabilidade.domain.DescontoPeriodoPagamento;
 import com.dobemcontabilidade.domain.PeriodoPagamento;
 import com.dobemcontabilidade.domain.PlanoAssinaturaContabil;
 import com.dobemcontabilidade.repository.DescontoPeriodoPagamentoRepository;
+import com.dobemcontabilidade.service.DescontoPeriodoPagamentoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ class DescontoPeriodoPagamentoResourceIT {
 
     private static final Double DEFAULT_PERCENTUAL = 1D;
     private static final Double UPDATED_PERCENTUAL = 2D;
+    private static final Double SMALLER_PERCENTUAL = 1D - 1D;
 
     private static final String ENTITY_API_URL = "/api/desconto-periodo-pagamentos";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -60,6 +62,9 @@ class DescontoPeriodoPagamentoResourceIT {
 
     @Mock
     private DescontoPeriodoPagamentoRepository descontoPeriodoPagamentoRepositoryMock;
+
+    @Mock
+    private DescontoPeriodoPagamentoService descontoPeriodoPagamentoServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -215,16 +220,16 @@ class DescontoPeriodoPagamentoResourceIT {
 
     @SuppressWarnings({ "unchecked" })
     void getAllDescontoPeriodoPagamentosWithEagerRelationshipsIsEnabled() throws Exception {
-        when(descontoPeriodoPagamentoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(descontoPeriodoPagamentoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restDescontoPeriodoPagamentoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(descontoPeriodoPagamentoRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(descontoPeriodoPagamentoServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({ "unchecked" })
     void getAllDescontoPeriodoPagamentosWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(descontoPeriodoPagamentoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(descontoPeriodoPagamentoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restDescontoPeriodoPagamentoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
         verify(descontoPeriodoPagamentoRepositoryMock, times(1)).findAll(any(Pageable.class));
@@ -243,6 +248,190 @@ class DescontoPeriodoPagamentoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(descontoPeriodoPagamento.getId().intValue()))
             .andExpect(jsonPath("$.percentual").value(DEFAULT_PERCENTUAL.doubleValue()));
+    }
+
+    @Test
+    @Transactional
+    void getDescontoPeriodoPagamentosByIdFiltering() throws Exception {
+        // Initialize the database
+        insertedDescontoPeriodoPagamento = descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+
+        Long id = descontoPeriodoPagamento.getId();
+
+        defaultDescontoPeriodoPagamentoFiltering("id.equals=" + id, "id.notEquals=" + id);
+
+        defaultDescontoPeriodoPagamentoFiltering("id.greaterThanOrEqual=" + id, "id.greaterThan=" + id);
+
+        defaultDescontoPeriodoPagamentoFiltering("id.lessThanOrEqual=" + id, "id.lessThan=" + id);
+    }
+
+    @Test
+    @Transactional
+    void getAllDescontoPeriodoPagamentosByPercentualIsEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedDescontoPeriodoPagamento = descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+
+        // Get all the descontoPeriodoPagamentoList where percentual equals to
+        defaultDescontoPeriodoPagamentoFiltering("percentual.equals=" + DEFAULT_PERCENTUAL, "percentual.equals=" + UPDATED_PERCENTUAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllDescontoPeriodoPagamentosByPercentualIsInShouldWork() throws Exception {
+        // Initialize the database
+        insertedDescontoPeriodoPagamento = descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+
+        // Get all the descontoPeriodoPagamentoList where percentual in
+        defaultDescontoPeriodoPagamentoFiltering(
+            "percentual.in=" + DEFAULT_PERCENTUAL + "," + UPDATED_PERCENTUAL,
+            "percentual.in=" + UPDATED_PERCENTUAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllDescontoPeriodoPagamentosByPercentualIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        insertedDescontoPeriodoPagamento = descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+
+        // Get all the descontoPeriodoPagamentoList where percentual is not null
+        defaultDescontoPeriodoPagamentoFiltering("percentual.specified=true", "percentual.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllDescontoPeriodoPagamentosByPercentualIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedDescontoPeriodoPagamento = descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+
+        // Get all the descontoPeriodoPagamentoList where percentual is greater than or equal to
+        defaultDescontoPeriodoPagamentoFiltering(
+            "percentual.greaterThanOrEqual=" + DEFAULT_PERCENTUAL,
+            "percentual.greaterThanOrEqual=" + UPDATED_PERCENTUAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllDescontoPeriodoPagamentosByPercentualIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        insertedDescontoPeriodoPagamento = descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+
+        // Get all the descontoPeriodoPagamentoList where percentual is less than or equal to
+        defaultDescontoPeriodoPagamentoFiltering(
+            "percentual.lessThanOrEqual=" + DEFAULT_PERCENTUAL,
+            "percentual.lessThanOrEqual=" + SMALLER_PERCENTUAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllDescontoPeriodoPagamentosByPercentualIsLessThanSomething() throws Exception {
+        // Initialize the database
+        insertedDescontoPeriodoPagamento = descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+
+        // Get all the descontoPeriodoPagamentoList where percentual is less than
+        defaultDescontoPeriodoPagamentoFiltering("percentual.lessThan=" + UPDATED_PERCENTUAL, "percentual.lessThan=" + DEFAULT_PERCENTUAL);
+    }
+
+    @Test
+    @Transactional
+    void getAllDescontoPeriodoPagamentosByPercentualIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        insertedDescontoPeriodoPagamento = descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+
+        // Get all the descontoPeriodoPagamentoList where percentual is greater than
+        defaultDescontoPeriodoPagamentoFiltering(
+            "percentual.greaterThan=" + SMALLER_PERCENTUAL,
+            "percentual.greaterThan=" + DEFAULT_PERCENTUAL
+        );
+    }
+
+    @Test
+    @Transactional
+    void getAllDescontoPeriodoPagamentosByPeriodoPagamentoIsEqualToSomething() throws Exception {
+        PeriodoPagamento periodoPagamento;
+        if (TestUtil.findAll(em, PeriodoPagamento.class).isEmpty()) {
+            descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+            periodoPagamento = PeriodoPagamentoResourceIT.createEntity(em);
+        } else {
+            periodoPagamento = TestUtil.findAll(em, PeriodoPagamento.class).get(0);
+        }
+        em.persist(periodoPagamento);
+        em.flush();
+        descontoPeriodoPagamento.setPeriodoPagamento(periodoPagamento);
+        descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+        Long periodoPagamentoId = periodoPagamento.getId();
+        // Get all the descontoPeriodoPagamentoList where periodoPagamento equals to periodoPagamentoId
+        defaultDescontoPeriodoPagamentoShouldBeFound("periodoPagamentoId.equals=" + periodoPagamentoId);
+
+        // Get all the descontoPeriodoPagamentoList where periodoPagamento equals to (periodoPagamentoId + 1)
+        defaultDescontoPeriodoPagamentoShouldNotBeFound("periodoPagamentoId.equals=" + (periodoPagamentoId + 1));
+    }
+
+    @Test
+    @Transactional
+    void getAllDescontoPeriodoPagamentosByPlanoAssinaturaContabilIsEqualToSomething() throws Exception {
+        PlanoAssinaturaContabil planoAssinaturaContabil;
+        if (TestUtil.findAll(em, PlanoAssinaturaContabil.class).isEmpty()) {
+            descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+            planoAssinaturaContabil = PlanoAssinaturaContabilResourceIT.createEntity(em);
+        } else {
+            planoAssinaturaContabil = TestUtil.findAll(em, PlanoAssinaturaContabil.class).get(0);
+        }
+        em.persist(planoAssinaturaContabil);
+        em.flush();
+        descontoPeriodoPagamento.setPlanoAssinaturaContabil(planoAssinaturaContabil);
+        descontoPeriodoPagamentoRepository.saveAndFlush(descontoPeriodoPagamento);
+        Long planoAssinaturaContabilId = planoAssinaturaContabil.getId();
+        // Get all the descontoPeriodoPagamentoList where planoAssinaturaContabil equals to planoAssinaturaContabilId
+        defaultDescontoPeriodoPagamentoShouldBeFound("planoAssinaturaContabilId.equals=" + planoAssinaturaContabilId);
+
+        // Get all the descontoPeriodoPagamentoList where planoAssinaturaContabil equals to (planoAssinaturaContabilId + 1)
+        defaultDescontoPeriodoPagamentoShouldNotBeFound("planoAssinaturaContabilId.equals=" + (planoAssinaturaContabilId + 1));
+    }
+
+    private void defaultDescontoPeriodoPagamentoFiltering(String shouldBeFound, String shouldNotBeFound) throws Exception {
+        defaultDescontoPeriodoPagamentoShouldBeFound(shouldBeFound);
+        defaultDescontoPeriodoPagamentoShouldNotBeFound(shouldNotBeFound);
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is returned.
+     */
+    private void defaultDescontoPeriodoPagamentoShouldBeFound(String filter) throws Exception {
+        restDescontoPeriodoPagamentoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(descontoPeriodoPagamento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].percentual").value(hasItem(DEFAULT_PERCENTUAL.doubleValue())));
+
+        // Check, that the count call also returns 1
+        restDescontoPeriodoPagamentoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("1"));
+    }
+
+    /**
+     * Executes the search, and checks that the default entity is not returned.
+     */
+    private void defaultDescontoPeriodoPagamentoShouldNotBeFound(String filter) throws Exception {
+        restDescontoPeriodoPagamentoMockMvc
+            .perform(get(ENTITY_API_URL + "?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isEmpty());
+
+        // Check, that the count call also returns 0
+        restDescontoPeriodoPagamentoMockMvc
+            .perform(get(ENTITY_API_URL + "/count?sort=id,desc&" + filter))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(content().string("0"));
     }
 
     @Test

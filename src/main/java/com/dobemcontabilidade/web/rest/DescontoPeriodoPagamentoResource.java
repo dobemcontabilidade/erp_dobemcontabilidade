@@ -2,6 +2,9 @@ package com.dobemcontabilidade.web.rest;
 
 import com.dobemcontabilidade.domain.DescontoPeriodoPagamento;
 import com.dobemcontabilidade.repository.DescontoPeriodoPagamentoRepository;
+import com.dobemcontabilidade.service.DescontoPeriodoPagamentoQueryService;
+import com.dobemcontabilidade.service.DescontoPeriodoPagamentoService;
+import com.dobemcontabilidade.service.criteria.DescontoPeriodoPagamentoCriteria;
 import com.dobemcontabilidade.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -24,7 +26,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/desconto-periodo-pagamentos")
-@Transactional
 public class DescontoPeriodoPagamentoResource {
 
     private static final Logger log = LoggerFactory.getLogger(DescontoPeriodoPagamentoResource.class);
@@ -34,10 +35,20 @@ public class DescontoPeriodoPagamentoResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final DescontoPeriodoPagamentoService descontoPeriodoPagamentoService;
+
     private final DescontoPeriodoPagamentoRepository descontoPeriodoPagamentoRepository;
 
-    public DescontoPeriodoPagamentoResource(DescontoPeriodoPagamentoRepository descontoPeriodoPagamentoRepository) {
+    private final DescontoPeriodoPagamentoQueryService descontoPeriodoPagamentoQueryService;
+
+    public DescontoPeriodoPagamentoResource(
+        DescontoPeriodoPagamentoService descontoPeriodoPagamentoService,
+        DescontoPeriodoPagamentoRepository descontoPeriodoPagamentoRepository,
+        DescontoPeriodoPagamentoQueryService descontoPeriodoPagamentoQueryService
+    ) {
+        this.descontoPeriodoPagamentoService = descontoPeriodoPagamentoService;
         this.descontoPeriodoPagamentoRepository = descontoPeriodoPagamentoRepository;
+        this.descontoPeriodoPagamentoQueryService = descontoPeriodoPagamentoQueryService;
     }
 
     /**
@@ -55,7 +66,7 @@ public class DescontoPeriodoPagamentoResource {
         if (descontoPeriodoPagamento.getId() != null) {
             throw new BadRequestAlertException("A new descontoPeriodoPagamento cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        descontoPeriodoPagamento = descontoPeriodoPagamentoRepository.save(descontoPeriodoPagamento);
+        descontoPeriodoPagamento = descontoPeriodoPagamentoService.save(descontoPeriodoPagamento);
         return ResponseEntity.created(new URI("/api/desconto-periodo-pagamentos/" + descontoPeriodoPagamento.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, descontoPeriodoPagamento.getId().toString()))
             .body(descontoPeriodoPagamento);
@@ -88,7 +99,7 @@ public class DescontoPeriodoPagamentoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        descontoPeriodoPagamento = descontoPeriodoPagamentoRepository.save(descontoPeriodoPagamento);
+        descontoPeriodoPagamento = descontoPeriodoPagamentoService.update(descontoPeriodoPagamento);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, descontoPeriodoPagamento.getId().toString()))
             .body(descontoPeriodoPagamento);
@@ -122,16 +133,7 @@ public class DescontoPeriodoPagamentoResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<DescontoPeriodoPagamento> result = descontoPeriodoPagamentoRepository
-            .findById(descontoPeriodoPagamento.getId())
-            .map(existingDescontoPeriodoPagamento -> {
-                if (descontoPeriodoPagamento.getPercentual() != null) {
-                    existingDescontoPeriodoPagamento.setPercentual(descontoPeriodoPagamento.getPercentual());
-                }
-
-                return existingDescontoPeriodoPagamento;
-            })
-            .map(descontoPeriodoPagamentoRepository::save);
+        Optional<DescontoPeriodoPagamento> result = descontoPeriodoPagamentoService.partialUpdate(descontoPeriodoPagamento);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -142,19 +144,27 @@ public class DescontoPeriodoPagamentoResource {
     /**
      * {@code GET  /desconto-periodo-pagamentos} : get all the descontoPeriodoPagamentos.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of descontoPeriodoPagamentos in body.
      */
     @GetMapping("")
-    public List<DescontoPeriodoPagamento> getAllDescontoPeriodoPagamentos(
-        @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
-    ) {
-        log.debug("REST request to get all DescontoPeriodoPagamentos");
-        if (eagerload) {
-            return descontoPeriodoPagamentoRepository.findAllWithEagerRelationships();
-        } else {
-            return descontoPeriodoPagamentoRepository.findAll();
-        }
+    public ResponseEntity<List<DescontoPeriodoPagamento>> getAllDescontoPeriodoPagamentos(DescontoPeriodoPagamentoCriteria criteria) {
+        log.debug("REST request to get DescontoPeriodoPagamentos by criteria: {}", criteria);
+
+        List<DescontoPeriodoPagamento> entityList = descontoPeriodoPagamentoQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /desconto-periodo-pagamentos/count} : count all the descontoPeriodoPagamentos.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/count")
+    public ResponseEntity<Long> countDescontoPeriodoPagamentos(DescontoPeriodoPagamentoCriteria criteria) {
+        log.debug("REST request to count DescontoPeriodoPagamentos by criteria: {}", criteria);
+        return ResponseEntity.ok().body(descontoPeriodoPagamentoQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -166,7 +176,7 @@ public class DescontoPeriodoPagamentoResource {
     @GetMapping("/{id}")
     public ResponseEntity<DescontoPeriodoPagamento> getDescontoPeriodoPagamento(@PathVariable("id") Long id) {
         log.debug("REST request to get DescontoPeriodoPagamento : {}", id);
-        Optional<DescontoPeriodoPagamento> descontoPeriodoPagamento = descontoPeriodoPagamentoRepository.findOneWithEagerRelationships(id);
+        Optional<DescontoPeriodoPagamento> descontoPeriodoPagamento = descontoPeriodoPagamentoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(descontoPeriodoPagamento);
     }
 
@@ -179,7 +189,7 @@ public class DescontoPeriodoPagamentoResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDescontoPeriodoPagamento(@PathVariable("id") Long id) {
         log.debug("REST request to delete DescontoPeriodoPagamento : {}", id);
-        descontoPeriodoPagamentoRepository.deleteById(id);
+        descontoPeriodoPagamentoService.delete(id);
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
