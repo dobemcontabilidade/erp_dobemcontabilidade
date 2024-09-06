@@ -40,19 +40,39 @@ enum SituacaoContratoEmpresaEnum {
 
 enum SituacaoTermoContratoAssinadoEnum {
     ASSINADO, PENDENTE, CANCELADO, ENVIADO
-    }
+}
+
+enum MesCompetenciaEnum {
+    JANEIRO, FEVEREIRO, MARCO, ABRIL, MAIO, JUNHO, JULHO, AGOSTO, SETEMBRO, OUTUBRO, NOVEMBRO, DEZEMBRO
+}
+
+enum SituacaoPagamentoCobrancaImpostoEnum {
+    ABERTO, VENCIDO, ATRASADO, PENDENTE, RECALCULADO, PAGO, PRORROGADO
+}
 
 
 //enum SituacaoPlanoContaAzulEnum {
 //    ATIVO, INATIVO, EXCLUIDO
 //}
 
+enum TipoContaBancoEnum {
+    CONTACORRENTE, CONTAPOUPANCA, CONTASALARIO
+}
+
+enum TipoEnderecoEnum {
+    RESIDENCIAL, COMERCIAL
+}
+
 enum SituacaoPlanoContabilEnum {
     ATIVO, INATIVO, EXCLUIDO
 }
 
 enum TipoContratoEnum {
-    ABERTURA_EMPRESA, CONTRATACAO_PLANO
+    ABERTURA_EMPRESA, PLANO_SERVICO, DEMANDA_SERVICO
+}
+
+enum TipoGrauInstituicaoEnum {
+    ANALFABETO, FUNDAMENTAL, 5_ANO_INCOMPLETO, 5_ANO_COMPLETO, 5_AO_9_ANO_INCOMPLETO, 5_AO_9_ANO_COMPLETO, MEDIO_COMPLETO, MEDIO_INCOMPLETO, SUPERIOR_COMPLETO, SUPERIOR_INCOMPLETO, MESTRADO, DOUTORADO, SUPERIOR, FORMACAO_PROFISSIONAL
 }
 
 
@@ -64,12 +84,88 @@ enum TipoTelefoneEnum {
     RESIDENCIAL, COMERCIAL, CELULAR, WHATSAPP
 }
 
-//enum SituacaoFuncionarioEnum {
-//    ADMITIDO, AFASTADO, DEMITIDO, EXPERIENCIA, DEMITIDO_JUSTA_CAUSA
-//}
+enum SituacaoFuncionarioEnum {
+    CADASTRO_EM_ANDAMENTO, CADASTRADO, ADMISSAO_EM_ANDAMENTO, ADMISSAO_SOLICITADA, ADMITIDO, DEMISSAO_EM_ANDAMENTO, DEMISSAO_CANCELADO, DEMITIDO, AFASTADO, CANCELAMENTO_SOLICITADO, CANCELADO, EXPERIENCIA, BAIXA_SOLICITADA, DEMITIDO_JUSTA_CAUSA
+}
+
+enum FgtsOpcaoEnum {
+    OPTANTE, NAO_OPTANTE
+}
+
+enum TipoDocumentoEnum {
+    RG, CNH, RNE, RIC, OC
+}
 
 enum SituacaoTributacaoEnum {
     ATIVO, INATIVO, BLOQUEADO, EXCLUIDO
+}
+
+enum NaturezaEstagioEnum {
+    OBRIGATORIO, NAO_OBRIGADO
+}
+
+enum CategoriaTrabalhadorEnum {
+    ESTAGIARIO, EMPREGADO
+}
+
+enum PeriodoExperienciaEnum {
+    15, 30, 45_45, 30_30
+}
+
+enum TipoAdmissaoEnum {
+    ADMISSAO, TRANSFERENCIA, SUCESSAO, INCORPORACAO, FUSAO, CEDIDO
+}
+
+enum PeriodoIntermitenteEnum {
+    04_MESES, 05_MESES, 06_MESES, 07_MESES, 08_MESES, 09_MESES, 10_MESES, 11_MESES, 12_MESES, 1_ANO_1_MESES, 1_ANO_2_MESES, 1_ANO_3_MESES, 1_ANO_4_MESES, 1_ANO_5_MESES, 1_ANO_6_MESES, 1_ANO_7_MESES, 1_ANO_8_MESES, 1_ANO_9_MESES, 1_ANO_10_MESES, 1_ANO_11_MESES, 1_ANO_12_MESES
+}
+
+enum IndicativoAdmissaoEnum {
+    NORMAL, ACAO_FISCAL, DECISAO_JUDICIAL
+}
+
+enum TipoVinculoTrabalhoEnum {
+    URBANO, RURAL
+}
+
+enum GrauParentescoEnum {
+    CONJUGE, FILHO, IRMAO_NETO_BISNETO, PAIS_AVOS, MENOR_COM_GUARDA
+}
+
+enum SituacaoDemissaoEnum {
+    SOLICITADO, GERADO, DEMISSAO_EM_ANDAMENTO, EM_ANDAMENTO, REMOVIDO, FINALIZADO, ABERTO, CANCELADO, PAGO
+}
+
+enum AvisoPrevioEnum {
+    NAO_POSSUI, VINTE_DIAS, TRINTA_DIAS
+}
+
+enum TipoDemissaoEnum {
+    JUSTA_CAUSA, DESPEDIDA_SEM_JUSTA_CAUSA, RECISAO_ANTECIPADA, FALECIMENTO_EMPREGADO, PEDIDO, CONSENSUAL, ACORDO
+}
+
+enum SituacaoCobrancaEnum {
+    ABERTA, FECHADA, ATRASADA, PAGA
+}
+
+enum SituacaoTarefaEnum {
+    AGENDADA, CANCELADA, EM_EXECUCAO, CONCLUIDA, PENDENTE, DELETADA 
+}
+
+enum TipoRecorrenciaEnum {
+    DIARIO, SEMANAL, MENSAL, SEMESTRAL, ANUAL
+}
+
+enum TipoContabilEnum {
+    SIMPLES, FLUXO
+}
+
+enum StatusOsEnum {
+    ABERTA, EM_ATENDIMENTO, COM_PENDENCIA, CONCLUIDA, CANCELADA
+}
+
+enum EsferaEnum {
+    MUNICIPAL, ESTADUAL, FEDERAL
 }
 
 //enum SituacaoPagamentoEnum {
@@ -90,6 +186,32 @@ entity Pessoajuridica {
     cnpj String maxlength(20)
 }
 
+entity ImpostoEmpresa {
+    diaVencimento Integer
+}
+
+entity NegociaImpostoEmpresa {
+    diaVencimento Integer
+    numeroParcelas Integer
+    urlArquivoNegociacao String
+    numeroParcelasPagas Integer
+    numeroParcelasRestantes Integer
+    valorPago Double
+}
+
+entity ParcelaImpostoAPagar {
+    dataVencimento LocalDate
+    dataPagamento LocalDate
+    valor Double
+    valorMulta Double
+    urlArquivoPagamento String
+    urlArquivoComprovante String
+}
+
+entity CobrancaImpostoEmpresa {
+    diasAtraso Integer
+}
+
 entity Empresa {
     razaoSocial String required
     descricaoDoNegocio TextBlob
@@ -97,6 +219,12 @@ entity Empresa {
     urlContratoSocial String
     capitalSocial Double
     cnae String required
+}
+
+entity Imposto {
+    nome String
+    sigla String
+    descricao String
 }
 
 entity Socio {
@@ -140,14 +268,18 @@ entity DocsEmpresa {
 }
 
 entity RedeSocial {
-    nome String required
-    descricao TextBlob
     url TextBlob
-    logo String
+    nome String required
+    icone String
+    descricao TextBlob
 }
 
 entity RedeSocialEmpresa {
     perfil String required
+    urlPerfil TextBlob
+}
+
+entity RedeSocialPessoa {
     urlPerfil TextBlob
 }
 
@@ -156,12 +288,103 @@ entity PessoaFisica {
     cpf String required
     dataNascimento Instant
     tituloEleitor String
-    rg String required
-    rgOrgaoExpditor String
-    rgUfExpedicao String
+    rg Integer required
+    rgOrgaoExpditor Integer
+    rgUfExpedicao Integer
+    nomeMae String maxlength(200)
+    nomePai String maxlength(200)
+    localNascimento String
+    urlFotoPerfil String
+    numeroDocIdentificacao Integer
+    dataExpedicao String
+    dataValidadeDocumento String
     estadoCivil EstadoCivilEnum
     sexo SexoEnum required
-    urlFotoPerfil String
+}
+
+entity Funcionario {
+    numeroPisNisPasep Integer maxlength(11)
+    reintegrado Boolean
+    multiploVinculos Boolean
+    dataOpcaoFgts String
+    filiacaoSindical Boolean
+    cnpjSindicato String
+    ctps String
+    orgaoEmissorDocumento String
+    serieCtps Integer	  
+	situacao SituacaoFuncionarioEnum
+}
+
+entity Dependente {
+    dependenteIRRF Boolean
+    dependenteSalarioFamilia Boolean
+}
+
+entity ContratoFuncionario {
+    dataAdmissao LocalDate
+    salarioFixo Boolean
+    salarioVariavel Boolean
+    valorSalarioFixo Double
+    valorSalarioVariavel Double
+    dataTerminoContrato LocalDate
+    dataInicioContrato LocalDate
+    horasATrabalhar Integer
+    cargo String
+    descricaoAtividades String
+    codigoCargo String
+}
+
+entity DemissaoFuncionario {
+    numeroCertidaoObito String
+    cnpjEmpresaSucessora String
+    saldoFgts Double
+    valorPensao Double
+    valorPensaoFgts Double
+    percentualPensao Double
+    percentualFgts Double
+    diasAvisoPrevio Integer
+    dataAvisoPrevio LocalDate
+    dataPagamento LocalDate
+    dataAfastamento LocalDate
+    urlDemissional String
+    calcularRecisao Boolean
+    pagar13Recisao Boolean
+    jornadaTrabalhoCumpridaSemana Boolean
+    sabadoCompensado Boolean
+    novoVinculoComprovado Boolean
+    dispensaAvisoPrevio Boolean
+    fgtsArrecadadoGuia Boolean
+    avisoPrevioTrabalhadoRecebido Boolean
+    recolherFgtsMesAnterior Boolean
+    avisoPrevioIndenizado Boolean
+    cumprimentoAvisoPrevio Integer
+}
+
+entity Estrangeiro {
+    dataChegada String
+    dataNaturalizacao Integer
+    casadoComBrasileiro Boolean
+    filhosComBrasileiro Boolean
+    checked Boolean
+}
+
+entity Escolaridade {
+    grauInstituicao Integer
+    nomeInstituicao String
+    anoConclusao Integer
+    urlComprovanteEscolaridade String
+}
+
+entity Banco {
+	nome String required
+	codigo String maxlength(20) required
+}
+
+entity BancoPessoa {
+    agencia String maxlength(30) required
+	conta String maxlength(30) required
+    tipoConta Integer
+    principal Boolean
 }
 
 entity AssinaturaEmpresa {
@@ -184,6 +407,92 @@ entity AssinaturaEmpresa {
     diaVencimento Integer
     situacao SituacaoContratoEmpresaEnum
     tipoContrato TipoContratoEnum
+}
+
+entity CobrancaEmpresa {
+    dataCobranca LocalDate
+    valorPago Double
+    urlCobranca String
+    urlArquivo String
+    valorCobrado Double
+}
+
+entity Tarefa {
+    descricao String
+    notificarContador Boolean
+    anoReferencia Integer
+    dataAdmin LocalDate
+    notificarCliente Boolean
+}
+
+entity Subtarefa {
+    nome String
+    descricao TextBlob
+	ordem Integer
+	concluida Boolean
+}
+
+entity ServicoAssinatura {
+    diaAdministrativo Integer
+    mesAdministrativo Integer
+    diaLegal Integer
+    mesLegal Integer
+}
+
+entity AgendaContador {
+    horaInicio Instant
+    horaFim Instant
+    ativa Boolean
+    diaInteiro Boolean
+    comentario String
+}
+
+entity OrdemServicoContabil {
+    dataAdministrativa Integer
+    dataLegal Instant
+}
+
+entity ServicoContabil {
+    nome String
+    descricao String
+    valor Double
+    diasExecucao Integer
+    periodoExecucao Integer
+    diaLegal Integer
+    mesLegal Integer
+    geraMulta Boolean
+    valorRefMulta Double
+    obrigacaoGoverno Boolean
+    multa Double
+    sigla String
+    orgaoResponsavel String
+    siteOrgaoResponsavel String
+}
+
+entity ServicoContabilPlanoAssinatura {
+    descontoServico Boolean
+}
+
+entity OrdemServico {
+    valor Double
+    id Integer
+    prazo Instant
+    dataCriacao Instant
+    dataHoraCancelamento Instant
+}
+
+entity FluxoServico {
+    nome String
+    descricao String
+}
+
+entity EtapaFluxoServico {
+    nome String
+    descricao String
+    feito Boolean
+    ordem Integer
+    agendada Boolean
+    preRequisito Boolean
 }
 
 entity EnderecoEmpresa  {
@@ -307,6 +616,7 @@ entity EnderecoPessoa  {
 	bairro String
 	cep String
 	principal Boolean
+    residenciaPropria Boolean
 }
 
 entity Email  {
@@ -317,14 +627,14 @@ entity Email  {
 entity Telefone {
 	codigoArea String required
 	telefone String required
-	principla Boolean
+	principal Boolean
 	tipoTelefone TipoTelefoneEnum
 }
 
 entity DocsPessoa {
-	urlArquivo TextBlob required
-	tipo String
-	descricao TextBlob
+	documento String maxlength(300)
+    descricao TextBlob
+    urlArquivo TextBlob required
 }
 
 entity Contador {
@@ -335,9 +645,6 @@ entity Contador {
     rg String required maxlength(10)
     rgOrgaoExpeditor String
     rgUfExpedicao String
-    nomeMae String maxlength(200)
-    nomePai String maxlength(200)
-    localNascimento String
     racaECor RacaECorEnum
     pessoaComDeficiencia PessoaComDeficienciaEnum
     estadoCivil EstadoCivilEnum
@@ -350,6 +657,28 @@ entity Contador {
     limiteFaturamento Double
     limiteDepartamentos Integer
     situacaoContador SituacaoContadorEnum
+}
+
+entity PerfilContador {
+	perfil String required
+	descricao String
+	limiteEmpresas Integer
+	limiteDepartamentos Integer
+    limiteAreaContabils Integer
+	limiteFaturamento Double
+}
+
+entity AreaContabilContador {
+	percentualExperiencia Double
+	descricaoExperiencia String
+	pontuacaoEntrevista Double
+	pontuacaoAvaliacao Double
+}
+
+entity AreaContabil {
+	nome String
+	descricao TextBlob
+    percentual Double
 }
 
 relationship OneToOne {
@@ -370,6 +699,7 @@ relationship OneToMany {
 	PessoaFisica to DocsPessoa{Pessoa(nome) required}
 	PessoaFisica to Email{Pessoa(nome) required}
 	PessoaFisica to Telefone{Pessoa(nome) required}
+    PessoaFisica to DocsPessoa{Pessoa(nome) required}
 
 	Cidade to EnderecoPessoa{Cidade(nome) required}
 	Cidade to EnderecoEmpresa{Cidade(nome) required}
