@@ -684,6 +684,14 @@ entity AreaContabil {
 relationship OneToOne {
     Socio {PessoaFisica(nome) required} to PessoaFisica
     Empresa {PessoaJuridica(razaoSocial) required} to Pessoajuridica
+
+    //Pedro OneToOne - Realizado (Elton Checar)
+    Funcionario to ContratoFuncionario{Funcionario(nome) required}
+
+    PessoaFisica {Funcionario(nome) required} to Funcionario
+    PessoaFisica {Dependente(nome) required} to Dependente
+
+    / TUDO FEITO ATÉ AGORA /
 }
 
 relationship OneToMany {
@@ -699,7 +707,45 @@ relationship OneToMany {
 	PessoaFisica to DocsPessoa{Pessoa(nome) required}
 	PessoaFisica to Email{Pessoa(nome) required}
 	PessoaFisica to Telefone{Pessoa(nome) required}
-    PessoaFisica to DocsPessoa{Pessoa(nome) required}
+
+    // Pedro OneToMany - Realizado (Elton Checar)
+    PessoaFisica to Escolaridade{PessoaFisica(nome) required}
+    PessoaFisica to Estrangeiro{PessoaFisica(nome) required}
+    PessoaFisica to Cidade{PessoaFisica(nome) required}
+    PessoaFisica to Estado{PessoaFisica(nome) required}
+    PessoaFisica to Banco{PessoaFisica(nome) required}
+    PessoaFisica to BancoPessoa{PessoaFisica(nome) required}
+    PessoaFisica to RedeSocial{PessoaFisica(nome) required}
+    PessoaFisica to RedeSocialPessoa{PessoaFisica(nome) required}
+    PessoaFisica to Dependente{PessoaFisica(nome) required}
+
+    Funcionario to Dependente{Funcionario(nome) required}
+
+    ContratoFuncionario to Empresa{ContratoFuncionario(nome) required}
+
+    PessoaJuridica to Empresa{PessoaJuridica(razaoSocial) required}
+
+    PessoaJuridica to CertificadoDigital{PessoaJuridica(razaoSocial) required}
+    PessoaJuridica to FornecedorCertificado{PessoaJuridica(razaoSocial) required}
+    PessoaJuridica to RedeSocial{PessoaJuridica(nome) required}
+    PessoaJuridica to RedeSocialEmpresa{PessoaJuridica(nome) required}
+    PessoaJuridica to Cidade{PessoaJuridica(nome) required}
+
+    Imposto to Empresa{Imposto(nome) required}
+
+    NegociacaoImpostoEmpresa to ParcelaImpostoAPagar{NegociacaoImpostoEmpresa(urlArquivoNegociacao) required}
+    NegociacaoImpostoEmpresa to CobrancaImpostoEmpresa{NegociacaoImpostoEmpresa(dataPagamento) required}
+    NegociacaoImpostoEmpresa to ImpostoEmpresa{NegociacaoImpostoEmpresa(diaVencimento) required}
+    CobrancaImpostoEmpresa to NegociacaoImpostoEmpresa{CobrancaImpostoEmpresa(id) required}
+    CobrancaImpostoEmpresa to ImpostoEmpresa{CobrancaImpostoEmpresa(id) required}
+    ImpostoEmpresa to CobrancaImpostoEmpresa{ImpostoEmpresa(diaVencimento) required}
+    ImpostoEmpresa to NegociacaoImpostoEmpresa{ImpostoEmpresa(diaVencimento) required}
+
+    Empresa to DemissaoFuncionario{Empresa(nome) required}
+
+    / TUDO FEITO ATÉ AGORA /
+
+
 
 	Cidade to EnderecoPessoa{Cidade(nome) required}
 	Cidade to EnderecoEmpresa{Cidade(nome) required}
