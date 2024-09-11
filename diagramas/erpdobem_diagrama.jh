@@ -743,6 +743,21 @@ relationship OneToMany {
 
     Empresa to DemissaoFuncionario{Empresa(nome) required}
 
+    Empresa to Enquadramento{Empresa(nome) required}
+    Empresa to Ramo{Empresa(nome) required}
+    Empresa to Tributacao{Empresa(nome) required}
+    Empresa to Socio{Empresa(razaoSocial) required}
+
+    AssinaturaEmpresa to GatewayPagamento{AssinaturaEmpresa(nome) required}
+    AssinaturaEmpresa to GatewayAssinaturaEmpresa{AssinaturaEmpresa(codigoAssinatura) required}
+    AssinaturaEmpresa to FormaDePagamento{AssinaturaEmpresa(nome) required}
+    AssinaturaEmpresa to CobrancaEmpresa{AssinaturaEmpresa(dataCobranca) required}
+    AssinaturaEmpresa to TermoContratoAssinaturaEmpresa{AssinaturaEmpresa(dataEnvioEmail) required}
+    AssinaturaEmpresa to TermoContratoContabil{AssinaturaEmpresa(urlDocumentoFonte) required}
+    AssinaturaEmpresa to PeriodoPagamento{AssinaturaEmpresa(periodo) required}
+    AssinaturaEmpresa to DescontoPeriodoPagamento{AssinaturaEmpresa(percentual) required}
+
+
     / TUDO FEITO ATÉ AGORA /
 
 
