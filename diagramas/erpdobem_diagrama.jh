@@ -686,13 +686,21 @@ relationship OneToOne {
     Empresa {PessoaJuridica(razaoSocial) required} to Pessoajuridica
 
     //Pedro OneToOne - Realizado (Elton Checar)
-    Funcionario to ContratoFuncionario{Funcionario(nome) required}
+    Funcionario {ContratoFuncionario(nome) required} to ContratoFuncionario
 
     PessoaFisica {Funcionario(nome) required} to Funcionario
     PessoaFisica {Dependente(nome) required} to Dependente
 
-    / TUDO FEITO ATÉ AGORA /
+    Contador {PerfilContador(nome) required} to PerfilContador
+
+    Tarefa {AgendaContador(descricao) required} to AgendaContador
+    AgendaContador {Contador(horaInicio) required} to Contador
+
+    Contador {PessoaFisica(nome) required} to PessoaFisica
+
+    // TUDO FEITO ATÉ AGORA
 }
+
 
 relationship OneToMany {
 
@@ -752,10 +760,37 @@ relationship OneToMany {
     AssinaturaEmpresa to GatewayAssinaturaEmpresa{AssinaturaEmpresa(codigoAssinatura) required}
     AssinaturaEmpresa to FormaDePagamento{AssinaturaEmpresa(nome) required}
     AssinaturaEmpresa to CobrancaEmpresa{AssinaturaEmpresa(dataCobranca) required}
-    AssinaturaEmpresa to TermoContratoAssinaturaEmpresa{AssinaturaEmpresa(dataEnvioEmail) required}
     AssinaturaEmpresa to TermoContratoContabil{AssinaturaEmpresa(urlDocumentoFonte) required}
     AssinaturaEmpresa to PeriodoPagamento{AssinaturaEmpresa(periodo) required}
     AssinaturaEmpresa to DescontoPeriodoPagamento{AssinaturaEmpresa(percentual) required}
+    AssinaturaEmpresa to ServicoContabil{AssinaturaEmpresa(nome) required}
+
+    PlanoAssinaturaContabil to Tributacao{PlanoAssinaturaContabil(nome) required}
+    PlanoAssinaturaContabil to AdicionalTributacao{PlanoAssinaturaContabil(valor) required}
+    PlanoAssinaturaContabil to Ramo{PlanoAssinaturaContabil(nome) required}
+    PlanoAssinaturaContabil to AdicionalRamo{PlanoAssinaturaContabil(valor) required}
+    PlanoAssinaturaContabil to Enquadramento{PlanoAssinaturaContabil(nome) required}
+    PlanoAssinaturaContabil to AdicionalEnquadramento{PlanoAssinaturaContabil(valor) required}
+    PlanoAssinaturaContabil to ServicoContabil{PlanoAssinaturaContabil(nome) required}
+    PlanoAssinaturaContabil to ServicoContabilPlanoAssinatura{PlanoAssinaturaContabil(descontoServico) required}
+
+    ServicoContabil to FluxoServico{ServicoContabil(nome) required}
+    ServicoContabil to OrdemServico{ServicoContabil(valor) required}
+    ServicoContabil to AreaContabil{ServicoContabil(nome) required}
+    FluxoServico to EtapaFluxoServico{FluxoServico(nome) required}
+
+
+    Contador to AgendaContador{Contador(nome) required} 
+    Contador to Tarefa{Contador(nome) required} 
+
+    Tarefa to ServicoAssinatura{Tarefa(diaAdministrativo) required}
+    Tarefa to SubTarefa{Tarefa(nome) required}
+    Tarefa to OrdemServicoContabil{Tarefa(nome) required}
+
+    ServicoAssinatura to ServicoContabil{ServicoAssinatura(nome) required}
+
+    Contador to AreaContabilContador{Contador(nome) required}
+    Contador to AreaContabil{Contador(nome) required}
 
 
     / TUDO FEITO ATÉ AGORA /
